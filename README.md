@@ -22,4 +22,4 @@ request to allow playthrough.
 services and assistance.
 * Players app display player history and dashboard
 ## Contributors
-Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
+Adam Horle, Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
