@@ -28,5 +28,5 @@ Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
 Contains the app's cloud component.
 ### GPTM Mobile
 Contains the Android App.
-### Resources
+### Documentation
 Contains all of the projects's documentation.
