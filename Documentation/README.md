@@ -53,3 +53,4 @@
 * Project Plan
 * Risk management
 ## References
+* Relevant references used as a guide in development
