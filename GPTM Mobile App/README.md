@@ -7,3 +7,4 @@ request to allow playthrough.
 * Players app displays helpful hints based on location, and allows for notification to the cloud for
 services and assistance.
 * Players app display player history and dashboard
+## Adam and Eli authored the user authentication. Restructuring needed to take place so they are not listed for this contribution but credit needs to be given where credit is due.
