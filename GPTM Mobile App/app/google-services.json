@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1004433550779",
+    "firebase_url": "https://golf-player-time-management.firebaseio.com",
+    "project_id": "golf-player-time-management",
+    "storage_bucket": "golf-player-time-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004433550779:android:7770bb846ea643f81ba89e",
+        "android_client_info": {
+          "package_name": "com.example.elijah.golfplayertimemanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004433550779-6dt6jblbrbnqebgk0qiumen8gjcpr1tl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.elijah.golfplayertimemanagement",
+            "certificate_hash": "2049e8240816641ef08fb733fa5b63f00a0c5891"
+          }
+        },
+        {
+          "client_id": "1004433550779-oepp0dn58cvvkgfh4fij5qugejiagqo9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcdTKn0y0B3qrichMFs4AIE-xyNjy8Ag8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004433550779-oepp0dn58cvvkgfh4fij5qugejiagqo9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

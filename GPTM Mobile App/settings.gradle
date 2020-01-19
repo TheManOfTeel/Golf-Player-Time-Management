@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='Golf Player Time Management'
