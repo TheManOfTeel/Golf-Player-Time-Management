@@ -7,43 +7,31 @@
     tools:context=".SigninActivity">
 
 
+<!--    <android.widget.Toolbar-->
+<!--        android:id="@+id/signinToolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:background="@color/colorPrimary"-->
+<!--        android:elevation="2dp"-->
+<!--        />-->
 
-    <EditText
-        android:id="@+id/signinEmail"
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/signinTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Email"
-        android:inputType="textEmailAddress"
-        android:layout_centerVertical="true"
+        android:minHeight="?attr/actionBarSize"
+        android:elevation="6dp"
+        android:background="@color/colorPrimary"
         />
 
-
-    <EditText
-        android:id="@+id/signinPassword"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/signinPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Password"
-        android:inputType="textPassword"
-        android:layout_below="@+id/signinEmail"
-        />
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/signinTabLayout"/>
+    
 
-    <Button
-        android:id="@+id/Signupbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/signinPassword"
-        android:text="sign in"
-        />
-
-    <TextView
-        android:id="@+id/ForGotPassword"
-        android:text="Forgot Password?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Signupbtn"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="20dp"
-        android:textColor="#0000EE"
-        />
 
 </RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/AdminsigninEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            android:layout_centerVertical="true"
+            />
+
+
+        <EditText
+            android:id="@+id/AdminsigninPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:layout_below="@+id/AdminsigninEmail"
+            />
+
+        <Button
+            android:id="@+id/AdminSignupbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/AdminsigninPassword"
+            android:text="sign in"
+            />
+
+        <TextView
+            android:id="@+id/AdminForGotPassword"
+            android:text="Forgot Password?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/AdminSignupbtn"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="20dp"
+            android:textColor="#0000EE"
+            />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
