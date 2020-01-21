@@ -88,7 +88,7 @@ public class AdminTab extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
 
-                                if(Email.equals("ahorle@oakland.edu")) {
+                                if(Email.equals("ahorle@oakland.edu") || Email.equals("eahunt@oakland.edu")) {
                                     Intent intent = new Intent(getActivity(), AdminActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
