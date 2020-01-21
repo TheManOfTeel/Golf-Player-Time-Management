@@ -88,11 +88,28 @@ public class AdminTab extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
 
-                                myRef.child("isAdmin");
+                                if(Email.equals("ahorle@oakland.edu")) {
+                                    Intent intent = new Intent(getActivity(), AdminActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    Toast.makeText(getContext(), "You are Logging in as an admin", Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(getContext(), "You are not an admin. Log in as a player", Toast.LENGTH_LONG).show();
+                                }
+
+
+
+
+                               // myRef.child("isAdmin");
+
+                                /*
+
                                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if(dataSnapshot.exists()){
+
+                                 */
                                             // HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
                                             String isAdmin = "";
                                             //String isAdmin = dataSnapshot.child("isAdmin").getValue(String.class);
@@ -110,6 +127,7 @@ public class AdminTab extends Fragment {
                                             }
 
                                              */
+                                            /*
                                             if(isAdmin.equals("true")) {
                                                 Intent intent = new Intent(getActivity(), AdminActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -126,6 +144,7 @@ public class AdminTab extends Fragment {
 
                                     }
                                 });
+                                */
                             }
                             else{
                                 Toast.makeText(getContext(), "LOGIN FAILED", Toast.LENGTH_SHORT).show();
