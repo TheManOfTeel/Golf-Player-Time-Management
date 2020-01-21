@@ -39,6 +39,7 @@ public class AdminTab extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class AdminTab extends Fragment {
         mAuth=FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users");
+
 
 
 
@@ -93,9 +95,9 @@ public class AdminTab extends Fragment {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if(dataSnapshot.exists()){
-                                            HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
+                                            //HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
                                             String isAdmin = "";
-                                            for(String key: dataMap.keySet()){
+                                            /*for(String key: dataMap.keySet()){
                                                 Object data = dataMap.get(key);
                                                 try{
                                                     HashMap<String, Object> userData = (HashMap<String, Object>) data;
@@ -106,14 +108,36 @@ public class AdminTab extends Fragment {
 
                                                 }
                                             }
+
+                                             */
+                                            for(DataSnapshot data: dataSnapshot.getChildren()){
+                                                if (data.child(isAdmin).equals("true")) {
+                                                    Intent intent = new Intent(getActivity(), AdminActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(intent);
+                                                    Toast.makeText(getContext(), "You are Logging in as an admin", Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(intent);
+                                                    Toast.makeText(getContext(), "You are not an admin. Log in as a player", Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+
+
+                                            /*
                                             if(isAdmin.equals("true")) {
                                                 Intent intent = new Intent(getActivity(), AdminActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 startActivity(intent);
                                                 Toast.makeText(getContext(), "You are Logging in as an admin", Toast.LENGTH_LONG).show();
                                             }else{
+                                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                startActivity(intent);
                                                 Toast.makeText(getContext(), "You are not an admin. Log in as a player", Toast.LENGTH_LONG).show();
                                             }
+                                            */
                                         }
                                     }
 
