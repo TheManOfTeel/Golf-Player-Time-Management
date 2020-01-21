@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,9 +38,6 @@ public class AdminTab extends Fragment {
     private TextView ForgotPassword;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private FirebaseUser user;
-    private String uid;
-
 
     @Nullable
     @Override
@@ -61,9 +57,6 @@ public class AdminTab extends Fragment {
         mAuth=FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users");
-        user = mAuth.getCurrentUser();
-        uid = user.getUid();
-
 
 
 
@@ -100,9 +93,11 @@ public class AdminTab extends Fragment {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if(dataSnapshot.exists()){
-                                            //HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
-                                            String isAdmin = dataSnapshot.child(uid).child("isAdmin").getValue(String.class);
-                                            /*for(String key: dataMap.keySet()){
+                                            // HashMap<String, Object> dataMap = (HashMap<String, Object>) dataSnapshot.getValue();
+                                            String isAdmin = "";
+                                            //String isAdmin = dataSnapshot.child("isAdmin").getValue(String.class);
+                                            /*
+                                            for(String key: dataMap.keySet()){
                                                 Object data = dataMap.get(key);
                                                 try{
                                                     HashMap<String, Object> userData = (HashMap<String, Object>) data;
@@ -115,40 +110,15 @@ public class AdminTab extends Fragment {
                                             }
 
                                              */
-
-                                                if (isAdmin.equals("true")) {
-                                                    Intent intent = new Intent(getActivity(), AdminActivity.class);
-                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                    startActivity(intent);
-                                                    Toast.makeText(getContext(), "You are Logging in as an admin", Toast.LENGTH_LONG).show();
-
-                                                } else {
-
-
-                                                   // Intent intent = new Intent(getActivity(), MainActivity.class);
-                                                   // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                   // startActivity(intent);
-                                                    Toast.makeText(getContext(), "You are not an admin. Log in as a player", Toast.LENGTH_LONG).show();
-
-                                                }
-
-
-
-                                            /*
                                             if(isAdmin.equals("true")) {
                                                 Intent intent = new Intent(getActivity(), AdminActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 startActivity(intent);
                                                 Toast.makeText(getContext(), "You are Logging in as an admin", Toast.LENGTH_LONG).show();
                                             }else{
-                                                Intent intent = new Intent(getActivity(), MainActivity.class);
-                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                startActivity(intent);
                                                 Toast.makeText(getContext(), "You are not an admin. Log in as a player", Toast.LENGTH_LONG).show();
                                             }
-                                            */
                                         }
-
                                     }
 
                                     @Override
