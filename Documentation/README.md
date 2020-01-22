@@ -15,7 +15,7 @@
 * On-Screen Appearance of landing and other pages requirements.
 * Wireframe designs
 ## Functional Requirements Specification
-* Stakeholders 
+* Stakeholders
 * Actors and Goals
 * User stories, scenarios and Use Cases
 * System Sequence / Activity Diagrams
@@ -23,7 +23,7 @@
 * Preliminary Design
 * User Effort Estimation
 ## Static Design
-* Class Model 
+* Class Model
 * System Operation Contracts
 * Mathematical Model
 * Entity Relation
