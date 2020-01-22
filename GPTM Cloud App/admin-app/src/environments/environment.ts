@@ -3,8 +3,29 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyA23tAD8XUtVt5BmtqwQx14uB0X9Ov0bRo",
+    authDomain: "golf-player-time-management.firebaseapp.com",
+    databaseURL: "https://golf-player-time-management.firebaseio.com",
+    projectId: "golf-player-time-management",
+    storageBucket: "golf-player-time-management.appspot.com",
+    messagingSenderId: "1004433550779",
+    appId: "1:1004433550779:web:d53775264a0828871ba89e",
+    measurementId: "G-EKR6YL2PS3"
+  }
 };
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyA23tAD8XUtVt5BmtqwQx14uB0X9Ov0bRo",
+//   authDomain: "golf-player-time-management.firebaseapp.com",
+//   databaseURL: "https://golf-player-time-management.firebaseio.com",
+//   projectId: "golf-player-time-management",
+//   storageBucket: "golf-player-time-management.appspot.com",
+//   messagingSenderId: "1004433550779",
+//   appId: "1:1004433550779:web:d53775264a0828871ba89e",
+//   measurementId: "G-EKR6YL2PS3"
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file
