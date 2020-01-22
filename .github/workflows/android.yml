@@ -3,7 +3,7 @@ name: Android CI
 on: 
   pull_request:
     paths: 
-      - /'GPTM Mobile App'/*
+      - '"GPTM Mobile App"/**'
     branches:
     - master
 
