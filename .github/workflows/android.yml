@@ -3,7 +3,7 @@ name: Android CI
 on: 
   pull_request:
     paths: 
-      - '/Golf-Player-Time-Manager/GPTM Mobile App/**'
+      - /'GPTM Mobile App'/**
     branches:
     - master
 
@@ -19,4 +19,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: ./gradlew build
+      run: cd ./'GPTM Mobile App'/ && gradle build
