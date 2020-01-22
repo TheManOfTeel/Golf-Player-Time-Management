@@ -9,25 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ForgotPasswordActivity"
-            android:parentActivityName=".SigninActivity"
-
-
-            ></activity>
-
+        <activity android:name=".PlayerActivity"></activity>
+        <activity android:name=".AdminActivity" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:parentActivityName=".SigninActivity" />
         <activity android:name=".ProfileActivity" />
-
         <activity
             android:name=".SigninActivity"
-            android:parentActivityName=".PresentationActivity"
-            />
-
+            android:parentActivityName=".PresentationActivity" />
         <activity
             android:name=".SignupActivity"
             android:parentActivityName=".SigninActivity" />
-
         <activity android:name=".PresentationActivity" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
