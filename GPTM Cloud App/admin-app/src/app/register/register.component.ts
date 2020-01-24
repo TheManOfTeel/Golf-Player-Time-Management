@@ -29,23 +29,6 @@ export class RegisterComponent {
      });
   }
 
-  tryFacebookLogin(){
-    this.authService.doFacebookLogin()
-    .then(res =>{
-      this.router.navigate(['/user']);
-    }, 
-    err => console.log(err)
-    )
-  }
-
-  tryTwitterLogin(){
-    this.authService.doTwitterLogin()
-    .then(res =>{
-      this.router.navigate(['/user']);
-    }, err => console.log(err)
-    )
-  }
-
   tryGoogleLogin(){
     this.authService.doGoogleLogin()
     .then(res =>{

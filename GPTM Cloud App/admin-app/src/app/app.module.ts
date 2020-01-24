@@ -34,8 +34,8 @@ import { UserResolver } from './user/user.resolver';
     ReactiveFormsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule // imports firebase/auth, only needed for auth features
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]
