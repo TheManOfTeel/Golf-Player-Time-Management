@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service'
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'page-login',
+  selector: 'app-login',
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.css']
 })
 export class LoginComponent {
 
   loginForm: FormGroup;
-  errorMessage: string = '';
+  errorMessage = '';
 
   constructor(
     public authService: AuthService,
@@ -23,27 +23,27 @@ export class LoginComponent {
 
   createForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required], //Validators.email?
-      password: ['',Validators.required]
+      email: ['', Validators.required], // Validators.email?
+      password: ['', Validators.required]
     });
   }
 
-  tryGoogleLogin(){
+  tryGoogleLogin() {
     this.authService.doGoogleLogin()
     .then(() => {
       this.router.navigate(['/user']);
-    })
+    });
   }
 
-  tryLogin(value){
+  tryLogin(value) {
     this.authService.doLogin(value)
     .then(() => {
       this.router.navigate(['/user']);
     }, err => {
       console.log(err);
-      this.errorMessage = "Invalid username/password";
+      this.errorMessage = 'Invalid username/password';
       this.errorMessage = err.message;
-    })
+    });
   }
 
 }

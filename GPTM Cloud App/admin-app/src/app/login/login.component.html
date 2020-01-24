@@ -1,49 +1,45 @@
-<p></p>
-<div class="center">
-    <h1 class="header">Golf Player Time Management</h1>
-    <h2 class="header">Admin Portal Login</h2>
-    <div class="container">
-        <div>
-            <div>
-                <form [formGroup]="loginForm">
+<div>
+    <mat-toolbar color="primary">Golf Player Time Management Admin Dashboard</mat-toolbar>
+</div>
+<div class="main-div">
+    <mat-card class="card">
+        <div class="center">
+            <h1 class="header">Login</h1>
+            <div class="container">
+                <div>
                     <div>
-                        <mat-form-field>
-                            <input matInput placeholder="Email" type="email" formControlName="email">
-                            <mat-hint>Enter your email address</mat-hint>
-                            <!-- <mat-error *ngIf="loginForm.hasError('email') && !loginForm.hasError('required')">
-                                Please enter a valid email address
-                            </mat-error> -->
-                            <mat-error>
-                                Email is required
-                            </mat-error>
-                        </mat-form-field>
+                        <form [formGroup]="loginForm">
+                            <div>
+                                <mat-form-field>
+                                    <input matInput placeholder="Email" type="email" formControlName="email">
+                                    <mat-hint>Enter your email address</mat-hint>
+                                    <mat-error>
+                                        Email is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput placeholder="Password" type="password" formControlName="password">
+                                    <mat-hint>Enter your password</mat-hint>
+                                    <mat-error>
+                                        Password is required
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
+                            <div *ngIf="!errorMessage"><p></p></div>
+                            <button mat-raised-button color="secondary" type="submit" (click)="tryLogin(loginForm.value)" class="btn-default">Login</button>
+                        </form>
                     </div>
-                    <p></p>
-                    <!-- <label>Email address</label>
-                    <input type="email" formControlName="email" class="form-control"> -->
+                </div>
+                <div class="row">
                     <div>
-                        <mat-form-field>
-                            <input matInput placeholder="Password" type="password" formControlName="password">
-                            <mat-hint>Enter your password</mat-hint>
-                            <!-- <mat-error *ngIf="passwordFormControl.hasError('minlength')">
-                                Password must be longer than 5 characters
-                            </mat-error> -->
-                            <mat-error>
-                                Password is required
-                            </mat-error>
-                        </mat-form-field>
-                        <!-- <label>Password</label>
-                        <input type="password" class="form-control" formControlName="password"> -->
+                        <button mat-raised-button color="secondary" type="button" (click)="tryGoogleLogin()" class="btn-default"><img width="20px" style="margin-right:8px" alt="Google sign-in" 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/> Login with Google</button>
                     </div>
-                    <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
-                    <button mat-button color="primary" type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-default">Login</button>
-                </form>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div>
-                <button mat-button color="primary" type="button" class="btn btn-danger btn-block" (click)="tryGoogleLogin()">Login with Google</button>
-            </div>
-        </div>
-    </div>
+    </mat-card>
 </div>

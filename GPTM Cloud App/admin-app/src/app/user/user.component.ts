@@ -7,11 +7,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseUserModel } from '../user.model';
 
 @Component({
-  selector: 'page-user',
+  selector: 'app-user',
   templateUrl: 'user.component.html',
   styleUrls: ['user.component.css']
 })
-export class UserComponent implements OnInit{
+export class UserComponent implements OnInit {
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
@@ -20,7 +20,7 @@ export class UserComponent implements OnInit{
     public userService: UserService,
     public authService: AuthService,
     private route: ActivatedRoute,
-    private location : Location,
+    private location: Location,
     private fb: FormBuilder
   ) {
 
@@ -28,12 +28,14 @@ export class UserComponent implements OnInit{
 
   ngOnInit(): void {
     this.route.data.subscribe(routeData => {
-      let data = routeData['data'];
+      /* tslint:disable:no-string-literal */
+      const data = routeData['data'];
+      /* tslint:enable:no-string-literal */
       if (data) {
         this.user = data;
         this.createForm(this.user.name);
       }
-    })
+    });
   }
 
   createForm(name) {
@@ -42,19 +44,19 @@ export class UserComponent implements OnInit{
     });
   }
 
-  save(value){
+  save(value) {
     this.userService.updateCurrentUser(value)
     .then(res => {
       console.log(res);
-    }, err => console.log(err))
+    }, err => console.log(err));
   }
 
-  logout(){
+  logout() {
     this.authService.doLogout()
     .then((res) => {
       this.location.back();
     }, (error) => {
-      console.log("Logout error", error);
+      console.log('Logout error', error);
     });
   }
 }

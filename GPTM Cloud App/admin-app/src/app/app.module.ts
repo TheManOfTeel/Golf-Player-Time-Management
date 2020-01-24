@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-import { UserService } from './user.service'
+import { UserService } from './user.service';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -22,8 +22,9 @@ import { UserResolver } from './user/user.resolver';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } 
-from '@angular/material';
+import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,8 @@ from '@angular/material';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCardModule,
+    MatToolbarModule,
   ],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]
