@@ -1,4 +1,5 @@
 # Golf-Player-Time-Manager
+[![build status](https://github.com/coryrylan/angular-github-actions/workflows/Build/badge.svg)](https://github.com/coryrylan/angular-github-actions/actions)
 Senior Capstone Project for CS/IT majors at Oakland University. Project 1.
 ## Project Description
 This software will have two components: a cloud based player management application and mobile phone application.
