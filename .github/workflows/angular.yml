@@ -28,7 +28,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: npm ci and npm run build
-        run: |
-          cd ./'GPTM Mobile App'/
-          npm ci
-          npm run build:ci
+        run:
+          cd ./'GPTM Mobile App'/ && npm ci && npm run build:ci
