@@ -19,6 +19,11 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { UserResolver } from './user/user.resolver';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } 
+from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,14 @@ import { UserResolver } from './user/user.resolver';
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]

@@ -1,25 +1,48 @@
+<p></p>
 <div class="center">
-    <h1 class="header">Login with your GPTM account or with Google</h1>
+    <h1 class="header">Golf Player Time Management</h1>
+    <h2 class="header">Admin Portal Login</h2>
     <div class="container">
-        <div class="row">
+        <div>
             <div>
                 <form [formGroup]="loginForm">
-                    <div class="form-group">
-                        <label>Email address</label>
-                        <input type="email" formControlName="email" class="form-control">
+                    <div>
+                        <mat-form-field>
+                            <input matInput placeholder="Email" type="email" formControlName="email">
+                            <mat-hint>Enter your email address</mat-hint>
+                            <!-- <mat-error *ngIf="loginForm.hasError('email') && !loginForm.hasError('required')">
+                                Please enter a valid email address
+                            </mat-error> -->
+                            <mat-error>
+                                Email is required
+                            </mat-error>
+                        </mat-form-field>
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" formControlName="password">
+                    <p></p>
+                    <!-- <label>Email address</label>
+                    <input type="email" formControlName="email" class="form-control"> -->
+                    <div>
+                        <mat-form-field>
+                            <input matInput placeholder="Password" type="password" formControlName="password">
+                            <mat-hint>Enter your password</mat-hint>
+                            <!-- <mat-error *ngIf="passwordFormControl.hasError('minlength')">
+                                Password must be longer than 5 characters
+                            </mat-error> -->
+                            <mat-error>
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                        <!-- <label>Password</label>
+                        <input type="password" class="form-control" formControlName="password"> -->
                     </div>
-                    <div><label class="error">{{errorMessage}}</label></div>
-                    <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-default">Login</button>
+                    <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
+                    <button mat-button color="primary" type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-default">Login</button>
                 </form>
             </div>
         </div>
         <div class="row">
             <div>
-                <button type="button" class="btn btn-danger btn-block" (click)="tryGoogleLogin()">Login with Google</button>
+                <button mat-button color="primary" type="button" class="btn btn-danger btn-block" (click)="tryGoogleLogin()">Login with Google</button>
             </div>
         </div>
     </div>
