@@ -1,4 +1,4 @@
-# Golf-Player-Time-Manager [![Build Status](https://travis-ci.com/DanielTeelOU/Golf-Player-Time-Manager.svg?branch=master)](https://travis-ci.com/DanielTeelOU/Golf-Player-Time-Manager)
+# Golf-Player-Time-Manager
 Senior Capstone Project for CS/IT majors at Oakland University. Project 1.
 ## Project Description
 This software will have two components: a cloud based player management application and mobile phone application.
