@@ -1,7 +1,9 @@
-<nav>
-    <div class="container">
-        <a (click)="logout()" class="navbar-text navbar-right navbar-link">Logout</a>
-    </div>
-</nav>
-<h1 class="header">Dashboard Page</h1>
-<p>Table here..</p>
+<mat-toolbar color="primary">
+    Dashboard Page
+    <nav>
+        <div class="logout">
+            <a (click)="logout()" class="logout"> Logout</a>
+        </div>
+    </nav>
+</mat-toolbar>
+<app-dashboard></app-dashboard>

@@ -7,3 +7,9 @@
 .row{
     margin-top: 10px;
 }
+
+.logout {
+    position: fixed;
+    top: 8px;
+    right: 16px;
+}
