@@ -1,1 +1,35 @@
-<p>dashboard works!</p>
+<!-- tabs for the app to simplify navigation -->
+<div style="flex: auto;">
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>sports_golf</mat-icon> Home
+            </ng-template>
+            <app-home></app-home>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>people</mat-icon> Player Overview
+            </ng-template>
+            <app-course-overview></app-course-overview>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>golf_course</mat-icon> Course Overview
+            </ng-template>
+            <app-player-overview></app-player-overview>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>how_to_reg</mat-icon> Register
+            </ng-template>
+            <app-register></app-register>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>help</mat-icon> Support
+            </ng-template>
+            <app-support></app-support>
+        </mat-tab>
+    </mat-tab-group>
+</div>

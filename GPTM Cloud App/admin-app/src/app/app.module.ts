@@ -19,12 +19,29 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { UserResolver } from './user/user.resolver';
+import { HomeComponent } from './home/home.component';
+import { CourseOverviewComponent } from './course-overview/course-overview.component';
+import { SupportComponent } from './support/support.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
-import {MatCardModule} from '@angular/material/card';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { 
+  MatInputModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule, 
+  MatDialogModule, 
+  MatFormFieldModule,
+  MatButtonModule,
+  MatIconModule,
+  MatSelectModule,
+  MatTabsModule,
+  MatRippleModule,
+  MatExpansionModule,
+  MatCardModule,
+  MatToolbarModule,
+  MatDividerModule
+} from '@angular/material';
+import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +50,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     UserComponent,
     RegisterComponent,
     NavComponent,
-    DashboardComponent
+    DashboardComponent,
+    HomeComponent,
+    CourseOverviewComponent,
+    SupportComponent,
+    PlayerOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +72,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSortModule,
     MatCardModule,
     MatToolbarModule,
+    MatDialogModule, 
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatRippleModule,
+    MatExpansionModule,
+    MatDividerModule
   ],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]
