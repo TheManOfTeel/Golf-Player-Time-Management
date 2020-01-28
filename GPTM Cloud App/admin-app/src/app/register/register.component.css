@@ -1,0 +1,58 @@
+.center{
+    margin: auto;
+    /* border: 3px solid green; */
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.card {
+    align-self: auto;
+    padding: 10px;
+    width: 30%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    opacity: 90%;
+}
+
+.main-div{
+    height: 87vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://images4.alphacoders.com/696/696490.jpg");
+    background-attachment: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container{
+    text-align: center;
+}
+
+.header{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+  
+.row{
+    margin-top: 10px;
+}
+  
+.error{
+    color: red;
+    font-size: medium;
+}
+
+.success {
+    color: green;
+    font-size: medium;
+}
+
+.btn-default {
+    font-size: medium;
+    width: 200px;
+}
