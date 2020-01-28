@@ -24,12 +24,12 @@ import { CourseOverviewComponent } from './course-overview/course-overview.compo
 import { SupportComponent } from './support/support.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { 
+import {
   MatInputModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule, 
-  MatDialogModule, 
+  MatSortModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatButtonModule,
   MatIconModule,
@@ -72,7 +72,7 @@ import { PlayerOverviewComponent } from './player-overview/player-overview.compo
     MatSortModule,
     MatCardModule,
     MatToolbarModule,
-    MatDialogModule, 
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatSelectModule,
