@@ -12,8 +12,8 @@
 .card {
     align-self: auto;
     padding: 10px;
-    width: 25%;
-    height: 50%;
+    width: 22%;
+    height: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
 }
 
 .main-div{
-    height: 100vh;
+    height: 93vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,9 +36,9 @@
 }
 
 .header{
+    /* height: 50px; */
     text-align: center;
     font-size: 30px;
-    /* margin-bottom: 40px; */
 }
   
 .row{

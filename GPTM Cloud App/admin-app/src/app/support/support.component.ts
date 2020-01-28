@@ -12,4 +12,9 @@ export class SupportComponent implements OnInit {
   ngOnInit() {
   }
 
+  appDownload() {
+    window.open( 
+      "https://play.google.com/", "_blank"); 
+  }
+
 }
