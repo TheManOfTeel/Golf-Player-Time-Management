@@ -12,8 +12,9 @@
 .card {
     align-self: auto;
     padding: 10px;
-    width: 22%;
-    height: 45%;
+    flex: inherit;
+    width: fit-content;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +24,7 @@
 .main-div{
     height: 93vh;
     display: flex;
+    flex: inherit;
     justify-content: center;
     align-items: center;
     background-image: url("https://wallpapercave.com/wp/eOZbIG4.jpg");

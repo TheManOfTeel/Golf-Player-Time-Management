@@ -7,9 +7,10 @@
 
 .card {
     align-self: auto;
-    padding: 10px;
-    width: 30%;
-    height: 50%;
+    padding: 1px;
+    width: fit-content;
+    height: fit-content;
+    flex: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,6 +21,7 @@
 .main-div{
     height: 87vh;
     display: flex;
+    flex: inherit;
     justify-content: center;
     align-items: center;
     background-image: url("https://images4.alphacoders.com/696/696490.jpg");
