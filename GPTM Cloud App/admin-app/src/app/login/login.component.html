@@ -7,20 +7,24 @@
             <div class="container">
                 <h1 class="header">Login</h1>
                 <form [formGroup]="loginForm">
-                    <mat-form-field>
-                        <input matInput placeholder="Email" type="email" formControlName="email">
-                        <mat-hint>Enter your email address</mat-hint>
-                        <mat-error>
-                            Email is required
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Password" type="password" formControlName="password">
-                        <mat-hint>Enter your password</mat-hint>
-                        <mat-error>
-                            Password is required
-                        </mat-error>
-                    </mat-form-field>
+                    <div class="row">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" type="email" formControlName="email">
+                            <mat-hint>Enter your email address</mat-hint>
+                            <mat-error>
+                                Email is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field>
+                            <input matInput placeholder="Password" type="password" formControlName="password">
+                            <mat-hint>Enter your password</mat-hint>
+                            <mat-error>
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
                     <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
                     <div *ngIf="!errorMessage"><p></p></div>
                     <button mat-raised-button color="secondary" type="submit" (click)="tryLogin(loginForm.value)" class="btn-default">Login</button>

@@ -1,6 +1,7 @@
 .main-div{
     height: 87vh;
     display: flex;
+    flex: inherit;
     justify-content: center;
     align-items: center;
     background-image: url("https://previews.123rf.com/images/tehcheesiong/tehcheesiong1104/tehcheesiong110400024/9415922-golf-ball-on-edge-of-hole.jpg");
@@ -24,4 +25,15 @@
     /* border: 3px solid green; */
     padding: 20px;
     border-radius: 20px;
+}
+
+.card {
+    opacity: 90%;
+    flex: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+.row{
+    text-align: center;
 }

@@ -13,8 +13,8 @@ export class SupportComponent implements OnInit {
   }
 
   appDownload() {
-    window.open( 
-      "https://play.google.com/", "_blank"); 
+    window.open(
+      'https://play.google.com/', '_blank');
   }
 
 }
