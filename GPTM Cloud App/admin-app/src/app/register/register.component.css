@@ -15,7 +15,6 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    opacity: 90%;
 }
 
 .main-div{
@@ -56,4 +55,5 @@
 .btn-default {
     font-size: medium;
     width: 200px;
+    padding: 4px;
 }
