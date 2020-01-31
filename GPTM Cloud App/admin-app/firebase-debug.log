@@ -1,39 +1,23 @@
-[debug] [2020-01-31T23:26:27.661Z] ----------------------------------------------------------------------
-[debug] [2020-01-31T23:26:27.662Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2020-01-31T23:26:27.662Z] CLI Version:   7.12.1
-[debug] [2020-01-31T23:26:27.662Z] Platform:      darwin
-[debug] [2020-01-31T23:26:27.663Z] Node Version:  v12.14.1
-[debug] [2020-01-31T23:26:27.663Z] Time:          Fri Jan 31 2020 18:26:27 GMT-0500 (Eastern Standard Time)
-[debug] [2020-01-31T23:26:27.663Z] ----------------------------------------------------------------------
-[debug] [2020-01-31T23:26:27.663Z] 
-[debug] [2020-01-31T23:26:27.668Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2020-01-31T23:26:27.668Z] > authorizing via signed-in user
-[debug] [2020-01-31T23:26:27.668Z] [iam] checking project golf-player-time-management for permissions ["firebase.projects.get"]
-[debug] [2020-01-31T23:26:27.669Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/golf-player-time-management:testIamPermissions  
+[debug] [2020-01-31T23:38:59.366Z] ----------------------------------------------------------------------
+[debug] [2020-01-31T23:38:59.368Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2020-01-31T23:38:59.368Z] CLI Version:   7.12.1
+[debug] [2020-01-31T23:38:59.368Z] Platform:      darwin
+[debug] [2020-01-31T23:38:59.368Z] Node Version:  v12.14.1
+[debug] [2020-01-31T23:38:59.368Z] Time:          Fri Jan 31 2020 18:38:59 GMT-0500 (Eastern Standard Time)
+[debug] [2020-01-31T23:38:59.369Z] ----------------------------------------------------------------------
+[debug] [2020-01-31T23:38:59.369Z] 
+[debug] [2020-01-31T23:38:59.374Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-31T23:38:59.375Z] > authorizing via signed-in user
+[debug] [2020-01-31T23:38:59.375Z] [iam] checking project golf-player-time-management for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-01-31T23:38:59.376Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/golf-player-time-management:testIamPermissions  
 
-[debug] [2020-01-31T23:26:27.965Z] <<< HTTP RESPONSE 200
-[debug] [2020-01-31T23:26:27.966Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/golf-player-time-management  
+[debug] [2020-01-31T23:38:59.739Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-31T23:38:59.742Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/golf-player-time-management  
  
-[debug] [2020-01-31T23:26:28.258Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-31T23:39:00.084Z] <<< HTTP RESPONSE 200
 [info] 
-[info] === Serving from '/Users/dannyteel/Dev/Java/Golf-Player-Time-Manager/GPTM Cloud App/admin-app'...
+[info] === Deploying to 'golf-player-time-management'...
 [info] 
-[debug] [2020-01-31T23:26:28.261Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/golf-player-time-management/webApps/-/config  
- 
-[warn] ⚠  Your requested "node" version "8" doesn't match your global version "12"
-[info] ✔  functions: Emulator started at http://localhost:5001
-[debug] [2020-01-31T23:26:28.635Z] <<< HTTP RESPONSE 200
-[info] i  functions: Watching "/Users/dannyteel/Dev/Java/Golf-Player-Time-Manager/GPTM Cloud App/admin-app/functions" for Cloud Functions...
-[debug] [2020-01-31T23:26:28.665Z] [worker-pool] addWorker(~diagnostic~)
-[debug] [2020-01-31T23:26:28.665Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
-[debug] [2020-01-31T23:26:28.665Z] [worker-pool] submitWork(triggerId=)
-[debug] [2020-01-31T23:26:28.666Z] [worker-~diagnostic~-f968b30d-96c1-407a-b5de-1f7ff7f9d0c2]: Assigning socketPath: /var/folders/x_/kkw33fy564374h18c8l3vkbc0000gn/T/fire_emu_11170.sock
-[debug] [2020-01-31T23:26:28.666Z] [worker-~diagnostic~-f968b30d-96c1-407a-b5de-1f7ff7f9d0c2]: BUSY
-[info] i  hosting: Serving hosting files from: dist/admin-app
-[info] ✔  hosting: Local server: http://localhost:5000
-[debug] [2020-01-31T23:26:28.863Z] [runtime-status] [11170] Functions runtime initialized. {"cwd":"/Users/dannyteel/Dev/Java/Golf-Player-Time-Manager/GPTM Cloud App/admin-app/functions","node_version":"12.14.1"}
-[debug] [2020-01-31T23:26:28.864Z] [runtime-status] [11170] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
-[debug] [2020-01-31T23:26:28.865Z] [runtime-status] [11170] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.1","resolution":"/Users/dannyteel/Dev/Java/Golf-Player-Time-Manager/GPTM Cloud App/admin-app/functions/node_modules/firebase-admin/lib/index.js"}
-[debug] [2020-01-31T23:26:28.868Z] [runtime-status] [11170] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/dannyteel/Dev/Java/Golf-Player-Time-Manager/GPTM Cloud App/admin-app/functions/node_modules/firebase-functions/lib/index.js"}
-[debug] [2020-01-31T23:26:28.869Z] [runtime-status] [11170] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/dannyteel/Dev/Java/Golf-Player-Time-Manager/GPTM Cloud App/admin-app/functions/node_modules/firebase-functions/lib/index.js"}
-[debug] [2020-01-31T23:26:28.894Z] [worker-~diagnostic~-f968b30d-96c1-407a-b5de-1f7ff7f9d0c2]: IDLE
+[info] i  deploying database, storage, firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
