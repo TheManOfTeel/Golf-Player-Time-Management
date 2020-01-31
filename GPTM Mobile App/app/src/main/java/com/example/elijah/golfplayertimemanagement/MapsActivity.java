@@ -8,11 +8,14 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
@@ -55,13 +58,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker currentUser;
     private DatabaseReference myLocation;
     private GeoFire geoFire;
-    private List<LatLng> danger;
+    private List<LatLng> fence;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_maps);
+
+
         Dexter.withActivity(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new PermissionListener() {
                     @Override
@@ -101,13 +110,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onLocationResult(LocationResult locationResult){
                 if(mMap != null){
-                        if(currentUser!=null) currentUser.remove();
-                        currentUser = mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(locationResult.getLastLocation().getLatitude(),
-                                locationResult.getLastLocation().getLongitude())).title("You")
 
-                        );
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUser.getPosition(), 12.0f));
+                        geoFire.setLocation("You", new GeoLocation(locationResult.getLastLocation().getLatitude(),
+                                locationResult.getLastLocation().getLongitude()), new GeoFire.CompletionListener() {
+                            @Override
+                            public void onComplete(String key, DatabaseError error) {
+                                if(currentUser!=null) currentUser.remove();
+                                currentUser = mMap.addMarker(new MarkerOptions()
+                                        .position(new LatLng(locationResult.getLastLocation().getLatitude(),
+                                                locationResult.getLastLocation().getLongitude())).title("You")
+
+                                );
+                                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUser.getPosition(), 12.0f));
+
+                            }
+                        });
                 }
             }
         };
@@ -129,8 +146,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     private void initArea(){
-        danger = new ArrayList<>();
-        danger.add(new LatLng(37.422, -122.044));
+        fence = new ArrayList<>();
+        fence.add(new LatLng(37.422, -122.044));
+        //37.4220° N, 122.0841° W
+        fence.add (new LatLng(37.422, -122.0841));
     }
 
     @Override
@@ -143,7 +162,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-        for(LatLng latLng : danger){
+        for(LatLng latLng : fence){
             mMap.addCircle(new CircleOptions().center(latLng)
             .radius(500) //500m
                     .strokeColor(Color.BLUE)
@@ -169,7 +188,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onKeyEntered(String key, GeoLocation location) {
-        sendNotification("Test", String.format("%s ENTERED", key));
+        sendNotification("Test", String.format("%s ENTERED ZONE", key));
+        //sends user straight to player activity since user will always be at
+        // this location, change location in emulator then test!!
+        Intent intent = new Intent(MapsActivity.this,MainActivity.class);
+        startActivity(intent);
+
     }
 
 
@@ -196,6 +220,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void sendNotification(String title, String content) {
+
+        Toast.makeText(this, ""+content, Toast.LENGTH_SHORT).show();
+
         String NOTIFICATION_CHANNEL_ID = "edmt_multiple_location";
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
