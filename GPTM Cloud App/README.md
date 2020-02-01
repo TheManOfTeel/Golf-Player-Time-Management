@@ -8,3 +8,6 @@ play through
 * Provide helpful hints about the course based on the location of the player
 * System shall allow players to login and register their device
 * System shall monitor player behavior and provide player dashboard
+## The web application can be found at either of the following domains
+* https://golf-player-time-management.firebaseapp.com
+* https://golf-player-time-management.web.app
