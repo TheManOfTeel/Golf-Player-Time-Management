@@ -1,5 +1,8 @@
 # Golf-Player-Time-Manager
 Senior Capstone Project for CS/IT majors at Oakland University. Project 1.
+## The web application can be found at either of the following domains
+* https://golf-player-time-management.firebaseapp.com
+* https://golf-player-time-management.web.app
 ## Project Description
 This software will have two components: a cloud based player management application and mobile phone application.
 ### The cloud app will do the following
