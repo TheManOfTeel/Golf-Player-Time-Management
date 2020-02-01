@@ -9,8 +9,8 @@
 }
 
 .logout {
-    position: fixed;
-    top: 12px;
+    position: absolute;
+    top: 6px;
     right: 16px;
 }
 
