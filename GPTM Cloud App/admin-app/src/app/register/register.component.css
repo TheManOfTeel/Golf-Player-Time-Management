@@ -7,7 +7,7 @@
 
 .card {
     align-self: auto;
-    padding: 1px;
+    padding: 10px;
     width: fit-content;
     height: fit-content;
     flex: inherit;
@@ -15,7 +15,6 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    opacity: 90%;
 }
 
 .main-div{
@@ -24,9 +23,8 @@
     flex: inherit;
     justify-content: center;
     align-items: center;
-    background-image: url("https://images4.alphacoders.com/696/696490.jpg");
-    background-attachment: auto;
-    background-position: center;
+    background-image: url("https://previews.123rf.com/images/tehcheesiong/tehcheesiong1104/tehcheesiong110400024/9415922-golf-ball-on-edge-of-hole.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -57,4 +55,5 @@
 .btn-default {
     font-size: medium;
     width: 200px;
+    padding: 4px;
 }

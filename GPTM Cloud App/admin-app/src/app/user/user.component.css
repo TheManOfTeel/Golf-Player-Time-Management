@@ -10,6 +10,19 @@
 
 .logout {
     position: fixed;
-    top: 8px;
+    top: 12px;
     right: 16px;
+}
+
+.app-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.toolbar {
+    position: fixed;
+    top: 8px;
+    left: 16px;
 }

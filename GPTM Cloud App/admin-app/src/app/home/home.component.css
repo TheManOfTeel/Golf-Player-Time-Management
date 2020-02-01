@@ -17,18 +17,17 @@
 .header{
     text-align: center;
     font-size: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
 }
 
 .center{
     margin: auto;
-    /* border: 3px solid green; */
     padding: 20px;
     border-radius: 20px;
 }
 
 .card {
-    opacity: 90%;
+    opacity: 95%;
     flex: auto;
     width: fit-content;
     height: fit-content;
