@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { UserResolver } from './user/user.resolver';
 import { HomeComponent } from './home/home.component';
 import { CourseOverviewComponent } from './course-overview/course-overview.component';
+import { GolfCourseRegistrationComponent } from './golf-course-registration/golf-course-registration.component';
 import { SupportComponent } from './support/support.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -53,6 +54,7 @@ import { PlayerOverviewComponent } from './player-overview/player-overview.compo
     DashboardComponent,
     HomeComponent,
     CourseOverviewComponent,
+    GolfCourseRegistrationComponent,
     SupportComponent,
     PlayerOverviewComponent
   ],
