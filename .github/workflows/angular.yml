@@ -28,4 +28,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: npm ci and npm run build
-        run: cd ./'GPTM Cloud App'/admin-app/ && npm install && npm run build
+        run: cd ./'GPTM Cloud App'/admin-app/ && npm install && npm run build && npm run ng lint

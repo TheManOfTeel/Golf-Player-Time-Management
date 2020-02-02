@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PresentationActivity extends AppCompatActivity {
     private Button signinbtn;
     private Button signupbtn;
+    private Button toMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,16 @@ public class PresentationActivity extends AppCompatActivity {
 
         signinbtn = (Button) findViewById(R.id.signin);
         signupbtn = (Button) findViewById(R.id.signup);
+        toMap = (Button) findViewById(R.id.button2);
+
+        toMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PresentationActivity.this,MapsActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
