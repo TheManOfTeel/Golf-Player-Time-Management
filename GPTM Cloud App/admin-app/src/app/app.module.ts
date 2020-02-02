@@ -42,6 +42,9 @@ import {
   MatDividerModule
 } from '@angular/material';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
+import { ItemsListComponent } from './items/items-list/items-list.component';
+import { ItemDetailComponent } from './items/item-detail/item-detail.component';
+import { ItemFormComponent } from './items/item-form/item-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { PlayerOverviewComponent } from './player-overview/player-overview.compo
     HomeComponent,
     CourseOverviewComponent,
     SupportComponent,
-    PlayerOverviewComponent
+    PlayerOverviewComponent,
+    ItemsListComponent,
+    ItemDetailComponent,
+    ItemFormComponent
   ],
   imports: [
     BrowserModule,
