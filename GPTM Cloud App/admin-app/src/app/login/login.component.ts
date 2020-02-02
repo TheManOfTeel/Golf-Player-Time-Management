@@ -31,14 +31,14 @@ export class LoginComponent {
   tryGoogleLogin() {
     this.authService.doGoogleLogin()
     .then(() => {
-      this.router.navigate(['/user']);
+      this.router.navigate(['/dashboard']);
     });
   }
 
   tryLogin(value) {
     this.authService.doLogin(value)
     .then(() => {
-      this.router.navigate(['/user']);
+      this.router.navigate(['/dashboard']);
     }, err => {
       console.log(err);
       this.errorMessage = 'Invalid username/password';
