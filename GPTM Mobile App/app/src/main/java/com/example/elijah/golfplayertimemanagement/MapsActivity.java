@@ -191,7 +191,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sendNotification("Test", String.format("%s ENTERED ZONE", key));
         //sends user straight to player activity since user will always be at
         // this location, change location in emulator then test!!
-        Intent intent = new Intent(MapsActivity.this,MainActivity.class);
+        Intent intent = new Intent(MapsActivity.this,PlayerActivity.class);
         startActivity(intent);
 
     }

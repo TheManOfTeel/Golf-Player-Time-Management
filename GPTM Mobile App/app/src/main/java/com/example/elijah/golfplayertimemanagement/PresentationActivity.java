@@ -24,7 +24,7 @@ public class PresentationActivity extends AppCompatActivity {
         toMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PresentationActivity.this,PlayerActivity.class);
+                Intent intent = new Intent(PresentationActivity.this,MapsActivity.class);
                 startActivity(intent);
 
             }
