@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegisterComponent } from '../register/register.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent {
   constructor(
     public authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {
     this.createForm();
   }
@@ -44,6 +47,13 @@ export class LoginComponent {
       this.errorMessage = 'Invalid username/password';
       this.errorMessage = err.message;
     });
+  }
+
+  tryRegister(): void {
+    const dialogRef = this.dialog.open(RegisterComponent, {
+      width: '1000px'
+    });
+    dialogRef.afterClosed()
   }
 
 }
