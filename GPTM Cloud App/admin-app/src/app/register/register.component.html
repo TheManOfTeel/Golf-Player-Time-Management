@@ -1,52 +1,50 @@
-<div class="main-div">
-    <mat-card class="card">
-        <div class="center">
-            <h1 class="header">Register</h1>
-            <div class="container">
+<div>
+    <div class="center">
+        <h1 class="header">Register</h1>
+        <div class="container">
+            <div>
                 <div>
-                    <div>
-                        <form [formGroup]="registerForm">
-                            <div>
-                                <mat-form-field>
-                                    <input matInput placeholder="Couse name" type="golfCourse" formControlName="golfCourse">
-                                    <mat-hint>Enter the course name</mat-hint>
-                                    <mat-error>
-                                        Course Name is required
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div>
-                                <mat-form-field>
-                                    <input matInput placeholder="Email" type="email" formControlName="email">
-                                    <mat-hint>Enter an email address</mat-hint>
-                                    <mat-error>
-                                        Email is required
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div>
-                                <mat-form-field>
-                                    <input matInput placeholder="Password" type="password" formControlName="password">
-                                    <mat-hint>Enter a password</mat-hint>
-                                    <mat-error>
-                                        Password is required
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
-                            <label class="success">{{successMessage}}</label>
-                            <div *ngIf="!errorMessage"><p></p></div>
-                            <button mat-raised-button color="secondary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
-                        </form>
-                    </div>
+                    <form [formGroup]="registerForm">
+                        <div>
+                            <mat-form-field>
+                                <input matInput placeholder="Couse name" type="golfCourse" formControlName="golfCourse">
+                                <mat-hint>Enter the course name</mat-hint>
+                                <mat-error>
+                                    Course Name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <input matInput placeholder="Email" type="email" formControlName="email">
+                                <mat-hint>Enter an email address</mat-hint>
+                                <mat-error>
+                                    Email is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <input matInput placeholder="Password" type="password" formControlName="password">
+                                <mat-hint>Enter a password</mat-hint>
+                                <mat-error>
+                                    Password is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
+                        <label class="success">{{successMessage}}</label>
+                        <div *ngIf="!errorMessage"><p></p></div>
+                        <button mat-raised-button color="secondary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
+                    </form>
                 </div>
-                <div class="row">
-                    <div>
-                        <button mat-raised-button color="secondary" type="button" (click)="tryGoogleLogin()" class="btn-default"><img width="20px" style="margin-right:4px" alt="Google sign-in"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/> Register with Google</button>
-                    </div>
+            </div>
+            <div class="row">
+                <div>
+                    <button mat-raised-button color="secondary" type="button" (click)="tryGoogleLogin()" class="btn-default"><img width="20px" style="margin-right:4px" alt="Google sign-in"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/> Register with Google</button>
                 </div>
             </div>
         </div>
-    </mat-card>
+    </div>
 </div>
