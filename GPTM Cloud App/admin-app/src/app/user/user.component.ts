@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { AuthService } from '../auth.service';
+import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirebaseUserModel } from '../user.model';
+import { FirebaseUserModel } from '../authentication/user.model';
 
 @Component({
   selector: 'app-user',

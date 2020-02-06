@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
-import { UserService } from './user.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './authentication/auth.guard';
+import { UserService } from './services/user.service';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
