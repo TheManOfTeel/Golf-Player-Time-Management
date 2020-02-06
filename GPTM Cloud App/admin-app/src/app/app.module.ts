@@ -66,7 +66,7 @@ import { ItemFormComponent } from './items/item-form/item-form.component';
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment),
     AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
