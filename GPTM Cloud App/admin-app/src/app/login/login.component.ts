@@ -53,7 +53,7 @@ export class LoginComponent {
     this.dialog.open(RegisterComponent, {
       disableClose: true,
       width: '280px',
-      height: '470px'
+      height: '500px'
     });
   }
 
