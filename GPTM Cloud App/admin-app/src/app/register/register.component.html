@@ -7,7 +7,7 @@
                     <form [formGroup]="registerForm">
                         <div>
                             <mat-form-field>
-                                <input matInput placeholder="Couse name" type="golfCourse" formControlName="golfCourse">
+                                <input matInput placeholder="Couse name" id="golfCourse" name="golfCourse" [(ngModel)]="golfCourse" type="golfCourse" formControlName="golfCourse">
                                 <mat-hint>Enter the course name</mat-hint>
                                 <mat-error>
                                     Course Name is required
@@ -16,7 +16,7 @@
                         </div>
                         <div>
                             <mat-form-field>
-                                <input matInput placeholder="Email" type="email" formControlName="email">
+                                <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="email"type="email" formControlName="email">
                                 <mat-hint>Enter an email address</mat-hint>
                                 <mat-error>
                                     Email is required

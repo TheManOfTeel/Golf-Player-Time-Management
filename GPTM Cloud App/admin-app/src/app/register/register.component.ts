@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,9 @@ export class RegisterComponent {
   registerForm: FormGroup;
   errorMessage = '';
   successMessage = '';
+  golfCourse = '';
+  userId: any;
+  email: '';
 
   constructor(
     public authService: AuthService,
@@ -49,6 +53,19 @@ export class RegisterComponent {
       this.errorMessage = err.message;
       this.successMessage = '';
     });
+    this.writeUserData(this.generateId(), this.email, true, this.golfCourse)
   }
+
+  writeUserData(userId, email, isAdmin, golfCourse) {
+    firebase.database().ref('Users/' + userId).set({
+      email: email,
+      isAdmin: true,
+      golfCourse: golfCourse
+    });
+  }
+
+  generateId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  };
 
 }
