@@ -50,11 +50,11 @@ export class LoginComponent {
   }
 
   tryRegister(): void {
-    const dialogRef = this.dialog.open(RegisterComponent, {
-      width: '290px',
-      height: '550px'
+    this.dialog.open(RegisterComponent, {
+      disableClose: true,
+      width: '280px',
+      height: '470px'
     });
-    // dialogRef.afterClosed()
   }
 
 }
