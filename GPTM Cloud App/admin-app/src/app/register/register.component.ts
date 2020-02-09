@@ -17,6 +17,7 @@ export class RegisterComponent {
   golfCourse = '';
   userId: any;
   email: '';
+  password: '';
 
   constructor(
     public authService: AuthService,
@@ -48,24 +49,16 @@ export class RegisterComponent {
       console.log(res);
       this.errorMessage = '';
       this.successMessage = 'Your account has been created';
+      return firebase.database().ref('/Users/' + res.user.uid).set({
+        email: res.user.email,
+        password: this.password,
+        isAdmin: true,
+        golfCourse: this.golfCourse
+      });
     }, err => {
       console.log(err);
       this.errorMessage = err.message;
       this.successMessage = '';
     });
-    this.writeUserData(this.generateId(), this.email, true, this.golfCourse)
   }
-
-  writeUserData(userId, email, isAdmin, golfCourse) {
-    firebase.database().ref('Users/' + userId).set({
-      email: email,
-      isAdmin: true,
-      golfCourse: golfCourse
-    });
-  }
-
-  generateId() {
-    return '_' + Math.random().toString(36).substr(2, 9);
-  };
-
 }
