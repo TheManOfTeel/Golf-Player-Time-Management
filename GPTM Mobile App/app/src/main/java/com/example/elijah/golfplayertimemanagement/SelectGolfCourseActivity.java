@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ProfileActivity extends AppCompatActivity {
+public class SelectGolfCourseActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
@@ -32,7 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_selectgolfcourse);
         mAuth = FirebaseAuth.getInstance();
         mAuth=FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -89,7 +88,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void PresentationActivityIntent(){
-        Intent intent = new Intent(ProfileActivity.this, PresentationActivity.class);
+        Intent intent = new Intent(SelectGolfCourseActivity.this, PresentationActivity.class);
         startActivity(intent);
         finish();
     }

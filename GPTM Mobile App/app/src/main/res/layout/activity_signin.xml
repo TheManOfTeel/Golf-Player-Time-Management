@@ -7,31 +7,45 @@
     android:background="#A7A7A7"
     tools:context=".SigninActivity">
 
-
-<!--    <android.widget.Toolbar-->
-<!--        android:id="@+id/signinToolbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:background="@color/colorPrimary"-->
-<!--        android:elevation="2dp"-->
-<!--        />-->
-
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/signinTabLayout"
+    <EditText
+        android:id="@+id/signinEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:elevation="6dp"
-        android:background="@color/colorPrimary"
+        android:hint="Enter Email"
+        android:inputType="textEmailAddress"
+        android:layout_centerVertical="true"
         />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/signinPager"
+
+    <EditText
+        android:id="@+id/signinPassword"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/signinTabLayout"/>
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/signinEmail"
+        />
+
+    <Button
+        android:id="@+id/Signupbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signinPassword"
+        android:text="sign in"
+        />
+
+    <TextView
+        android:id="@+id/ForGotPassword"
+        android:text="Forgot Password?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Signupbtn"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp"
+        android:textColor="#0000EE"
+        />
+
+
     
 
 
