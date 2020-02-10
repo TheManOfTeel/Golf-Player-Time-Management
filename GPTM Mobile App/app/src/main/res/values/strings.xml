@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Golf Player Time Management</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_game">GameActivity</string>
 </resources>
