@@ -15,6 +15,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   errorMessage = '';
+  isAdmin: any;
 
   constructor(
     public authService: AuthService,
@@ -42,30 +43,26 @@ export class LoginComponent {
   tryLogin(value) {
     this.authService.doLogin(value)
     .then(() => {
-      this.router.navigate(['/dashboard']);
+      this.evalAdmin()
+      .then(val => {
+        this.isAdmin = val;
+      })
+      if (this.isAdmin == true) {
+        this.router.navigate(['/dashboard']);
+      }
     }, err => {
       console.log(err);
       this.errorMessage = 'Invalid username/password';
       this.errorMessage = err.message;
     });
-    //this.evalAdminStatus(this.evalAdmin());
   }
 
   evalAdmin() {
     var userId = firebase.auth().currentUser.uid;
-    var ref = firebase.database().ref('/Admins/' + userId);
-
-    ref.on("value", function(snapshot) {
-      console.log(snapshot.val().isAdmin);
-      const adminStatus = snapshot.val().isAdmin;
-      return adminStatus;
-    })
-  }
-
-  evalAdminStatus(adminStatus) {
-    if (adminStatus = true) {
-      this.router.navigate(['/dashboard']);
-    }
+    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+      var isAdmin = (snapshot.val() && snapshot.val().isAdmin) || false;
+      return isAdmin;
+      });
   }
 
   tryRegister(): void {

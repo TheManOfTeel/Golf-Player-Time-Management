@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseUserModel } from '../authentication/user.model';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-user',
@@ -15,6 +16,7 @@ export class UserComponent implements OnInit {
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
+  courseName: any;
 
   constructor(
     public userService: UserService,
@@ -35,6 +37,10 @@ export class UserComponent implements OnInit {
         this.user = data;
         this.createForm(this.user.name);
       }
+      this.setBannerName()
+      .then(val => {
+        this.courseName = val;
+      });
     });
   }
 
@@ -57,6 +63,14 @@ export class UserComponent implements OnInit {
       this.location.back();
     }, (error) => {
       console.log('Logout error', error);
+    });
+  }
+
+  setBannerName() {
+    var userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+    var golfCourse = (snapshot.val() && snapshot.val().golfCourse + ' Admin') || 'No Associated Course';
+    return golfCourse;
     });
   }
 }

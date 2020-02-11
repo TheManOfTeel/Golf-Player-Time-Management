@@ -49,7 +49,7 @@ export class RegisterComponent {
       console.log(res);
       this.errorMessage = '';
       this.successMessage = 'Your account has been created';
-      return firebase.database().ref('/Admins/' + res.user.uid).set({
+      return firebase.database().ref('/Users/' + res.user.uid).set({
         email: res.user.email,
         password: this.password,
         isAdmin: true,
