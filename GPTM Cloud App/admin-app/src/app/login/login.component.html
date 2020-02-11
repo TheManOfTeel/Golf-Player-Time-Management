@@ -25,7 +25,8 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
-                    <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
+                    <div><label class="error" *ngIf="errorMessage">Invalid username/password</label></div>
+                    <div><label class="error" *ngIf="noAdmin">You must be an administrator</label></div>
                     <div *ngIf="!errorMessage"><p></p></div>
                     <button mat-raised-button color="primary" type="submit" (click)="tryLogin(loginForm.value)" class="btn-default">Login</button>
                 </form>

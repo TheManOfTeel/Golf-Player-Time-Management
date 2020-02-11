@@ -11,6 +11,15 @@ import * as firebase from 'firebase';
 export class CourseOverviewComponent implements OnInit {
   courseName: any;
 
+  constructor() { }
+
+  ngOnInit() {
+    this.getCourseName()
+      .then(val => {
+        this.courseName = val;
+      });
+  }
+
   getCourseName() {
     var userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
@@ -21,15 +30,6 @@ export class CourseOverviewComponent implements OnInit {
 
   getCourseDetails() {
     // use the golfCourse value to match it to the GolfCourse table and get the hole info
-  }
-
-  constructor() { }
-
-  ngOnInit() {
-    this.getCourseName()
-      .then(val => {
-        this.courseName = val;
-      });
   }
 
 }

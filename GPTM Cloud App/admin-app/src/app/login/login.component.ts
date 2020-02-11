@@ -16,6 +16,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorMessage = '';
   isAdmin: any;
+  noAdmin = '';
 
   constructor(
     public authService: AuthService,
@@ -49,6 +50,9 @@ export class LoginComponent {
       })
       if (this.isAdmin == true) {
         this.router.navigate(['/dashboard']);
+      }
+      else {
+        this.noAdmin = 'You are not an admin';
       }
     }, err => {
       console.log(err);
