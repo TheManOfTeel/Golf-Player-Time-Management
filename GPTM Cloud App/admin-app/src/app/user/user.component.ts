@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,11 +12,13 @@ import * as firebase from 'firebase';
   templateUrl: 'user.component.html',
   styleUrls: ['user.component.css']
 })
+
+@Injectable()
 export class UserComponent implements OnInit {
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
-  courseName: any;
+  golfCourse: any;
 
   constructor(
     public userService: UserService,
@@ -39,7 +41,7 @@ export class UserComponent implements OnInit {
       }
       this.setBannerName()
       .then(val => {
-        this.courseName = val;
+        this.golfCourse = val;
       });
     });
   }

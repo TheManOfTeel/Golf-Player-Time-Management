@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as firebase from 'firebase';
 
 // For this component we only need to input a description, par number, and tips. The scorecard is now irrelevant, admins are not
@@ -9,10 +9,27 @@ import * as firebase from 'firebase';
   styleUrls: ['./course-overview.component.css']
 })
 export class CourseOverviewComponent implements OnInit {
+  courseName: any;
+
+  getCourseName() {
+    var userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+    var golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
+    return golfCourse;
+    });
+  }
+
+  getCourseDetails() {
+    // use the golfCourse value to match it to the GolfCourse table and get the hole info
+  }
 
   constructor() { }
 
   ngOnInit() {
+    this.getCourseName()
+      .then(val => {
+        this.courseName = val;
+      });
   }
 
 }
