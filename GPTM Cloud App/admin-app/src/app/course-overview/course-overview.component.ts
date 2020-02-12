@@ -17,6 +17,7 @@ export class CourseOverviewComponent implements OnInit {
     this.getCourseName()
       .then(val => {
         this.courseName = val;
+        this.getCourseDetails();
       });
   }
 
@@ -30,6 +31,14 @@ export class CourseOverviewComponent implements OnInit {
 
   getCourseDetails() {
     // use the golfCourse value to match it to the GolfCourse table and get the hole info
+    this.getCourseName()
+    .then(res => {
+      firebase.database().ref('/GolfCourse/' + this.courseName).once('value').then(function(snapshot) {
+        // All the data is being pulled here. Assign it a value then it can be shown in the front end.
+        var data = snapshot.val();
+        console.log(data);
+      })
+    })
   }
 
 }
