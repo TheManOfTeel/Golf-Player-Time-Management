@@ -50,7 +50,7 @@ export class RegisterComponent {
     .then(data => {
       this.course = data;
     })
-    if (this.course != null) {
+    if (this.course == null) {
       this.authService.doRegister(value)
       .then(res => {
         this.successMessage = 'Your account has been created';
@@ -67,7 +67,7 @@ export class RegisterComponent {
         });
       this.writeHoleData(this.golfCourse);
     }
-    if (this.course == null) {
+    else {
       this.alreadyExists = 'Already Exists';
     }
   }
@@ -75,67 +75,66 @@ export class RegisterComponent {
   writeHoleData(golfCourse) {
    firebase.database().ref('GolfCourse/' + this.golfCourse).set({
      golfCourse: this.golfCourse,
-     hole_01_desc: '',
-     hole_01_yds: '',
-     hole_01_par: '',
-     hole_02_desc: '',
-     hole_02_yds: '',
-     hole_02_par: '',
-     hole_03_desc: '',
-     hole_03_yds: '',
-     hole_03_par: '',
-     hole_04_desc: '',
-     hole_04_yds: '',
-     hole_04_par: '',
-     hole_05_desc: '',
-     hole_05_yds: '',
-     hole_05_par: '',
-     hole_06_desc: '',
-     hole_06_yds: '',
-     hole_06_par: '',
-     hole_07_desc: '',
-     hole_07_yds: '',
-     hole_07_par: '',
-     hole_08_desc: '',
-     hole_08_yds: '',
-     hole_08_par: '',
-     hole_09_desc: '',
-     hole_09_yds: '',
-     hole_09_par: '',
-     hole_10_des: '',
-     hole_10_yds: '',
-     hole_10_par: '',
-     hole_11_desc: '',
-     hole_11_yds: '',
-     hole_11_par: '',
-     hole_12_desc: '',
-     hole_12_yds: '',
-     hole_12_par: '',
-     hole_13_desc: '',
-     hole_13_yds: '',
-     hole_13_par: '',
-     hole_14_desc: '',
-     hole_14_yds: '',
-     hole_14_par: '',
-     hole_15_desc: '',
-     hole_15_yds: '',
-     hole_15_par: '',
-     hole_16_desc: '',
-     hole_16_yds: '',
-     hole_16_par: '',
-     hole_17_desc: '',
-     hole_17_yds: '',
-     hole_17_par: '',
-     hole_18_desc: '',
-     hole_18_yds: '',
-     hole_18_par: '',
+     hole_01_desc: 'No description set',
+     hole_01_yds: 'No distance set',
+     hole_01_par: 'No par set',
+     hole_02_desc: 'No description set',
+     hole_02_yds: 'No distance set',
+     hole_02_par: 'No par set',
+     hole_03_desc: 'No description set',
+     hole_03_yds: 'No distance set',
+     hole_03_par: 'No par set',
+     hole_04_desc: 'No description set',
+     hole_04_yds: 'No distance set',
+     hole_04_par: 'No par set',
+     hole_05_desc: 'No description set',
+     hole_05_yds: 'No distance set',
+     hole_05_par: 'No par set',
+     hole_06_desc: 'No description set',
+     hole_06_yds: 'No distance set',
+     hole_06_par: 'No par set',
+     hole_07_desc: 'No description set',
+     hole_07_yds: 'No distance set',
+     hole_07_par: 'No par set',
+     hole_08_desc: 'No description set',
+     hole_08_yds: 'No distance set',
+     hole_08_par: 'No par set',
+     hole_09_desc: 'No description set',
+     hole_09_yds: 'No distance set',
+     hole_09_par: 'No par set',
+     hole_10_desc: 'No description set',
+     hole_10_yds: 'No distance set',
+     hole_10_par: 'No par set',
+     hole_11_desc: 'No description set',
+     hole_11_yds: 'No distance set',
+     hole_11_par: 'No par set',
+     hole_12_desc: 'No description set',
+     hole_12_yds: 'No distance set',
+     hole_12_par: 'No par set',
+     hole_13_desc: 'No description set',
+     hole_13_yds: 'No distance set',
+     hole_13_par: 'No par set',
+     hole_14_desc: 'No description set',
+     hole_14_yds: 'No distance set',
+     hole_14_par: 'No par set',
+     hole_15_desc: 'No description set',
+     hole_15_yds: 'No distance set',
+     hole_15_par: 'No par set',
+     hole_16_desc: 'No description set',
+     hole_16_yds: 'No distance set',
+     hole_16_par: 'No par set',
+     hole_17_desc: 'No description set',
+     hole_17_yds: 'No distance set',
+     hole_17_par: 'No par set',
+     hole_18_desc: 'No description set',
+     hole_18_yds: 'No distance set',
+     hole_18_par: 'No par set',
    });
  }
 
  checkIfExists(golfCourse) {
   return firebase.database().ref('GolfCourse/' + this.golfCourse).once('value').then(function(snapshot) {
     var courseName = snapshot.val();
-    console.log(courseName);
     return courseName;
     });
 }

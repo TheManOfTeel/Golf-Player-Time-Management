@@ -10,15 +10,22 @@ import * as firebase from 'firebase';
 })
 export class CourseOverviewComponent implements OnInit {
   courseName: any;
+  info: any;
+
 
   constructor() { }
 
   ngOnInit() {
     this.getCourseName()
-      .then(val => {
-        this.courseName = val;
-        this.getCourseDetails();
+    .then(val => {
+      this.courseName = val;
+      this.getCourseDetails(this.courseName)
+      .then(data => {
+        // console.log(data);
+        this.info = data;
+        console.log(this.info);
       });
+    });
   }
 
   getCourseName() {
@@ -29,15 +36,12 @@ export class CourseOverviewComponent implements OnInit {
     });
   }
 
-  getCourseDetails() {
+  getCourseDetails(courseName) {
     // use the golfCourse value to match it to the GolfCourse table and get the hole info
-    this.getCourseName()
-    .then(res => {
-      firebase.database().ref('/GolfCourse/' + this.courseName).once('value').then(function(snapshot) {
-        // All the data is being pulled here. Assign it a value then it can be shown in the front end.
-        var data = snapshot.val();
-        console.log(data);
-      })
+    return firebase.database().ref('/GolfCourse/' + this.courseName).once('value').then(function(snapshot) {
+      // All the data is being pulled here. Assign it a value then it can be shown in the front end.
+      var data = snapshot.val();
+      return data;
     })
   }
 
