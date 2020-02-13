@@ -3,6 +3,7 @@ package com.example.elijah.golfplayertimemanagement;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -34,6 +43,15 @@ public class GameActivity extends AppCompatActivity {
        private TextView parS2;
        private TextView parS3;
        private int off;
+       private Button joinGame;
+       private EditText find;
+
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+
+    private FirebaseUser user;
+
 
 
     @Override
@@ -50,9 +68,12 @@ public class GameActivity extends AppCompatActivity {
         parS2 = (TextView) findViewById(R.id.par2);
         parS3 = (TextView) findViewById(R.id.par3);
 
+        find = (EditText) findViewById(R.id.search);
+
         nextHole = (Button) findViewById(R.id.next);
         strokeR = (Button) findViewById(R.id.rem);
         strokeA = (Button) findViewById(R.id.stroke);
+        joinGame = (Button) findViewById(R.id.join);
 
         map1 = (ImageView) findViewById(R.id.map_1);
         map2 = (ImageView) findViewById(R.id.map_2);
@@ -62,7 +83,14 @@ public class GameActivity extends AppCompatActivity {
         holeID2 = (RadioButton) findViewById(R.id.hole_2);
         holeID3 = (RadioButton) findViewById(R.id.hole_3);
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Users").child("3Na4nFlaG5O55uVpPSkLTjgJTAa2");
+
+
+        Query query = myRef;
 
         map1.setVisibility(View.VISIBLE);
         map2.setVisibility(View.INVISIBLE);
@@ -79,6 +107,8 @@ public class GameActivity extends AppCompatActivity {
         holeID1.setEnabled(false);
         holeID2.setEnabled(false);
         holeID3.setEnabled(false);
+
+        String Find = "";
 
 
         nextHole.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +217,57 @@ public class GameActivity extends AppCompatActivity {
                     strokesTaken = 0;
                 }
                 strokes.setText(Integer.toString(strokesTaken));
+            }
+        });
+
+        joinGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //String Find = find.getText().toString();
+
+
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            //String name = String.valueOf(dataSnapshot.child("isPlaying"));
+                            String name = dataSnapshot.child("isPlaying").getValue().toString();
+                            //int host = dataSnapshot.child("hosting").getValue(Integer.class);
+                            if(name.equals("true")){
+
+                                find.setVisibility(View.INVISIBLE);
+                                Toast.makeText(getApplicationContext(), "Joined!", Toast.LENGTH_SHORT).show();
+                                myRef.child("hosting").setValue(1);
+
+
+                                /*
+                                if(host<=4){
+                                    host++;
+                                    myRef.child("hosting").setValue(host);
+                                    Toast.makeText(getApplicationContext(), "Joined!", Toast.LENGTH_SHORT).show();
+                                    break;
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(), "Too many users in that game!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                 */
+
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "That user is not currently playing.", Toast.LENGTH_SHORT).show();
+                            }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
             }
         });
 
