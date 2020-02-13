@@ -34,7 +34,8 @@
                         </div>
                         <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
                         <label class="success">{{successMessage}}</label>
-                        <div *ngIf="!errorMessage"><p></p></div>
+                        <div><label class="error" *ngIf="alreadyExists">Course already registered</label></div>
+                        <div *ngIf="!errorMessage && !alreadyExists"><p></p></div>
                         <button mat-raised-button color="primary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
                     </form>
                 </div>

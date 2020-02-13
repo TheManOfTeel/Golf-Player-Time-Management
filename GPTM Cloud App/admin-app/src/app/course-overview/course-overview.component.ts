@@ -24,8 +24,8 @@ export class CourseOverviewComponent implements OnInit {
   getCourseName() {
     var userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
-    var golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
-    return golfCourse;
+      var golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
+      return golfCourse;
     });
   }
 

@@ -16,7 +16,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorMessage = '';
   isAdmin: any;
-  noAdmin = '';
+  noAdmin = false;
 
   constructor(
     public authService: AuthService,
@@ -49,13 +49,15 @@ export class LoginComponent {
         this.isAdmin = val;
       })
       if (this.isAdmin == true) {
+        this.noAdmin = false;
         this.router.navigate(['/dashboard']);
       }
-      else {
-        this.noAdmin = 'You are not an admin';
+      if (this.isAdmin == false) {
+        this.noAdmin = true;
       }
     }, err => {
       console.log(err);
+      this.noAdmin = false;
       this.errorMessage = 'Invalid username/password';
       this.errorMessage = err.message;
     });
