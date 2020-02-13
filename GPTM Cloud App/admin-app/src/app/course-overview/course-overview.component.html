@@ -4,151 +4,547 @@
   <div class="main-div">
     <mat-card>
     <h1>{{courseName}} Overview</h1>
-    <div class = "col-md-6">
+    <div>
       <mat-accordion>
         <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 1
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_01_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_01_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_01_par}}</p>
+            <div *ngIf="!isEdit; else editHole1">
+              <p><strong>Hole description: </strong>{{info.hole_01_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_01_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_01_par}}</p>
+            </div>
+            <ng-template #editHole1>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_01_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_01_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_01_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 2
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_02_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_02_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_02_par}}</p>
+            <div *ngIf="!isEdit; else editHole2">
+              <p><strong>Hole description: </strong>{{info.hole_02_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_02_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_02_par}}</p>
+            </div>
+            <ng-template #editHole2>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_02_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_02_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_02_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 3
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_03_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_03_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_03_par}}</p>
+            <div *ngIf="!isEdit; else editHole3">
+              <p><strong>Hole description: </strong>{{info.hole_03_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_03_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_03_par}}</p>
+            </div>
+            <ng-template #editHole3>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_03_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_03_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_03_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 4
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_04_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_04_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_04_par}}</p>
+            <div *ngIf="!isEdit; else editHole4">
+              <p><strong>Hole description: </strong>{{info.hole_04_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_04_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_04_par}}</p>
+            </div>
+            <ng-template #editHole4>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_04_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_04_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_04_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 5
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_05_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_05_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_05_par}}</p>
+            <div *ngIf="!isEdit; else editHole5">
+              <p><strong>Hole description: </strong>{{info.hole_05_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_05_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_05_par}}</p>
+            </div>
+            <ng-template #editHole5>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_05_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_05_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_05_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 6
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_06_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_06_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_06_par}}</p>
+            <div *ngIf="!isEdit; else editHole6">
+              <p><strong>Hole description: </strong>{{info.hole_06_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_06_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_06_par}}</p>
+            </div>
+            <ng-template #editHole6>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_06_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_06_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_06_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 7
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_07_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_07_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_07_par}}</p>
+            <div *ngIf="!isEdit; else editHole7">
+              <p><strong>Hole description: </strong>{{info.hole_07_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_07_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_07_par}}</p>
+            </div>
+            <ng-template #editHole7>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_07_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_07_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_07_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 8
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_08_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_08_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_08_par}}</p>
+            <div *ngIf="!isEdit; else editHole8">
+              <p><strong>Hole description: </strong>{{info.hole_08_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_08_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_08_par}}</p>
+            </div>
+            <ng-template #editHole8>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_08_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_08_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_08_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 9
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_09_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_09_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_09_par}}</p>
+            <div *ngIf="!isEdit; else editHole9">
+              <p><strong>Hole description: </strong>{{info.hole_09_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_09_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_09_par}}</p>
+            </div>
+            <ng-template #editHole9>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_09_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_09_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_09_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 10
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_10_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_10_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_10_par}}</p>
+            <div *ngIf="!isEdit; else editHole10">
+              <p><strong>Hole description: </strong>{{info.hole_10_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_10_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_10_par}}</p>
+            </div>
+            <ng-template #editHole10>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_10_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_10_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_10_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 11
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_11_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_11_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_11_par}}</p>
+            <div *ngIf="!isEdit; else editHole11">
+              <p><strong>Hole description: </strong>{{info.hole_11_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_11_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_11_par}}</p>
+            </div>
+            <ng-template #editHole11>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_11_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_11_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_11_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 12
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_12_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_12_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_12_par}}</p>
+            <div *ngIf="!isEdit; else editHole12">
+              <p><strong>Hole description: </strong>{{info.hole_12_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_12_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_12_par}}</p>
+            </div>
+            <ng-template #editHole12>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_12_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_12_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_12_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 13
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_13_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_13_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_13_par}}</p>
+            <div *ngIf="!isEdit; else editHole13">
+              <p><strong>Hole description: </strong>{{info.hole_13_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_13_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_13_par}}</p>
+            </div>
+            <ng-template #editHole13>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_13_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_13_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_13_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 14
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_14_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_14_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_14_par}}</p>
+            <div *ngIf="!isEdit; else editHole14">
+              <p><strong>Hole description: </strong>{{info.hole_14_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_14_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_14_par}}</p>
+            </div>
+            <ng-template #editHole14>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_14_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_14_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_14_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 15
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_15_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_15_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_15_par}}</p>
+            <div *ngIf="!isEdit; else editHole15">
+              <p><strong>Hole description: </strong>{{info.hole_15_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_15_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_15_par}}</p>
+            </div>
+            <ng-template #editHole15>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_15_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_15_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_15_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 16
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_16_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_16_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_16_par}}</p>
+            <div *ngIf="!isEdit; else editHole16">
+              <p><strong>Hole description: </strong>{{info.hole_16_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_16_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_16_par}}</p>
+            </div>
+            <ng-template #editHole16>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_16_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_16_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_16_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 17
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_17_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_17_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_17_par}}</p>
+            <div *ngIf="!isEdit; else editHole17">
+              <p><strong>Hole description: </strong>{{info.hole_17_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_17_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_17_par}}</p>
+            </div>
+            <ng-template #editHole17>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_17_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_17_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_17_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 18
             </mat-expansion-panel-header>
-            <p><strong>Hole description: </strong>{{info.hole_18_desc}}</p>
-            <p><strong>Yards to hole: </strong>{{info.hole_18_yds}}</p>
-            <p><strong>Strokes to par: </strong>{{info.hole_18_par}}</p>
+            <div *ngIf="!isEdit; else editHole18">
+              <p><strong>Hole description: </strong>{{info.hole_18_desc}}</p>
+              <p><strong>Yards to hole: </strong>{{info.hole_18_yds}}</p>
+              <p><strong>Strokes to par: </strong>{{info.hole_18_par}}</p>
+            </div>
+            <ng-template #editHole18>
+              <mat-form-field>
+                <mat-label>Hole description</mat-label>
+                <textarea matInput value={{info.hole_18_desc}}></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Yards to hole</mat-label>
+                <input matInput value={{info.hole_18_yds}}>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Strokes to par</mat-label>
+                <input matInput value={{info.hole_18_par}}>
+              </mat-form-field>
+            </ng-template>
+            <br>
+            <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
+            <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
           </mat-expansion-panel>
         </mat-accordion>
       </div>

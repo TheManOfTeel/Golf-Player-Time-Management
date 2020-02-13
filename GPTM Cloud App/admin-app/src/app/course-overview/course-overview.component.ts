@@ -11,17 +11,22 @@ import * as firebase from 'firebase';
 export class CourseOverviewComponent implements OnInit {
   courseName: any;
   info: any;
+  isEdit = false;
+  
 
 
   constructor() { }
 
   ngOnInit() {
+    this.initData();
+  }
+
+  initData() {
     this.getCourseName()
     .then(val => {
       this.courseName = val;
       this.getCourseDetails(this.courseName)
       .then(data => {
-        // console.log(data);
         this.info = data;
         console.log(this.info);
       });
@@ -43,6 +48,21 @@ export class CourseOverviewComponent implements OnInit {
       var data = snapshot.val();
       return data;
     })
+  }
+
+  doEdit() {
+    this.isEdit = true;
+    return this.isEdit;
+  }
+
+  cancelEdit() {
+    this.isEdit = false;
+    return this.isEdit;
+  }
+
+  saveData() {
+    // push new data to database
+    console.log('save');
   }
 
 }
