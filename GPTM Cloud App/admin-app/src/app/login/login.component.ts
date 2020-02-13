@@ -47,14 +47,8 @@ export class LoginComponent {
       this.evalAdmin()
       .then(val => {
         this.isAdmin = val;
+        this.checkAdmin(this.isAdmin);
       })
-      if (this.isAdmin == true) {
-        this.noAdmin = false;
-        this.router.navigate(['/dashboard']);
-      }
-      if (this.isAdmin == false) {
-        this.noAdmin = true;
-      }
     }, err => {
       console.log(err);
       this.noAdmin = false;
@@ -69,6 +63,17 @@ export class LoginComponent {
       var isAdmin = (snapshot.val() && snapshot.val().isAdmin) || false;
       return isAdmin;
       });
+  }
+
+  checkAdmin(isAdmin) {
+    if (this.isAdmin == true) {
+      this.noAdmin = false;
+      this.router.navigate(['/dashboard']);
+      console.log('here');
+    }
+    if (this.isAdmin == false) {
+      this.noAdmin = true;
+    }
   }
 
   tryRegister(): void {
