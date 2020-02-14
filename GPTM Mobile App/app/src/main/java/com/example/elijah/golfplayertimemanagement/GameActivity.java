@@ -45,12 +45,14 @@ public class GameActivity extends AppCompatActivity {
        private int off;
        private Button joinGame;
        private EditText find;
+       private TextView userEmail;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    private DatabaseReference newRef;
 
-    private FirebaseUser user;
+    //private FirebaseUser user;
 
 
 
@@ -67,6 +69,7 @@ public class GameActivity extends AppCompatActivity {
         parS1 = (TextView) findViewById(R.id.par1);
         parS2 = (TextView) findViewById(R.id.par2);
         parS3 = (TextView) findViewById(R.id.par3);
+        userEmail = (TextView) findViewById(R.id.email);
 
         find = (EditText) findViewById(R.id.search);
 
@@ -84,10 +87,12 @@ public class GameActivity extends AppCompatActivity {
         holeID3 = (RadioButton) findViewById(R.id.hole_3);
 
         mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
+        //user = mAuth.getCurrentUser();
 
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Users").child("3Na4nFlaG5O55uVpPSkLTjgJTAa2");
+        myRef = database.getReference("Users");
+        newRef = myRef;
+        //myRef = database.getReference("Users").child("3Na4nFlaG5O55uVpPSkLTjgJTAa2");
 
 
         Query query = myRef;
@@ -224,34 +229,34 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //String Find = find.getText().toString();
+                String Find = find.getText().toString();
+
+                newRef = myRef.child(Find);
 
 
-                myRef.addValueEventListener(new ValueEventListener() {
+                newRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             //String name = String.valueOf(dataSnapshot.child("isPlaying"));
                             String name = dataSnapshot.child("isPlaying").getValue().toString();
-                            //int host = dataSnapshot.child("hosting").getValue(Integer.class);
+                            String joinedEmail = dataSnapshot.child("email").getValue().toString();
+                            int host = dataSnapshot.child("hosting").getValue(Integer.class);
                             if(name.equals("true")){
 
-                                find.setVisibility(View.INVISIBLE);
-                                Toast.makeText(getApplicationContext(), "Joined!", Toast.LENGTH_SHORT).show();
-                                myRef.child("hosting").setValue(1);
-
-
-                                /*
-                                if(host<=4){
+                                if(host<4){
+                                    userEmail.setText("Connected to " + joinedEmail + "!");
+                                    find.setVisibility(View.INVISIBLE);
+                                    joinGame.setVisibility(View.INVISIBLE);
                                     host++;
-                                    myRef.child("hosting").setValue(host);
+                                    newRef.child("hosting").setValue(host);
                                     Toast.makeText(getApplicationContext(), "Joined!", Toast.LENGTH_SHORT).show();
-                                    break;
+
                                 }
                                 else{
                                     Toast.makeText(getApplicationContext(), "Too many users in that game!", Toast.LENGTH_SHORT).show();
                                 }
 
-                                 */
+
 
                             }
                             else{
@@ -262,7 +267,9 @@ public class GameActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        Toast.makeText(getApplicationContext(), "That user does not exist.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(GameActivity.this,PresentationActivity.class);
+                        startActivity(intent);
                     }
                 });
 
