@@ -16,25 +16,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_01_par}}</p>
             </div>
             <ng-template #editHole1>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_01_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_01_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_01_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_01_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_01_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_01_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_01_desc', 'hole_01_yds', 'hole_01_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -46,25 +49,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_02_par}}</p>
             </div>
             <ng-template #editHole2>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_02_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_02_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_02_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_02_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_02_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_02_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_02_desc', 'hole_02_yds', 'hole_02_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -76,25 +82,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_03_par}}</p>
             </div>
             <ng-template #editHole3>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_03_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_03_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_03_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_03_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_03_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_03_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_03_desc', 'hole_03_yds', 'hole_03_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -106,25 +115,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_04_par}}</p>
             </div>
             <ng-template #editHole4>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_04_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_04_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_04_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_04_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_04_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_04_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_04_desc', 'hole_04_yds', 'hole_04_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -136,25 +148,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_05_par}}</p>
             </div>
             <ng-template #editHole5>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_05_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_05_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_05_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_05_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_05_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_05_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_05_desc', 'hole_05_yds', 'hole_05_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -166,25 +181,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_06_par}}</p>
             </div>
             <ng-template #editHole6>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_06_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_06_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_06_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_06_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_06_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_06_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_06_desc', 'hole_06_yds', 'hole_06_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -196,25 +214,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_07_par}}</p>
             </div>
             <ng-template #editHole7>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_07_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_07_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_07_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_07_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_07_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_07_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_07_desc', 'hole_07_yds', 'hole_07_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -226,25 +247,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_08_par}}</p>
             </div>
             <ng-template #editHole8>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_08_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_08_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_08_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_08_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_08_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_08_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_08_desc', 'hole_08_yds', 'hole_08_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -256,25 +280,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_09_par}}</p>
             </div>
             <ng-template #editHole9>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_09_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_09_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_09_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_09_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_09_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_09_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_09_desc', 'hole_09_yds', 'hole_09_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -286,25 +313,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_10_par}}</p>
             </div>
             <ng-template #editHole10>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_10_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_10_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_10_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_10_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_10_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_10_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_10_desc', 'hole_10_yds', 'hole_10_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -316,25 +346,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_11_par}}</p>
             </div>
             <ng-template #editHole11>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_11_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_11_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_11_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_11_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_11_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_11_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_11_desc', 'hole_11_yds', 'hole_11_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -346,25 +379,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_12_par}}</p>
             </div>
             <ng-template #editHole12>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_12_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_12_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_12_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_12_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_12_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_12_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_12_desc', 'hole_12_yds', 'hole_12_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -376,25 +412,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_13_par}}</p>
             </div>
             <ng-template #editHole13>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_13_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_13_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_13_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_13_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_13_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_13_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_13_desc', 'hole_13_yds', 'hole_13_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -406,25 +445,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_14_par}}</p>
             </div>
             <ng-template #editHole14>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_14_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_14_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_14_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_14_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_14_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_14_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_14_desc', 'hole_14_yds', 'hole_14_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -436,25 +478,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_15_par}}</p>
             </div>
             <ng-template #editHole15>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_15_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_15_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_15_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_15_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_15_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_15_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_15_desc', 'hole_15_yds', 'hole_15_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -466,25 +511,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_16_par}}</p>
             </div>
             <ng-template #editHole16>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_16_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_16_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_16_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_16_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_16_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_16_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_16_desc', 'hole_16_yds', 'hole_16_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -496,25 +544,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_17_par}}</p>
             </div>
             <ng-template #editHole17>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_17_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_17_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_17_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_17_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_17_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_17_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_17_desc', 'hole_17_yds', 'hole_17_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
           <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
@@ -526,25 +577,28 @@
               <p><strong>Strokes to par: </strong>{{info.hole_18_par}}</p>
             </div>
             <ng-template #editHole18>
-              <mat-form-field>
-                <mat-label>Hole description</mat-label>
-                <textarea matInput value={{info.hole_18_desc}}></textarea>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Yards to hole</mat-label>
-                <input matInput value={{info.hole_18_yds}}>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Strokes to par</mat-label>
-                <input matInput value={{info.hole_18_par}}>
-              </mat-form-field>
+              <form [formGroup]="newDataForm">
+                <mat-form-field class="editForm">
+                  <mat-label>Hole description</mat-label>
+                  <textarea rows="5" matInput placeholder={{info.hole_18_desc}} id="value1" name="value1" [(ngModel)]="value1" formControlName="value1" type="value1"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Yards to hole</mat-label>
+                  <input matInput placeholder={{info.hole_18_yds}} id="value2" name="value2" [(ngModel)]="value2" formControlName="value2" type="value2">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <mat-label>Strokes to par</mat-label>
+                  <input matInput placeholder={{info.hole_18_par}} id="value3" name="value3" [(ngModel)]="value3" formControlName="value3" type="value3">
+                </mat-form-field>
+              </form>
             </ng-template>
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
-            <button *ngIf="isEdit" mat-raised-button color="primary" type="button" (click)="saveData()" class="btn-default">Save</button>
+            <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
+            (click)="saveData('hole_18_desc', 'hole_18_yds', 'hole_18_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
