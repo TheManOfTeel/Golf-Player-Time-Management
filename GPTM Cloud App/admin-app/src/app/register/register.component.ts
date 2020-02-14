@@ -31,9 +31,9 @@ export class RegisterComponent {
 
   createForm() {
     this.registerForm = this.fb.group({
-     email: ['', Validators.required],
-     password: ['', Validators.required],
-     golfCourse: ['', Validators.required]
+     email: ['', Validators.email],
+     password: ['', Validators.minLength(6)],
+     golfCourse: ['', Validators.minLength(3)]
      });
   }
 
@@ -49,27 +49,8 @@ export class RegisterComponent {
     this.checkIfExists(this.golfCourse)
     .then(data => {
       this.course = data;
+      this.validateCourse(data, value);
     });
-    if (this.course == null) {
-      this.authService.doRegister(value)
-      .then(res => {
-        this.successMessage = 'Your account has been created';
-        firebase.database().ref('/Users/' + res.user.uid).set({
-          email: res.user.email,
-          password: this.password,
-          isAdmin: true,
-          golfCourse: this.golfCourse
-        });
-      }, err => {
-          console.log(err);
-          this.errorMessage = err.message;
-          this.successMessage = '';
-        });
-      this.writeHoleData(this.golfCourse);
-    }
-    if (this.course != null) {
-      this.alreadyExists = 'Already Exists';
-    }
   }
 
   writeHoleData(golfCourse) {
@@ -132,10 +113,33 @@ export class RegisterComponent {
    });
  }
 
- checkIfExists(golfCourse) {
+  checkIfExists(golfCourse) {
   return firebase.database().ref('GolfCourse/' + this.golfCourse).once('value').then(function(snapshot) {
     const courseName = snapshot.val();
     return courseName;
     });
-}
+  }
+
+  validateCourse(course, value) {
+    if (this.course === null) {
+      this.authService.doRegister(value)
+      .then(res => {
+        this.successMessage = 'Your account has been created';
+        firebase.database().ref('/Users/' + res.user.uid).set({
+          email: res.user.email,
+          password: this.password,
+          isAdmin: true,
+          golfCourse: this.golfCourse
+        });
+      }, err => {
+          console.log(err);
+          this.errorMessage = err.message;
+          this.successMessage = '';
+        });
+      this.writeHoleData(this.golfCourse);
+    }
+    if (this.course != null) {
+      this.alreadyExists = 'Already Exists';
+    }
+  }
 }

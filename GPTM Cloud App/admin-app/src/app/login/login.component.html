@@ -9,7 +9,7 @@
                 <form [formGroup]="loginForm">
                     <div class="row">
                         <mat-form-field>
-                            <input matInput placeholder="Email" type="email" formControlName="email">
+                            <input matInput placeholder="Email" type="email" formControlName="email" required>
                             <mat-hint>Enter your email address</mat-hint>
                             <mat-error>
                                 Email is required
@@ -18,7 +18,7 @@
                     </div>
                     <div class="row">
                         <mat-form-field>
-                            <input matInput placeholder="Password" type="password" formControlName="password">
+                            <input matInput placeholder="Password" type="password" formControlName="password" required>
                             <mat-hint>Enter your password</mat-hint>
                             <mat-error>
                                 Password is required

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as firebase from 'firebase';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-// For this component we only need to input a description, par number, and tips. The scorecard is now irrelevant, admins are not
+// For this component we only need to input a description, par number, and yards to hole. The scorecard is now irrelevant, admins are not
 // concerned about this.
 @Component({
   selector: 'app-course-overview',
@@ -35,9 +35,9 @@ export class CourseOverviewComponent implements OnInit {
 
   createForm() {
     this.newDataForm = this.fb.group({
-     value1: ['', Validators.required],
-     value2: ['', Validators.required],
-     value3: ['', Validators.required]
+     value1: [''],
+     value2: [''],
+     value3: ['']
      });
   }
 
@@ -48,7 +48,6 @@ export class CourseOverviewComponent implements OnInit {
       this.getCourseDetails(this.courseName)
       .then(data => {
         this.info = data;
-        console.log(this.info);
       });
     });
   }
@@ -86,10 +85,6 @@ export class CourseOverviewComponent implements OnInit {
     this.child3 = child3;
     const courseRef = firebase.database().ref('/GolfCourse/').child(this.courseName);
     // push new data to database
-    console.log('save');
-    console.log(this.value1);
-    console.log(this.value2);
-    console.log(this.value3);
     if (this.value1 != null && this.value2 != null && this.value3 != null) {
       courseRef.update({
         // Save hole description
