@@ -25,15 +25,19 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
-                    <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
-                    <div *ngIf="!errorMessage"><p></p></div>
-                    <button mat-raised-button color="secondary" type="submit" (click)="tryLogin(loginForm.value)" class="btn-default">Login</button>
+                    <div><label class="error" *ngIf="errorMessage">Invalid username/password</label></div>
+                    <div><label class="error" *ngIf="noAdmin == true">You must be an administrator</label></div>
+                    <div *ngIf="!errorMessage && !noAdmin"><p></p></div>
+                    <button mat-raised-button color="primary" type="submit" (click)="tryLogin(loginForm.value)" class="btn-default">Login</button>
                 </form>
-                <div class="row">
+                <!-- <div class="row">
                     <div>
                         <button mat-raised-button color="secondary" type="button" (click)="tryGoogleLogin()" class="btn-default"><img width="20px" style="margin-right:8px" alt="Google sign-in"
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/> Login with Google</button>
                     </div>
+                </div> -->
+                <div class="row">
+                      <button mat-raised-button color="secondary" type="button" (click)="tryRegister()" class="btn-default">Register your Golf Course</button>
                 </div>
             </div>
         </div>

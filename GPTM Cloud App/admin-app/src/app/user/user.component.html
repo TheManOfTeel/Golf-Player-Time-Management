@@ -1,9 +1,11 @@
 <mat-toolbar color="primary" class="app-toolbar">
     <div>
         <nav>
-            <a>GPTM Admin</a>
+            <div class="title">
+                <a class="title">{{golfCourse}}</a>
+            </div>
             <div class="logout">
-                <a (click)="logout()" class="logout"> Logout</a>
+                <button mat-button (click)="logout()" class="logout">Logout <mat-icon>exit_to_app</mat-icon></button>
             </div>
         </nav>
     </div>
