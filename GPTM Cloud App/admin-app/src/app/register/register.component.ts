@@ -49,7 +49,7 @@ export class RegisterComponent {
     this.checkIfExists(this.golfCourse)
     .then(data => {
       this.course = data;
-    })
+    });
     if (this.course == null) {
       this.authService.doRegister(value)
       .then(res => {
@@ -67,7 +67,7 @@ export class RegisterComponent {
         });
       this.writeHoleData(this.golfCourse);
     }
-    else {
+    if (this.course != null) {
       this.alreadyExists = 'Already Exists';
     }
   }
@@ -134,7 +134,7 @@ export class RegisterComponent {
 
  checkIfExists(golfCourse) {
   return firebase.database().ref('GolfCourse/' + this.golfCourse).once('value').then(function(snapshot) {
-    var courseName = snapshot.val();
+    const courseName = snapshot.val();
     return courseName;
     });
 }

@@ -48,7 +48,7 @@ export class LoginComponent {
       .then(val => {
         this.isAdmin = val;
         this.checkAdmin(this.isAdmin);
-      })
+      });
     }, err => {
       console.log(err);
       this.noAdmin = false;
@@ -58,20 +58,20 @@ export class LoginComponent {
   }
 
   evalAdmin() {
-    var userId = firebase.auth().currentUser.uid;
+    const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
-      var isAdmin = (snapshot.val() && snapshot.val().isAdmin) || false;
+      const isAdmin = (snapshot.val() && snapshot.val().isAdmin) || false;
       return isAdmin;
       });
   }
 
   checkAdmin(isAdmin) {
-    if (this.isAdmin == true) {
+    if (this.isAdmin === true) {
       this.noAdmin = false;
       this.router.navigate(['/dashboard']);
       console.log('here');
     }
-    if (this.isAdmin == false) {
+    if (this.isAdmin === false) {
       this.noAdmin = true;
     }
   }

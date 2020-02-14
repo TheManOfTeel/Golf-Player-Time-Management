@@ -54,9 +54,9 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   getCourseName() {
-    var userId = firebase.auth().currentUser.uid;
+    const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
-      var golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
+      const golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
       return golfCourse;
     });
   }
@@ -65,9 +65,9 @@ export class CourseOverviewComponent implements OnInit {
     // use the golfCourse value to match it to the GolfCourse table and get the hole info
     return firebase.database().ref('/GolfCourse/' + this.courseName).once('value').then(function(snapshot) {
       // All the data is being pulled here. Assign it a value then it can be shown in the front end.
-      var data = snapshot.val();
+      const data = snapshot.val();
       return data;
-    })
+    });
   }
 
   doEdit() {
@@ -84,16 +84,13 @@ export class CourseOverviewComponent implements OnInit {
     this.child1 = child1;
     this.child2 = child2;
     this.child3 = child3;
-    // this.value1 = value1;
-    // this.value2 = value2;
-    // this.value3 = value3;
-    var courseRef = firebase.database().ref('/GolfCourse/').child(this.courseName);
+    const courseRef = firebase.database().ref('/GolfCourse/').child(this.courseName);
     // push new data to database
     console.log('save');
     console.log(this.value1);
     console.log(this.value2);
     console.log(this.value3);
-    if (this.value1 !=null && this.value2 != null && this.value3 != null) {
+    if (this.value1 != null && this.value2 != null && this.value3 != null) {
       courseRef.update({
         // Save hole description
         [child1]: this.value1,
@@ -103,7 +100,7 @@ export class CourseOverviewComponent implements OnInit {
         [child3]: this.value3
       });
     }
-    if (this.value1 !=null && this.value2 != null) {
+    if (this.value1 != null && this.value2 != null) {
       courseRef.update({
         // Save hole description
         [child1]: this.value1,
@@ -111,7 +108,7 @@ export class CourseOverviewComponent implements OnInit {
         [child2]: this.value2
       });
     }
-    if (this.value1 !=null && this.value3 != null) {
+    if (this.value1 != null && this.value3 != null) {
       courseRef.update({
         // Save hole description
         [child1]: this.value1,
@@ -127,7 +124,7 @@ export class CourseOverviewComponent implements OnInit {
         [child3]: this.value3
       });
     }
-    if (this.value1 !=null) {
+    if (this.value1 != null) {
       courseRef.update({
         // Save hole description
         [child1]: this.value1

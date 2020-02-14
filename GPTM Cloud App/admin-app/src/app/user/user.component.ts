@@ -69,9 +69,9 @@ export class UserComponent implements OnInit {
   }
 
   setBannerName() {
-    var userId = firebase.auth().currentUser.uid;
+    const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
-    var golfCourse = (snapshot.val() && snapshot.val().golfCourse + ' Admin') || 'No Associated Course';
+    const golfCourse = (snapshot.val() && snapshot.val().golfCourse + ' Admin') || 'No Associated Course';
     return golfCourse;
     });
   }
