@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-course-map',
@@ -28,6 +29,7 @@ export class CourseMapComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.mapInitializer();
+    this.getPlayerLocation();
     // this.initMap();
   }
 
@@ -35,7 +37,17 @@ export class CourseMapComponent implements AfterViewInit {
     this.map = new google.maps.Map(this.gmap.nativeElement, 
     this.mapOptions);
     this.marker.setMap(this.map);
-   }
+  }
+
+  getPlayerLocation() {
+    // Pull in uploaded coordinates
+    return firebase.database().ref('/MyLocation/').once('value').then(function(snapshot) {
+      // All the data is being pulled here. Assign it a value then it can be shown in the front end.
+      const data = snapshot.val();
+      console.log(data.You.l);
+      return data;
+    });
+  }
 
   // map: google.maps.Map<HTMLElement>;
   // infoWindow: google.maps.InfoWindow;
