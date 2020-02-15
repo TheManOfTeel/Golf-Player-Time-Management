@@ -45,6 +45,7 @@ import { PlayerOverviewComponent } from './player-overview/player-overview.compo
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { ItemFormComponent } from './items/item-form/item-form.component';
+import { CourseMapComponent } from './course-map/course-map.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ItemFormComponent } from './items/item-form/item-form.component';
     PlayerOverviewComponent,
     ItemsListComponent,
     ItemDetailComponent,
-    ItemFormComponent
+    ItemFormComponent,
+    CourseMapComponent
   ],
   imports: [
     BrowserModule,
