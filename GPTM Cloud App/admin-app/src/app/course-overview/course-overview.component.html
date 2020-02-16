@@ -4,10 +4,8 @@
   <div class="main-div">
     <mat-card>
     <h1>{{courseName}} Overview</h1>
+    <br>
     <div>
-    <button mat-raised-button color="secondary" type="button" (click)="accordion.openAll()" class="btn-default">Expand All </button>
-    <div class="divider"></div>
-    <button mat-raised-button color="secondary" type="button"  (click)="accordion.closeAll()" class="btn-default">Collapse All </button>
       <mat-accordion #accordion="matAccordion" [multi]="true">
         <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>

@@ -1,17 +1,1 @@
-<button mat-raised-button color="secondary" type="button" (click)="accordion.openAll()" class="btn-default">Expand All </button>
-<div class="divider"></div>
-<button mat-raised-button color="secondary" type="button"  (click)="accordion.closeAll()" class="btn-default">Collapse All </button>
-<mat-accordion #accordion="matAccordion" [multi]="true">
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>Player Requests</mat-expansion-panel-header>
-        <p>This is where the pending requests will go</p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>Player Location</mat-expansion-panel-header>
-        <div #mapContainer id="map"></div>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>Active Player List</mat-expansion-panel-header>
-        <p>This is where the active player table will go</p>
-    </mat-expansion-panel>
-</mat-accordion>
+<div #mapContainer id="map"></div>
