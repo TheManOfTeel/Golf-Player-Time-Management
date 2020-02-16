@@ -29,6 +29,8 @@ public class CourseAdapter extends ArrayAdapter<GolfCourse> {
         return initView(position, convertView, parent);
     }
 
+
+
     private View initView(int position, View converView, ViewGroup parent){
         if(converView == null) {
             converView = LayoutInflater.from(getContext()).inflate(
@@ -40,7 +42,7 @@ public class CourseAdapter extends ArrayAdapter<GolfCourse> {
         GolfCourse currentCourse = getItem(position);
 
         if(currentCourse != null) {
-            textView.setText(currentCourse.getName());
+            textView.setText(currentCourse.getID());
         }
 
         return converView;

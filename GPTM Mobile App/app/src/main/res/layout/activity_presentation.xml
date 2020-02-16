@@ -5,33 +5,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A7A7A7"
-    tools:context=".PresentationActivity">
+    tools:context=".PresentationActivity"
+    android:background="@drawable/background"
+
+    >
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:textSize="36dp"
+        android:layout_margin="20dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Welcome To Golf Player Time Management"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
-    <Button
-        android:id="@+id/signin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+
+
+    <RelativeLayout
         android:layout_centerVertical="true"
-        android:text="Sign In"
-        />
-
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_below="@+id/signin"
-        android:text="sign up"
-        />
+        android:paddingTop="30dp"
+        >
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/signin"
-        android:layout_marginBottom="3dp"
-        android:text="Anonymous Sign in" />
+        <Button
+            android:id="@+id/signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:background="#996666B3"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+
+            />
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signin"
+            android:text="sign up"
+            android:background="#996666B3"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:text="Anonymous Sign in"
+            android:layout_below="@id/signup"
+            android:background="#996666B3"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+            />
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
