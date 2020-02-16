@@ -1,0 +1,19 @@
+.button {
+    height: 40px;
+    width: 190px;
+}
+
+.main-div {
+    text-align: center;
+    font-size: medium;
+}
+
+.divider {
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.expander {
+    text-align: right;
+}
