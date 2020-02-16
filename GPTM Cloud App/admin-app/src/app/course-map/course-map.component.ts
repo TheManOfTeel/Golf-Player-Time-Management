@@ -10,8 +10,9 @@ export class CourseMapComponent implements AfterViewInit {
 
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
   map: google.maps.Map;
-  lat = 40.730610;
-  lng = -73.935242;
+  lat = 37.4219983;
+  lng = -122.0840567;
+  playerCoordinates: any;
   
   coordinates = new google.maps.LatLng(this.lat, this.lng);
 
@@ -28,12 +29,17 @@ export class CourseMapComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit() {
-    this.mapInitializer();
     this.getPlayerLocation();
+    this.mapInitializer();
     // this.initMap();
   }
 
   mapInitializer() {
+    this.getPlayerLocation()
+    .then(res => {
+      this.playerCoordinates = res;
+      console.log(this.playerCoordinates);
+    })
     this.map = new google.maps.Map(this.gmap.nativeElement, 
     this.mapOptions);
     this.marker.setMap(this.map);
@@ -44,7 +50,7 @@ export class CourseMapComponent implements AfterViewInit {
     return firebase.database().ref('/MyLocation/').once('value').then(function(snapshot) {
       // All the data is being pulled here. Assign it a value then it can be shown in the front end.
       const data = snapshot.val();
-      console.log(data.You.l);
+      // console.log(data.You.l);
       return data;
     });
   }
