@@ -4,46 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A7A7A7"
+    android:background="@drawable/background"
     tools:context=".SigninActivity">
 
-    <EditText
-        android:id="@+id/signinEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Email"
-        android:inputType="textEmailAddress"
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        />
-
-
-    <EditText
-        android:id="@+id/signinPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Password"
-        android:inputType="textPassword"
-        android:layout_below="@+id/signinEmail"
-        />
-
-    <Button
-        android:id="@+id/Signupbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/signinPassword"
-        android:text="sign in"
-        />
-
-    <TextView
-        android:id="@+id/ForGotPassword"
-        android:text="Forgot Password?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Signupbtn"
-        android:layout_centerHorizontal="true"
+        android:background="#95FFFFFF"
+        android:layout_margin="10dp"
         android:paddingTop="20dp"
-        android:textColor="#0000EE"
-        />
+
+        >
+        <EditText
+            android:id="@+id/signinEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+
+            android:padding="20dp"
+
+            />
+
+        <EditText
+            android:id="@+id/signinPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:layout_below="@+id/signinEmail"
+            android:padding="20dp"
+
+
+            />
+
+        <Button
+            android:id="@+id/Signupbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signinPassword"
+            android:text="sign in"
+            android:background="#996666B3"
+            />
+
+        <TextView
+            android:id="@+id/ForGotPassword"
+            android:text="Forgot Password?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Signupbtn"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="20dp"
+            android:textColor="#0000EE"
+            android:textStyle="bold"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
 
 
     

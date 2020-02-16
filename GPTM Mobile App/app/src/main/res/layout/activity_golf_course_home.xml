@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GolfCourseHomeActivity">
+
+
+    <TextView
+        android:id="@+id/WelcomeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="Welcome To This Golf Course"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="25dp"
+        />
+
+    <Button
+    android:id="@+id/RequestGamebtn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Request Game"
+        android:layout_below="@id/WelcomeLabel"
+    />
+    <Button
+        android:id="@+id/StartGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StartGame"
+        android:layout_below="@id/WelcomeLabel"
+        android:visibility="invisible"
+        />
+    <Button
+        android:id="@+id/CheckStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StartGame"
+        android:layout_below="@id/WelcomeLabel"
+        android:visibility="invisible"
+        />
+
+    <Button
+        android:id="@+id/GameHistorybtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="See Game History"
+        android:layout_below="@id/RequestGamebtn"
+        />
+
+
+</RelativeLayout>

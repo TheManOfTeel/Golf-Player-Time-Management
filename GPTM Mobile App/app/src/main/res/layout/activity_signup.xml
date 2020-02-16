@@ -4,44 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A7A7A7"
+    android:background="@drawable/background"
     tools:context=".SignupActivity">
 
 
-
-    <EditText
-        android:id="@+id/signupEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Email"
-        android:inputType="textEmailAddress"
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#95FFFFFF"
+        android:layout_margin="10dp"
+        android:paddingTop="20dp">
 
-    <EditText
-        android:id="@+id/signupPassword1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Password"
-        android:inputType="textPassword"
-        android:layout_below="@+id/signupEmail"
-        />
-    <EditText
-        android:id="@+id/signupPassword2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Reenter Password"
-        android:inputType="textPassword"
-        android:layout_below="@+id/signupPassword1"
-        />
+        <EditText
+            android:id="@+id/signupEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            />
 
-    <Button
-        android:id="@+id/Signupbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/signupPassword2"
-        android:text="sign up"
-        />
+        <EditText
+            android:id="@+id/signupPassword1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:layout_below="@+id/signupEmail"
+            />
+        <EditText
+            android:id="@+id/signupPassword2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Reenter Password"
+            android:inputType="textPassword"
+            android:layout_below="@+id/signupPassword1"
+            />
+
+        <Button
+            android:id="@+id/Signupbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signupPassword2"
+            android:text="sign up"
+            />
+
+
+
+
+    </RelativeLayout>
+
+
+
 
 
 </RelativeLayout>

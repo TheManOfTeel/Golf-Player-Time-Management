@@ -2,13 +2,16 @@ package com.example.elijah.golfplayertimemanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Spinner;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,34 +35,57 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     private FirebaseUser user;
     private String uid;
     private TextView email;
-    private Spinner spinner;
+    private ListView listView;
     private ArrayList<GolfCourse> courses = new ArrayList<>();
     private CourseAdapter courseAdapter;
+    private EditText search;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectgolfcourse);
+        getSupportActionBar().setTitle("SelectGolfCOurseActivity");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        search = (EditText)findViewById(R.id.GolfCourseSearch);
         ReadCourse();
-        spinner = (Spinner)findViewById(R.id.GolfCourseSelector);
+        listView = (ListView)findViewById(R.id.CourseList);
         courseAdapter = new CourseAdapter(this, courses);
-        spinner.setAdapter(courseAdapter);
+        listView.setAdapter(courseAdapter);
+        listView.setTextFilterEnabled(true);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        search.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                GolfCourse clickedItem = (GolfCourse) adapterView.getItemAtPosition(i);
-                Log.e("ClickedItem", clickedItem.toString());
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                courseAdapter.getFilter().filter(charSequence);
+                courseAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
 
             }
         });
-    }
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e("ItemClicked", courses.get(i).toString());
+                Intent intent = new Intent(SelectGolfCourseActivity.this, GolfCourseHomeActivity.class);
+                intent.putExtra("GolfCourseID", courses.get(i).getID());
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
 
     public void ReadCourse(){
         myRef = database.getInstance().getReference().child("GolfCourse");
@@ -77,7 +103,6 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
                 for(int i = 0; i < courses.size(); i++){
                     Log.e("GOlfCourseList",courses.get(i).toString());
                 }
-
             }
 
             @Override
@@ -118,6 +143,7 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
         switch (item.getItemId()){
             case R.id.signout:
                 Toast.makeText(this, "Sign out selected", Toast.LENGTH_SHORT).show();
@@ -132,6 +158,12 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
 
     public void PresentationActivityIntent(){
         Intent intent = new Intent(SelectGolfCourseActivity.this, PresentationActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void GolfCourseHomeIntent(){
+        Intent intent = new Intent(SelectGolfCourseActivity.this, GolfCourseHomeActivity.class);
         startActivity(intent);
         finish();
     }

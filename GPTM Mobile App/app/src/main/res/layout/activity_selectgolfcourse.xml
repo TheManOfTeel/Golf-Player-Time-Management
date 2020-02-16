@@ -8,23 +8,31 @@
     tools:context=".SelectGolfCourseActivity">
 
     <TextView
-        android:id="@+id/SelectGolfCourseHeading"
+        android:id="@+id/SelectGolfCourseHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Golf Course"
-        android:layout_centerVertical="true"
+        android:text="Select A Golf Course YOu Would Like to Play At"
+        android:textSize="24dp"
         android:layout_centerHorizontal="true"
-        android:textSize="35dp"
+        android:textAlignment="center"
+        android:paddingTop="20dp"
         />
 
-    <Spinner
-        android:id="@+id/GolfCourseSelector"
+    <EditText
+        android:id="@+id/GolfCourseSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autofillHints="Select Course"
-        android:layout_alignBottom="@+id/SelectGolfCourseHeading"
-        android:paddingTop="36dp"
+        android:layout_below="@id/SelectGolfCourseHeader"
         />
+
+    <ListView
+        android:id="@+id/CourseList"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/GolfCourseSearch"
+        />
+
+
 
 
 

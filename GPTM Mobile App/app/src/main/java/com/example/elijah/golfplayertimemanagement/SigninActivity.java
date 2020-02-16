@@ -29,17 +29,6 @@ public class SigninActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
 
 
-
-
-
-
-
-
-
-
-
-
-
         getSupportActionBar().setTitle("SigninActivity");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
