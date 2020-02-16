@@ -13,7 +13,7 @@ export class CourseMapComponent implements AfterViewInit {
   lat = 37.4219983;
   lng = -122.0840567;
   playerCoordinates: any;
-  
+
   coordinates = new google.maps.LatLng(this.lat, this.lng);
 
   mapOptions: google.maps.MapOptions = {
@@ -39,8 +39,8 @@ export class CourseMapComponent implements AfterViewInit {
     .then(res => {
       this.playerCoordinates = res;
       console.log(this.playerCoordinates);
-    })
-    this.map = new google.maps.Map(this.gmap.nativeElement, 
+    });
+    this.map = new google.maps.Map(this.gmap.nativeElement,
     this.mapOptions);
     this.marker.setMap(this.map);
   }
@@ -86,7 +86,8 @@ export class CourseMapComponent implements AfterViewInit {
   //   }
   // }
 
-  // handleLocationError(browserHasGeolocation: boolean, infoWindow: { setPosition: (arg0: any) => void; setContent: (arg0: string) => void; open: (arg0: any) => void; }, pos: any) {
+  // handleLocationError(browserHasGeolocation: boolean,
+  // infoWindow: { setPosition: (arg0: any) => void; setContent: (arg0: string) => void; open: (arg0: any) => void; }, pos: any) {
   //   infoWindow.setPosition(pos);
   //   infoWindow.setContent(browserHasGeolocation ?
   //                         'Error: The Geolocation service failed.' :
