@@ -172,12 +172,14 @@ export class RegisterComponent {
         });
       }, err => {
           console.log(err);
+          this.alreadyExists = null;
           this.errorMessage = err.message;
           this.successMessage = '';
         });
     }
     if (this.course != null) {
       this.alreadyExists = 'Already Exists';
+      this.errorMessage = null;
     }
   }
 }
