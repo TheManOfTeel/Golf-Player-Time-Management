@@ -2,3 +2,14 @@
     height: 600px;
     width: 100%;
 }
+
+.btn-default {
+    font-size: medium;
+    padding: 2px;
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}

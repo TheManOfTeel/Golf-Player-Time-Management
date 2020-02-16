@@ -5,7 +5,10 @@
     <mat-card>
     <h1>{{courseName}} Overview</h1>
     <div>
-      <mat-accordion>
+    <button mat-raised-button color="secondary" type="button" (click)="accordion.openAll()" class="btn-default">Expand All </button>
+    <div class="divider"></div>
+    <button mat-raised-button color="secondary" type="button"  (click)="accordion.closeAll()" class="btn-default">Collapse All </button>
+      <mat-accordion #accordion="matAccordion" [multi]="true">
         <mat-expansion-panel>
             <mat-expansion-panel-header ><mat-icon>golf_course</mat-icon>
                 Hole 1
@@ -36,6 +39,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_01_desc', 'hole_01_yds', 'hole_01_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -69,6 +73,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_02_desc', 'hole_02_yds', 'hole_02_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -102,6 +107,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_03_desc', 'hole_03_yds', 'hole_03_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -135,6 +141,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_04_desc', 'hole_04_yds', 'hole_04_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -168,6 +175,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_05_desc', 'hole_05_yds', 'hole_05_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -201,6 +209,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_06_desc', 'hole_06_yds', 'hole_06_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -234,6 +243,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_07_desc', 'hole_07_yds', 'hole_07_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -267,6 +277,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_08_desc', 'hole_08_yds', 'hole_08_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -300,6 +311,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_09_desc', 'hole_09_yds', 'hole_09_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -333,6 +345,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_10_desc', 'hole_10_yds', 'hole_10_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -366,6 +379,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_11_desc', 'hole_11_yds', 'hole_11_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -399,6 +413,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_12_desc', 'hole_12_yds', 'hole_12_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -432,6 +447,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_13_desc', 'hole_13_yds', 'hole_13_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -465,6 +481,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_14_desc', 'hole_14_yds', 'hole_14_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -498,6 +515,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_15_desc', 'hole_15_yds', 'hole_15_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -531,6 +549,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_16_desc', 'hole_16_yds', 'hole_16_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -564,6 +583,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_17_desc', 'hole_17_yds', 'hole_17_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
@@ -597,6 +617,7 @@
             <br>
             <button *ngIf="!isEdit" mat-raised-button color="secondary" type="button" (click)="doEdit()" class="btn-default">Edit</button>
             <button *ngIf="isEdit" mat-raised-button color="warn" type="button" (click)="cancelEdit()" class="btn-default">Cancel</button>
+            <div class="divider"></div>
             <button *ngIf="isEdit" mat-raised-button color="primary" type="button"
             (click)="saveData('hole_18_desc', 'hole_18_yds', 'hole_18_par')" class="btn-default">Save</button>
           </mat-expansion-panel>
