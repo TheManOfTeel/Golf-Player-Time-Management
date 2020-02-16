@@ -54,63 +54,99 @@ export class RegisterComponent {
   }
 
   writeHoleData(golfCourse) {
-   firebase.database().ref('GolfCourse/' + this.golfCourse).set({
-     golfCourse: this.golfCourse,
-     hole_01_desc: 'No description set',
-     hole_01_yds: 'No distance set',
-     hole_01_par: 'No par set',
-     hole_02_desc: 'No description set',
-     hole_02_yds: 'No distance set',
-     hole_02_par: 'No par set',
-     hole_03_desc: 'No description set',
-     hole_03_yds: 'No distance set',
-     hole_03_par: 'No par set',
-     hole_04_desc: 'No description set',
-     hole_04_yds: 'No distance set',
-     hole_04_par: 'No par set',
-     hole_05_desc: 'No description set',
-     hole_05_yds: 'No distance set',
-     hole_05_par: 'No par set',
-     hole_06_desc: 'No description set',
-     hole_06_yds: 'No distance set',
-     hole_06_par: 'No par set',
-     hole_07_desc: 'No description set',
-     hole_07_yds: 'No distance set',
-     hole_07_par: 'No par set',
-     hole_08_desc: 'No description set',
-     hole_08_yds: 'No distance set',
-     hole_08_par: 'No par set',
-     hole_09_desc: 'No description set',
-     hole_09_yds: 'No distance set',
-     hole_09_par: 'No par set',
-     hole_10_desc: 'No description set',
-     hole_10_yds: 'No distance set',
-     hole_10_par: 'No par set',
-     hole_11_desc: 'No description set',
-     hole_11_yds: 'No distance set',
-     hole_11_par: 'No par set',
-     hole_12_desc: 'No description set',
-     hole_12_yds: 'No distance set',
-     hole_12_par: 'No par set',
-     hole_13_desc: 'No description set',
-     hole_13_yds: 'No distance set',
-     hole_13_par: 'No par set',
-     hole_14_desc: 'No description set',
-     hole_14_yds: 'No distance set',
-     hole_14_par: 'No par set',
-     hole_15_desc: 'No description set',
-     hole_15_yds: 'No distance set',
-     hole_15_par: 'No par set',
-     hole_16_desc: 'No description set',
-     hole_16_yds: 'No distance set',
-     hole_16_par: 'No par set',
-     hole_17_desc: 'No description set',
-     hole_17_yds: 'No distance set',
-     hole_17_par: 'No par set',
-     hole_18_desc: 'No description set',
-     hole_18_yds: 'No distance set',
-     hole_18_par: 'No par set',
-   });
+    firebase.database().ref('GolfCourse/' + this.golfCourse).set({
+      golfCourse: this.golfCourse,
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole01').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole02').set({
+    Description: 'No description set',
+    Yards: 'No distance set',
+    Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole03').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole04').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole05').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole06').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole07').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole08').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole09').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole10').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole11').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole12').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole13').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole14').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole15').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole16').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole17').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
+    firebase.database().ref('GolfCourse/' + this.golfCourse + '/Hole18').set({
+      Description: 'No description set',
+      Yards: 'No distance set',
+      Par: 'No par set',
+    });
  }
 
   checkIfExists(golfCourse) {
