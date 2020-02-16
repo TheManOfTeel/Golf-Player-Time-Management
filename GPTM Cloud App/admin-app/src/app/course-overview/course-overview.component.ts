@@ -21,8 +21,6 @@ export class CourseOverviewComponent implements OnInit {
   value3: number;
   newDataForm: FormGroup;
 
-
-
   constructor(
     private fb: FormBuilder
   ) {
@@ -79,11 +77,11 @@ export class CourseOverviewComponent implements OnInit {
     return this.isEdit;
   }
 
-  saveData(child1, child2, child3) {
+  saveData(hole, child1, child2, child3) {
     this.child1 = child1;
     this.child2 = child2;
     this.child3 = child3;
-    const courseRef = firebase.database().ref('/GolfCourse/').child(this.courseName);
+    const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName).child(hole);
     // push new data to database
     if (this.value1 != null && this.value2 != null && this.value3 != null) {
       courseRef.update({
