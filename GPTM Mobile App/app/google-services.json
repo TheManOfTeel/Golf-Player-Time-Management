@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "1004433550779-h9kuqar6jkvr29f8t5d5budqi8m0p5k2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.elijah.golfplayertimemanagement",
+            "certificate_hash": "649db15fff6155c3688e2a5691d5fa3efd68e451"
+          }
+        },
+        {
+          "client_id": "1004433550779-1h48hjdqq3eejd66vjn25r3jvt34fhif.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.elijah.golfplayertimemanagement",
+            "certificate_hash": "8d030c5b471312e3d1a32fd402c0e95dfade885d"
+          }
+        },
+        {
           "client_id": "1004433550779-6dt6jblbrbnqebgk0qiumen8gjcpr1tl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -36,7 +36,7 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:parentActivityName=".SigninActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".SelectGolfCourseActivity" />
         <activity
             android:name=".SigninActivity"
             android:parentActivityName=".PresentationActivity" />

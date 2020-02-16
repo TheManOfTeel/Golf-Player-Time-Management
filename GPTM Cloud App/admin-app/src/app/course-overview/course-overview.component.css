@@ -1,18 +1,12 @@
-table, th, td {
-  border: 1px solid black;
-  padding: 5px;
-  font-size: 10px;
-
-
+.btn-default {
+  font-size: medium;
+  padding: 2px;
 }
 
-table{
-  border-collapse: collapse;
-  width: 50%;
-
-
-
+.main-div {
+  font-size: medium;
 }
 
-
-
+.editForm {
+  width: 100%;
+}

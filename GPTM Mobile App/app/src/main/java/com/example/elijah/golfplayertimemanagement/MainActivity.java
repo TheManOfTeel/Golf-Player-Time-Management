@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ProfileActivityIntent(){
-        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        Intent intent = new Intent(MainActivity.this, SelectGolfCourseActivity.class);
         startActivity(intent);
         finish();
     }

@@ -1,8 +1,5 @@
 package com.example.elijah.golfplayertimemanagement;
 
-import androidx.core.app.NotificationCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -14,8 +11,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
@@ -48,6 +43,9 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.FragmentActivity;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GeoQueryEventListener {
 

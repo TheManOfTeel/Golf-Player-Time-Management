@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectGolfCourseActivity">
+
+    <TextView
+        android:id="@+id/SelectGolfCourseHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Golf Course"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="35dp"
+        />
+
+    <Spinner
+        android:id="@+id/GolfCourseSelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Select Course"
+        android:layout_alignBottom="@+id/SelectGolfCourseHeading"
+        android:paddingTop="36dp"
+        />
+
+
+
+
+
+
+
+</RelativeLayout>

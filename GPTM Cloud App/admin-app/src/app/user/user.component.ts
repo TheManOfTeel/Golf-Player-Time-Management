@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { AuthService } from '../auth.service';
+import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirebaseUserModel } from '../user.model';
+import { FirebaseUserModel } from '../authentication/user.model';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-user',
   templateUrl: 'user.component.html',
   styleUrls: ['user.component.css']
 })
+
+@Injectable()
 export class UserComponent implements OnInit {
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
+  golfCourse: any;
 
   constructor(
     public userService: UserService,
@@ -35,6 +39,10 @@ export class UserComponent implements OnInit {
         this.user = data;
         this.createForm(this.user.name);
       }
+      this.setBannerName()
+      .then(val => {
+        this.golfCourse = val;
+      });
     });
   }
 
@@ -57,6 +65,14 @@ export class UserComponent implements OnInit {
       this.location.back();
     }, (error) => {
       console.log('Logout error', error);
+    });
+  }
+
+  setBannerName() {
+    const userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+    const golfCourse = (snapshot.val() && snapshot.val().golfCourse + ' Admin') || 'No Associated Course';
+    return golfCourse;
     });
   }
 }
