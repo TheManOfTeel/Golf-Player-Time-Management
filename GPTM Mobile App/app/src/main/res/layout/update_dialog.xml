@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request Is Pending"
+        android:paddingTop="36dp"
+        android:textColor="#000"
+        />
+
+    <Button
+        android:id="@+id/cancelRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/status"
+        android:text="Cencel Request"
+        />
+    <Button
+        android:id="@+id/StartGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StartGame"
+        android:layout_margin="20dp"
+        android:layout_below="@id/status"
+        android:visibility="invisible"
+        />
+
+</RelativeLayout>
