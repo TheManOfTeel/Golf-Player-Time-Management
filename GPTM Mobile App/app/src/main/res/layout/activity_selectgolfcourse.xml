@@ -5,32 +5,56 @@
     android:id="@+id/text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectGolfCourseActivity">
+    tools:context=".SelectGolfCourseActivity"
+    android:background="@drawable/background"
+    >
 
-    <TextView
-        android:id="@+id/SelectGolfCourseHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select A Golf Course YOu Would Like to Play At"
-        android:textSize="24dp"
+
+    <RelativeLayout
         android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:paddingTop="20dp"
-        />
-
-    <EditText
-        android:id="@+id/GolfCourseSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/SelectGolfCourseHeader"
-        />
-
-    <ListView
-        android:id="@+id/CourseList"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@id/GolfCourseSearch"
-        />
+        android:layout_height="wrap_content"
+        android:background="#99FFFFFF"
+        android:layout_margin="10dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/SelectGolfCourseHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select A Golf Course You Would Like to Play At"
+            android:textSize="24dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:paddingTop="20dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textFontWeight="400dp"
+
+
+            />
+
+        <EditText
+            android:id="@+id/GolfCourseSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SelectGolfCourseHeader"
+            android:hint="search"
+            android:textStyle="bold"
+            />
+
+        <ListView
+            android:id="@+id/CourseList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/GolfCourseSearch"
+            android:divider="#608038"
+            android:dividerHeight="2dp"
+            />
+
+
+    </RelativeLayout>
 
 
 
