@@ -128,6 +128,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         Button cancelbtn = (Button) dialogView.findViewById(R.id.cancelRequest);
         TextView status = (TextView)dialogView.findViewById(R.id.status);
         Button startgameButton = (Button)dialogView.findViewById(R.id.StartGame);
+
         Log.e("dialog", CourseName );
         Log.e("dialog", Uid );
 
@@ -170,6 +171,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
                 myRef.child("Games").child(UniqueKey).child("Players").child(Uid).child("Score").child("Hole").child("Hole1").setValue(0);
 
 
+
                 alertDialog.dismiss();
                 Intent intent = new Intent(GolfCourseHomeActivity.this, GameActivity.class);
                 startActivity(intent);
@@ -178,6 +180,18 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
             }
         });
+
+        cancelbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              DatabaseReference deleteRef = FirebaseDatabase.getInstance().getReference("GameRequests").child(CourseName).child(Uid);
+              deleteRef.removeValue();
+              checkStatus.setVisibility(View.INVISIBLE);
+              requestbtn.setVisibility(View.VISIBLE);
+            }
+        });
+
+
 
 
     }
@@ -191,6 +205,8 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()) {
                     String request = dataSnapshot.getValue().toString();
                     showUpdateDialog(request);
+                }else{
+
                 }
             }
 
