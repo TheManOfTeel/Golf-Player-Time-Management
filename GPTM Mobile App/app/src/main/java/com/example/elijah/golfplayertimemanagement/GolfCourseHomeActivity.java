@@ -3,6 +3,7 @@ package com.example.elijah.golfplayertimemanagement;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GolfCourseHomeActivity extends AppCompatActivity {
@@ -33,16 +35,17 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
     private String CourseName;
     private Button startgameButton;
     private Button checkStatus;
+    private String Uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_golf_course_home);
         mAuth = FirebaseAuth.getInstance();
-        String Uid = mAuth.getUid();
+        Uid = mAuth.getUid();
         header = (TextView)findViewById(R.id.WelcomeLabel);
         requestbtn = (Button)findViewById(R.id.RequestGamebtn);
-        startgameButton = (Button)findViewById(R.id.StartGame);
+
         checkStatus = (Button) findViewById(R.id.CheckStatus);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
@@ -51,7 +54,9 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
             CourseName = getIntent().getStringExtra("GolfCourseID");
             header.setText("Welcome to " + CourseName);
         }
-        CheckRequestStatus();
+
+
+
 
 
 
@@ -64,7 +69,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
                 if(!CourseName.equals(null)) {
                     myRef.child("GameRequests").child(CourseName).child(Uid).child("request").setValue("pending");
                     requestbtn.setVisibility(View.INVISIBLE);
-                    checkStatus.setText("Admin has not approved your request yet. Click here to refresh and check status");
+                    checkStatus.setText("Check Status");
                     checkStatus.setVisibility(View.VISIBLE);
 
                 }
@@ -74,32 +79,11 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         checkStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CheckRequestStatus();
+               CheckRequestStatus();
             }
         });
 
-        startgameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                String currentDate = sdf.format(new Date());
-                String UniqueKey = myRef.child("Games").push().getKey();
 
-                SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
-                String currentTime= time.format(new Date());
-
-                myRef.child("Games").child(UniqueKey).child("CurrentHole").setValue("Hole1");
-                myRef.child("Games").child(UniqueKey).child("CourseID").setValue(CourseName);
-                myRef.child("Games").child(UniqueKey).child("Date").setValue(currentDate);
-                myRef.child("Games").child(UniqueKey).child("Time Started").setValue(currentTime);
-                myRef.child("Games").child(UniqueKey).child("CurrentHole").setValue("Hole1");
-                myRef.child("Games").child(UniqueKey).child("Players").child(Uid).child("Score").child("Hole").child("Hole1").setValue(0);
-
-                Intent intent = new Intent(GolfCourseHomeActivity.this, GameActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
     }
 
@@ -133,6 +117,85 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         finish();
     }
 
+    private void showUpdateDialog(String request){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflate = getLayoutInflater();
+
+        final View dialogView = inflate.inflate(R.layout.update_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        Button cancelbtn = (Button) dialogView.findViewById(R.id.cancelRequest);
+        TextView status = (TextView)dialogView.findViewById(R.id.status);
+        Button startgameButton = (Button)dialogView.findViewById(R.id.StartGame);
+
+        Log.e("dialog", CourseName );
+        Log.e("dialog", Uid );
+
+        if(request.equals("pending")){
+            status.setText("Your request is " + request);
+        }else if(request.equals("true")){
+            status.setText("your request has been Accepted!. Click Button Below to start your game.");
+            cancelbtn.setVisibility(View.INVISIBLE);
+            startgameButton.setVisibility(View.VISIBLE);
+        }else {
+            status.setText("your request has been denied. Golf course maybe full.");
+        }
+
+
+
+
+        dialogBuilder.setTitle("Request Status");
+        dialogBuilder.setCancelable(true);
+
+
+        AlertDialog alertDialog = dialogBuilder.create();
+
+        alertDialog.show();
+
+        startgameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                String currentDate = sdf.format(new Date());
+                String UniqueKey = myRef.child("Games").push().getKey();
+
+                SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
+                String currentTime= time.format(new Date());
+
+                myRef.child("Games").child(UniqueKey).child("CurrentHole").setValue("Hole1");
+                myRef.child("Games").child(UniqueKey).child("CourseID").setValue(CourseName);
+                myRef.child("Games").child(UniqueKey).child("Date").setValue(currentDate);
+                myRef.child("Games").child(UniqueKey).child("Time Started").setValue(currentTime);
+                myRef.child("Games").child(UniqueKey).child("CurrentHole").setValue("Hole1");
+                myRef.child("Games").child(UniqueKey).child("Players").child(Uid).child("Score").child("Hole").child("Hole1").setValue(0);
+
+
+
+                alertDialog.dismiss();
+                Intent intent = new Intent(GolfCourseHomeActivity.this, GameActivity.class);
+                startActivity(intent);
+                finish();
+
+
+            }
+        });
+
+        cancelbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              DatabaseReference deleteRef = FirebaseDatabase.getInstance().getReference("GameRequests").child(CourseName).child(Uid);
+              deleteRef.removeValue();
+              checkStatus.setVisibility(View.INVISIBLE);
+              requestbtn.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+
+
+    }
+
     public void CheckRequestStatus(){
 
         myRef.child("GameRequests").child(CourseName).child(mAuth.getUid()).child("request").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -141,11 +204,9 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
                 if(dataSnapshot.exists()) {
                     String request = dataSnapshot.getValue().toString();
-                    Log.e("Status", request);
-                    if (request.equals("true")) {
-                        checkStatus.setVisibility(View.INVISIBLE);
-                        startgameButton.setVisibility(View.VISIBLE);
-                    }
+                    showUpdateDialog(request);
+                }else{
+
                 }
             }
 

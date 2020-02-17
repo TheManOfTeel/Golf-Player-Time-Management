@@ -24,14 +24,7 @@
     android:text="Request Game"
         android:layout_below="@id/WelcomeLabel"
     />
-    <Button
-        android:id="@+id/StartGame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="StartGame"
-        android:layout_below="@id/WelcomeLabel"
-        android:visibility="invisible"
-        />
+
     <Button
         android:id="@+id/CheckStatus"
         android:layout_width="match_parent"
