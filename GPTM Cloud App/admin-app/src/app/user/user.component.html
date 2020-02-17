@@ -1,13 +1,9 @@
 <mat-toolbar color="primary" class="app-toolbar">
-    <div>
-        <nav>
-            <div class="title">
-                <a class="title">{{golfCourse}}</a>
-            </div>
-            <div class="logout">
-                <button mat-button (click)="logout()" class="logout">Logout <mat-icon>exit_to_app</mat-icon></button>
-            </div>
-        </nav>
-    </div>
+    <nav>
+        <div class="title">
+            <a>{{golfCourse}}</a>
+        </div>
+        <button mat-button (click)="logout()" class="logout">Logout <mat-icon>exit_to_app</mat-icon></button>
+    </nav>
 </mat-toolbar>
 <app-dashboard></app-dashboard>

@@ -160,7 +160,10 @@ export class RegisterComponent {
     if (this.course === null) {
       this.authService.doRegister(value)
       .then(res => {
+        this.errorMessage = null;
+        this.alreadyExists = null;
         this.successMessage = 'Your account has been created';
+        this.writeHoleData(this.golfCourse);
         firebase.database().ref('/Users/' + res.user.uid).set({
           email: res.user.email,
           password: this.password,
@@ -169,13 +172,14 @@ export class RegisterComponent {
         });
       }, err => {
           console.log(err);
+          this.alreadyExists = null;
           this.errorMessage = err.message;
           this.successMessage = '';
         });
-      this.writeHoleData(this.golfCourse);
     }
     if (this.course != null) {
       this.alreadyExists = 'Already Exists';
+      this.errorMessage = null;
     }
   }
 }

@@ -1,15 +1,15 @@
 .logout {
     position: absolute;
-    top: 5px;
+    top: 12px;
     right: 16px;
-    font-size: larger;
+    font-size: 28px;
 }
 
 .title {
     position: absolute;
-    top: 6px;
+    top: 14px;
     left: 16px;
-    font-size: larger;
+    font-size: 28px;
 }
 
 .app-toolbar {
