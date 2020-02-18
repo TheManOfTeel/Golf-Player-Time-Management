@@ -69,7 +69,6 @@ export class LoginComponent {
     if (this.isAdmin === true) {
       this.noAdmin = false;
       this.router.navigate(['/dashboard']);
-      console.log('here');
     }
     if (this.isAdmin === false) {
       this.noAdmin = true;

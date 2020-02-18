@@ -8,7 +8,7 @@ import * as firebase from 'firebase';
 })
 export class CourseMapComponent implements AfterViewInit {
 
-  @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
+  @ViewChild('mapContainer') gmap: ElementRef;
   map: google.maps.Map;
   lat = 37.4219983;
   lng = -122.0840567;
