@@ -58,3 +58,13 @@
     width: 200px;
     padding: 4px;
 }
+
+.btn-close {
+    float: right;
+}
+
+.divider {
+    width:5px;
+    height:auto;
+    display:inline-block;
+}

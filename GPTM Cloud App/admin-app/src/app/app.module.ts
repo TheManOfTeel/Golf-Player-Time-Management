@@ -39,13 +39,16 @@ import {
   MatExpansionModule,
   MatCardModule,
   MatToolbarModule,
-  MatDividerModule
+  MatDividerModule,
+  MatStepperModule
 } from '@angular/material';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { ItemFormComponent } from './items/item-form/item-form.component';
 import { CourseMapComponent } from './course-map/course-map.component';
+import { RegistrationStepperComponent } from './registration-stepper/registration-stepper.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -62,11 +65,16 @@ import { CourseMapComponent } from './course-map/course-map.component';
     ItemsListComponent,
     ItemDetailComponent,
     ItemFormComponent,
-    CourseMapComponent
+    CourseMapComponent,
+    RegistrationStepperComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA23tAD8XUtVt5BmtqwQx14uB0X9Ov0bRo',
+      libraries: ['places']
+    }),
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment),
     AngularFirestoreModule,
@@ -87,7 +95,8 @@ import { CourseMapComponent } from './course-map/course-map.component';
     MatTabsModule,
     MatRippleModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatStepperModule
   ],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]

@@ -1,1 +1,18 @@
-<div #mapContainer id="map"></div>
+<div>
+  <!-- Address Search field -->
+  <div>
+    <mat-form-field class="search">
+      <input matInput type="text" class="form-control" (keydown.enter)="$event.preventDefault()" 
+      placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+    </mat-form-field>
+  </div>
+  
+  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+      (dragEnd)="markerDragEnd($event)"></agm-marker>
+  </agm-map>
+  
+  <!-- <h5>Address: {{address}}</h5> -->
+  <div>Latitude: {{latitude}}</div>
+  <div>Longitude: {{longitude}}</div>
+</div>

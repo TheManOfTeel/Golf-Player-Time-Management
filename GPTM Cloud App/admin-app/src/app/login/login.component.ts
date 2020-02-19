@@ -17,6 +17,16 @@ export class LoginComponent {
   errorMessage = '';
   isAdmin: any;
   noAdmin = false;
+  placeSearch: any;
+  autocomplete: any;
+  componentForm = {
+    street_number: 'short_name',
+    route: 'long_name',
+    locality: 'long_name',
+    administrative_area_level_1: 'short_name',
+    country: 'long_name',
+    postal_code: 'short_name'
+  };
 
   constructor(
     public authService: AuthService,
@@ -78,9 +88,25 @@ export class LoginComponent {
   tryRegister(): void {
     this.dialog.open(RegisterComponent, {
       disableClose: true,
-      width: '280px',
-      height: '500px'
+      width: '800px',
+      height: '550px'
     });
+  }
+
+  geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        this.autocomplete.setBounds(circle.getBounds());
+      });
+    }
   }
 
 }

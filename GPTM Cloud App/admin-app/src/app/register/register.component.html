@@ -1,54 +1,90 @@
-<div>
-    <div class="center">
-        <h1 class="header">Register</h1>
-        <div class="container">
-            <div>
-                <div>
-                    <form [formGroup]="registerForm">
-                        <div>
-                            <mat-form-field>
-                                <input matInput placeholder="Couse name" id="golfCourse" name="golfCourse" [(ngModel)]="golfCourse" type="golfCourse" formControlName="golfCourse" required>
-                                <mat-hint>Enter the course name</mat-hint>
-                                <mat-error>
-                                    Course Name is required
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="email" type="email" formControlName="email" required>
-                                <mat-hint>Enter an email address</mat-hint>
-                                <mat-error>
-                                    Email is required
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <input matInput placeholder="Password" id="password" name="password" [(ngModel)]="password" type="password" formControlName="password" required>
-                                <mat-hint>Enter a password</mat-hint>
-                                <mat-error>
-                                    Must be at least 6 characters
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
-                        <label class="success">{{successMessage}}</label>
-                        <div><label class="error" *ngIf="alreadyExists">Course already registered</label></div>
-                        <div *ngIf="!errorMessage && !alreadyExists"><p></p></div>
-                        <button mat-raised-button color="primary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
-                    </form>
+<div class="center">
+    <button mat-icon-button type="button" matDialogClose tabindex="-1" class="btn-close"><mat-icon>close</mat-icon></button>
+    <h1 class="header">Register</h1>
+    <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="courseSelectForm">
+            <form [formGroup]="courseSelectForm" class="container">
+                <ng-template matStepLabel>Find your course</ng-template>
+                <div class="container">
+                    <mat-form-field class="search">
+                        <input matInput type="text" class="form-control" (keydown.enter)="$event.preventDefault()" 
+                        placeholder="Search by Course Name" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search
+                        name="golfCourse" formControlName="golfCourse" value="golfCourse">
+                      </mat-form-field>
+                      <table id="address">
+                        <tr>
+                          <td class="label">Name</td>
+                          <td class="wideField" colspan="3">
+                            <input class="field" id="golfCourse" disabled="true" />
+                          </td>
+                        </tr>
+                      </table>
+                      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA23tAD8XUtVt5BmtqwQx14uB0X9Ov0bRolibraries=places&callback=initAutocomplete" async defer></script>
                 </div>
-            </div>
-            <!-- <div class="row">
                 <div>
-                    <button mat-raised-button color="secondary" type="button" (click)="tryGoogleLogin()" class="btn-default"><img width="20px" style="margin-right:4px" alt="Google sign-in"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/> Register with Google</button>
+                    <mat-form-field>
+                        <mat-label>Number of holes</mat-label>
+                            <mat-select [(ngModel)]="selectedNumber" name="numberOfHoles" formControlName="numberOfHoles">
+                                <mat-option *ngFor="let numberOfHoles of numbers" [value]="numberOfHoles.value">
+                                {{numberOfHoles.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
                 </div>
-            </div> -->
-            <div class="row">
-                <button mat-raised-button color="secondary" type="button" matDialogClose tabindex="-1" class="btn-default">Close</button>
-            </div>
-        </div>
-    </div>
+                <div class="container">
+                    <button mat-raised-button color="secondary" type="button" class="btn-default" matStepperNext>Next<mat-icon>navigate_next</mat-icon></button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="registerForm">
+            <form [formGroup]="registerForm" class="container">
+                <ng-template matStepLabel>Create an account</ng-template>
+                <!-- <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Couse name" id="golfCourse" name="golfCourse" [(ngModel)]="golfCourse" type="golfCourse" formControlName="golfCourse" required>
+                        <mat-hint>Enter the course name</mat-hint>
+                        <mat-error>
+                            Course Name is required
+                        </mat-error>
+                    </mat-form-field>
+                </div> -->
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="email" type="email" formControlName="email" required>
+                        <mat-hint>Enter an email address</mat-hint>
+                        <mat-error>
+                            Email is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Password" id="password" name="password" [(ngModel)]="password" type="password" formControlName="password" required>
+                        <mat-hint>Enter a password</mat-hint>
+                        <mat-error>
+                            Must be at least 6 characters
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Reenter Password" id="password2" name="password2" [(ngModel)]="password2" type="password2" formControlName="password2" required>
+                        <mat-hint>Renter your password</mat-hint>
+                        <mat-error>
+                            Must be at least 6 characters
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
+                <label class="success">{{successMessage}}</label>
+                <div><label class="error" *ngIf="alreadyExists">Course already registered</label></div>
+                <div *ngIf="!errorMessage && !alreadyExists"><p></p></div>
+                <div class="container">
+                    <button mat-raised-button color="secondary" type="button" class="btn-default" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon>Back</button>
+                    <div class="divider"></div>
+                    <button mat-raised-button color="primary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-horizontal-stepper>
 </div>
