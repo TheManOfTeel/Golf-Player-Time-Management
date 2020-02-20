@@ -24,24 +24,22 @@ import { CourseOverviewComponent } from './course-overview/course-overview.compo
 import { SupportComponent } from './support/support.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import {
-  MatInputModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatButtonModule,
-  MatIconModule,
-  MatSelectModule,
-  MatTabsModule,
-  MatRippleModule,
-  MatExpansionModule,
-  MatCardModule,
-  MatToolbarModule,
-  MatDividerModule,
-  MatStepperModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
@@ -72,7 +70,7 @@ import { AgmCoreModule } from '@agm/core';
     BrowserModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA23tAD8XUtVt5BmtqwQx14uB0X9Ov0bRo',
+      apiKey: 'YOUR_KEY',
       libraries: ['places']
     }),
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
