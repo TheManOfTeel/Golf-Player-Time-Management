@@ -9,16 +9,8 @@
                     <mat-form-field class="search">
                         <input matInput type="text" class="form-control" (keydown.enter)="$event.preventDefault()" 
                         placeholder="Search by Course Name" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search
-                        name="golfCourse" formControlName="golfCourse" value="golfCourse">
-                      </mat-form-field>
-                      <table id="address">
-                        <tr>
-                          <td class="label">Name</td>
-                          <td class="wideField" colspan="3">
-                            <input class="field" id="golfCourse" disabled="true" />
-                          </td>
-                        </tr>
-                      </table>
+                        name="golfCourse" formControlName="golfCourse" [(ngModel)]="golfCourse" id="golfCourse">
+                    </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field>
@@ -30,8 +22,16 @@
                             </mat-select>
                         </mat-form-field>
                 </div>
-                <div class="container">
-                    <button mat-raised-button color="secondary" type="button" class="btn-default" matStepperNext>Next<mat-icon>navigate_next</mat-icon></button>
+                <div><label class="success" *ngIf="valid">{{valid}}</label></div>
+                <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
+                <div><label class="error" *ngIf="notACourse">{{notACourse}}</label></div>
+                <div *ngIf="!valid && !invalid && !notACourse"><p></p></div>
+                <div class="buttons">
+                    <button *ngIf="!successMessage" mat-raised-button color="primary" type="button" class="btn-default" (click)="verifyGolfCourse()">VERIFY</button>
+                    <button *ngIf="successMessage" mat-raised-button color="primary" type="button" class="btn-default" (click)="verifyGolfCourse()" disabled>VERIFY</button>
+                    <div class="divider"></div>
+                    <button *ngIf="valid && !successMessage" mat-raised-button color="secondary" type="button" class="btn-default" matStepperNext>Next<mat-icon>navigate_next</mat-icon></button>
+                    <button *ngIf="!valid || successMessage" mat-raised-button color="secondary" type="button" class="btn-default" matStepperNext disabled>Next<mat-icon>navigate_next</mat-icon></button>
                 </div>
             </form>
         </mat-step>
@@ -67,21 +67,25 @@
                 </div>
                 <div>
                     <mat-form-field>
-                        <input matInput placeholder="Reenter Password" id="password2" name="password2" [(ngModel)]="password2" type="password2" formControlName="password2" required>
+                        <input matInput placeholder="Reenter Password" id="password2" name="password2" [(ngModel)]="password2" type="password" formControlName="password2" required>
                         <mat-hint>Renter your password</mat-hint>
                         <mat-error>
                             Must be at least 6 characters
                         </mat-error>
                     </mat-form-field>
                 </div>
-                <div><label class="error" *ngIf="errorMessage">Invalid username or password</label></div>
+                <div><label class="error" *ngIf="errorMessage">{{errorMessage}}</label></div>
                 <label class="success">{{successMessage}}</label>
-                <div><label class="error" *ngIf="alreadyExists">Course already registered</label></div>
-                <div *ngIf="!errorMessage && !alreadyExists"><p></p></div>
-                <div class="container">
-                    <button mat-raised-button color="secondary" type="button" class="btn-default" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon>Back</button>
+                <div><label class="error" *ngIf="alreadyExists">{{alreadyExists}}</label></div>
+                <div><label class="error" *ngIf="noMatch">{{noMatch}}</label></div>
+                <div *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage"><p></p></div>
+                <div class="buttons">
+                    <button *ngIf="!successMessage" mat-raised-button color="secondary" type="button" class="btn-default" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon>Back</button>
                     <div class="divider"></div>
-                    <button mat-raised-button color="primary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
+                    <button *ngIf="!successMessage" mat-raised-button color="primary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
+                    <button *ngIf="successMessage" mat-raised-button color="secondary" type="button" class="btn-default" matStepperPrevious disabled><mat-icon>arrow_back_ios</mat-icon>Back</button>
+                    <div class="divider"></div>
+                    <button *ngIf="successMessage" mat-raised-button color="primary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default" disabled>Register</button>
                 </div>
             </form>
         </mat-step>

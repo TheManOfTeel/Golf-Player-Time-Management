@@ -60,6 +60,12 @@ export class RegisterComponent implements OnInit {
   ];
   placeSearch: any;
   autocomplete: any;
+  verified: boolean;
+  courseData: any;
+  valid = '';
+  invalid = '';
+  noMatch = '';
+  notACourse = '';
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -86,92 +92,6 @@ export class RegisterComponent implements OnInit {
      });
   }
 
-  tryGoogleLogin() {
-    this.authService.doGoogleLogin()
-    .then( res => {
-      this.router.navigate(['/dashboard']);
-    }, err => console.log(err)
-    );
-  }
-
-  tryRegister(value) {
-    this.checkIfExists(this.golfCourse)
-    .then(data => {
-      this.course = data;
-      this.validateCourse(data, value);
-    });
-  }
-
-  writeHoleData(golfCourse) {
-    firebase.database().ref('GolfCourse/' + this.golfCourse).set({
-      golfCourse: this.golfCourse,
-    });
-    for(this.i = 1; this.i <= this.selectedNumber; this.i++) {
-      firebase.database().ref('GolfCourse/' + this.golfCourse + 'Holes' + '/Hole' + this.i).set({
-        Description: 'No description set',
-        Tips: 'No tips set',
-      });
-      firebase.database().ref('GolfCourse/' + this.golfCourse + 'Holes' + '/Hole' + this.i + 'Red_Circle').set({
-        Description: "Men's professional tee.",
-        Tips: 'No description set',
-        Yards: 'No distance set',
-        Par: 'No par set',
-      });
-      firebase.database().ref('GolfCourse/' + this.golfCourse + 'Holes' + '/Hole' + this.i + 'Blue_Square').set({
-        Description: "Men's average tee.",
-        Tips: 'No description set',
-        Yards: 'No distance set',
-        Par: 'No par set',
-      });
-      firebase.database().ref('GolfCourse/' + this.golfCourse + 'Holes' + '/Hole' + this.i + 'Yellow_Triangle').set({
-        Description: "Women's professional tee.",
-        Tips: 'No description set',
-        Yards: 'No distance set',
-        Par: 'No par set',
-      });
-      firebase.database().ref('GolfCourse/' + this.golfCourse + 'Holes' + '/Hole' + this.i + 'Pink_Diamond').set({
-        Description: "Women's average tee.",
-        Tips: 'No description set',
-        Yards: 'No distance set',
-        Par: 'No par set',
-      });
-    };
- }
-
-  checkIfExists(golfCourse) {
-  return firebase.database().ref('GolfCourse/' + this.golfCourse).once('value').then(function(snapshot) {
-    const courseName = snapshot.val();
-    return courseName;
-    });
-  }
-
-  validateCourse(course, value) {
-    if ((this.course === null) && (this.password = this.password2)) {
-      this.authService.doRegister(value)
-      .then(res => {
-        this.errorMessage = null;
-        this.alreadyExists = null;
-        this.successMessage = 'Your account has been created';
-        this.writeHoleData(this.golfCourse);
-        firebase.database().ref('/Users/' + res.user.uid).set({
-          email: res.user.email,
-          password: this.password,
-          isAdmin: true,
-          golfCourse: this.golfCourse
-        });
-      }, err => {
-          console.log(err);
-          this.alreadyExists = null;
-          this.errorMessage = err.message;
-          this.successMessage = '';
-        });
-    }
-    if (this.course != null) {
-      this.alreadyExists = 'Already Exists';
-      this.errorMessage = null;
-    }
-  }
-
   ngOnInit() {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -179,7 +99,7 @@ export class RegisterComponent implements OnInit {
       this.geoCoder = new google.maps.Geocoder;
  
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["establishment"]
+        types: ["establishment"],
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
@@ -191,15 +111,16 @@ export class RegisterComponent implements OnInit {
             (<HTMLInputElement>document.getElementById(component)).disabled = false;
           }
           (<HTMLInputElement>document.getElementById("golfCourse")).value = place.name;
-          console.log(place.name);
           (<HTMLInputElement>document.getElementById("golfCourse")).disabled = false;
+          console.log(place.name);
+          this.course = place.name;
+          console.log(this.course);
           // Get each component of the address from the place details
           // and fill the corresponding field on the form.
           for (var i = 0; i < place.address_components.length; i++) {
-            var addressType = place.address_components[i].types[0];
-            if (this.componentForm[addressType]) {
-              var val = place.address_components[i][this.componentForm[addressType]];
-              (<HTMLInputElement>document.getElementById(addressType)).value = val;
+            var golfCourse = place.address_components[i].types[0];
+            if (this.componentForm[golfCourse] && this.componentForm[golfCourse]) {
+              golfCourse = place.address_components[i][this.componentForm[golfCourse]];
             }
           }
  
@@ -229,7 +150,6 @@ export class RegisterComponent implements OnInit {
     }
   }
  
-  // In case we wish to implement address/place search
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       // console.log(results);
@@ -246,5 +166,133 @@ export class RegisterComponent implements OnInit {
       }
  
     });
+  }
+
+  tryGoogleLogin() {
+    this.authService.doGoogleLogin()
+    .then( res => {
+      this.router.navigate(['/dashboard']);
+    }, err => console.log(err)
+    );
+  }
+
+  tryRegister(value) {
+    this.checkIfExists(this.course)
+    .then(data => {
+      this.courseData = data;
+      this.validateCourse(data, value);
+    });
+  }
+
+  writeHoleData(golfCourse) {
+    firebase.database().ref('GolfCourse/' + this.course).set({
+      golfCourse: this.course,
+    });
+    for(this.i = 1; this.i <= this.selectedNumber; this.i++) {
+      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i).set({
+        Description: 'No description set',
+        Tips: 'No tips set',
+      });
+      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Red_Circle').set({
+        Description: "Men's professional tee.",
+        Tips: 'No description set',
+        Yards: 'No distance set',
+        Par: 'No par set',
+      });
+      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Blue_Square').set({
+        Description: "Men's average tee.",
+        Tips: 'No description set',
+        Yards: 'No distance set',
+        Par: 'No par set',
+      });
+      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Yellow_Triangle').set({
+        Description: "Women's professional tee.",
+        Tips: 'No description set',
+        Yards: 'No distance set',
+        Par: 'No par set',
+      });
+      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Pink_Diamond').set({
+        Description: "Women's average tee.",
+        Tips: 'No description set',
+        Yards: 'No distance set',
+        Par: 'No par set',
+      });
+    };
+ }
+
+  checkIfExists(golfCourse) {
+  return firebase.database().ref('GolfCourse/' + this.course).once('value').then(function(snapshot) {
+    const courseName = snapshot.val();
+    return courseName;
+    });
+  }
+
+  validateCourse(courseData, value) {
+    if ((this.courseData === null) && (this.password === this.password2)) {
+      this.authService.doRegister(value)
+      .then(res => {
+        this.errorMessage = null;
+        this.alreadyExists = null;
+        this.noMatch = null;
+        this.successMessage = 'Your account has been created';
+        console.log(this.successMessage);
+        this.writeHoleData(this.course);
+        firebase.database().ref('/Users/' + res.user.uid).set({
+          email: res.user.email,
+          password: this.password,
+          isAdmin: true,
+          golfCourse: this.course
+        });
+      }, err => {
+          console.log(err);
+          this.alreadyExists = null;
+          this.noMatch = null;
+          this.errorMessage = err.message;
+          this.successMessage = null;
+        });
+    }
+    if (this.password != this.password2) {
+      this.noMatch = "Passwords don't match";
+      this.errorMessage = null;
+      this.alreadyExists = null;
+    }
+    if (this.courseData != null) {
+      this.alreadyExists = 'Course is already registered';
+      this.errorMessage = null;
+      this.noMatch = null;
+    }
+    if (this.courseData != null && this.password != this.password2) {
+      this.alreadyExists = 'Course is already registered';
+      this.noMatch = "Passwords don't match";
+      this.errorMessage = null;
+    }
+  }
+
+  verifyGolfCourse() {
+    console.log(this.course);
+    if (this.course != null && this.course.includes('Golf')) {
+      this.checkIfExists(this.course)
+      .then(data => {
+        console.log(data);
+        this.courseData = data;
+        if (this.courseData === null) {
+          this.valid = 'Valid';
+          this.invalid = null;
+          this.notACourse = null;
+          console.log(this.valid);
+        }
+        if (this.courseData != null) {
+          this.valid = null;
+          this.invalid = 'Invalid';
+          this.notACourse = null;
+          console.log(this.invalid);
+        }
+      });
+    }
+    if (this.course === '' || !this.course.includes('Golf')) {
+      this.valid = null;
+      this.invalid = null;
+      this.notACourse = 'Not a golf course'
+    }
   }
 }
