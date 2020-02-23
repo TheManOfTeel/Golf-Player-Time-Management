@@ -228,7 +228,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validateCourse(courseData, value) {
-    if ((this.courseData === null) && (this.password === this.password2)) {
+    if (this.course.includes('Golf') && (this.courseData === null) && (this.password === this.password2)) {
       this.authService.doRegister(value)
       .then(res => {
         this.errorMessage = null;
@@ -255,15 +255,42 @@ export class RegisterComponent implements OnInit {
       this.noMatch = "Passwords don't match";
       this.errorMessage = null;
       this.alreadyExists = null;
+      this.invalid = null;
     }
     if (this.courseData != null) {
       this.alreadyExists = 'Course is already registered';
       this.errorMessage = null;
       this.noMatch = null;
+      this.invalid = null;
+    }
+    if (!this.course.includes('Golf')) {
+      this.invalid = 'Not a golf course';
+      this.alreadyExists = null;
+      this.errorMessage = null;
+      this.noMatch = null;
+    }
+    if (this.courseData != null && this.course.includes('Golf')) {
+      this.alreadyExists = 'Course is already registered';
+      this.noMatch = null;
+      this.invalid = 'Not a golf course';
+      this.errorMessage = null;
     }
     if (this.courseData != null && this.password != this.password2) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = "Passwords don't match";
+      this.invalid = null;
+      this.errorMessage = null;
+    }
+    if (this.course.includes('Golf') && this.password != this.password2) {
+      this.alreadyExists = null;
+      this.noMatch = "Passwords don't match";
+      this.invalid = 'Not a golf course';
+      this.errorMessage = null;
+    }
+    if (this.courseData != null && this.course.includes('Golf') && this.password != this.password2) {
+      this.alreadyExists = 'Course is already registered';
+      this.noMatch = "Passwords don't match";
+      this.invalid = 'Not a golf course';
       this.errorMessage = null;
     }
   }

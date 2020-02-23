@@ -40,6 +40,14 @@
     bottom: 0;
 }
 
+.buttons2{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    bottom: 0;
+    margin-top: 60px;
+}
+
 .header{
     text-align: center;
     font-size: 30px;

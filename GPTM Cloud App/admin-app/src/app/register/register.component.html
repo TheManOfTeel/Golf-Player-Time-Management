@@ -26,7 +26,12 @@
                 <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
                 <div><label class="error" *ngIf="notACourse">{{notACourse}}</label></div>
                 <div *ngIf="!valid && !invalid && !notACourse"><p></p></div>
-                <div class="buttons">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div mat-dialog-actions class="buttons">
                     <button *ngIf="!successMessage" mat-raised-button color="primary" type="button" class="btn-default" (click)="verifyGolfCourse()">VERIFY</button>
                     <button *ngIf="successMessage" mat-raised-button color="primary" type="button" class="btn-default" (click)="verifyGolfCourse()" disabled>VERIFY</button>
                     <div class="divider"></div>
@@ -38,15 +43,6 @@
         <mat-step [stepControl]="registerForm">
             <form [formGroup]="registerForm" class="container">
                 <ng-template matStepLabel>Create an account</ng-template>
-                <!-- <div>
-                    <mat-form-field>
-                        <input matInput placeholder="Couse name" id="golfCourse" name="golfCourse" [(ngModel)]="golfCourse" type="golfCourse" formControlName="golfCourse" required>
-                        <mat-hint>Enter the course name</mat-hint>
-                        <mat-error>
-                            Course Name is required
-                        </mat-error>
-                    </mat-form-field>
-                </div> -->
                 <div>
                     <mat-form-field>
                         <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="email" type="email" formControlName="email" required>
@@ -78,8 +74,17 @@
                 <label class="success">{{successMessage}}</label>
                 <div><label class="error" *ngIf="alreadyExists">{{alreadyExists}}</label></div>
                 <div><label class="error" *ngIf="noMatch">{{noMatch}}</label></div>
+                <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
                 <div *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage"><p></p></div>
-                <div class="buttons">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage">
+                <br *ngIf="!errorMessage && !alreadyExists && !successMessage && noMatch">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && successMessage">
+                <br *ngIf="!errorMessage && !alreadyExists && noMatch && successMessage">
+                <br *ngIf="!errorMessage && alreadyExists && noMatch && successMessage">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage">
+                <br *ngIf="!alreadyExists && !noMatch && !successMessage && errorMessage">
+                <br *ngIf="alreadyExists && !noMatch && !successMessage && errorMessage">
+                <div mat-dialog-actions class="buttons">
                     <button *ngIf="!successMessage" mat-raised-button color="secondary" type="button" class="btn-default" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon>Back</button>
                     <div class="divider"></div>
                     <button *ngIf="!successMessage" mat-raised-button color="primary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
@@ -87,6 +92,7 @@
                     <div class="divider"></div>
                     <button *ngIf="successMessage" mat-raised-button color="primary" type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default" disabled>Register</button>
                 </div>
+                <div class="spacer"></div>
             </form>
         </mat-step>
     </mat-horizontal-stepper>

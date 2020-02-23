@@ -1,0 +1,47 @@
+.main-div {
+    height: 87vh;
+    text-align: center;
+}
+
+.tile1 {
+    width: 1000px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.tile2 {
+    width: 495px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.tile3 {
+    width: 495px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.tile4 {
+    width: 495px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.tile5 {
+    width: 495px;
+    display: inline-block;
+    margin-bottom: 10px;
+
+}
+
+.divider {
+    width:10px;
+    height:auto;
+    display:inline-block;
+}
+
+.vert-divider {
+    width: auto;
+    height: 10px;
+    display: inline-block;
+}

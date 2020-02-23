@@ -1,29 +1,29 @@
 <mat-sidenav-container class="example-container" autosize>
 	<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
 		<mat-nav-list>
-			<div class="example-sidenav">
-				<a mat-list-item (click)="focusHole01(true)">Hole 1</a>
-        <a mat-list-item (click)="focusHole02(true)">Hole 2</a>
-        <a mat-list-item (click)="focusHole03(true)">Hole 3</a>
-        <a mat-list-item (click)="focusHole04(true)">Hole 4</a>
-        <a mat-list-item (click)="focusHole05(true)">Hole 5</a>
-        <a mat-list-item (click)="focusHole06(true)">Hole 6</a>
-        <a mat-list-item (click)="focusHole07(true)">Hole 7</a>
-        <a mat-list-item (click)="focusHole08(true)">Hole 8</a>
-        <a mat-list-item (click)="focusHole09(true)">Hole 9</a>
-        <a mat-list-item (click)="focusHole10(true)">Hole 10</a>
-        <a mat-list-item (click)="focusHole11(true)">Hole 11</a>
-        <a mat-list-item (click)="focusHole12(true)">Hole 12</a>
-        <a mat-list-item (click)="focusHole13(true)">Hole 13</a>
-        <a mat-list-item (click)="focusHole14(true)">Hole 14</a>
-        <a mat-list-item (click)="focusHole15(true)">Hole 15</a>
-        <a mat-list-item (click)="focusHole16(true)">Hole 16</a>
-        <a mat-list-item (click)="focusHole17(true)">Hole 17</a>
-        <a mat-list-item (click)="focusHole18(true)">Hole 18</a>
+			<div>
+				<a *ngIf="hole1" mat-list-item (click)="focusHole01(true)">Hole 1</a>
+        <a *ngIf="hole2" mat-list-item (click)="focusHole02(true)">Hole 2</a>
+        <a *ngIf="hole3" mat-list-item (click)="focusHole03(true)">Hole 3</a>
+        <a *ngIf="hole4" mat-list-item (click)="focusHole04(true)">Hole 4</a>
+        <a *ngIf="hole5" mat-list-item (click)="focusHole05(true)">Hole 5</a>
+        <a *ngIf="hole6" mat-list-item (click)="focusHole06(true)">Hole 6</a>
+        <a *ngIf="hole7" mat-list-item (click)="focusHole07(true)">Hole 7</a>
+        <a *ngIf="hole8" mat-list-item (click)="focusHole08(true)">Hole 8</a>
+        <a *ngIf="hole9" mat-list-item (click)="focusHole09(true)">Hole 9</a>
+        <a *ngIf="hole10" mat-list-item (click)="focusHole10(true)">Hole 10</a>
+        <a *ngIf="hole11" mat-list-item (click)="focusHole11(true)">Hole 11</a>
+        <a *ngIf="hole12" mat-list-item (click)="focusHole12(true)">Hole 12</a>
+        <a *ngIf="hole13" mat-list-item (click)="focusHole13(true)">Hole 13</a>
+        <a *ngIf="hole14" mat-list-item (click)="focusHole14(true)">Hole 14</a>
+        <a *ngIf="hole15" mat-list-item (click)="focusHole15(true)">Hole 15</a>
+        <a *ngIf="hole16" mat-list-item (click)="focusHole16(true)">Hole 16</a>
+        <a *ngIf="hole17" mat-list-item (click)="focusHole17(true)">Hole 17</a>
+        <a *ngIf="hole18" mat-list-item (click)="focusHole18(true)">Hole 18</a>
 			</div>
 		</mat-nav-list>
     <mat-nav-list>
-</mat-nav-list>
+    </mat-nav-list>
 	</mat-sidenav>
 
 	<div class="example-sidenav-content">
