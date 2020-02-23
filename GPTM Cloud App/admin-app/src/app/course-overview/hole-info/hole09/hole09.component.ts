@@ -57,33 +57,33 @@ export class Hole09Component implements OnInit {
 
   createForm() {
     this.tile1Form = this.fb.group({
-     generalDescription: [''],
-     generalTips: [''],
-     });
-     this.tile2Form = this.fb.group({
+      generalDescription: [''],
+      generalTips: [''],
+    });
+    this.tile2Form = this.fb.group({
       blueDescription: [''],
       bluePar: [''],
       blueTips: [''],
       blueYards: [''],
-     });
-     this.tile3Form = this.fb.group({
+    });
+    this.tile3Form = this.fb.group({
       redDescription: [''],
       redPar: [''],
       redTips: [''],
       redYards: [''],
-     });
-     this.tile4Form = this.fb.group({
+    });
+    this.tile4Form = this.fb.group({
       pinkDescription: [''],
       pinkPar: [''],
       pinkTips: [''],
       pinkYards: [''],
-     });
-     this.tile5Form = this.fb.group({
+    });
+    this.tile5Form = this.fb.group({
       yellowDescription: [''],
       yellowPar: [''],
       yellowTips: [''],
       yellowYards: [''],
-     })
+    });
   }
 
   initData() {
@@ -195,11 +195,11 @@ export class Hole09Component implements OnInit {
   }
 
   saveGeneral() {
-    const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole9')
+    const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole9');
     courseRef.update({
       Description: this.generalDescription,
       Tips: this.generalTips
-    })
+    });
     this.initData();
     this.isEdit1 = false;
   }
