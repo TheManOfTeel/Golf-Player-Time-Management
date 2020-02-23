@@ -1,6 +1,6 @@
 # AdminApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
 
 ## DO NOT COMMIT PACKAGE-LOCK.JSON FILES
 They are local and should not be in the repo.
@@ -28,6 +28,10 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Linting your code
+
+Run `ng lint` to lint the app and discover any formatting issues.
 
 ## Further help
 
