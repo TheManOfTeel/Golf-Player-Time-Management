@@ -4,10 +4,19 @@
     font-size: medium;
 }
 
+.cardHeight {
+    height: 220px;
+}
+
+.halfCardHeight {
+    height: 340px
+}
+
 .tile1 {
     text-align: center;
     width: 91%;
     margin-bottom: 1%;
+    margin-top: 1%;
     display: inline-block;
 }
 
