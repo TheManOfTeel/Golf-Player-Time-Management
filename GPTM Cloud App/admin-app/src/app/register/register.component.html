@@ -75,15 +75,34 @@
                 <div><label class="error" *ngIf="alreadyExists">{{alreadyExists}}</label></div>
                 <div><label class="error" *ngIf="noMatch">{{noMatch}}</label></div>
                 <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
-                <div *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage"><p></p></div>
-                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage">
-                <br *ngIf="!errorMessage && !alreadyExists && !successMessage && noMatch">
-                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && successMessage">
-                <br *ngIf="!errorMessage && !alreadyExists && noMatch && successMessage">
-                <br *ngIf="!errorMessage && alreadyExists && noMatch && successMessage">
-                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage">
-                <br *ngIf="!alreadyExists && !noMatch && !successMessage && errorMessage">
-                <br *ngIf="alreadyExists && !noMatch && !successMessage && errorMessage">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && successMessage && !invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && noMatch && !successMessage && !invalid">
+                <br *ngIf="!errorMessage && alreadyExists && !noMatch && !successMessage && !invalid">
+                <br *ngIf="errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid">
+                <br *ngIf="errorMessage && alreadyExists && !noMatch && !successMessage && !invalid">
+                <br *ngIf="errorMessage && !alreadyExists && noMatch && !successMessage && !invalid">
+                <br *ngIf="errorMessage && !alreadyExists && !noMatch && successMessage && !invalid">
+                <br *ngIf="errorMessage && !alreadyExists && !noMatch && !successMessage && invalid">
+                <br *ngIf="!errorMessage && alreadyExists && noMatch && !successMessage && !invalid">
+                <br *ngIf="!errorMessage && alreadyExists && !noMatch && successMessage && !invalid">
+                <br *ngIf="!errorMessage && alreadyExists && !noMatch && !successMessage && invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && noMatch && successMessage && !invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && noMatch && !successMessage && invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && successMessage && invalid">
+                <br *ngIf="errorMessage && alreadyExists && noMatch && !successMessage && !invalid">
+                <br *ngIf="errorMessage && alreadyExists && !noMatch && successMessage && !invalid">
+                <br *ngIf="errorMessage && alreadyExists && !noMatch && !successMessage && invalid">
+                <br *ngIf="!errorMessage && alreadyExists && noMatch && successMessage && !invalid">
+                <br *ngIf="!errorMessage && alreadyExists && noMatch && !successMessage && invalid">
+                <br *ngIf="errorMessage && alreadyExists && noMatch && successMessage && !invalid">
+                <br *ngIf="errorMessage && alreadyExists && noMatch && !successMessage && invalid">
+                <br *ngIf="errorMessage && alreadyExists && !noMatch && successMessage && invalid">
+                <br *ngIf="errorMessage && !alreadyExists && noMatch && successMessage && invalid">
+                <br *ngIf="!errorMessage && alreadyExists && noMatch && successMessage && invalid">
+                <br *ngIf="errorMessage && alreadyExists && noMatch && successMessage && invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && invalid">
                 <div mat-dialog-actions class="buttons">
                     <button *ngIf="!successMessage" mat-raised-button color="secondary" type="button" class="btn-default" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon>Back</button>
                     <div class="divider"></div>

@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as firebase from 'firebase';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
 
 // For this component we only need to input a description, par number, and yards to hole. The scorecard is now irrelevant, admins are not
@@ -11,6 +10,12 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./course-overview.component.css']
 })
 export class CourseOverviewComponent implements OnInit {
+  // Navbar properties
+  @ViewChild('sidenav') sidenav: MatSidenav;
+  isExpanded = true;
+  showSubmenu = false;
+  isShowing = false;
+  showSubSubMenu = false;
 
   courseName: any;
   info: any;
@@ -57,6 +62,19 @@ export class CourseOverviewComponent implements OnInit {
 
   constructor() {}
 
+  // Navbar properties
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
+    }
+  }
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
+    }
+  }
+
   ngOnInit() {
     this.initData();
   }
@@ -66,7 +84,7 @@ export class CourseOverviewComponent implements OnInit {
     this.getCourseName()
     .then(val => {
       this.courseName = val;
-      this.getCourseDetails(this.courseName)
+      this.getCourseDetails()
       .then(data => {
         this.info = data;
         if (this.info.Hole1 != null) {
@@ -137,32 +155,13 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   // Read the number of holes
-  getCourseDetails(courseName) {
+  getCourseDetails() {
     // use the golfCourse value to match it to the GolfCourse table and get the hole info
     return firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes').once('value').then(function(snapshot) {
       // All the data is being pulled here. Assign it a value then it can be shown in the front end.
       const data = snapshot.val();
       return data;
     });
-  }
-
-  // Navbar properties
-  @ViewChild('sidenav') sidenav: MatSidenav;
-  isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
-
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
-  }
-
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
   }
 
   // Switch to appropriate page on click

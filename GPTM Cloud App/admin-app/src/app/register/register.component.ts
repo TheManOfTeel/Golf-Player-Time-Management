@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
 import { MapsAPILoader } from '@agm/core';
 
-interface numberOfHoles {
+interface NumberOfHoles {
   value: number;
   viewValue: number;
 }
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
   };
   i: number;
   selectedNumber: number;
-  numbers: numberOfHoles[] = [
+  numbers: NumberOfHoles[] = [
     {value: 1, viewValue: 1},
     {value: 2, viewValue: 2},
     {value: 3, viewValue: 3},
@@ -93,43 +93,47 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    //load Places Autocomplete
+    // Load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
- 
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["establishment"],
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+      this.geoCoder = new google.maps.Geocoder();
 
-          for (var component in this.componentForm) {
-            (<HTMLInputElement>document.getElementById(component)).value = '';
-            (<HTMLInputElement>document.getElementById(component)).disabled = false;
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['establishment'],
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          // Get the place result
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place != null) {
+            /* tslint:disable:forin */
+            for (const component in this.componentForm) {
+              (document.getElementById(component) as HTMLInputElement).value = '';
+              (document.getElementById(component) as HTMLInputElement).disabled = false;
+            }
+            /*tslint:enable:forin */
           }
-          (<HTMLInputElement>document.getElementById("golfCourse")).value = place.name;
-          (<HTMLInputElement>document.getElementById("golfCourse")).disabled = false;
-          console.log(place.name);
+          (document.getElementById('golfCourse') as HTMLInputElement).value = place.name;
+          (document.getElementById('golfCourse') as HTMLInputElement).disabled = false;
           this.course = place.name;
-          console.log(this.course);
+
           // Get each component of the address from the place details
           // and fill the corresponding field on the form.
-          for (var i = 0; i < place.address_components.length; i++) {
-            var golfCourse = place.address_components[i].types[0];
+          /* tslint:disable:prefer-for-of */
+          for (let i = 0; i < place.address_components.length; i++) {
+            let golfCourse = place.address_components[i].types[0];
             if (this.componentForm[golfCourse] && this.componentForm[golfCourse]) {
               golfCourse = place.address_components[i][this.componentForm[golfCourse]];
             }
           }
- 
-          //verify result
+          /* tslint:enable:prefer-for-of */
+
+          // Verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
- 
-          //set latitude, longitude and zoom
+
+          // Set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
@@ -137,7 +141,7 @@ export class RegisterComponent implements OnInit {
       });
     });
   }
- 
+
   // Get Current Location Coordinates
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
@@ -149,9 +153,9 @@ export class RegisterComponent implements OnInit {
       });
     }
   }
- 
+
   getAddress(latitude, longitude) {
-    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+    this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
       // console.log(results);
       // console.log(status);
       if (status === 'OK') {
@@ -164,7 +168,6 @@ export class RegisterComponent implements OnInit {
       } else {
         window.alert('Geocoder failed due to: ' + status);
       }
- 
     });
   }
 
@@ -184,11 +187,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  /* tslint:disable:quotemark */
   writeHoleData(golfCourse) {
     firebase.database().ref('GolfCourse/' + this.course).set({
       golfCourse: this.course,
     });
-    for(this.i = 1; this.i <= this.selectedNumber; this.i++) {
+    for (this.i = 1; this.i <= this.selectedNumber; this.i++) {
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i).set({
         Description: 'No description set',
         Tips: 'No tips set',
@@ -217,8 +221,9 @@ export class RegisterComponent implements OnInit {
         Yards: 'No distance set',
         Par: 'No par set',
       });
-    };
+    }
  }
+ /* tslint:enable:quotemark */
 
   checkIfExists(golfCourse) {
   return firebase.database().ref('GolfCourse/' + this.course).once('value').then(function(snapshot) {
@@ -251,7 +256,8 @@ export class RegisterComponent implements OnInit {
           this.successMessage = null;
         });
     }
-    if (this.password != this.password2) {
+    /* tslint:disable:quotemark */
+    if (this.password !== this.password2) {
       this.noMatch = "Passwords don't match";
       this.errorMessage = null;
       this.alreadyExists = null;
@@ -275,42 +281,41 @@ export class RegisterComponent implements OnInit {
       this.invalid = 'Not a golf course';
       this.errorMessage = null;
     }
-    if (this.courseData != null && this.password != this.password2) {
+    if (this.courseData != null && this.password !== this.password2) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = "Passwords don't match";
       this.invalid = null;
       this.errorMessage = null;
     }
-    if (this.course.includes('Golf') && this.password != this.password2) {
+    if (this.course.includes('Golf') && this.password !== this.password2) {
       this.alreadyExists = null;
       this.noMatch = "Passwords don't match";
       this.invalid = 'Not a golf course';
       this.errorMessage = null;
     }
-    if (this.courseData != null && this.course.includes('Golf') && this.password != this.password2) {
+    if (this.courseData != null && this.course.includes('Golf') && this.password !== this.password2) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = "Passwords don't match";
       this.invalid = 'Not a golf course';
       this.errorMessage = null;
     }
+    /* tslint:enable:quotemark */
   }
 
   verifyGolfCourse() {
-    console.log(this.course);
     if (this.course != null && this.course.includes('Golf')) {
       this.checkIfExists(this.course)
       .then(data => {
-        console.log(data);
         this.courseData = data;
         if (this.courseData === null) {
-          this.valid = 'Valid';
+          this.valid = 'Course not taken';
           this.invalid = null;
           this.notACourse = null;
           console.log(this.valid);
         }
         if (this.courseData != null) {
           this.valid = null;
-          this.invalid = 'Invalid';
+          this.invalid = 'Course taken';
           this.notACourse = null;
           console.log(this.invalid);
         }
@@ -319,7 +324,7 @@ export class RegisterComponent implements OnInit {
     if (this.course === '' || !this.course.includes('Golf')) {
       this.valid = null;
       this.invalid = null;
-      this.notACourse = 'Not a golf course'
+      this.notACourse = 'Not a golf course';
     }
   }
 }
