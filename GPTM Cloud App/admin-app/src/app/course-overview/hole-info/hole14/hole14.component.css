@@ -1,0 +1,71 @@
+.main-div {
+    height: 87vh;
+    text-align: center;
+    font-size: medium;
+}
+
+.cardHeight {
+    height: 220px;
+}
+
+.halfCardHeight {
+    height: 340px
+}
+
+.tile1 {
+    text-align: center;
+    width: 91%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    display: inline-block;
+}
+
+.tile2 {
+    text-align: center;
+    width: 45%;
+    display: inline-block;
+    margin-bottom: 1%;
+}
+
+.tile3 {
+    text-align: center;
+    width: 45%;
+    display: inline-block;
+    margin-bottom: 1%;
+}
+
+.tile4 {
+    text-align: center;
+    width: 45%;
+    display: inline-block;
+    margin-bottom: 1%;
+}
+
+.tile5 {
+    text-align: center;
+    width: 45%;
+    display: inline-block;
+    margin-bottom: 1%;
+
+}
+
+.divider {
+    width: 1%;
+    height: auto;
+    display: inline-block;
+}
+
+.vert-divider {
+    width: auto;
+    height: 10px;
+    display: inline-block;
+}
+
+.edit {
+    display: inline-block;
+    float: right;
+}
+
+.editForm {
+    width: 80%;
+}
