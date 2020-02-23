@@ -28,8 +28,10 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  background-color: whitesmoke;
 }
 
 .sidenav {
    user-select: none;
+   width: 120px;
 }

@@ -103,6 +103,8 @@
                 <br *ngIf="!errorMessage && alreadyExists && noMatch && successMessage && invalid">
                 <br *ngIf="errorMessage && alreadyExists && noMatch && successMessage && invalid">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid">
                 <div mat-dialog-actions class="buttons">
                     <button *ngIf="!successMessage" mat-raised-button color="secondary" type="button" class="btn-default" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon>Back</button>
                     <div class="divider"></div>
