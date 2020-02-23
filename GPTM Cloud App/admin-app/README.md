@@ -1,6 +1,6 @@
 # AdminApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
 
 ## DO NOT COMMIT PACKAGE-LOCK.JSON FILES
 They are local and should not be in the repo.
