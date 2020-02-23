@@ -46,7 +46,6 @@ export class Hole12Component implements OnInit {
       this.getCourseDetails(this.courseName)
       .then(data => {
         this.info = data;
-        console.log(this.info);
       });
     });
   }
