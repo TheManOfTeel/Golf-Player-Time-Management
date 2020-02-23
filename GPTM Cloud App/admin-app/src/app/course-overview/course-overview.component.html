@@ -1,5 +1,5 @@
-<mat-sidenav-container class="example-container" autosize>
-	<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+<mat-sidenav-container class="main-container" autosize>
+	<mat-sidenav #sidenav class="sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
 		<mat-nav-list>
 			<div>
 				<a *ngIf="hole1" mat-list-item (click)="focusHole01(true)">Hole 1</a>
@@ -26,7 +26,7 @@
     </mat-nav-list>
 	</mat-sidenav>
 
-	<div class="example-sidenav-content">
+	<div class="sidenav-content">
     <app-hole01 *ngIf="showHole01"></app-hole01>
     <app-hole02 *ngIf="showHole02"></app-hole02>
     <app-hole03 *ngIf="showHole03"></app-hole03>
