@@ -168,9 +168,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             .strokeWidth(5.0f)
             );
 
+
             GeoQuery gQuery = geoFire.queryAtLocation(new GeoLocation(latLng.latitude, latLng.longitude),
                     .50f);
             gQuery.addGeoQueryEventListener(MapsActivity.this);
+
         }
         // Add a marker in Sydney and move the camera
         //LatLng sydney = new LatLng(-34, 151);

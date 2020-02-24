@@ -9,33 +9,34 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GolfCourseHomeActivity extends AppCompatActivity {
     private TextView header;
     private FirebaseAuth mAuth;
-    private Button requestbtn;
+    private Button startGamebtn;
     private DatabaseReference myRef;
     private FirebaseDatabase database;
     private String CourseName;
     private Button startgameButton;
     private Button checkStatus;
     private String Uid;
+    private String difficulty;
+    private Button ViewCourse;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +45,9 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         Uid = mAuth.getUid();
         header = (TextView)findViewById(R.id.WelcomeLabel);
-        requestbtn = (Button)findViewById(R.id.RequestGamebtn);
+        startGamebtn = (Button)findViewById(R.id.StartGame);
+        ViewCourse = (Button)findViewById(R.id.ViewCourse);
 
-        checkStatus = (Button) findViewById(R.id.CheckStatus);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
@@ -62,26 +63,25 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
 
 
-        requestbtn.setOnClickListener(new View.OnClickListener() {
+        startGamebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Uid = mAuth.getUid();
                 if(!CourseName.equals(null)) {
-                    myRef.child("GameRequests").child(CourseName).child(Uid).child("request").setValue("pending");
-                    requestbtn.setVisibility(View.INVISIBLE);
-                    checkStatus.setText("Check Status");
-                    checkStatus.setVisibility(View.VISIBLE);
-
+                   CheckRequestStatus();
                 }
             }
         });
 
-        checkStatus.setOnClickListener(new View.OnClickListener() {
+        ViewCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               CheckRequestStatus();
+                Intent intent = new Intent(GolfCourseHomeActivity.this, Maps2Activity.class);
+                startActivity(intent);
+
             }
         });
+
+
 
 
 
@@ -117,7 +117,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         finish();
     }
 
-    private void showUpdateDialog(String request){
+    private void showUpdateDialog(){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         LayoutInflater inflate = getLayoutInflater();
@@ -125,22 +125,15 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         final View dialogView = inflate.inflate(R.layout.update_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        Button cancelbtn = (Button) dialogView.findViewById(R.id.cancelRequest);
-        TextView status = (TextView)dialogView.findViewById(R.id.status);
+
         Button startgameButton = (Button)dialogView.findViewById(R.id.StartGame);
+//        RadioButton blue = (RadioButton) findViewById(R.id.BlueSquare);
+//        RadioButton pink;
+//        RadioButton Yellow;
+//        RadioButton red;
 
         Log.e("dialog", CourseName );
         Log.e("dialog", Uid );
-
-        if(request.equals("pending")){
-            status.setText("Your request is " + request);
-        }else if(request.equals("true")){
-            status.setText("your request has been Accepted!. Click Button Below to start your game.");
-            cancelbtn.setVisibility(View.INVISIBLE);
-            startgameButton.setVisibility(View.VISIBLE);
-        }else {
-            status.setText("your request has been denied. Golf course maybe full.");
-        }
 
 
 
@@ -159,9 +152,11 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 String currentDate = sdf.format(new Date());
                 String UniqueKey = myRef.child("Games").push().getKey();
-
                 SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
                 String currentTime= time.format(new Date());
+
+                Toast.makeText(GolfCourseHomeActivity.this, difficulty, Toast.LENGTH_SHORT).show();
+
 
                 myRef.child("Games").child(UniqueKey).child("CurrentHole").setValue("Hole1");
                 myRef.child("Games").child(UniqueKey).child("CourseID").setValue(CourseName);
@@ -173,7 +168,10 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
 
                 alertDialog.dismiss();
-                Intent intent = new Intent(GolfCourseHomeActivity.this, GameActivity.class);
+                Intent intent = new Intent(GolfCourseHomeActivity.this, Game2Activity.class);
+                intent.putExtra("CourseName", CourseName);
+                intent.putExtra("GameID", UniqueKey);
+                intent.putExtra("Difficulty", difficulty);
                 startActivity(intent);
                 finish();
 
@@ -181,40 +179,44 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
             }
         });
 
-        cancelbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              DatabaseReference deleteRef = FirebaseDatabase.getInstance().getReference("GameRequests").child(CourseName).child(Uid);
-              deleteRef.removeValue();
-              checkStatus.setVisibility(View.INVISIBLE);
-              requestbtn.setVisibility(View.VISIBLE);
-            }
-        });
+    }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+        difficulty = "";
 
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.BlueSquare:
+                if (checked)
+                    difficulty = "Blue_Square";
+                    Toast.makeText(this, "blue is clicked", Toast.LENGTH_SHORT).show();
+                    break;
+            case R.id.PinkDiamond:
+                if (checked)
+                    difficulty = "Pink_Diamond";
+                    Toast.makeText(this, "pink is clicked", Toast.LENGTH_SHORT).show();
+                    break;
+            case R.id.RedCircle:
+                if (checked)
+                    difficulty = "Red_Circle";
+                    Toast.makeText(this, "Red is clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.YellowTriange:
+                if (checked)
+                    difficulty = "Yellow_Triangle";
+                    Toast.makeText(this, "Yellow is clicked", Toast.LENGTH_SHORT).show();
+                break;
+        }
 
 
     }
 
+
     public void CheckRequestStatus(){
 
-        myRef.child("GameRequests").child(CourseName).child(mAuth.getUid()).child("request").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if(dataSnapshot.exists()) {
-                    String request = dataSnapshot.getValue().toString();
-                    showUpdateDialog(request);
-                }else{
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+       showUpdateDialog();
     }
 
 }
