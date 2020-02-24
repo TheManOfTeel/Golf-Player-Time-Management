@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,18 +26,24 @@ public class Game2Activity extends AppCompatActivity {
     private DatabaseReference myRef;
     private FirebaseDatabase database;
     private TextView holenum;
+    private FirebaseAuth mAuth;
     private TextView Par;
     private TextView Yards;
     private int holeNum = 1;
     private Button NextHole;
     private Button BackHole;
     private Button map;
+    private Button shot;
+    private TextView score;
+    int playerPar = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
+        mAuth = FirebaseAuth.getInstance();
+        String Uid = mAuth.getUid();
 
         if(!getIntent().getStringExtra("CourseName").equals(null)) {
             CourseName = getIntent().getStringExtra("CourseName");
@@ -52,6 +59,23 @@ public class Game2Activity extends AppCompatActivity {
         NextHole = (Button) findViewById(R.id.nexthole);
         BackHole = (Button) findViewById(R.id.backhole);
         map = (Button)findViewById(R.id.map);
+        score = (TextView)findViewById(R.id.playerPar);
+        shot = (Button)findViewById(R.id.ShotName);
+        if(playerPar== 0){
+            shot.setText("Take Tee Shot");
+        }else{
+            shot.setText("Take A Stroke");
+        }
+        score.setText("Score: " + playerPar);
+        shot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerPar +=1;
+                score.setText("Score: " + playerPar);
+                shot.setText("Take A Stroke");
+                myRef.child("Games").child(GameID).child("Players").child(Uid).child("Score").child("Hole").child("Hole"+holeNum).setValue(playerPar);
+            }
+        });
         NextHole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,8 +85,13 @@ public class Game2Activity extends AppCompatActivity {
                     holeNum = 18;
                 }
                 getHoleDetails(holeNum);
+                playerPar =0;
+                score.setText("Score:" +playerPar);
+                shot.setText("Take Tee Shot");
             }
         });
+
+
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override

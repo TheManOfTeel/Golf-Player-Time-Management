@@ -63,13 +63,23 @@
         android:layout_marginRight="40dp"
         />
     <TextView
+        android:id="@+id/playerPar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="30dp"
+        android:text="playerPar"
+        android:textColor="#000"
+        android:paddingBottom="20dp"
+        />
+    <Button
         android:id="@+id/ShotName"
         android:text="Shot"
         android:textColor="#000"
-        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/playerPar"
         android:layout_centerHorizontal="true"
         />
 
