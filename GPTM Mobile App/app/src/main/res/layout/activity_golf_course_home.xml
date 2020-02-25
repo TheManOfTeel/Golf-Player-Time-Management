@@ -18,28 +18,28 @@
         />
 
     <Button
-    android:id="@+id/RequestGamebtn"
+    android:id="@+id/StartGame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Request Game"
+    android:text="StartGame"
         android:layout_below="@id/WelcomeLabel"
     />
-
     <Button
-        android:id="@+id/CheckStatus"
+        android:id="@+id/ViewCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="StartGame"
-        android:layout_below="@id/WelcomeLabel"
-        android:visibility="invisible"
+        android:text="See Game History"
+        android:layout_below="@id/StartGame"
         />
+
+
 
     <Button
         android:id="@+id/GameHistorybtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="See Game History"
-        android:layout_below="@id/RequestGamebtn"
+        android:layout_below="@id/ViewCourse"
         />
 
 

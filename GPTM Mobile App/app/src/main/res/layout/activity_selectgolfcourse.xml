@@ -19,27 +19,12 @@
         android:layout_margin="10dp"
         android:paddingTop="20dp">
 
-        <TextView
-            android:id="@+id/SelectGolfCourseHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select A Golf Course You Would Like to Play At"
-            android:textSize="24dp"
-            android:layout_centerHorizontal="true"
-            android:textAlignment="center"
-            android:paddingTop="20dp"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:textFontWeight="400dp"
 
-
-            />
 
         <EditText
             android:id="@+id/GolfCourseSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/SelectGolfCourseHeader"
             android:hint="search"
             android:textStyle="bold"
             />
