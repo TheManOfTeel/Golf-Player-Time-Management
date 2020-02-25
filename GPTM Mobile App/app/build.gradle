@@ -53,6 +53,7 @@ dependencies {
     //implementation 'com.firebase:geofire-android:3.0.0'
     implementation 'com.karumi:dexter:5.0.0'
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
+    implementation 'com.google.android.material:material:<version>'
 
 
 }
