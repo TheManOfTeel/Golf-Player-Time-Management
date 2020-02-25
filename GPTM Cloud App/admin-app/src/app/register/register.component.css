@@ -33,6 +33,13 @@
     text-align: center;
 }
 
+.buttons{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    bottom: 0;
+}
+
 .header{
     text-align: center;
     font-size: 30px;
@@ -57,4 +64,18 @@
     font-size: medium;
     width: 200px;
     padding: 4px;
+}
+
+.btn-close {
+    float: right;
+}
+
+.divider {
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.search {
+    width: 300px;
 }

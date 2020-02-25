@@ -2,14 +2,14 @@
     position: absolute;
     top: 12px;
     right: 16px;
-    font-size: 28px;
+    font-size: x-large;
 }
 
 .title {
     position: absolute;
     top: 14px;
     left: 16px;
-    font-size: 28px;
+    font-size: x-large;
 }
 
 .app-toolbar {

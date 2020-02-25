@@ -1,0 +1,159 @@
+<div class="main-div">
+    <div class="tile1">
+        <mat-card *ngIf="!isEdit1">
+            <button mat-icon-button class="edit" (click)="doEdit1()"><mat-icon>edit</mat-icon></button>
+            <h2>Hole 8: General information</h2>
+            <p>Description: {{info.Description}}</p>
+            <p>Tips: {{info.Tips}}</p>
+        </mat-card>
+        <mat-card *ngIf="isEdit1">
+            <button mat-icon-button class="edit" (click)="cancelEdit1()"><mat-icon>cancel</mat-icon></button>
+            <button mat-icon-button class="edit" (click)="saveGeneral()"><mat-icon>save</mat-icon></button>
+            <h2>Edit General information</h2>
+            <form [formGroup]="tile1Form">
+                <mat-form-field class="editForm">
+                    <mat-label>Description</mat-label>
+                    <textarea rows="2" matInput placeholder={{info.Description}} id="generalDescription" name="generalDescription" [(ngModel)]="generalDescription" formControlName="generalDescription" type="textarea"></textarea>
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Tips</mat-label>
+                    <input matInput placeholder={{info.Tips}} id="generalTips" name="generalTips" [(ngModel)]="generalTips" formControlName="generalTips" type="text">
+                </mat-form-field>
+            </form>
+        </mat-card>
+    </div>
+    <div class="tile2">
+        <mat-card *ngIf="!isEdit2">
+            <button mat-icon-button class="edit" (click)="doEdit2()"><mat-icon>edit</mat-icon></button>
+            <h2>Blue Square</h2>
+            <p>Description: {{info.Blue_Square.Description}}</p>
+            <p>Par: {{info.Blue_Square.Par}}</p>
+            <p>Tips: {{info.Blue_Square.Tips}}</p>
+            <p>Yards: {{info.Blue_Square.Yards}}</p>
+        </mat-card>
+        <mat-card *ngIf="isEdit2">
+            <button mat-icon-button class="edit" (click)="cancelEdit2()"><mat-icon>cancel</mat-icon></button>
+            <button mat-icon-button class="edit" (click)="saveBlue()"><mat-icon>save</mat-icon></button>
+            <h2>Edit Blue Square information</h2>
+            <form [formGroup]="tile2Form">
+                <mat-form-field class="editForm">
+                    <mat-label>Description</mat-label>
+                    <textarea rows="2" matInput placeholder={{info.Blue_Square.Description}} id="blueDescription" name="blueDescription" [(ngModel)]="blueDescription" formControlName="blueDescription" type="textarea"></textarea>
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Par</mat-label>
+                    <input matInput placeholder={{info.Blue_Square.Par}} id="bluePar" name="bluePar" [(ngModel)]="bluePar" formControlName="bluePar" type="bluePar">
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Tips</mat-label>
+                    <input matInput placeholder={{info.Blue_Square.Tips}} id="blueTips" name="blueTips" [(ngModel)]="blueTips" formControlName="blueTips" type="text">
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Yards</mat-label>
+                    <input matInput placeholder={{info.Blue_Square.Yards}} id="blueYards" name="blueYards" [(ngModel)]="blueYards" formControlName="blueYards" type="text">
+                </mat-form-field>
+            </form>
+        </mat-card>
+    </div>
+    <div class="divider"></div>
+    <div class="tile3">
+        <mat-card *ngIf="!isEdit3">
+            <button mat-icon-button class="edit" (click)="doEdit3()"><mat-icon>edit</mat-icon></button>
+            <h2>Red Circle</h2>
+            <p>Description: {{info.Red_Circle.Description}}</p>
+            <p>Par: {{info.Red_Circle.Par}}</p>
+            <p>Tips: {{info.Red_Circle.Tips}}</p>
+            <p>Yards: {{info.Red_Circle.Yards}}</p>
+        </mat-card>
+        <mat-card *ngIf="isEdit3">
+            <button mat-icon-button class="edit" (click)="cancelEdit3()"><mat-icon>cancel</mat-icon></button>
+            <button mat-icon-button class="edit" class="edit" (click)="saveRed()"><mat-icon>save</mat-icon></button>
+            <h2>Edit Red Circle information</h2>
+            <form [formGroup]="tile3Form">
+                <mat-form-field class="editForm">
+                    <mat-label>Description</mat-label>
+                    <textarea rows="2" matInput placeholder={{info.Red_Circle.Description}} id="redDescription" name="redDescription" [(ngModel)]="redDescription" formControlName="redDescription" type="textarea"></textarea>
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Par</mat-label>
+                    <input matInput placeholder={{info.Red_Circle.Par}} id="redPar" name="redPar" [(ngModel)]="redPar" formControlName="redPar" type="text">
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Tips</mat-label>
+                    <input matInput placeholder={{info.Red_Circle.Tips}} id="redTips" name="redTips" [(ngModel)]="redTips" formControlName="redTips" type="text">
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Yards</mat-label>
+                    <input matInput placeholder={{info.Red_Circle.Yards}} id="redYards" name="redYards" [(ngModel)]="redYards" formControlName="redYards" type="text">
+                </mat-form-field>
+            </form>
+        </mat-card>
+    </div>
+    <div class="tile4">
+        <mat-card *ngIf="!isEdit4">
+            <button mat-icon-button class="edit" (click)="doEdit4()"><mat-icon>edit</mat-icon></button>
+            <h2>Pink Diamond</h2>
+            <p>Description: {{info.Pink_Diamond.Description}}</p>
+            <p>Par: {{info.Pink_Diamond.Par}}</p>
+            <p>Tips: {{info.Pink_Diamond.Tips}}</p>
+            <p>Yards: {{info.Pink_Diamond.Yards}}</p>
+        </mat-card>
+        <mat-card *ngIf="isEdit4">
+            <button mat-icon-button class="edit" (click)="cancelEdit4()"><mat-icon>cancel</mat-icon></button>
+            <button mat-icon-button class="edit" (click)="savePink()"><mat-icon>save</mat-icon></button>
+            <h2>Edit Red Circle information</h2>
+            <form [formGroup]="tile4Form">
+                <mat-form-field class="editForm">
+                    <mat-label>Description</mat-label>
+                    <textarea rows="2" matInput placeholder={{info.Pink_Diamond.Description}} id="pinkDescription" name="pinkDescription" [(ngModel)]="pinkDescription" formControlName="pinkDescription" type="textarea"></textarea>
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Par</mat-label>
+                    <input matInput placeholder={{info.Pink_Diamond.Par}} id="pinkPar" name="pinkPar" [(ngModel)]="pinkPar" formControlName="pinkPar" type="text">
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Tips</mat-label>
+                    <input matInput placeholder={{info.Pink_Diamond.Tips}} id="pinkTips" name="pinkTips" [(ngModel)]="pinkTips" formControlName="pinkTips" type="text">
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Yards</mat-label>
+                    <input matInput placeholder={{info.Pink_Diamond.Yards}} id="pinkYards" name="pinkYards" [(ngModel)]="pinkYards" formControlName="pinkYards" type="text">
+                </mat-form-field>
+            </form>
+        </mat-card>
+    </div>
+    <div class="divider"></div>
+    <div class="tile5">
+        <mat-card *ngIf="!isEdit5">
+            <button mat-icon-button class="edit" (click)="doEdit5()"><mat-icon>edit</mat-icon></button>
+            <h2>Yellow Triangle</h2>
+            <p>Description: {{info.Yellow_Triangle.Description}}</p>
+            <p>Par: {{info.Yellow_Triangle.Par}}</p>
+            <p>Tips: {{info.Yellow_Triangle.Tips}}</p>
+            <p>Yards: {{info.Yellow_Triangle.Yards}}</p>
+        </mat-card>
+        <mat-card *ngIf="isEdit5">
+            <button mat-icon-button class="edit" (click)="cancelEdit5()"><mat-icon>cancel</mat-icon></button>
+            <button mat-icon-button class="edit" (click)="saveYellow()"><mat-icon>save</mat-icon></button>
+            <h2>Edit Red Circle information</h2>
+            <form [formGroup]="tile5Form">
+                <mat-form-field class="editForm">
+                    <mat-label>Description</mat-label>
+                    <textarea rows="2" matInput placeholder={{info.Yellow_Triangle.Description}} id="yellowDescription" name="yellowDescription" [(ngModel)]="yellowDescription" formControlName="yellowDescription" type="textarea"></textarea>
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Par</mat-label>
+                    <input matInput placeholder={{info.Yellow_Triangle.Par}} id="yellowPar" name="yellowPar" [(ngModel)]="yellowPar" formControlName="yellowPar" type="text">
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Tips</mat-label>
+                    <input matInput placeholder={{info.Yellow_Triangle.Tips}} id="yellowTips" name="yellowTips" [(ngModel)]="yellowTips" formControlName="yellowTips" type="text">
+                </mat-form-field>
+                <mat-form-field class="editForm">
+                    <mat-label>Yards</mat-label>
+                    <input matInput placeholder={{info.Yellow_Triangle.Yards}} id="yellowYards" name="yellowYards" [(ngModel)]="yellowYards" formControlName="yellowYards" type="text">
+                </mat-form-field>
+            </form>
+        </mat-card>
+    </div>
+</div>
