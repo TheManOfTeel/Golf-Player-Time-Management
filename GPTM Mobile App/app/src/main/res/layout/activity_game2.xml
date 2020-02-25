@@ -93,4 +93,16 @@
 
         />
 
+    <Button
+        android:id="@+id/request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/playerPar"
+        android:layout_alignRight="@+id/playerPar"
+        android:layout_alignBottom="@+id/ShotName"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginRight="-3dp"
+        android:layout_marginBottom="-97dp"
+        android:text="Send request" />
+
 </RelativeLayout>

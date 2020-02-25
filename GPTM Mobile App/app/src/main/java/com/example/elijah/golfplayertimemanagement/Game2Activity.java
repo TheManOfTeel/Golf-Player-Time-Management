@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,13 +37,26 @@ public class Game2Activity extends AppCompatActivity {
     private Button shot;
     private TextView score;
     int playerPar = 0;
+    private Button newReq;
+    private String uid;
+    private FirebaseUser user;
+    public String email;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_game2);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        uid = user.getUid();
+        email = mAuth.getCurrentUser().getEmail();
+
         String Uid = mAuth.getUid();
 
         if(!getIntent().getStringExtra("CourseName").equals(null)) {
@@ -56,6 +70,7 @@ public class Game2Activity extends AppCompatActivity {
         }
 
         getHoleDetails(holeNum);
+        newReq = (Button) findViewById(R.id.request);
         NextHole = (Button) findViewById(R.id.nexthole);
         BackHole = (Button) findViewById(R.id.backhole);
         map = (Button)findViewById(R.id.map);
@@ -88,6 +103,34 @@ public class Game2Activity extends AppCompatActivity {
                 playerPar =0;
                 score.setText("Score:" +playerPar);
                 shot.setText("Take Tee Shot");
+            }
+        });
+
+        newReq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Toast.makeText(Game2Activity.this, "Request Sent!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Game2Activity.this, user, Toast.LENGTH_SHORT).show();
+
+
+                myRef.child("Request").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        //String email = dataSnapshot.child(uid).child("email").getValue(String.class);
+
+                        myRef.child("Request").push().setValue("User:" + email + "; At hole: "+ holeNum);
+                        Toast.makeText(Game2Activity.this, "Request Sent!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        Toast.makeText(Game2Activity.this, "Request Failed!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 

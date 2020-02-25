@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Golf Player Time Management.iml" filepath="$PROJECT_DIR$/Golf Player Time Management.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Golf Player Time Management.iml" filepath="$PROJECT_DIR$/Golf Player Time Management.iml" group="Golf Player Time Management" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Golf Player Time Management/app" />
     </modules>
   </component>
 </project>
