@@ -120,7 +120,9 @@ public class Game2Activity extends AppCompatActivity {
 
                         //String email = dataSnapshot.child(uid).child("email").getValue(String.class);
 
-                        myRef.child("Request").push().setValue("User:" + email + "; At hole: "+ holeNum);
+                        String emailTrun = email.split("@")[0];
+
+                        myRef.child("Request").child(CourseName).push().setValue("User:" + emailTrun + "; At hole: "+ holeNum);
                         Toast.makeText(Game2Activity.this, "Request Sent!", Toast.LENGTH_SHORT).show();
                     }
 
