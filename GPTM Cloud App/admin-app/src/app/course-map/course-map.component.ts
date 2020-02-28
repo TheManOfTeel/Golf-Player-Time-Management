@@ -35,22 +35,10 @@ export class CourseMapComponent implements OnInit {
           this.geoCoder = new google.maps.Geocoder();
           this.latitude = data.latitude;
           this.longitude = data.longitude;
-          this.zoom = 12;
+          this.zoom = 16;
         })
       })
     });
-  }
-
-  // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 8;
-        this.getAddress(this.latitude, this.longitude);
-      });
-    }
   }
 
   getCourseName() {
