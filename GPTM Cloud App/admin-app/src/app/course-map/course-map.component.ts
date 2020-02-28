@@ -13,6 +13,7 @@ export class CourseMapComponent implements OnInit {
   zoom: number;
   address: string;
   private geoCoder;
+  courseName: string;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -24,30 +25,19 @@ export class CourseMapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Load Places Autocomplete
-    this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder();
-
-      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ['address']
-      });
-      autocomplete.addListener('place_changed', () => {
-        this.ngZone.run(() => {
-          // Get the place result
-          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          // Verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-
-          // Set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
+    // Use the current course to get lat/long
+    this.getCourseName()
+    .then(val => {
+      this.courseName = val;
+      this.getCourseData(this.courseName)
+      .then(data => {
+        this.mapsAPILoader.load().then(() => {
+          this.geoCoder = new google.maps.Geocoder();
+          this.latitude = data.latitude;
+          this.longitude = data.longitude;
           this.zoom = 12;
-        });
-      });
+        })
+      })
     });
   }
 
@@ -63,6 +53,21 @@ export class CourseMapComponent implements OnInit {
     }
   }
 
+  getCourseName() {
+    const userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+      const golfCourse = (snapshot.val() && snapshot.val().golfCourse);
+      return golfCourse;
+    });
+  }
+
+  getCourseData(golfCourse) {
+    // use the golfCourse value to match it to the GolfCourse table and get the hole info
+    return firebase.database().ref('/GolfCourse/' + this.courseName).once('value').then(function(snapshot) {
+      const data = snapshot.val();
+      return data;
+    });
+  }
 
   markerDragEnd($event: any) {
     console.log($event);

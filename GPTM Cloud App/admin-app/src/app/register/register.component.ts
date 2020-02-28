@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
   golfCourse = '';
+  geoLocation: any;
   userId: any;
   email: '';
   password: '';
@@ -191,6 +192,8 @@ export class RegisterComponent implements OnInit {
   writeHoleData(golfCourse) {
     firebase.database().ref('GolfCourse/' + this.course).set({
       golfCourse: this.course,
+      latitude: this.latitude,
+      longitude: this.longitude
     });
     for (this.i = 1; this.i <= this.selectedNumber; this.i++) {
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i).set({
