@@ -1,8 +1,11 @@
-<div>
-  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-    <!-- <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-      (dragEnd)="markerDragEnd($event)"></agm-marker> -->
-  </agm-map>
+<div class="map">
+  <mat-card class="card">
+    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [fullscreenControl]="fullscreenControl"
+    [mapTypeId]="mapTypeId" (mapReady)="onMapReady($event)" id="map">
+      <!-- <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+        (dragEnd)="markerDragEnd($event)"></agm-marker> -->
+    </agm-map>
+  </mat-card>
 
   <!-- <div>Latitude: {{latitude}}</div>
   <div>Longitude: {{longitude}}</div> -->

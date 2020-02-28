@@ -2,6 +2,8 @@ import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, NgZone } from 
 import * as firebase from 'firebase';
 import { MapsAPILoader } from '@agm/core';
 
+declare const google: any;
+
 @Component({
   selector: 'app-course-map',
   templateUrl: './course-map.component.html',
@@ -15,13 +17,21 @@ export class CourseMapComponent implements OnInit {
   private geoCoder;
   courseName: string;
 
-  @ViewChild('search')
-  public searchElementRef: ElementRef;
+  map: any;
 
+  // Google maps action controls
+  zoomControl: boolean;
+  mapTypeControl: boolean;
+  scaleControl: boolean;
+  streetViewControl: boolean;
+  rotateControl: boolean;
+  fullscreenControl: boolean;
+  mapTypeId: string;
+  drawingManager: google.maps.drawing.DrawingManager;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    // private ngZone: NgZone,
   ) { }
 
   ngOnInit() {
@@ -31,13 +41,14 @@ export class CourseMapComponent implements OnInit {
       this.courseName = val;
       this.getCourseData(this.courseName)
       .then(data => {
-        this.mapsAPILoader.load().then(() => {
-          this.geoCoder = new google.maps.Geocoder();
+        this.map = this.mapsAPILoader.load().then(() => {
           this.latitude = data.latitude;
           this.longitude = data.longitude;
-          this.zoom = 16;
-        })
-      })
+          this.zoom = 14;
+          this.fullscreenControl = true;
+          this.mapTypeId = 'hybrid';
+        });
+      });
     });
   }
 
@@ -57,30 +68,52 @@ export class CourseMapComponent implements OnInit {
     });
   }
 
-  markerDragEnd($event: any) {
-    console.log($event);
-    this.latitude = $event.coords.lat;
-    this.longitude = $event.coords.lng;
-    this.getAddress(this.latitude, this.longitude);
+  onMapReady(map) {
+    this.initDrawingManager(map);
   }
 
-  // In case we wish to implement address/place search
-  getAddress(latitude, longitude) {
-    this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
-      // console.log(results);
-      // console.log(status);
-      if (status === 'OK') {
-        if (results[0]) {
-          this.zoom = 12;
-          this.address = results[0].formatted_address;
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
-    });
+  initDrawingManager(map: any) {
+    const options = {
+      drawingControl: true,
+      drawingControlOptions: {
+      drawingModes: ['polygon']
+      },
+      polygonOptions: {
+        draggable: true,
+        editable: true
+      },
+      drawingMode: google.maps.drawing.OverlayType.POLYGON
+    };
+
+    const drawingManager = new google.maps.drawing.DrawingManager(options);
+    drawingManager.setMap(map);
   }
+
+  // Marker action, will probably set to disbale but I'll keep this around just in case
+  // markerDragEnd($event: any) {
+  //   console.log($event);
+  //   this.latitude = $event.coords.lat;
+  //   this.longitude = $event.coords.lng;
+  //   this.getAddress(this.latitude, this.longitude);
+  // }
+
+  // For the marker
+  // getAddress(latitude, longitude) {
+  //   this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
+  //     // console.log(results);
+  //     // console.log(status);
+  //     if (status === 'OK') {
+  //       if (results[0]) {
+  //         this.zoom = 12;
+  //         this.address = results[0].formatted_address;
+  //       } else {
+  //         window.alert('No results found');
+  //       }
+  //     } else {
+  //       window.alert('Geocoder failed due to: ' + status);
+  //     }
+  //   });
+  // }
 
   // getPlayerLocation() {
   //   // Pull in uploaded coordinates

@@ -47,6 +47,7 @@ import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { ItemFormComponent } from './items/item-form/item-form.component';
 import { CourseMapComponent } from './course-map/course-map.component';
 import { AgmCoreModule } from '@agm/core';
+import { AgmDrawingModule } from '@agm/drawing';
 import { Hole01Component } from './course-overview/hole-info/hole01/hole01.component';
 import { Hole02Component } from './course-overview/hole-info/hole02/hole02.component';
 import { Hole03Component } from './course-overview/hole-info/hole03/hole03.component';
@@ -105,8 +106,9 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_KEY',
-      libraries: ['places']
+      libraries: ['places', 'drawing']
     }),
+    AgmDrawingModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment),
     AngularFirestoreModule,
@@ -130,8 +132,9 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
     MatDividerModule,
     MatStepperModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
   ],
+  entryComponents: [CourseMapComponent],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]
 })
