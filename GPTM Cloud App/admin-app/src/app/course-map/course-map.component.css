@@ -16,3 +16,11 @@ agm-map {
 .map {
     height: 300px;
 }
+
+.btn-default {
+    display: block;
+    font-size: medium;
+    width: 200px;
+    padding: 4px;
+    margin-bottom: 3px;
+}

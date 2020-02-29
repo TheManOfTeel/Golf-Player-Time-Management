@@ -1,8 +1,9 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { MapsAPILoader } from '@agm/core';
 
 declare const google: any;
+var _myPolygon;
 
 @Component({
   selector: 'app-course-map',
@@ -14,10 +15,10 @@ export class CourseMapComponent implements OnInit {
   longitude: number;
   zoom: number;
   address: string;
-  private geoCoder;
   courseName: string;
 
   map: any;
+  holePoly: any;
 
   // Google maps action controls
   zoomControl: boolean;
@@ -31,7 +32,6 @@ export class CourseMapComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    // private ngZone: NgZone,
   ) { }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class CourseMapComponent implements OnInit {
     this.getCourseName()
     .then(val => {
       this.courseName = val;
-      this.getCourseData(this.courseName)
+      this.getCourseData()
       .then(data => {
         this.map = this.mapsAPILoader.load().then(() => {
           this.latitude = data.latitude;
@@ -60,7 +60,7 @@ export class CourseMapComponent implements OnInit {
     });
   }
 
-  getCourseData(golfCourse) {
+  getCourseData() {
     // use the golfCourse value to match it to the GolfCourse table and get the hole info
     return firebase.database().ref('/GolfCourse/' + this.courseName).once('value').then(function(snapshot) {
       const data = snapshot.val();
@@ -79,14 +79,38 @@ export class CourseMapComponent implements OnInit {
       drawingModes: ['polygon']
       },
       polygonOptions: {
-        draggable: true,
-        editable: true
+        draggable: false,
+        editable: false
       },
       drawingMode: google.maps.drawing.OverlayType.POLYGON
     };
 
     const drawingManager = new google.maps.drawing.DrawingManager(options);
     drawingManager.setMap(map);
+    google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
+      _myPolygon = polygon;
+      this.holePoly = polygon.getPath().getArray();
+      const path = polygon.getPath()
+      let coordinates = [];
+  
+      for (let i = 0 ; i < path.length ; i++) {
+        coordinates.push({
+          lat: path.getAt(i).lat(),
+          lng: path.getAt(i).lng()
+        });
+      }
+      console.log(coordinates);
+      // To disable after 1 shape is drawn
+      drawingManager.setDrawingMode(null);
+      // To hide controls
+      // drawingManager.setOptions({
+      //   drawingControl: false,
+      // });
+    });
+  }
+
+  resetMap() {
+    _myPolygon.setMap(null);
   }
 
   // Marker action, will probably set to disbale but I'll keep this around just in case
