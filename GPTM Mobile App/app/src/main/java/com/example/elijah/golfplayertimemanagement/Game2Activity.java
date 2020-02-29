@@ -41,6 +41,7 @@ public class Game2Activity extends AppCompatActivity {
     private String uid;
     private FirebaseUser user;
     public String email;
+    private TextView login;
 
 
 
@@ -50,6 +51,7 @@ public class Game2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_game2);
+
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -70,12 +72,17 @@ public class Game2Activity extends AppCompatActivity {
         }
 
         getHoleDetails(holeNum);
+        login = (TextView) findViewById(R.id.playLog);
         newReq = (Button) findViewById(R.id.request);
         NextHole = (Button) findViewById(R.id.nexthole);
         BackHole = (Button) findViewById(R.id.backhole);
         map = (Button)findViewById(R.id.map);
         score = (TextView)findViewById(R.id.playerPar);
         shot = (Button)findViewById(R.id.ShotName);
+
+        login.setText("Logged in as:" + email + "!");
+
+
         if(playerPar== 0){
             shot.setText("Take Tee Shot");
         }else{
@@ -124,6 +131,8 @@ public class Game2Activity extends AppCompatActivity {
 
                         myRef.child("Request").child(CourseName).push().setValue("User:" + emailTrun + ";Hole:"+ holeNum);
                         Toast.makeText(Game2Activity.this, "Request Sent!", Toast.LENGTH_SHORT).show();
+
+                        newReq.setVisibility(View.INVISIBLE);
                     }
 
                     @Override

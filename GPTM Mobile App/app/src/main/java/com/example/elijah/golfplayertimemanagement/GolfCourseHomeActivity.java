@@ -191,22 +191,22 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
             case R.id.BlueSquare:
                 if (checked)
                     difficulty = "Blue_Square";
-                    Toast.makeText(this, "blue is clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "You selected the blue holes", Toast.LENGTH_SHORT).show();
                     break;
             case R.id.PinkDiamond:
                 if (checked)
                     difficulty = "Pink_Diamond";
-                    Toast.makeText(this, "pink is clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "You selected the pink holes", Toast.LENGTH_SHORT).show();
                     break;
             case R.id.RedCircle:
                 if (checked)
                     difficulty = "Red_Circle";
-                    Toast.makeText(this, "Red is clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "You selected the red holes", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.YellowTriange:
                 if (checked)
                     difficulty = "Yellow_Triangle";
-                    Toast.makeText(this, "Yellow is clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "You selected the yellow holes", Toast.LENGTH_SHORT).show();
                 break;
         }
 

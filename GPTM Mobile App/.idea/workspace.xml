@@ -14,9 +14,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0ec6a116-db4e-44ed-a965-5c65b0195613" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game2Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game2Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GolfCourseHomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GolfCourseHomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_game2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_game2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_golf_course_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_golf_course_home.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -239,17 +243,22 @@
       <option name="project" value="LOCAL" />
       <updated>1582582009661</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Made requests far easier to manage (sent to request-&gt;[Name of course])&#10;and also made user's shorter by taking the substring of everything &#10;before the @ symbol so just incase someone were to have a longer &#10;email, firebase wouldn't just truncate which hole they were at.">
+      <created>1582693299707</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1582693299707</updated>
+    </task>
+    <task id="LOCAL-00011" summary="small fix to the string sent to firebase (less whitespace used)">
+      <created>1582693403773</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1582693403773</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -288,6 +297,8 @@
     <MESSAGE value="trying again" />
     <MESSAGE value="Created &#10;-Game set up&#10;-Start Game&#10;-keeping track of which hole the player is on&#10;-google map api hole set up. &#10;-calculated distance from teeing point to hole. &#10;-map zoom in in between the teeing point and hole for which hole the player is on. &#10;-added map icons for teeing point and hole." />
     <MESSAGE value="Keeps track of players score in firebase" />
-    <option name="LAST_COMMIT_MESSAGE" value="Keeps track of players score in firebase" />
+    <MESSAGE value="Made requests far easier to manage (sent to request-&gt;[Name of course])&#10;and also made user's shorter by taking the substring of everything &#10;before the @ symbol so just incase someone were to have a longer &#10;email, firebase wouldn't just truncate which hole they were at." />
+    <MESSAGE value="small fix to the string sent to firebase (less whitespace used)" />
+    <option name="LAST_COMMIT_MESSAGE" value="small fix to the string sent to firebase (less whitespace used)" />
   </component>
 </project>

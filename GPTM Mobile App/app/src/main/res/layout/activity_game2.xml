@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A7A7A7"
     tools:context=".Game2Activity">
 
     <TextView
@@ -40,28 +41,30 @@
         android:id="@+id/par"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
+        android:layout_below="@id/backhole"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="67dp"
+        android:paddingTop="20dp"
         android:text="par"
         android:textColor="#000"
         android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_below="@id/backhole"
-        />
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/yards"
-        android:layout_width="wrap_content"
+        android:layout_width="375dp"
         android:layout_height="wrap_content"
+        android:layout_below="@id/nexthole"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="122dp"
+        android:layout_marginRight="12dp"
         android:paddingTop="20dp"
         android:text="yards"
         android:textColor="#000"
         android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_below="@id/nexthole"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
-        />
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/playerPar"
         android:layout_width="wrap_content"
@@ -104,5 +107,17 @@
         android:layout_marginRight="-3dp"
         android:layout_marginBottom="-97dp"
         android:text="Send request" />
+
+    <TextView
+        android:id="@+id/playLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/map"
+        android:layout_alignEnd="@+id/hole"
+        android:layout_alignRight="@+id/hole"
+        android:layout_marginEnd="103dp"
+        android:layout_marginRight="103dp"
+        android:layout_marginBottom="9dp"
+        android:text="Currently logged in as: " />
 
 </RelativeLayout>
