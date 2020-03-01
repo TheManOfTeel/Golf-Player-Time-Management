@@ -13,7 +13,6 @@ import { environment } from '../environments/environment';
 
 import { rootRouterConfig } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
@@ -24,28 +23,49 @@ import { CourseOverviewComponent } from './course-overview/course-overview.compo
 import { SupportComponent } from './support/support.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import {
-  MatInputModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatButtonModule,
-  MatIconModule,
-  MatSelectModule,
-  MatTabsModule,
-  MatRippleModule,
-  MatExpansionModule,
-  MatCardModule,
-  MatToolbarModule,
-  MatDividerModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { ItemFormComponent } from './items/item-form/item-form.component';
 import { CourseMapComponent } from './course-map/course-map.component';
+import { AgmCoreModule } from '@agm/core';
+import { AgmDrawingModule } from '@agm/drawing';
+import { Hole01Component } from './course-overview/hole-info/hole01/hole01.component';
+import { Hole02Component } from './course-overview/hole-info/hole02/hole02.component';
+import { Hole03Component } from './course-overview/hole-info/hole03/hole03.component';
+import { Hole04Component } from './course-overview/hole-info/hole04/hole04.component';
+import { Hole05Component } from './course-overview/hole-info/hole05/hole05.component';
+import { Hole06Component } from './course-overview/hole-info/hole06/hole06.component';
+import { Hole07Component } from './course-overview/hole-info/hole07/hole07.component';
+import { Hole08Component } from './course-overview/hole-info/hole08/hole08.component';
+import { Hole09Component } from './course-overview/hole-info/hole09/hole09.component';
+import { Hole10Component } from './course-overview/hole-info/hole10/hole10.component';
+import { Hole11Component } from './course-overview/hole-info/hole11/hole11.component';
+import { Hole12Component } from './course-overview/hole-info/hole12/hole12.component';
+import { Hole13Component } from './course-overview/hole-info/hole13/hole13.component';
+import { Hole14Component } from './course-overview/hole-info/hole14/hole14.component';
+import { Hole15Component } from './course-overview/hole-info/hole15/hole15.component';
+import { Hole16Component } from './course-overview/hole-info/hole16/hole16.component';
+import { Hole17Component } from './course-overview/hole-info/hole17/hole17.component';
+import { Hole18Component } from './course-overview/hole-info/hole18/hole18.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +73,6 @@ import { CourseMapComponent } from './course-map/course-map.component';
     LoginComponent,
     UserComponent,
     RegisterComponent,
-    NavComponent,
     DashboardComponent,
     HomeComponent,
     CourseOverviewComponent,
@@ -62,11 +81,34 @@ import { CourseMapComponent } from './course-map/course-map.component';
     ItemsListComponent,
     ItemDetailComponent,
     ItemFormComponent,
-    CourseMapComponent
+    CourseMapComponent,
+    Hole01Component,
+    Hole02Component,
+    Hole03Component,
+    Hole04Component,
+    Hole05Component,
+    Hole06Component,
+    Hole07Component,
+    Hole08Component,
+    Hole09Component,
+    Hole10Component,
+    Hole11Component,
+    Hole12Component,
+    Hole13Component,
+    Hole14Component,
+    Hole15Component,
+    Hole16Component,
+    Hole17Component,
+    Hole18Component,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'YOUR_KEY',
+      libraries: ['places', 'drawing', 'geometry']
+    }),
+    AgmDrawingModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment),
     AngularFirestoreModule,
@@ -87,8 +129,12 @@ import { CourseMapComponent } from './course-map/course-map.component';
     MatTabsModule,
     MatRippleModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatStepperModule,
+    MatSidenavModule,
+    MatListModule,
   ],
+  entryComponents: [CourseMapComponent],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]
 })
