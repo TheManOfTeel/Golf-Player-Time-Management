@@ -2,6 +2,7 @@
     <div class="tile1">
         <mat-card *ngIf="!isEdit1">
             <button mat-icon-button class="edit" (click)="doEdit1()"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button class="edit" (click)="mapPopUp()"><mat-icon>map</mat-icon></button>
             <h2>Hole 2: General information</h2>
             <p>Description: {{info.Description}}</p>
             <p>Tips: {{info.Tips}}</p>

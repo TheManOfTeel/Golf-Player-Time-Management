@@ -1,10 +1,13 @@
 <div class="map">
-  <mat-card class="card">
-    <button mat-raised-button color="warn" class="btn-default" id="delete-button" (click)="resetMap()">Reset</button>
-    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [fullscreenControl]="fullscreenControl"
-    [mapTypeId]="mapTypeId" (mapReady)="onMapReady($event)" id="map">
-      <!-- <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-        (dragEnd)="markerDragEnd($event)"></agm-marker> -->
-    </agm-map>
-  </mat-card>
+  <div>
+    <button mat-icon-button class="btn-close" (click)="close()"><mat-icon>close</mat-icon></button>
+    <button mat-icon-button class="btn-default" (click)="savePoly()"><mat-icon>save</mat-icon></button>
+    <button mat-icon-button class="btn-default" id="delete-button" (click)="resetMap()"><mat-icon>refresh</mat-icon></button>
+    <h2>Draw hole boundaries</h2>
+  </div>
+  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [fullscreenControl]="fullscreenControl"
+  [mapTypeId]="mapTypeId" (mapReady)="onMapReady($event)" id="map">
+    <!-- <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+      (dragEnd)="markerDragEnd($event)"></agm-marker> -->
+  </agm-map>
 </div>

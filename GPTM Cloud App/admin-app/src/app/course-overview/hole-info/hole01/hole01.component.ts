@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as firebase from 'firebase';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CourseMapComponent } from 'src/app/course-map/course-map.component';
 
 @Component({
   selector: 'app-hole01',
@@ -8,7 +10,6 @@ import * as firebase from 'firebase';
   styleUrls: ['./hole01.component.css']
 })
 export class Hole01Component implements OnInit {
-
   courseName: any;
   info: any;
 
@@ -41,6 +42,8 @@ export class Hole01Component implements OnInit {
   yellowTips: string;
   yellowYards: string;
 
+  coordinates = [];
+
   tile1Form: FormGroup;
   tile2Form: FormGroup;
   tile3Form: FormGroup;
@@ -48,7 +51,8 @@ export class Hole01Component implements OnInit {
   tile5Form: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) { this.createForm(); }
 
   ngOnInit() {
@@ -271,5 +275,26 @@ export class Hole01Component implements OnInit {
     });
     this.initData();
     this.isEdit5 = false;
+  }
+
+  mapPopUp() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    const dialogRef = this.dialog.open(CourseMapComponent, {
+      width: '1000px',
+      height: '660px',
+      data: {coordinates: this.coordinates}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.coordinates = result;
+
+      const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole1');
+      // push new data to database
+      courseRef.update({
+        Geofence: this.coordinates,
+      });
+    });
   }
 }

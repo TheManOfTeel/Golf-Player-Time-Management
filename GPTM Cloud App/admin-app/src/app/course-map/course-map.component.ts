@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import * as firebase from 'firebase';
 import { MapsAPILoader } from '@agm/core';
+import { FormBuilder } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 declare const google: any;
-var _myPolygon;
+let myPolygon;
+let coordinateData = [];
 
 @Component({
   selector: 'app-course-map',
@@ -32,7 +35,12 @@ export class CourseMapComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-  ) { }
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<CourseMapComponent>,
+    @Inject(MAT_DIALOG_DATA) data
+  ) {
+    coordinateData = data.coordinateData;
+  }
 
   ngOnInit() {
     // Use the current course to get lat/long
@@ -87,21 +95,23 @@ export class CourseMapComponent implements OnInit {
 
     const drawingManager = new google.maps.drawing.DrawingManager(options);
     drawingManager.setMap(map);
-    google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
-      _myPolygon = polygon;
+    google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+      myPolygon = polygon;
       this.holePoly = polygon.getPath().getArray();
-      const path = polygon.getPath()
-      let coordinates = [];
-  
+      const path = polygon.getPath();
+      const coordinates = [];
+
       for (let i = 0 ; i < path.length ; i++) {
         coordinates.push({
           lat: path.getAt(i).lat(),
           lng: path.getAt(i).lng()
         });
       }
-      console.log(coordinates);
+      coordinateData = coordinates;
+
       // To disable after 1 shape is drawn
       drawingManager.setDrawingMode(null);
+
       // To hide controls
       // drawingManager.setOptions({
       //   drawingControl: false,
@@ -109,8 +119,17 @@ export class CourseMapComponent implements OnInit {
     });
   }
 
+  savePoly() {
+    console.log(coordinateData);
+    this.dialogRef.close(coordinateData);
+  }
+
+  close() {
+    this.dialogRef.close();
+  }
+
   resetMap() {
-    _myPolygon.setMap(null);
+    myPolygon.setMap(null);
   }
 
   // Marker action, will probably set to disbale but I'll keep this around just in case

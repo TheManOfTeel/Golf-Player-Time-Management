@@ -106,7 +106,7 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_KEY',
-      libraries: ['places', 'drawing']
+      libraries: ['places', 'drawing', 'geometry']
     }),
     AgmDrawingModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
