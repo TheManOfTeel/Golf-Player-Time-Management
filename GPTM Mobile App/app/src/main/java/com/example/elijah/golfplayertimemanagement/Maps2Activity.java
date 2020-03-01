@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.firebase.geofire.GeoFire;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,6 +35,8 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
     private double endLat;
     private double startLng;
     private double endLng;
+    private GeoFire geoFire;
+    private List<LatLng> fence;
 
 
     @Override
@@ -42,10 +45,14 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map2);
         mapFragment.getMapAsync(this);
 
+
+
     }
+
+
 
 
     /**
@@ -59,6 +66,10 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+
+
+
 
         List<LatLng> lstLatLngRoute = new LinkedList<>();
         BitmapDescriptor bitmap = bitmapDescriptorFromVector(this, R.drawable.ic_golf_course_black_24dp);
@@ -155,6 +166,7 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
         LatLngBounds latLngBounds = boundsBuilder.build();
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding));
+
     }
 
 }

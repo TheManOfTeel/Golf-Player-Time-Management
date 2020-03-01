@@ -1,96 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Game2Activity">
+    android:layout_height="wrap_content"
+    android:gravity="top"
+    tools:context=".Game2Activity"
+    android:id="@+id/SlidePannel"
+    >
 
-    <TextView
-        android:id="@+id/hole"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="20dp"
-        android:text="Hole 1"
-        android:textColor="#000"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        />
-    <Button
-        android:id="@+id/nexthole"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:text="Next Hole"
-        />
-    <Button
-        android:id="@+id/backhole"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:text="Back Hole"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/par"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
-        android:text="par"
-        android:textColor="#000"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_below="@id/backhole"
-        />
-    <TextView
-        android:id="@+id/yards"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:text="yards"
-        android:textColor="#000"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_below="@id/nexthole"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
-        />
-    <TextView
-        android:id="@+id/playerPar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="30dp"
-        android:text="playerPar"
-        android:textColor="#000"
-        android:paddingBottom="20dp"
-        />
-    <Button
-        android:id="@+id/ShotName"
-        android:text="Shot"
-        android:textColor="#000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/playerPar"
-        android:layout_centerHorizontal="true"
-        />
+        <TextView
+            android:id="@+id/hole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="20dp"
+            android:text="Hole 1"
+            android:textColor="#000"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/nexthole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:text="Next Hole"
+            />
+        <Button
+            android:id="@+id/backhole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:text="Back Hole"
+            />
 
-    <Button
-        android:id="@+id/map"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/par"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:text="par"
+            android:textColor="#000"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_below="@id/backhole"
+            />
+        <TextView
+            android:id="@+id/yards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="yards"
+            android:textColor="#000"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_below="@id/nexthole"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            />
+        <TextView
+            android:id="@+id/playerPar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="30dp"
+            android:text="playerPar"
+            android:textColor="#000"
+            android:paddingBottom="20dp"
+            />
+        <Button
+            android:id="@+id/ShotName"
+            android:text="Shot"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/playerPar"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/dragview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:text="Map Of Hole"
+        >
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map2"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="com.example.polygons.PolyActivity"
+            >
 
-        />
+        </fragment>
 
-</RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
