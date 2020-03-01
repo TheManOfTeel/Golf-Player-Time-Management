@@ -62,8 +62,7 @@
 }
 
 .edit {
-    display: inline-block;
-    float: right;
+    float: inline-end;
 }
 
 .editForm {

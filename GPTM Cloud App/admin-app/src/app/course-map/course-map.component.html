@@ -1,18 +1,13 @@
-<div>
-  <!-- Address Search field -->
+<div class="map">
   <div>
-    <mat-form-field class="search">
-      <input matInput type="text" class="form-control" (keydown.enter)="$event.preventDefault()" 
-      placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
-    </mat-form-field>
+    <button mat-icon-button class="btn-close" (click)="close()"><mat-icon>close</mat-icon></button>
+    <button mat-icon-button class="btn-default" (click)="savePoly()"><mat-icon>save</mat-icon></button>
+    <button mat-icon-button class="btn-default" id="delete-button" (click)="resetMap()"><mat-icon>refresh</mat-icon></button>
+    <h2>Draw hole boundaries</h2>
   </div>
-  
-  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-      (dragEnd)="markerDragEnd($event)"></agm-marker>
+  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [fullscreenControl]="fullscreenControl"
+  [mapTypeId]="mapTypeId" (mapReady)="onMapReady($event)" id="map">
+    <!-- <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+      (dragEnd)="markerDragEnd($event)"></agm-marker> -->
   </agm-map>
-  
-  <!-- <h5>Address: {{address}}</h5> -->
-  <div>Latitude: {{latitude}}</div>
-  <div>Longitude: {{longitude}}</div>
 </div>
