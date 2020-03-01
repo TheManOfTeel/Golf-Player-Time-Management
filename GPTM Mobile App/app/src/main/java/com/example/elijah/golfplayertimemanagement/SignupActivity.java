@@ -38,7 +38,6 @@ public class SignupActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("SignupActivity");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         email = (EditText) findViewById(R.id.signupEmail);
         password1 = (EditText) findViewById(R.id.signupPassword1);
         password2 = (EditText) findViewById(R.id.signupPassword2);

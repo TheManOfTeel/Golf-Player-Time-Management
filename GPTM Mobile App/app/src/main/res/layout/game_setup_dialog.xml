@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+
+        android:id="@+id/GameSetUpHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Set up"
+        android:paddingTop="36dp"
+        android:textColor="#000"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="26dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/HoleOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GameSetUpHeader"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        >
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <RadioButton
+                android:id="@+id/BlueSquare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blue Square"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton
+                android:id="@+id/PinkDiamond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PinkDiamond"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton
+                android:id="@+id/RedCircle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Red Circle"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton
+                android:id="@+id/YellowTriange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yellow Triangle"
+                android:onClick="onRadioButtonClicked"/>
+
+        </RadioGroup>
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/StartGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StartGame"
+        android:layout_margin="20dp"
+        android:layout_below="@id/HoleOptions"
+        />
+
+</RelativeLayout>

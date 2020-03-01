@@ -1,25 +1,46 @@
 package com.example.elijah.golfplayertimemanagement;
 
-import android.content.Intent;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-public class Game2Activity extends AppCompatActivity {
+public class Game2Activity extends AppCompatActivity implements OnMapReadyCallback {
     String CourseName;
     String GameID;
     String Difficulty;
@@ -32,18 +53,34 @@ public class Game2Activity extends AppCompatActivity {
     private int holeNum = 1;
     private Button NextHole;
     private Button BackHole;
-    private Button map;
     private Button shot;
     private TextView score;
     int playerPar = 0;
+    private GoogleMap mMap;
+    private RelativeLayout mapLayout;
+    private SlidingUpPanelLayout slidingUpPanelLayout;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map2);
+        mapFragment.getMapAsync(this);
+        slidingUpPanelLayout = (SlidingUpPanelLayout)findViewById(R.id.SlidePannel);
+
+
+
+
+
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
         String Uid = mAuth.getUid();
+
+
 
         if(!getIntent().getStringExtra("CourseName").equals(null)) {
             CourseName = getIntent().getStringExtra("CourseName");
@@ -54,11 +91,12 @@ public class Game2Activity extends AppCompatActivity {
         if(!getIntent().getStringExtra("Difficulty").equals(null)) {
             Difficulty = getIntent().getStringExtra("Difficulty");
         }
+        Log.e("Game2Activity", "Activity started");
 
+        MapHole2(holeNum, mMap);
         getHoleDetails(holeNum);
         NextHole = (Button) findViewById(R.id.nexthole);
         BackHole = (Button) findViewById(R.id.backhole);
-        map = (Button)findViewById(R.id.map);
         score = (TextView)findViewById(R.id.playerPar);
         shot = (Button)findViewById(R.id.ShotName);
         if(playerPar== 0){
@@ -76,78 +114,69 @@ public class Game2Activity extends AppCompatActivity {
                 myRef.child("Games").child(GameID).child("Players").child(Uid).child("Score").child("Hole").child("Hole"+holeNum).setValue(playerPar);
             }
         });
-        NextHole.setOnClickListener(new View.OnClickListener() {
+
+    }
+
+    private void MapHole2(int Holenum, GoogleMap mMap){
+        myRef.child("GolfCourse").child(CourseName).child("Holes").child("Hole"+Holenum).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                holeNum +=1;
-                //Hole Number cant be greater than 18
-                if (holeNum>18){
-                    holeNum = 18;
-                }
-                getHoleDetails(holeNum);
-                playerPar =0;
-                score.setText("Score:" +playerPar);
-                shot.setText("Take Tee Shot");
-            }
-        });
-
-
-
-        map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.e("ButtonClicked", "ButtonClicked");
-
-                myRef.child("GolfCourse").child(CourseName).child("Holes").child("Hole"+holeNum).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-                            Log.e("ButtonClicked", "DataSnapShotExists");
-
-
-                            String startLat = dataSnapshot.child("StartLat").getValue().toString();
-                            String  startLng = dataSnapshot.child("StartLong").getValue().toString();
-                            String  endLat = dataSnapshot.child("EndLat").getValue().toString();
-                            String  endLng = dataSnapshot.child("EndLong").getValue().toString();
-                            Log.e("Location", startLat+ "  " + startLng + " " +endLat + " " + endLng);
-                            Intent intent = new Intent(Game2Activity.this, Maps2Activity.class);
-                            intent.putExtra("StartLat", startLat);
-                            intent.putExtra("StartLng", startLng);
-                            intent.putExtra("EndLat", endLat);
-                            intent.putExtra("EndLng", endLng);
-                            intent.putExtra("holeNum", holenum.getText());
-                            startActivity(intent);
-                        }else{
-                            Log.e("SnapShot", "DoesNot Exitst");
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    if (dataSnapshot.child("Geofence").exists()) {
+                        List<LatLng> lstLatLngRoute = new LinkedList<>();
+                        ArrayList<String> points = new ArrayList<>();
+                        int i = 0;
+                        for (DataSnapshot ds : dataSnapshot.child("Geofence").getChildren()) {
+                            if(dataSnapshot.exists()) {
+                                points.add(String.valueOf(i));
+                                i++;
+                            }
                         }
+                        Log.e("Number of points", points.toString());
+                        for(int j = 0; j < points.size();j++){
+                           double lat = Double.parseDouble(dataSnapshot.child("Geofence").child(points.get(j)).child("lat").getValue().toString());
+                           double lng = Double.parseDouble(dataSnapshot.child("Geofence").child(points.get(j)).child("lng").getValue().toString());
+                           LatLng latLng = new LatLng(lat, lng);
+                            lstLatLngRoute.add(latLng);
+                        }
+                        Log.e("long lat", lstLatLngRoute.toString());
+
+                            Polyline polyline = Game2Activity.this.mMap.addPolyline(new PolylineOptions().clickable(true).addAll(lstLatLngRoute));
+                            polyline.setTag("Hole"+holeNum);
+                            getHolebounds((LinkedList) lstLatLngRoute);
+
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
+                }
             }
-        });
 
-        BackHole.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                holeNum -=1;
-                //Hole number cant be less than 1
-                if(holeNum == 0 || holeNum < 0){
-                    holeNum =1;
-                }
-                //Hole Number cant be greater than 18
-                if (holeNum>18){
-                    holeNum = 18;
-                }
-                getHoleDetails(holeNum);
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
+
+    private void getHolebounds(LinkedList lstLatLngRoute){
+        LatLngBounds.Builder build = new LatLngBounds.Builder();
+        for(int l = 0; l< lstLatLngRoute.size();l++){
+            build.include((LatLng) lstLatLngRoute.get(l));
+        }
+        LatLngBounds bounds = build.build();
+
+
+                if(bounds.contains(bounds.getCenter())){
+                    Log.e("Yes", "This is within the bounds");
+                }else{
+                    Log.e("Fuck", "Fuck it is not");
+                }
+
+
+
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,50));
+
+    }
+
 
     //Get the hole number
     private void getHoleDetails(int Holenum){
@@ -181,8 +210,12 @@ public class Game2Activity extends AppCompatActivity {
         Par = (TextView) findViewById(R.id.par);
         Yards = (TextView) findViewById(R.id.yards);
         holenum.setText(hole);
-        Par.setText("Par: " + par);
-        Yards.setText("Yards: " + yards);
+        if(!par.equals("No par set")) {
+            Par.setText("Par: " + par);
+        }
+        if(!yards.equals("No distance set")) {
+            Yards.setText("Yards: " + yards);
+        }
     }
     //UpdateCurrent Hole in Firebase
     private void UpdateCurrentHole(String hole){
@@ -209,5 +242,175 @@ public class Game2Activity extends AppCompatActivity {
 
         return yards;
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        mMap.getUiSettings().setMapToolbarEnabled(false);
+        mMap.resetMinMaxZoomPreference();
+
+        Log.e("Hole Num", String.valueOf(holeNum));
+        MapHole2(holeNum, mMap);
+
+        NextHole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holeNum +=1;
+                //Hole Number cant be greater than 18
+                if (holeNum>18){
+                    holeNum = 18;
+                }
+                getHoleDetails(holeNum);
+                playerPar =0;
+
+                score.setText("Score:" +playerPar);
+                shot.setText("Take Tee Shot");
+                mMap.clear();
+
+                Log.e("Hole Num", String.valueOf(holeNum));
+                MapHole2(holeNum, mMap);
+
+            }
+        });
+
+        BackHole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holeNum -=1;
+                //Hole number cant be less than 1
+                if(holeNum == 0 || holeNum < 0){
+                    holeNum =1;
+                }
+                //Hole Number cant be greater than 18
+                if (holeNum>18){
+                    holeNum = 18;
+                }
+                getHoleDetails(holeNum);
+                mMap.clear();
+                MapHole2(holeNum, mMap);
+            }
+        });
+    }
+
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, @DrawableRes int vectorDrawableResourceId) {
+        Drawable background = ContextCompat.getDrawable(context, vectorDrawableResourceId);
+        background.setBounds(0, 0, background.getIntrinsicWidth(), background.getIntrinsicHeight());
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResourceId);
+        vectorDrawable.setBounds(40, 20, vectorDrawable.getIntrinsicWidth() + 40, vectorDrawable.getIntrinsicHeight() + 20);
+        Bitmap bitmap = Bitmap.createBitmap(background.getIntrinsicWidth(), background.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        background.draw(canvas);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+
+    private int getZoomLevel(double radius){
+        double scale = radius / 2000;
+        return ((int) (16 - Math.log(scale) / Math.log(2)));
+    }
+
+    public void zoomRoute(GoogleMap googleMap, List<LatLng> lstLatLngRoute) {
+
+        if (googleMap == null || lstLatLngRoute == null || lstLatLngRoute.isEmpty()) return;
+
+        LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
+        for (LatLng latLngPoint : lstLatLngRoute)
+            boundsBuilder.include(latLngPoint);
+
+        int routePadding = 100;
+        LatLngBounds latLngBounds = boundsBuilder.build();
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding));
+
+    }
+    public LatLng midPoint(double lat1,double lon1,double lat2,double lon2){
+
+        double dLon = Math.toRadians(lon2 - lon1);
+
+        //convert to radians
+        lat1 = Math.toRadians(lat1);
+        lat2 = Math.toRadians(lat2);
+        lon1 = Math.toRadians(lon1);
+
+        double Bx = Math.cos(lat2) * Math.cos(dLon);
+        double By = Math.cos(lat2) * Math.sin(dLon);
+        double lat3 = Math.atan2(Math.sin(lat1) + Math.sin(lat2), Math.sqrt((Math.cos(lat1) + Bx) * (Math.cos(lat1) + Bx) + By * By));
+        double lon3 = lon1 + Math.atan2(By, Math.cos(lat1) + Bx);
+        LatLng latLng = new LatLng(Math.toDegrees(lat3), Math.toDegrees(lon3));
+
+
+        return latLng;
+    }
+
+    private void MapCurrentHole(GoogleMap mMap, int holeNum){
+        myRef.child("GolfCourse").child(CourseName).child("Holes").child("Hole"+holeNum).child("Geofence").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    Log.e("ButtonClicked", "DataSnapShotExists");
+                    List<LatLng> lstLatLngRoute = new LinkedList<>();
+                    double startLat = 0;
+                    double startLng = 0;
+                    double endLat = 0;
+                    double endLng = 0;
+                    LatLng Start = new LatLng(startLat, startLng);
+                    LatLng End = new LatLng(endLat, endLng);
+                    String holeNumber = dataSnapshot.getKey();
+
+                        Log.e("Geofence", "Exist");
+                        startLat = Double.parseDouble(String.valueOf(dataSnapshot.child(String.valueOf(0)).child("lat").getValue().toString()));
+                        startLng = Double.parseDouble(String.valueOf(dataSnapshot.child(String.valueOf(0)).child("lng").getValue().toString()));
+                        if(startLat != 0 && startLng != 0) {
+                            Start = new LatLng(startLat, startLng);
+                            Log.e("StartDetails", "Start = " + Start.toString());
+                            mMap.addMarker(new MarkerOptions().position(Start).title(holeNumber + " Tee").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_nature_black_16dp)));
+                        }
+
+
+                        endLat = Double.parseDouble(String.valueOf(dataSnapshot.child(String.valueOf(8)).child("lat").getValue().toString()));
+                        endLng = Double.parseDouble(String.valueOf(dataSnapshot.child(String.valueOf(8)).child("lng").getValue().toString()));
+                        if(endLat != 0 && endLng != 0) {
+                            End = new LatLng(endLat, endLng);
+                            Log.e("EndDetails", "End = " + End.toString());
+                            mMap.addMarker(new MarkerOptions().position(End).title(holeNumber + " Hole").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_golf_course_black_24dp)));
+                        }
+
+
+
+                    if(Start.latitude != 0 && End.latitude != 0 && Start.longitude != 0 && End.longitude != 0) {
+                        double yards = CalculationByDistance(Start, End);
+                        Log.e("Yards", String.valueOf(yards));
+                        float zoomLevel = getZoomLevel(yards);
+                        Log.e("Location", startLat + "  " + startLng + " " + endLat + " " + endLng);
+
+                        lstLatLngRoute.add(Start);
+                        lstLatLngRoute.add(End);
+
+                        zoomRoute(mMap, lstLatLngRoute);
+                    }
+
+
+
+
+                }else{
+                    Log.e("SnapShot", "DoesNot Exitst");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+
+
+
+
+
 
 }

@@ -68,8 +68,10 @@ public class SigninActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                String uid = mAuth.getUid();
                                 Toast.makeText(getApplicationContext(), "LOGGED IN", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SigninActivity.this, SelectGolfCourseActivity.class);
+                                Intent intent = new Intent(SigninActivity.this, ProfileActivity.class);
+                                intent.putExtra("uid", uid);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             }
