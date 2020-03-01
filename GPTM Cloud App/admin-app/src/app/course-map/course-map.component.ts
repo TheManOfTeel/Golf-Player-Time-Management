@@ -21,7 +21,6 @@ export class CourseMapComponent implements OnInit {
   courseName: string;
 
   map: any;
-  holePoly: any;
 
   // Google maps action controls
   zoomControl: boolean;
@@ -97,7 +96,6 @@ export class CourseMapComponent implements OnInit {
     drawingManager.setMap(map);
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
       myPolygon = polygon;
-      this.holePoly = polygon.getPath().getArray();
       const path = polygon.getPath();
       const coordinates = [];
 
@@ -157,15 +155,4 @@ export class CourseMapComponent implements OnInit {
   //     }
   //   });
   // }
-
-  // getPlayerLocation() {
-  //   // Pull in uploaded coordinates
-  //   return firebase.database().ref('/MyLocation/').once('value').then(function(snapshot) {
-  //     // All the data is being pulled here. Assign it a value then it can be shown in the front end.
-  //     const data = snapshot.val();
-  //     console.log(data);
-  //     return data;
-  //   });
-  // }
-
 }
