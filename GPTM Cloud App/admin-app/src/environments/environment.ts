@@ -9,7 +9,7 @@ export const environment = {
 };
 
 const config = {
-  apiKey: 'AIzaSyBGSWOPuiXi-GbwqdCZ4WNxsbq0F4YshGM',
+  apiKey: 'YOUR_KEY',
   authDomain: 'golf-player-time-management.firebaseapp.com',
   databaseURL: 'https://golf-player-time-management.firebaseio.com',
   projectId: 'golf-player-time-management',
