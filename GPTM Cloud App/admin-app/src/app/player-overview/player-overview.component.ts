@@ -29,7 +29,7 @@ getCourseName() {
 // size$: BehaviorSubject<string|null>;
 
   constructor(public db: AngularFireDatabase) {
-    this.items = db.list('Request/Kensington Metropark Golf Course').valueChanges();
+    // this.items = db.list('Request/' + this.courseName).valueChanges();
    /*
    this.items$ = this.size$.pipe(
     switchMap(size =>
@@ -41,5 +41,11 @@ getCourseName() {
   */
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCourseName()
+    .then(val => {
+      this.courseName = val;
+      this.items = this.db.list('Request/' + this.courseName).valueChanges();
+    });
+  }
 }
