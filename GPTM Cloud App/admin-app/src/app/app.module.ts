@@ -7,6 +7,10 @@ import { AuthGuard } from './authentication/auth.guard';
 import { UserService } from './services/user.service';
 
 import { AngularFireModule } from '@angular/fire';
+
+
+
+
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
@@ -66,6 +70,7 @@ import { Hole15Component } from './course-overview/hole-info/hole15/hole15.compo
 import { Hole16Component } from './course-overview/hole-info/hole16/hole16.component';
 import { Hole17Component } from './course-overview/hole-info/hole17/hole17.component';
 import { Hole18Component } from './course-overview/hole-info/hole18/hole18.component';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -113,6 +118,7 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
     AngularFireModule.initializeApp(environment),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
