@@ -16,4 +16,10 @@
 
 .expander {
     text-align: right;
+    margin-bottom: 1%;
+}
+
+.accordionContent {
+    font-weight: 500;
+    font-size: medium;
 }

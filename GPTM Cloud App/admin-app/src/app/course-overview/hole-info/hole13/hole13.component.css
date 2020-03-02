@@ -1,5 +1,4 @@
 .main-div {
-    height: 87vh;
     text-align: center;
     font-size: medium;
 }
@@ -62,8 +61,7 @@
 }
 
 .edit {
-    display: inline-block;
-    float: right;
+    float: inline-end;
 }
 
 .editForm {

@@ -7,6 +7,10 @@ import { AuthGuard } from './authentication/auth.guard';
 import { UserService } from './services/user.service';
 
 import { AngularFireModule } from '@angular/fire';
+
+
+
+
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
@@ -47,6 +51,7 @@ import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { ItemFormComponent } from './items/item-form/item-form.component';
 import { CourseMapComponent } from './course-map/course-map.component';
 import { AgmCoreModule } from '@agm/core';
+import { AgmDrawingModule } from '@agm/drawing';
 import { Hole01Component } from './course-overview/hole-info/hole01/hole01.component';
 import { Hole02Component } from './course-overview/hole-info/hole02/hole02.component';
 import { Hole03Component } from './course-overview/hole-info/hole03/hole03.component';
@@ -65,6 +70,7 @@ import { Hole15Component } from './course-overview/hole-info/hole15/hole15.compo
 import { Hole16Component } from './course-overview/hole-info/hole16/hole16.component';
 import { Hole17Component } from './course-overview/hole-info/hole17/hole17.component';
 import { Hole18Component } from './course-overview/hole-info/hole18/hole18.component';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -105,12 +111,14 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_KEY',
-      libraries: ['places']
+      libraries: ['places', 'drawing', 'geometry']
     }),
+    AgmDrawingModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
@@ -130,8 +138,9 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
     MatDividerModule,
     MatStepperModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
   ],
+  entryComponents: [CourseMapComponent],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]
 })

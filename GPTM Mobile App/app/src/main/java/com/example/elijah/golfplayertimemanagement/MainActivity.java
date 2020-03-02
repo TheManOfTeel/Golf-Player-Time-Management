@@ -83,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ProfileActivityIntent(){
-        Intent intent = new Intent(MainActivity.this, SelectGolfCourseActivity.class);
+        String UserID = mAuth.getUid();
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        intent.putExtra("uid", UserID);
         startActivity(intent);
         finish();
     }

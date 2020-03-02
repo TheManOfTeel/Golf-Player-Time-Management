@@ -29,17 +29,14 @@
         android:id="@+id/ViewCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="See Game History"
+        android:text="View Course"
         android:layout_below="@id/StartGame"
         />
-
-
-
     <Button
-        android:id="@+id/GameHistorybtn"
+        android:id="@+id/JoinGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="See Game History"
+        android:text="Join Game"
         android:layout_below="@id/ViewCourse"
         />
 

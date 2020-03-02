@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
   golfCourse = '';
+  geoLocation: any;
   userId: any;
   email: '';
   password: '';
@@ -191,6 +192,8 @@ export class RegisterComponent implements OnInit {
   writeHoleData(golfCourse) {
     firebase.database().ref('GolfCourse/' + this.course).set({
       golfCourse: this.course,
+      latitude: this.latitude,
+      longitude: this.longitude
     });
     for (this.i = 1; this.i <= this.selectedNumber; this.i++) {
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i).set({
@@ -198,25 +201,25 @@ export class RegisterComponent implements OnInit {
         Tips: 'No tips set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Red_Circle').set({
-        Description: "Men's professional tee.",
+        Description: "Men's professional tee",
         Tips: 'No description set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Blue_Square').set({
-        Description: "Men's average tee.",
+        Description: "Men's average tee",
         Tips: 'No description set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Yellow_Triangle').set({
-        Description: "Women's professional tee.",
+        Description: "Women's professional tee",
         Tips: 'No description set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Pink_Diamond').set({
-        Description: "Women's average tee.",
+        Description: "Women's average tee",
         Tips: 'No description set',
         Yards: 'No distance set',
         Par: 'No par set',
@@ -270,15 +273,15 @@ export class RegisterComponent implements OnInit {
       this.invalid = null;
     }
     if (!this.course.includes('Golf')) {
-      this.invalid = 'Not a golf course';
+      this.notACourse = 'Not a golf course';
       this.alreadyExists = null;
       this.errorMessage = null;
       this.noMatch = null;
     }
-    if (this.courseData != null && this.course.includes('Golf')) {
+    if (this.courseData != null && !this.course.includes('Golf')) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = null;
-      this.invalid = 'Not a golf course';
+      this.notACourse = 'Not a golf course';
       this.errorMessage = null;
     }
     if (this.courseData != null && this.password !== this.password2) {
@@ -287,16 +290,16 @@ export class RegisterComponent implements OnInit {
       this.invalid = null;
       this.errorMessage = null;
     }
-    if (this.course.includes('Golf') && this.password !== this.password2) {
+    if (!this.course.includes('Golf') && this.password !== this.password2) {
       this.alreadyExists = null;
       this.noMatch = "Passwords don't match";
-      this.invalid = 'Not a golf course';
+      this.notACourse = 'Not a golf course';
       this.errorMessage = null;
     }
-    if (this.courseData != null && this.course.includes('Golf') && this.password !== this.password2) {
+    if (this.courseData != null && !this.course.includes('Golf') && this.password !== this.password2) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = "Passwords don't match";
-      this.invalid = 'Not a golf course';
+      this.notACourse = 'Not a golf course';
       this.errorMessage = null;
     }
     /* tslint:enable:quotemark */

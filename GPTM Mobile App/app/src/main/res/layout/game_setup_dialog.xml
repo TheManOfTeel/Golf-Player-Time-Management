@@ -23,11 +23,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameSetUpHeader"
         android:orientation="vertical"
+        android:layout_centerHorizontal="true"
         >
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
             <RadioButton
                 android:id="@+id/BlueSquare"
                 android:layout_width="wrap_content"

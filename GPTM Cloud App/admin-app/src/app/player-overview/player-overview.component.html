@@ -8,12 +8,14 @@
     <mat-accordion #accordion="matAccordion" [multi]="true">
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>Player Requests</mat-expansion-panel-header>
-            <p>This is where the pending requests will go</p>
+            <p *ngFor="let item of items | async">
+                {{ item | json }} 
+               </p>
         </mat-expansion-panel>
-        <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>Player Location</mat-expansion-panel-header>
-            <app-course-map></app-course-map>
-        </mat-expansion-panel>
+        <!-- <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>Player Location</mat-expansion-panel-header> -->
+            <!-- <app-course-map></app-course-map> -->
+        <!-- </mat-expansion-panel> -->
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>Active Player List</mat-expansion-panel-header>
             <p>This is where the active player table will go</p>

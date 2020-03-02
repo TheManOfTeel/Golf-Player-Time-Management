@@ -10,9 +10,22 @@
 }
 
 agm-map {
-    height: 300px;
+    height: 500px;
 }
 
-.search {
-    width: 300px;
+.map {
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.btn-default {
+    display: inline-block;
+    float: left;
+}
+
+.btn-close {
+    display: inline-block;
+    float: right;
 }
