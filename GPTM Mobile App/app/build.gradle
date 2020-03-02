@@ -32,6 +32,7 @@ allprojects {
 dependencies {
     repositories {
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -53,7 +54,7 @@ dependencies {
     //implementation 'com.firebase:geofire-android:3.0.0'
     implementation 'com.karumi:dexter:5.0.0'
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
-    implementation 'com.google.android.material:material:<version>'
+    implementation 'com.google.android.material:material:1.0'
 
 
 }

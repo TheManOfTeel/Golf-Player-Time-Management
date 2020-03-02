@@ -9,17 +9,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,6 +62,14 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
             header.setText("Welcome to " + CourseName);
         }
 
+        Button joingame = (Button) findViewById(R.id.JoinGame);
+        joingame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showJoinGameDialog();
+            }
+        });
+
 
 
 
@@ -67,7 +81,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!CourseName.equals(null)) {
-                   CheckRequestStatus();
+                   SetUpGame();
                 }
             }
         });
@@ -80,11 +94,6 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
 
 
@@ -117,16 +126,17 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         finish();
     }
 
-    private void showUpdateDialog(){
+    private void showGameSetUpUpdateDialog(){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
         LayoutInflater inflate = getLayoutInflater();
 
-        final View dialogView = inflate.inflate(R.layout.update_dialog, null);
+        final View dialogView = inflate.inflate(R.layout.game_setup_dialog, null);
         dialogBuilder.setView(dialogView);
 
 
         Button startgameButton = (Button)dialogView.findViewById(R.id.StartGame);
+
 //        RadioButton blue = (RadioButton) findViewById(R.id.BlueSquare);
 //        RadioButton pink;
 //        RadioButton Yellow;
@@ -157,13 +167,14 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
                 Toast.makeText(GolfCourseHomeActivity.this, difficulty, Toast.LENGTH_SHORT).show();
 
-
                 myRef.child("Games").child(UniqueKey).child("CurrentHole").setValue("Hole1");
                 myRef.child("Games").child(UniqueKey).child("CourseID").setValue(CourseName);
                 myRef.child("Games").child(UniqueKey).child("Date").setValue(currentDate);
                 myRef.child("Games").child(UniqueKey).child("Time Started").setValue(currentTime);
                 myRef.child("Games").child(UniqueKey).child("CurrentHole").setValue("Hole1");
-                myRef.child("Games").child(UniqueKey).child("Players").child(Uid).child("Score").child("Hole").child("Hole1").setValue(0);
+                myRef.child("Players").child(Uid).child("CourseID").setValue(CourseName);
+                myRef.child("Players").child(Uid).child("GameID").setValue(UniqueKey);
+                myRef.child("Players").child(Uid).child("score").child("Hole").child("Hole1").setValue(0);
 
 
 
@@ -174,6 +185,79 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
                 intent.putExtra("Difficulty", difficulty);
                 startActivity(intent);
                 finish();
+
+
+            }
+        });
+
+    }
+
+    private void showJoinGameDialog(){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflate = getLayoutInflater();
+
+        final View dialogView = inflate.inflate(R.layout.join_game, null);
+        dialogBuilder.setView(dialogView);
+
+        EditText Inputemail = (EditText)dialogView.findViewById(R.id.JoinGameEmail);
+        Button joingamebtn = (Button)dialogView.findViewById(R.id.JoinGamebtn);
+        ArrayList<Users> users = new ArrayList<>();
+        ArrayList<Game> games = new ArrayList<>();
+
+
+        Log.e("dialog", CourseName );
+        Log.e("dialog", Uid );
+
+        dialogBuilder.setTitle("Join Game");
+        dialogBuilder.setCancelable(true);
+
+        AlertDialog alertDialog = dialogBuilder.create();
+
+        alertDialog.show();
+
+        joingamebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            String PlayerID = "";
+
+                            for (DataSnapshot ds : dataSnapshot.child("Users").getChildren()) {
+                                String ID = ds.getKey();
+                                String email = ds.child("email").getValue().toString();
+                                String isAdmin = ds.child("isAdmin").getValue().toString();
+                                Users user = new Users(ID, email, isAdmin);
+                                users.add(user);
+
+                            }
+
+                            Log.e("Message2", users.toString());
+                            for(int i = 0; i< users.size(); i++){
+                                if(Inputemail.getText().toString().trim().equals(users.get(i).email)){
+                                    PlayerID = users.get(i).Uid;
+                                }
+                            }
+                            Log.e("PlayerID", PlayerID);
+
+                            String PlayersCourse = dataSnapshot.child("Players").child(PlayerID).child("CourseID").getValue().toString();
+                            String PlayersGameID = dataSnapshot.child("Players").child(PlayerID).child("GameID").getValue().toString();
+
+                            if(PlayersCourse.equals(CourseName)){
+                                myRef.child("Players").child(mAuth.getUid()).child("CourseID").setValue(CourseName);
+                                myRef.child("Players").child(mAuth.getUid()).child("GameID").setValue(PlayersGameID);
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
 
             }
@@ -214,9 +298,8 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
     }
 
 
-    public void CheckRequestStatus(){
-
-       showUpdateDialog();
+    public void SetUpGame(){
+       showGameSetUpUpdateDialog();
     }
 
 }

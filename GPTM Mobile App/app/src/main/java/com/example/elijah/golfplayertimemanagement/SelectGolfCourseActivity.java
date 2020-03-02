@@ -45,14 +45,15 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectgolfcourse);
-        getSupportActionBar().setTitle("SelectGolfCOurseActivity");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        search = (EditText)findViewById(R.id.GolfCourseSearch);
         ReadCourse();
         listView = (ListView)findViewById(R.id.CourseList);
         courseAdapter = new CourseAdapter(this, courses);
         listView.setAdapter(courseAdapter);
         listView.setTextFilterEnabled(true);
+        getSupportActionBar().setTitle("SelectGolfCOurseActivity");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        search = (EditText)findViewById(R.id.GolfCourseSearch);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -92,16 +93,17 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String ID = ds.getKey();
+                        String name = ds.child("Name").getValue(String.class);
+                        GolfCourse course = new GolfCourse(ID, name);
+                        courses.add(course);
+                    }
 
-
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    String ID = ds.getKey();
-                    String name = ds.child("Name").getValue(String.class);
-                    GolfCourse course = new GolfCourse(ID,name);
-                    courses.add(course);
-                }
-                for(int i = 0; i < courses.size(); i++){
-                    Log.e("GOlfCourseList",courses.get(i).toString());
+                    for (int i = 0; i < courses.size(); i++) {
+                        Log.e("GOlfCourseList", courses.get(i).toString());
+                    }
                 }
             }
 
@@ -113,7 +115,29 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     }
 
 
-//    private void loadInfo(){
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() == null){
+            Intent intent = new Intent(SelectGolfCourseActivity.this, PresentationActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        if(courseAdapter.isEmpty()){
+            listView.setAdapter(courseAdapter);
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        courseAdapter.clear();
+    }
+
+    //    private void loadInfo(){
 //
 //    myRef.addValueEventListener(new ValueEventListener() {
 //        @Override
