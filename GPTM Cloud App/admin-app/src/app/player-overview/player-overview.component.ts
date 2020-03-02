@@ -16,25 +16,23 @@ export class PlayerOverviewComponent implements OnInit {
 
 courseName: any;
 
- items: Observable<any[]>;
+items: Observable<any[]>;
 
- getCourseName() {
+getCourseName() {
   const userId = firebase.auth().currentUser.uid;
   return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
     const golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
     return golfCourse;
   });
 }
-//items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
-//size$: BehaviorSubject<string|null>;
+// items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+// size$: BehaviorSubject<string|null>;
 
-  constructor(public db: AngularFireDatabase) { 
-   
-   this.items = db.list('Request/Kensington Metropark Golf Course').valueChanges();
-
+  constructor(public db: AngularFireDatabase) {
+    this.items = db.list('Request/Kensington Metropark Golf Course').valueChanges();
    /*
    this.items$ = this.size$.pipe(
-    switchMap(size => 
+    switchMap(size =>
       db.list('Request', ref =>
         size ? ref.orderByChild(this.getCourseName().toString()).equalTo(size) : ref
       ).snapshotChanges()
@@ -43,11 +41,5 @@ courseName: any;
   */
   }
 
-  ngOnInit() {
-  
-
-  }
-
-  
-
+  ngOnInit() {}
 }
