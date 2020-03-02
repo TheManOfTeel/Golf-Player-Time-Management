@@ -110,7 +110,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     BrowserModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBGSWOPuiXi-GbwqdCZ4WNxsbq0F4YshGM',
+      apiKey: 'YOUR_KEY',
       libraries: ['places', 'drawing', 'geometry']
     }),
     AgmDrawingModule,
