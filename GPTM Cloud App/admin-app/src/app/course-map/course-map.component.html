@@ -3,7 +3,7 @@
     <button mat-icon-button class="btn-close" (click)="close()"><mat-icon>close</mat-icon></button>
     <button mat-icon-button class="btn-default" (click)="savePoly()"><mat-icon>save</mat-icon></button>
     <button mat-icon-button class="btn-default" id="delete-button" (click)="resetMap()"><mat-icon>refresh</mat-icon></button>
-    <h2>Draw hole boundaries</h2>
+    <h2>Mark the hole then draw the hole's boundaries</h2>
   </div>
   <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [fullscreenControl]="fullscreenControl"
   [mapTypeId]="mapTypeId" (mapReady)="onMapReady($event)" id="map">

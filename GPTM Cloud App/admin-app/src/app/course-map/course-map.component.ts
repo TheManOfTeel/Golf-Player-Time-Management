@@ -54,7 +54,7 @@ export class CourseMapComponent implements OnInit {
         this.map = this.mapsAPILoader.load().then(() => {
           this.latitude = data.latitude;
           this.longitude = data.longitude;
-          this.zoom = 14;
+          this.zoom = 15;
           this.fullscreenControl = true;
           this.mapTypeId = 'hybrid';
         });
@@ -99,15 +99,16 @@ export class CourseMapComponent implements OnInit {
     drawingManager.setDrawingMode(null);
 
     // Place Marker
-    var marker;
+    let marker;
     google.maps.event.addListener(map, 'click', function(event) {
       placeMarker(event.latLng);
-      var lat = marker.getPosition().lat();
-      var lng = marker.getPosition().lng();
+      const lat = marker.getPosition().lat();
+      const lng = marker.getPosition().lng();
       const holeLocation = [];
+      /* tslint:disable:object-literal-shorthand */
       holeLocation.push({
         lat: lat,
-        long: lng
+        lng: lng
       });
       markerData = holeLocation;
       drawingManager.setDrawingMode('polygon');
@@ -119,7 +120,8 @@ export class CourseMapComponent implements OnInit {
             map: map
         });
       }
-      else {
+      /* tslint:enable:object-literal-shorthand */
+      if (marker != null) {
         marker.setPosition(location);
       }
     }
@@ -143,9 +145,16 @@ export class CourseMapComponent implements OnInit {
       drawingManager.setDrawingMode(null);
 
       // To hide controls
-      // drawingManager.setOptions({
-      //   drawingControl: false,
-      // });
+      drawingManager.setOptions({
+        drawingControl: false,
+      });
+    });
+
+    google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', function() {
+      // Bring back controls to allow the user to try again
+      drawingManager.setOptions({
+        drawingControl: true,
+      });
     });
   }
 
