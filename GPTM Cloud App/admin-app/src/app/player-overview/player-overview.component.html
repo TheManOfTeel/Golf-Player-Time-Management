@@ -18,7 +18,10 @@
         <!-- </mat-expansion-panel> -->
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>Active Player List</mat-expansion-panel-header>
-            <p>This is where the active player table will go</p>
+            <!-- <p>This is where the active player table will go</p> -->
+            <p *ngFor="let player of players | async">
+                {{ player | json }} 
+               </p>
         </mat-expansion-panel>
     </mat-accordion>
 </div>

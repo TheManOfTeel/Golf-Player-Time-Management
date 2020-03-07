@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription, BehaviorSubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
+import { Observable } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/database';
 import 'firebase/database';
-import { AngularFirestore } from '@angular/fire/firestore';
 import 'firebase/firestore';
 import * as firebase from 'firebase';
 
@@ -17,6 +15,7 @@ export class PlayerOverviewComponent implements OnInit {
 courseName: any;
 
 items: Observable<any[]>;
+players: Observable<any[]>;
 
 getCourseName() {
   const userId = firebase.auth().currentUser.uid;
@@ -46,6 +45,7 @@ getCourseName() {
     .then(val => {
       this.courseName = val;
       this.items = this.db.list('Request/' + this.courseName).valueChanges();
+      this.players = this.db.list('Games').valueChanges();
     });
   }
 }
