@@ -90,7 +90,9 @@ export class CourseMapComponent implements OnInit {
       },
       polygonOptions: {
         draggable: false,
-        editable: false
+        editable: false,
+        clickable: false,
+        fillColor: 'green'
       },
       drawingMode: google.maps.drawing.OverlayType.POLYGON
     };
@@ -111,7 +113,6 @@ export class CourseMapComponent implements OnInit {
         lng: lng
       });
       markerData = holeLocation;
-      drawingManager.setDrawingMode('polygon');
     });
     function placeMarker(location) {
       if (marker == null) {
