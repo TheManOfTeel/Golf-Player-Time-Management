@@ -45,6 +45,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
@@ -139,6 +140,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     MatStepperModule,
     MatSidenavModule,
     MatListModule,
+    MatRadioModule,
   ],
   entryComponents: [CourseMapComponent],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
