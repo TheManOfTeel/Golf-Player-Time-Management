@@ -115,16 +115,30 @@ export class CourseMapComponent implements OnInit {
       });
       markerData = holeLocation[0];
     });
+
+    // Marker image
+    let image = 'https://img.icons8.com/color/48/000000/map-pin.png';
     function placeMarker(location) {
       if (marker == null) {
         marker = new google.maps.Marker({
             position: location,
-            map: map
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: image
         });
       }
       /* tslint:enable:object-literal-shorthand */
       if (marker != null) {
         marker.setPosition(location);
+      }
+    }
+
+    // Marker drop animation
+    function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
       }
     }
 
