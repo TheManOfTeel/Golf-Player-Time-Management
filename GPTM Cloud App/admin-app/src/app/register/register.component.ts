@@ -207,25 +207,25 @@ export class RegisterComponent implements OnInit {
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Red_Circle').set({
         Description: "Men's professional tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Blue_Square').set({
         Description: "Men's average tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Yellow_Triangle').set({
         Description: "Women's professional tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Pink_Diamond').set({
         Description: "Women's average tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });

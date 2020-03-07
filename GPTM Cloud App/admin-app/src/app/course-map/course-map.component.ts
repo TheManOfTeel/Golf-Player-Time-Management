@@ -92,7 +92,8 @@ export class CourseMapComponent implements OnInit {
         draggable: false,
         editable: false,
         clickable: false,
-        fillColor: 'green'
+        fillColor: 'green',
+        strokeColor: 'yellow'
       },
       drawingMode: google.maps.drawing.OverlayType.POLYGON
     };
@@ -112,7 +113,7 @@ export class CourseMapComponent implements OnInit {
         lat: lat,
         lng: lng
       });
-      markerData = holeLocation;
+      markerData = holeLocation[0];
     });
     function placeMarker(location) {
       if (marker == null) {
@@ -162,8 +163,8 @@ export class CourseMapComponent implements OnInit {
   savePoly() {
     const geoFence = [];
     geoFence.push({
-      hole: markerData,
-      courseOutline: coordinateData
+      Hole: markerData,
+      CourseOutline: coordinateData
     });
     this.dialogRef.close(geoFence);
   }

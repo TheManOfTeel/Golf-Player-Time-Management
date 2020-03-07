@@ -288,7 +288,7 @@ export class Hole02Component implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.coordinates = result;
+      this.coordinates = result[0];
 
       const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole2');
       // push new data to database
