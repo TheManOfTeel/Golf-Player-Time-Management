@@ -12,41 +12,8 @@ import * as firebase from 'firebase';
 })
 
 export class PlayerOverviewComponent implements OnInit {
-  courseName: any;
 
-  items: Observable<any[]>;
-  players: Observable<any[]>;
+  constructor() {}
 
-  getCourseName() {
-    const userId = firebase.auth().currentUser.uid;
-    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
-      const golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
-      return golfCourse;
-    });
-  }
-  // items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
-  // size$: BehaviorSubject<string|null>;
-
-  constructor(
-    public db: AngularFireDatabase
-    ) {
-    // this.items = db.list('Request/' + this.courseName).valueChanges();
-   /*
-   this.items$ = this.size$.pipe(
-    switchMap(size =>
-      db.list('Request', ref =>
-        size ? ref.orderByChild(this.getCourseName().toString()).equalTo(size) : ref
-      ).snapshotChanges()
-    )
-  );
-  */
-  }
-
-  ngOnInit() {
-    this.getCourseName()
-    .then(val => {
-      this.courseName = val;
-      this.items = this.db.list('Request/' + this.courseName).valueChanges();
-    });
-  }
+  ngOnInit() {}
 }

@@ -311,9 +311,6 @@ export class RegisterComponent implements OnInit {
   }
 
   verifyGolfCourse() {
-    this.invalid = null;
-    this.valid = null;
-    this.notACourse = null;
     if (this.course != null && this.course.includes('Golf')) {
       this.checkIfExists(this.course)
       .then(data => {

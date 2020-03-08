@@ -8,9 +8,6 @@
     <mat-accordion #accordion="matAccordion" [multi]="true">
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>Player Requests</mat-expansion-panel-header>
-            <!-- <p *ngFor="let item of items | async">
-                {{ item | json }} 
-            </p> -->
             <app-requests-table></app-requests-table>
         </mat-expansion-panel>
         <!-- <mat-expansion-panel [expanded]="true">
