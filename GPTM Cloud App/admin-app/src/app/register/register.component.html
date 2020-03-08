@@ -23,12 +23,9 @@
                         </mat-select>
                     </mat-form-field> -->
                     <mat-label>Select the number of holes on your course</mat-label>
-                    <mat-radio-group
-                    class="radio-group"
-                    [(ngModel)]="selectedNumber" name="selectedNumber" formControlName="numberOfHoles">
-                    <mat-radio-button class="radio-button" *ngFor="let hole of holes" [value]="hole">
-                        {{hole}}
-                    </mat-radio-button>
+                    <mat-radio-group class="radio-group" [(ngModel)]="selectedNumber"
+                    name="selectedNumber" formControlName="numberOfHoles">
+                    <mat-radio-button class="radio-button" *ngFor="let hole of holes" [value]="hole">{{hole}}</mat-radio-button>
                     </mat-radio-group>
                 </div>
                 <div><label class="success" *ngIf="valid">{{valid}}</label></div>
@@ -40,6 +37,9 @@
                 <br>
                 <br>
                 <br>
+                <br *ngIf="!successMessage && valid && !invalid && !notACourse">
+                <br *ngIf="!successMessage && !valid && invalid && !notACourse">
+                <br *ngIf="!successMessage && !valid && !invalid && notACourse">
                 <br *ngIf="!successMessage && !valid && !invalid && !notACourse">
                 <br *ngIf="successMessage && !valid && !invalid && !notACourse">
                 <br *ngIf="successMessage && !valid && !invalid && !notACourse">

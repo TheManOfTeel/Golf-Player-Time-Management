@@ -83,8 +83,9 @@
 .radio-group {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
+    margin: auto;
     display: list-item;
+    list-style-type: none;
 }
   
 .radio-button {
