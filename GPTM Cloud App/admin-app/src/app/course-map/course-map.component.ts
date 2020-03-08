@@ -117,7 +117,7 @@ export class CourseMapComponent implements OnInit {
     });
 
     // Marker image
-    let image = 'https://img.icons8.com/color/48/000000/map-pin.png';
+    const image = 'https://img.icons8.com/color/48/000000/map-pin.png';
     function placeMarker(location) {
       if (marker == null) {
         marker = new google.maps.Marker({

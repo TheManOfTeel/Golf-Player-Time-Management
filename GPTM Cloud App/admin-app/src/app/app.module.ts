@@ -41,6 +41,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -72,6 +74,8 @@ import { Hole16Component } from './course-overview/hole-info/hole16/hole16.compo
 import { Hole17Component } from './course-overview/hole-info/hole17/hole17.component';
 import { Hole18Component } from './course-overview/hole-info/hole18/hole18.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ActivePlayerTableComponent } from './player-overview/tables/active-player-table/active-player-table.component';
+import { RequestsTableComponent } from './player-overview/tables/requests-table/requests-table.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +110,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     Hole16Component,
     Hole17Component,
     Hole18Component,
+    ActivePlayerTableComponent,
+    RequestsTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,6 +131,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     MatInputModule,
     FormsModule,
     MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     MatPaginatorModule,
     MatSortModule,
     MatCardModule,

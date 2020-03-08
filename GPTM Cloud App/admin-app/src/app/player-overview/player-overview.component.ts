@@ -10,24 +10,26 @@ import * as firebase from 'firebase';
   templateUrl: './player-overview.component.html',
   styleUrls: ['./player-overview.component.css']
 })
+
 export class PlayerOverviewComponent implements OnInit {
+  courseName: any;
 
-courseName: any;
+  items: Observable<any[]>;
+  players: Observable<any[]>;
 
-items: Observable<any[]>;
-players: Observable<any[]>;
+  getCourseName() {
+    const userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+      const golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
+      return golfCourse;
+    });
+  }
+  // items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+  // size$: BehaviorSubject<string|null>;
 
-getCourseName() {
-  const userId = firebase.auth().currentUser.uid;
-  return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
-    const golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
-    return golfCourse;
-  });
-}
-// items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
-// size$: BehaviorSubject<string|null>;
-
-  constructor(public db: AngularFireDatabase) {
+  constructor(
+    public db: AngularFireDatabase
+    ) {
     // this.items = db.list('Request/' + this.courseName).valueChanges();
    /*
    this.items$ = this.size$.pipe(
@@ -45,7 +47,6 @@ getCourseName() {
     .then(val => {
       this.courseName = val;
       this.items = this.db.list('Request/' + this.courseName).valueChanges();
-      this.players = this.db.list('Games').valueChanges();
     });
   }
 }
