@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -35,6 +35,10 @@ export class ActivePlayerTableComponent implements OnInit {
     .then(val => {
       this.playerDataSource.paginator = this.paginator;
       this.playerDataSource.sort = this.sort;
+
+      // Sort by date descending on init
+      this.sort.sort({ id: 'Date', start: 'desc', disableClear: false });
+
       this.db.list('Games/').valueChanges().subscribe(res => {
         this.playerData = res;
         this.playerDataSource.data = this.playerData;

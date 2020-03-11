@@ -5,3 +5,11 @@ table {
 .hide {
     display: none;
 }
+
+.mat-header-cell {
+    flex: 0 0 27%;
+}
+  
+.mat-cell {
+    flex: 0 0 27%;
+}

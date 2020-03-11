@@ -1,11 +1,31 @@
-<div>
-    <table mat-table [dataSource]="requestsDataSource" class="mat-elevation-z8" matSort>
+<div class="container mat-elevation-z8">
+    <table mat-table [dataSource]="requestsDataSource" matSort>
 
-        <!-- Whatever Column -->
-        <!-- <ng-container matColumnDef="">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
-          <td mat-cell *matCellDef="let element"> {{element.}} </td>
-        </ng-container> -->
+        <!-- Player Column -->
+        <ng-container matColumnDef="User">
+          <div class="mat-header-cell">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Player </mat-header-cell>
+          </div>
+          <mat-cell *matCellDef="let element"> {{element.User}} </mat-cell>
+        </ng-container>
+
+        <!-- Request Column -->
+        <ng-container matColumnDef="Request">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Request </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Request}} </mat-cell>
+        </ng-container>
+
+        <!-- Location Column -->
+        <ng-container matColumnDef="Location">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Hole Number </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Location}} </mat-cell>
+        </ng-container>
+
+        <!-- Time Column -->
+        <ng-container matColumnDef="Time">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Time </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Time}} </mat-cell>
+        </ng-container>
 
         <!-- Footer that displays if there's no data returned -->
         <ng-container matColumnDef="noData">
@@ -14,8 +34,8 @@
           </mat-footer-cell>
         </ng-container>
       
-        <tr mat-header-row *matHeaderRowDef="requestsDisplayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: requestsDisplayedColumns;"></tr>
+        <mat-header-row *matHeaderRowDef="requestsDisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: requestsDisplayedColumns;"></mat-row>
         <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(requestsDataSource!=null && requestsDataSource.data.length==0)}"></mat-footer-row>
       </table>
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

@@ -1,28 +1,28 @@
-<div>
-    <table mat-table [dataSource]="playerDataSource" class="mat-elevation-z8" matSort>
+<div class="container mat-elevation-z8">
+    <table mat-table [dataSource]="playerDataSource" matSort>
 
         <!-- Course ID Column -->
         <ng-container matColumnDef="CourseId">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Course Id </th>
-          <td mat-cell *matCellDef="let element"> {{element.CourseID}} </td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Course Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.CourseID}} </mat-cell>
         </ng-container>
       
         <!-- Current Hole Column -->
         <ng-container matColumnDef="CurrentHole">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Hole </th>
-          <td mat-cell *matCellDef="let element"> {{element.CurrentHole}} </td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Current Hole </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.CurrentHole}} </mat-cell>
         </ng-container>
       
         <!-- Date Column -->
         <ng-container matColumnDef="Date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-          <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
         </ng-container>
       
         <!-- Time Started Column -->
         <ng-container matColumnDef="TimeStarted">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Time Started </th>
-          <td mat-cell *matCellDef="let element"> {{element.TimeStarted}} </td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Time Started </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.TimeStarted}} </mat-cell>
         </ng-container>
 
          <!-- Footer that displays if there's no data returned -->
@@ -32,8 +32,8 @@
           </mat-footer-cell>
         </ng-container>
       
-        <tr mat-header-row *matHeaderRowDef="playerDisplayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: playerDisplayedColumns;"></tr>
+        <mat-header-row *matHeaderRowDef="playerDisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: playerDisplayedColumns;"></mat-row>
         <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(playerDataSource!=null && playerDataSource.data.length==0)}"></mat-footer-row>
       </table>
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

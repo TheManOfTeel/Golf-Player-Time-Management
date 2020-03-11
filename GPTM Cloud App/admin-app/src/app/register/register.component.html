@@ -88,6 +88,8 @@
                 <div><label class="error" *ngIf="noMatch">{{noMatch}}</label></div>
                 <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
                 <div><label class="error" *ngIf="notACourse">{{notACourse}}</label></div>
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && notACourse">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && !notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && invalid  && !notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && successMessage && !invalid  && !notACourse">

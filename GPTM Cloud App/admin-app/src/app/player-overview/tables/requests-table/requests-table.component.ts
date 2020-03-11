@@ -14,7 +14,7 @@ export class RequestsTableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  requestsDisplayedColumns: string[] = [];
+  requestsDisplayedColumns: string[] = ['User', 'Request', 'Location', 'Time'];
   requestsDataSource: MatTableDataSource<any> = new MatTableDataSource();
   requestsData: any;
 
@@ -33,9 +33,14 @@ export class RequestsTableComponent implements OnInit {
   ngOnInit(): void {
     this.getCourseName()
     .then(val => {
+      this.courseName = val;
       this.requestsDataSource.paginator = this.paginator;
       this.requestsDataSource.sort = this.sort;
-      this.db.list('Requests/').valueChanges().subscribe(res => {
+
+      // Sort by time desc on init
+      this.sort.sort({ id: 'Time', start: 'desc', disableClear: false });
+
+      this.db.list('Request/' + this.courseName).valueChanges().subscribe(res => {
         this.requestsData = res;
         this.requestsDataSource.data = this.requestsData;
       });
@@ -43,4 +48,9 @@ export class RequestsTableComponent implements OnInit {
   }
 
 }
-export interface RequestsData {}
+export interface RequestsData {
+  Location: string;
+  Request: string;
+  Time: string;
+  User: string;
+}
