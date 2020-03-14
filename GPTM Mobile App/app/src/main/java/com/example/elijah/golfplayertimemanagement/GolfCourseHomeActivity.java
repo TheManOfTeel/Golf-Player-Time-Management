@@ -302,6 +302,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
     public void SetUpGame(String courseName){
 
         Intent intent = new Intent(GolfCourseHomeActivity.this, GameSetUpActivity.class);
+        intent.putExtra("Activity", "GolfCourseHomeActivity");
         intent.putExtra("courseName", courseName);
         startActivity(intent);
         finish();

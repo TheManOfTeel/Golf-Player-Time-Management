@@ -29,6 +29,7 @@ public class ManageGroupActivity extends AppCompatActivity {
     private ImageView icon;
     private Button createGroup;
     private String GolfCourse;
+    private String Difficulty;
     private FirebaseAuth mAuth;
 
     @Override
@@ -45,39 +46,32 @@ public class ManageGroupActivity extends AppCompatActivity {
         String myEmail = mAuth.getCurrentUser().getEmail();
         Log.e("MyEmail", myEmail);
 
-
-        if(!getIntent().getStringExtra("courseName").equals(null)) {
-            GolfCourse = getIntent().getStringExtra("courseName");
-            Log.e("CourseName", GolfCourse);
+        Intent intent = getIntent();
+        Bundle extras = intent.getBundleExtra("bundle");
+        if(extras != null) {
+            if (extras.containsKey("courseName")) {
+                GolfCourse = extras.getString("courseName");
+                Log.e("ManageGroupActivity", GolfCourse);
+            } else {
+                Log.e("ManageGroupActivity", "Doesnt Exist");
+            }
+        }else{
+            Log.e("ManageGroupActivity", "extras is null");
         }
+
         createGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
                 Log.e("Button push", Group.toString());
-              String uniqueID =  myRef.child("Groups").child(GolfCourse).push().getKey();
-                if(!Group.isEmpty()) {
-                    myRef.child("Groups").child(GolfCourse).child(uniqueID).child(Uid).child("Score").child("Hole").child("Hole1").child("Score").setValue(0);
-                    for (int i = 0; i < Group.size(); i++) {
-                        myRef.child("Groups").child(GolfCourse).child(uniqueID).child(Group.get(i)).child("Score").child("Hole").child("Hole1").child("Score").setValue(0);
-
-                    }
-                }
 
                 Intent intent = new Intent(ManageGroupActivity.this, GameSetUpActivity.class);
-                intent.putExtra("group", uniqueID);
-                intent.putExtra("courseName", GolfCourse);
+                extras.putStringArrayList("group", Group);
+                intent.putExtras(extras);
                 startActivity(intent);
                 finish();
             }
         });
-
-
-
-
-
-
 
 
         myRef.child("Users").addValueEventListener(new ValueEventListener() {
@@ -131,12 +125,6 @@ public class ManageGroupActivity extends AppCompatActivity {
               Log.e("Id", Group.toString());
             }
         });
-
-
-
-
-
-
 
     }
 }

@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManageGroupActivity"></activity>
+        <activity android:name=".SelectDifficultyActivity"></activity>
+        <activity android:name=".ManageGroupActivity" />
         <activity android:name=".GameSetUpActivity" />
         <activity android:name=".ProfileActivity" />
         <!--
