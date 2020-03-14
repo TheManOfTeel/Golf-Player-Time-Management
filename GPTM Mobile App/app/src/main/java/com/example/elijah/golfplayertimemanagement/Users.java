@@ -3,14 +3,13 @@ package com.example.elijah.golfplayertimemanagement;
 public class Users {
     String Uid;
     String email;
-    String isAdmin;
 
+    public Users() {
+    }
 
-    public Users(String uid, String email,  String isAdmin) {
+    public Users(String uid, String email) {
         Uid = uid;
         this.email = email;
-
-        this.isAdmin = isAdmin;
 
     }
 
@@ -32,14 +31,6 @@ public class Users {
 
 
 
-    public String getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(String isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
 
 
     @Override
@@ -47,7 +38,6 @@ public class Users {
         return "Users{" +
                 "Uid='" + Uid + '\'' +
                 ", email='" + email + '\'' +
-                ", isAdmin='" + isAdmin + '\'' +
                 '}';
     }
 }

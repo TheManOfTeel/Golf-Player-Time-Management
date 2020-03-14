@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_centerInParent="true"
+
+    >
+
+    <ImageView
+        android:id="@+id/personIcon"
+        android:paddingLeft="10dp"
+        android:src="@drawable/ic_person_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        />
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_gravity="center_vertical"
+        android:text="email@email.com"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:textSize="16dp"
+
+        />
+
+
+    <ImageView
+        android:id="@+id/addIcon"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_add_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+
+
+</LinearLayout>
