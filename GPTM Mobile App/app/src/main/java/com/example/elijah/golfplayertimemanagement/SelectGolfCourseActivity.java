@@ -81,6 +81,7 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.e("ItemClicked", courses.get(i).toString());
                 Intent intent = new Intent(SelectGolfCourseActivity.this, GolfCourseHomeActivity.class);
+                intent.putExtra("Activity", "SelectGolfCourseActivity");
                 intent.putExtra("GolfCourseID", courses.get(i).getID());
                 startActivity(intent);
                 finish();
