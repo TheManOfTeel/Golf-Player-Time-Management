@@ -25,6 +25,7 @@
     "@angular/router": "~9.0.6",
     "@material/fab": "^5.1.0",
     "@types/jquery": "^3.3.33",
+    "acorn": "^7.1.1",
     "firebase": "^7.9.3",
     "firebase-functions": "^3.3.0",
     "rxjs": "^6.5.4",
