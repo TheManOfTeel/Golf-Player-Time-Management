@@ -5,16 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './authentication/auth.guard';
 import { UserService } from './services/user.service';
-
 import { AngularFireModule } from '@angular/fire';
-
-
-
-
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-
 import { rootRouterConfig } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';

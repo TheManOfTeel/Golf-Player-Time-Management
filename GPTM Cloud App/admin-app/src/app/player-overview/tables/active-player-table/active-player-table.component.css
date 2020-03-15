@@ -7,9 +7,9 @@ table {
 }
 
 .mat-header-cell {
-    flex: 0 0 27%;
+    flex: 0 0 45%;
 }
   
 .mat-cell {
-    flex: 0 0 27%;
+    flex: 0 0 45%;
 }
