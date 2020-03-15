@@ -3,6 +3,7 @@ package com.example.elijah.golfplayertimemanagement;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,7 +23,7 @@ public class Game3Activity extends AppCompatActivity  {
     private DatabaseReference myRef;
     private FirebaseDatabase database;
     private FirebaseAuth mAuth;
-    private Bundle bundle = null;
+    private Bundle bundle;
     private LocationCallback locationCallback;
 
     @Override
@@ -34,10 +35,10 @@ public class Game3Activity extends AppCompatActivity  {
         bundle = getIntent().getBundleExtra("bundle");
         GameFragment defaultFragment = new GameFragment();
 
-
-
         if(bundle != null) {
             defaultFragment.setArguments(bundle);
+        }else{
+            defaultFragment.setArguments(savedInstanceState);
         }
 
 
@@ -74,17 +75,22 @@ public class Game3Activity extends AppCompatActivity  {
             switch (menuItem.getItemId()){
                 case R.id.NavHome:
                     selectedFragment = new GameFragment();
+                    Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.NavAdmin:
                     selectedFragment = new AdminFragment();
+                    Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.Navgame:
                     selectedFragment = new OverviewFragment();
+                    Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.NavNext:
                     selectedFragment = new NextHoleFragment();
+                    Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
                     break;
             }
+            selectedFragment.setArguments(bundle);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     selectedFragment).commit();

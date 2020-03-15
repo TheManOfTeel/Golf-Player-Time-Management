@@ -75,6 +75,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
             CourseName = bundle.getString("courseName");
             GameID = bundle.getString("gameID");
             Difficulty = bundle.getString("Difficulty");
+
         }
 
 
@@ -122,6 +123,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                     String yards= dataSnapshot.child(Difficulty).child("Yards").getValue().toString();
                     UIHoleNum(hole, par, yards);
                     UpdateCurrentHole(Holenum);
+
                     Toast.makeText(getContext(), hole, Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(), "Hole does not exist", Toast.LENGTH_SHORT).show();
@@ -207,6 +209,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                 Log.e("Hole Num", String.valueOf(holeNum));
                 MapHole2(holeNum, mMap);
                 MapCurrentHole(mMap, holeNum);
+
+
             }
         });
 
