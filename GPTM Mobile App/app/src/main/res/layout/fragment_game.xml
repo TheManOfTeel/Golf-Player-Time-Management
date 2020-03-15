@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity = "top"
+    >
+
+    <RelativeLayout
+        android:id="@+id/GameActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/holeStuff"
+            android:layout_width="fill_parent"
+            android:weightSum="3"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            >
+            <Button
+                android:id="@+id/fragbackhole"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Back Hole"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:elevation="10dp"
+                android:textColor="#fff"
+                android:background="#67A84C"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                />
+
+            <TextView
+                android:id="@+id/fraghole"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Hole 1"
+                android:textColor="#67A84C"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/fragnexthole"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Next Hole"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:elevation="10dp"
+                android:textColor="#fff"
+                android:background="#67A84C"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/parNyard"
+            android:layout_width="fill_parent"
+            android:weightSum="2"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/holeStuff"
+            android:orientation="horizontal"
+            android:elevation="20dp"
+            android:background="#67A84C"
+            android:layout_marginTop="20dp"
+
+            >
+
+            <TextView
+                android:id="@+id/fragpar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="par"
+                android:textColor="#fff"
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                />
+            <TextView
+                android:id="@+id/fragyards"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="yards"
+                android:textColor="#fff"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/holeButtons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_below="@id/parNyard"
+            android:orientation="horizontal"
+            android:elevation="20dp"
+            android:background="#67A84C"
+            >
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:background="#67A84C"
+            android:elevation="20dp"
+            >
+            <TextView
+                android:id="@+id/fragplayerPar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="30dp"
+                android:text="playerPar"
+                android:textColor="#fff"
+                android:layout_gravity="center_horizontal"
+                />
+            <Button
+                android:id="@+id/fragShotName"
+                android:text="Shot"
+                android:textColor="#67A84C"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="#fff"
+                android:elevation="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dragview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map3"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="com.example.polygons.PolyActivity"
+            />
+    </RelativeLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
