@@ -28,6 +28,7 @@
     "acorn": "^7.1.1",
     "firebase": "^7.9.3",
     "firebase-functions": "^3.3.0",
+    "minimist": "^1.2.5",
     "rxjs": "^6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
