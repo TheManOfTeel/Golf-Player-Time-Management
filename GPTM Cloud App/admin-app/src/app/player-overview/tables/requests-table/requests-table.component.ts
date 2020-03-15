@@ -14,17 +14,27 @@ export class RequestsTableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  requestsDisplayedColumns: string[] = ['User', 'Request', 'Location', 'Time'];
+  requestsDisplayedColumns: string[] = ['User', 'Request', 'Hole', 'Time', 'Actions'];
   requestsDataSource: MatTableDataSource<any> = new MatTableDataSource();
   requestsData: any;
 
   courseName: any;
+  index: number;
 
   getCourseName() {
     const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
       const golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
       return golfCourse;
+    });
+  }
+
+  removeRequest(i: number) {
+    const ref = firebase.database().ref('Request/' + this.courseName);
+    ref.once('value').then(function(snapshot) {
+      // Get the key and then remove the data belonging to that key
+      const key = Object.keys(snapshot.val())[i];
+      ref.child(key).remove();
     });
   }
 
@@ -40,6 +50,7 @@ export class RequestsTableComponent implements OnInit {
       // Sort by time desc on init
       this.sort.sort({ id: 'Time', start: 'desc', disableClear: false });
 
+      // Grab the requests data for the table
       this.db.list('Request/' + this.courseName).valueChanges().subscribe(res => {
         this.requestsData = res;
         this.requestsDataSource.data = this.requestsData;
@@ -49,6 +60,8 @@ export class RequestsTableComponent implements OnInit {
 
 }
 export interface RequestsData {
+  key: string;
+  Hole: string;
   Location: string;
   Request: string;
   Time: string;

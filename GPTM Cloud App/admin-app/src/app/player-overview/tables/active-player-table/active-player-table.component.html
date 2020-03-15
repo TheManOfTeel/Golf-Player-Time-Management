@@ -2,22 +2,22 @@
     <table mat-table [dataSource]="playerDataSource" matSort>
 
         <!-- Course ID Column -->
-        <ng-container matColumnDef="CourseId">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Course Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.CourseID}} </mat-cell>
+        <ng-container matColumnDef="GroupLeader">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Group Leader </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.GroupLeader}} </mat-cell>
         </ng-container>
       
         <!-- Current Hole Column -->
-        <ng-container matColumnDef="CurrentHole">
+        <ng-container matColumnDef="Location">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Current Hole </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.CurrentHole}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.Location}} </mat-cell>
         </ng-container>
       
         <!-- Date Column -->
-        <ng-container matColumnDef="Date">
+        <!-- <ng-container matColumnDef="Date">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
-        </ng-container>
+        </ng-container> -->
       
         <!-- Time Started Column -->
         <ng-container matColumnDef="TimeStarted">
@@ -28,7 +28,7 @@
          <!-- Footer that displays if there's no data returned -->
         <ng-container matColumnDef="noData">
           <mat-footer-cell *matFooterCellDef colspan="6">
-              No Active Players
+              No Active Games
           </mat-footer-cell>
         </ng-container>
       

@@ -15,16 +15,26 @@
           <mat-cell *matCellDef="let element"> {{element.Request}} </mat-cell>
         </ng-container>
 
-        <!-- Location Column -->
-        <ng-container matColumnDef="Location">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Hole Number </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.Location}} </mat-cell>
+        <!-- Hole Column -->
+        <ng-container matColumnDef="Hole">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
+          <mat-cell *matCellDef="let element"> Hole {{element.Hole}} </mat-cell>
         </ng-container>
 
         <!-- Time Column -->
         <ng-container matColumnDef="Time">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Time </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.Time}} </mat-cell>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="Actions">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Dismiss </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i=index;">
+            <button mat-icon-button color="accent" (click)="removeRequest(i)">
+              <mat-icon>check_circle_outline</mat-icon>
+            </button>
+          </mat-cell>
         </ng-container>
 
         <!-- Footer that displays if there's no data returned -->
