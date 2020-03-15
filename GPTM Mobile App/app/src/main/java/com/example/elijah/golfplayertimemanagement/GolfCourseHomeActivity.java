@@ -81,7 +81,8 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!CourseName.equals(null)) {
-                   SetUpGame();
+                    Log.e("GolfCourseHome", CourseName);
+                   SetUpGame(CourseName);
                 }
             }
         });
@@ -228,8 +229,8 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
                             for (DataSnapshot ds : dataSnapshot.child("Users").getChildren()) {
                                 String ID = ds.getKey();
                                 String email = ds.child("email").getValue().toString();
-                                String isAdmin = ds.child("isAdmin").getValue().toString();
-                                Users user = new Users(ID, email, isAdmin);
+
+                                Users user = new Users(ID, email);
                                 users.add(user);
 
                             }
@@ -298,8 +299,14 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
     }
 
 
-    public void SetUpGame(){
-       showGameSetUpUpdateDialog();
+    public void SetUpGame(String courseName){
+
+        Intent intent = new Intent(GolfCourseHomeActivity.this, GameSetUpActivity.class);
+        intent.putExtra("Activity", "GolfCourseHomeActivity");
+        intent.putExtra("courseName", courseName);
+        startActivity(intent);
+        finish();
+        //showGameSetUpUpdateDialog();
     }
 
 }
