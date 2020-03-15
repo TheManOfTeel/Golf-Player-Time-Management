@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,17 +38,18 @@ public class GameSetUpActivity extends AppCompatActivity {
     private TextView day;
     private TextView difficultybtn;
     private TextView selectedDifficulty;
-    private String activity;
+
     private String Difficulty = "";
     private String GolfCourse = "";
-    private String groupID = "";
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_set_up);
-        activity = getIntent().getStringExtra("Activity");
+
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
 
         //database references
         database = FirebaseDatabase.getInstance();
@@ -155,8 +158,23 @@ public class GameSetUpActivity extends AppCompatActivity {
         startRound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GameSetUpActivity.this, Game2Activity.class);
-                
+                String gameID = myRef.child("Games").push().getKey();
+                myRef.child("Games").child(GolfCourse).child(gameID).child("GroupLeader").setValue(currentFirebaseUser.getEmail());
+                myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("Difficulty").setValue(Difficulty);
+                myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("score").child("holes").child("hole1").setValue(0);
+                myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
+                myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
+
+                    for (int i = 0; i < groupIDs.size(); i++) {
+                        myRef.child("Games").child(GolfCourse).child(gameID).child(groupIDs.get(i)).child("score").child("holes").child("hole1").setValue(0);
+                    }
+
+                Intent intent = new Intent(GameSetUpActivity.this, Game3Activity.class);
+                extras.putString("gameID", gameID);
+                intent.putExtra("bundle", extras);
+                startActivity(intent);
+                finish();
+
             }
         });
 
@@ -235,5 +253,15 @@ public class GameSetUpActivity extends AppCompatActivity {
 
         }
         return TimeOFDay;
+    }
+
+    private String currentTime(){
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa");
+        String time = sdf.format(dt);
+        int hours = dt.getHours();
+        int min = dt.getMinutes();
+
+        return time;
     }
 }
