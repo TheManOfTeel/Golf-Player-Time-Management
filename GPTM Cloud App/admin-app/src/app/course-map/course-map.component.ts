@@ -7,6 +7,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 declare const google: any;
 let myPolygon;
 let coordinateData = [];
+let markerData = [];
+let geoFence = [];
 
 @Component({
   selector: 'app-course-map',
@@ -19,6 +21,7 @@ export class CourseMapComponent implements OnInit {
   zoom: number;
   address: string;
   courseName: string;
+  location: Location;
 
   map: any;
 
@@ -38,7 +41,7 @@ export class CourseMapComponent implements OnInit {
     private dialogRef: MatDialogRef<CourseMapComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    coordinateData = data.coordinateData;
+    geoFence = data.geoFence;
   }
 
   ngOnInit() {
@@ -51,7 +54,7 @@ export class CourseMapComponent implements OnInit {
         this.map = this.mapsAPILoader.load().then(() => {
           this.latitude = data.latitude;
           this.longitude = data.longitude;
-          this.zoom = 14;
+          this.zoom = 15;
           this.fullscreenControl = true;
           this.mapTypeId = 'hybrid';
         });
@@ -87,12 +90,59 @@ export class CourseMapComponent implements OnInit {
       },
       polygonOptions: {
         draggable: false,
-        editable: false
+        editable: false,
+        clickable: false,
+        fillColor: 'green',
+        strokeColor: 'yellow'
       },
       drawingMode: google.maps.drawing.OverlayType.POLYGON
     };
 
     const drawingManager = new google.maps.drawing.DrawingManager(options);
+    drawingManager.setDrawingMode(null);
+
+    // Place Marker
+    let marker;
+    google.maps.event.addListener(map, 'click', function(event) {
+      placeMarker(event.latLng);
+      const lat = marker.getPosition().lat();
+      const lng = marker.getPosition().lng();
+      const holeLocation = [];
+      /* tslint:disable:object-literal-shorthand */
+      holeLocation.push({
+        lat: lat,
+        lng: lng
+      });
+      markerData = holeLocation[0];
+    });
+
+    // Marker image
+    const image = 'https://img.icons8.com/color/48/000000/map-pin.png';
+    function placeMarker(location) {
+      if (marker == null) {
+        marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: image
+        });
+      }
+      /* tslint:enable:object-literal-shorthand */
+      if (marker != null) {
+        marker.setPosition(location);
+      }
+    }
+
+    // Marker drop animation
+    function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }
+
+    // Draw Polygon
     drawingManager.setMap(map);
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
       myPolygon = polygon;
@@ -111,15 +161,26 @@ export class CourseMapComponent implements OnInit {
       drawingManager.setDrawingMode(null);
 
       // To hide controls
-      // drawingManager.setOptions({
-      //   drawingControl: false,
-      // });
+      drawingManager.setOptions({
+        drawingControl: false,
+      });
+    });
+
+    google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', function() {
+      // Bring back controls to allow the user to try again
+      drawingManager.setOptions({
+        drawingControl: true,
+      });
     });
   }
 
   savePoly() {
-    console.log(coordinateData);
-    this.dialogRef.close(coordinateData);
+    const geoFence = [];
+    geoFence.push({
+      Hole: markerData,
+      CourseOutline: coordinateData
+    });
+    this.dialogRef.close(geoFence);
   }
 
   close() {
@@ -129,30 +190,4 @@ export class CourseMapComponent implements OnInit {
   resetMap() {
     myPolygon.setMap(null);
   }
-
-  // Marker action, will probably set to disbale but I'll keep this around just in case
-  // markerDragEnd($event: any) {
-  //   console.log($event);
-  //   this.latitude = $event.coords.lat;
-  //   this.longitude = $event.coords.lng;
-  //   this.getAddress(this.latitude, this.longitude);
-  // }
-
-  // For the marker
-  // getAddress(latitude, longitude) {
-  //   this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
-  //     // console.log(results);
-  //     // console.log(status);
-  //     if (status === 'OK') {
-  //       if (results[0]) {
-  //         this.zoom = 12;
-  //         this.address = results[0].formatted_address;
-  //       } else {
-  //         window.alert('No results found');
-  //       }
-  //     } else {
-  //       window.alert('Geocoder failed due to: ' + status);
-  //     }
-  //   });
-  // }
 }

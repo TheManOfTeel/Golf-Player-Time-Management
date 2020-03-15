@@ -39,26 +39,31 @@ export class RegisterComponent implements OnInit {
   };
   i: number;
   selectedNumber: number;
-  numbers: NumberOfHoles[] = [
-    {value: 1, viewValue: 1},
-    {value: 2, viewValue: 2},
-    {value: 3, viewValue: 3},
-    {value: 4, viewValue: 4},
-    {value: 5, viewValue: 5},
-    {value: 6, viewValue: 6},
-    {value: 7, viewValue: 7},
-    {value: 8, viewValue: 8},
-    {value: 9, viewValue: 9},
-    {value: 10, viewValue: 10},
-    {value: 11, viewValue: 11},
-    {value: 12, viewValue: 12},
-    {value: 13, viewValue: 13},
-    {value: 14, viewValue: 14},
-    {value: 15, viewValue: 15},
-    {value: 16, viewValue: 16},
-    {value: 17, viewValue: 17},
-    {value: 18, viewValue: 18},
-  ];
+
+  // For the radio buttons
+  holes: number[] = [9, 18];
+
+  // For the dropdown list
+  // numbers: NumberOfHoles[] = [
+    // {value: 1, viewValue: 1},
+    // {value: 2, viewValue: 2},
+    // {value: 3, viewValue: 3},
+    // {value: 4, viewValue: 4},
+    // {value: 5, viewValue: 5},
+    // {value: 6, viewValue: 6},
+    // {value: 7, viewValue: 7},
+    // {value: 8, viewValue: 8},
+    // {value: 9, viewValue: 9},
+    // {value: 10, viewValue: 10},
+    // {value: 11, viewValue: 11},
+    // {value: 12, viewValue: 12},
+    // {value: 13, viewValue: 13},
+    // {value: 14, viewValue: 14},
+    // {value: 15, viewValue: 15},
+    // {value: 16, viewValue: 16},
+    // {value: 17, viewValue: 17},
+  //   {value: 18, viewValue: 18},
+  // ];
   placeSearch: any;
   autocomplete: any;
   verified: boolean;
@@ -202,25 +207,25 @@ export class RegisterComponent implements OnInit {
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Red_Circle').set({
         Description: "Men's professional tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Blue_Square').set({
         Description: "Men's average tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Yellow_Triangle').set({
         Description: "Women's professional tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Pink_Diamond').set({
         Description: "Women's average tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });

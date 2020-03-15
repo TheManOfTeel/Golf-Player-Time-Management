@@ -79,3 +79,15 @@
 .search {
     width: 300px;
 }
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    display: list-item;
+    list-style-type: none;
+}
+  
+.radio-button {
+    margin: 5px;
+}

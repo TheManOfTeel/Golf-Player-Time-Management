@@ -5,16 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './authentication/auth.guard';
 import { UserService } from './services/user.service';
-
 import { AngularFireModule } from '@angular/fire';
-
-
-
-
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-
 import { rootRouterConfig } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -45,6 +39,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
@@ -71,6 +66,8 @@ import { Hole16Component } from './course-overview/hole-info/hole16/hole16.compo
 import { Hole17Component } from './course-overview/hole-info/hole17/hole17.component';
 import { Hole18Component } from './course-overview/hole-info/hole18/hole18.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ActivePlayerTableComponent } from './player-overview/tables/active-player-table/active-player-table.component';
+import { RequestsTableComponent } from './player-overview/tables/requests-table/requests-table.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +102,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     Hole16Component,
     Hole17Component,
     Hole18Component,
+    ActivePlayerTableComponent,
+    RequestsTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,6 +123,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     MatInputModule,
     FormsModule,
     MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     MatPaginatorModule,
     MatSortModule,
     MatCardModule,
@@ -139,6 +140,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     MatStepperModule,
     MatSidenavModule,
     MatListModule,
+    MatRadioModule,
   ],
   entryComponents: [CourseMapComponent],
   providers: [AuthService, UserService, UserResolver, AuthGuard],

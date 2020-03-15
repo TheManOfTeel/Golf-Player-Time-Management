@@ -1,0 +1,40 @@
+<div class="container mat-elevation-z8">
+    <table mat-table [dataSource]="playerDataSource" matSort>
+
+        <!-- Course ID Column -->
+        <ng-container matColumnDef="GroupLeader">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Group Leader </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.GroupLeader}} </mat-cell>
+        </ng-container>
+      
+        <!-- Current Hole Column -->
+        <ng-container matColumnDef="Location">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
+          <mat-cell *matCellDef="let element"> Hole {{element.Location}} </mat-cell>
+        </ng-container>
+      
+        <!-- Date Column -->
+        <!-- <ng-container matColumnDef="Date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
+        </ng-container> -->
+      
+        <!-- Time Started Column -->
+        <ng-container matColumnDef="TimeStarted">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Time Started </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.TimeStarted}} </mat-cell>
+        </ng-container>
+
+         <!-- Footer that displays if there's no data returned -->
+        <ng-container matColumnDef="noData">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+              No Active Games
+          </mat-footer-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="playerDisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: playerDisplayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(playerDataSource!=null && playerDataSource.data.length==0)}"></mat-footer-row>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -143,7 +143,10 @@ export class Hole11Component implements OnInit {
 
   doEdit1() {
     this.isEdit1 = true;
-    return this.isEdit1;
+    this.isEdit2 = false;
+    this.isEdit3 = false;
+    this.isEdit4 = false;
+    this.isEdit5 = false;
   }
 
   cancelEdit1() {
@@ -152,8 +155,11 @@ export class Hole11Component implements OnInit {
   }
 
   doEdit2() {
+    this.isEdit1 = false;
     this.isEdit2 = true;
-    return this.isEdit2;
+    this.isEdit3 = false;
+    this.isEdit4 = false;
+    this.isEdit5 = false;
   }
 
   cancelEdit2() {
@@ -162,8 +168,11 @@ export class Hole11Component implements OnInit {
   }
 
   doEdit3() {
+    this.isEdit1 = false;
+    this.isEdit2 = false;
     this.isEdit3 = true;
-    return this.isEdit3;
+    this.isEdit4 = false;
+    this.isEdit5 = false;
   }
 
   cancelEdit3() {
@@ -172,8 +181,11 @@ export class Hole11Component implements OnInit {
   }
 
   doEdit4() {
+    this.isEdit1 = false;
+    this.isEdit2 = false;
+    this.isEdit3 = false;
     this.isEdit4 = true;
-    return this.isEdit4;
+    this.isEdit5 = false;
   }
 
   cancelEdit4() {
@@ -182,8 +194,11 @@ export class Hole11Component implements OnInit {
   }
 
   doEdit5() {
+    this.isEdit1 = false;
+    this.isEdit2 = false;
+    this.isEdit3 = false;
+    this.isEdit4 = false;
     this.isEdit5 = true;
-    return this.isEdit5;
   }
 
   cancelEdit5() {
@@ -288,7 +303,7 @@ export class Hole11Component implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.coordinates = result;
+      this.coordinates = result[0];
 
       const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole11');
       // push new data to database

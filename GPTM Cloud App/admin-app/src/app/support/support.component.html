@@ -1,12 +1,32 @@
 <div class="main-div">
     <mat-card>
-    <h1>Golf Player Time Management Support</h1>
-    <div class="expander">
-        <button mat-raised-button color="secondary" type="button" (click)="accordion.openAll()" class="btn-default">Expand All </button>
-        <div class="divider"></div>
-        <button mat-raised-button color="secondary" type="button"  (click)="accordion.closeAll()" class="btn-default">Collapse All </button>
-    </div>
+    <!-- <h1>Golf Player Time Management Support</h1> -->
+        <div class="expander">
+            <button mat-raised-button color="secondary" type="button" (click)="accordion.openAll()" class="btn-default">Expand All </button>
+            <div class="divider"></div>
+            <button mat-raised-button color="secondary" type="button"  (click)="accordion.closeAll()" class="btn-default">Collapse All </button>
+        </div>
         <mat-accordion #accordion="matAccordion" [multi]="true">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    Managing player requests
+                </mat-expansion-panel-header>
+                <p class="accordionContent">Follow the steps below to efficiently manage player requests</p>
+                <p>On the home page click on the player overview tab</p>
+                <p>Once there, refer to the player requests card</p>
+                <p>This card shows all active requests that have been made by players at your course</p>
+                <p>If a request has been completed click on the check mark button on the right of the table</p>
+                <p>Clicking on this button will permanently remove the request so be certain that the request has been completed</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    Viewing active games
+                </mat-expansion-panel-header>
+                <p class="accordionContent">Follow the steps below to efficiently manage player requests</p>
+                <p>On the home page click on the player overview tab</p>
+                <p>Once there, refer to the active games card</p>
+                <p>This card shows all games that are currently in progress at your course</p>
+            </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     Entering information for your course
@@ -23,16 +43,17 @@
                 <mat-expansion-panel-header>
                     Geofencing holes
                 </mat-expansion-panel-header>
-                <p class="accordionContent">Follow the steps below to draw hole bondaries</p>
+                <p class="accordionContent">Follow the steps below to draw hole boundaries</p>
                 <p>Navigate to the Course Overview tab</p>
                 <p>With any hole selected from the navbar look at the general information card</p>
                 <p>Click on the map icon to launch the map</p>
-                <p>Draw the outline of the hole</p>
-                <p>Each time the map is launched it will be cleared of all previous overlays</p>
+                <p>First, place a marker on the location of the hole by clicking on the map</p>
+                <p>Next, draw the outline of the hole by clicking the polygon icon in the top left</p>
+                <p>If a mistake is made the undo button will clear the drawn overlay. The marker is always moveable</p>
                 <p>There is a fullsceen button in the top right corner, zoom controls in the bottom right, and a drag button on the top left</p>
-                <p>Pressing the undo button will clear the drawn shape</p>
-                <p>Pressing the close button will close the map window</p>
+                <p>Pressing the close button will close the map window without saving</p>
                 <p>When finished hit the save button to save the information</p>
+                <p>Each time the map is launched it will be cleared of all previous overlays</p>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>

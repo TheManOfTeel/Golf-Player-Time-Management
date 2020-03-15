@@ -13,14 +13,20 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field>
+                    <!-- For dropdown list (more scalability?) -->
+                    <!-- <mat-form-field>
                         <mat-label>Number of holes</mat-label>
-                            <mat-select [(ngModel)]="selectedNumber" name="numberOfHoles" formControlName="numberOfHoles">
-                                <mat-option *ngFor="let numberOfHoles of numbers" [value]="numberOfHoles.value">
-                                {{numberOfHoles.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                        <mat-select [(ngModel)]="selectedNumber" name="numberOfHoles" formControlName="numberOfHoles">
+                            <mat-option *ngFor="let numberOfHoles of numbers" [value]="numberOfHoles.value">
+                            {{numberOfHoles.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                    <mat-label>Select the number of holes on your course</mat-label>
+                    <mat-radio-group class="radio-group" [(ngModel)]="selectedNumber"
+                    name="selectedNumber" formControlName="numberOfHoles">
+                    <mat-radio-button class="radio-button" *ngFor="let hole of holes" [value]="hole">{{hole}}</mat-radio-button>
+                    </mat-radio-group>
                 </div>
                 <div><label class="success" *ngIf="valid">{{valid}}</label></div>
                 <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
@@ -31,6 +37,12 @@
                 <br>
                 <br>
                 <br>
+                <br *ngIf="!successMessage && valid && !invalid && !notACourse">
+                <br *ngIf="!successMessage && !valid && invalid && !notACourse">
+                <br *ngIf="!successMessage && !valid && !invalid && notACourse">
+                <br *ngIf="!successMessage && !valid && !invalid && !notACourse">
+                <br *ngIf="successMessage && !valid && !invalid && !notACourse">
+                <br *ngIf="successMessage && !valid && !invalid && !notACourse">
                 <div mat-dialog-actions class="buttons">
                     <button *ngIf="!successMessage" mat-raised-button color="primary" type="button" class="btn-default" (click)="verifyGolfCourse()">VERIFY</button>
                     <button *ngIf="successMessage" mat-raised-button color="primary" type="button" class="btn-default" (click)="verifyGolfCourse()" disabled>VERIFY</button>
@@ -76,6 +88,8 @@
                 <div><label class="error" *ngIf="noMatch">{{noMatch}}</label></div>
                 <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
                 <div><label class="error" *ngIf="notACourse">{{notACourse}}</label></div>
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && notACourse">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && !notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && invalid  && !notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && successMessage && !invalid  && !notACourse">
