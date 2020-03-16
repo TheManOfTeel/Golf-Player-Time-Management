@@ -39,7 +39,7 @@ export class ActivePlayerTableComponent implements OnInit {
       this.playerDataSource.sort = this.sort;
 
       // Sort by date descending on init
-      this.sort.sort({ id: 'Date', start: 'desc', disableClear: false });
+      this.sort.sort({ id: 'TimeStarted', start: 'desc', disableClear: false });
 
       this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
         this.playerData = res;
