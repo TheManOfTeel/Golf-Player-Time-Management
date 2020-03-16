@@ -13,7 +13,7 @@
         android:paddingTop="36dp"
         android:textColor="#000"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
         android:textSize="26dp"
         />
 
