@@ -2,6 +2,7 @@
 	<mat-sidenav #sidenav class="sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
 		<mat-nav-list>
 			<div>
+        <a *ngIf="holeWait" mat-list-item (click)="focusShowWait(true)">Course Congestion</a>
 				<a *ngIf="hole1" mat-list-item (click)="focusHole01(true)">Hole 1</a>
         <a *ngIf="hole2" mat-list-item (click)="focusHole02(true)">Hole 2</a>
         <a *ngIf="hole3" mat-list-item (click)="focusHole03(true)">Hole 3</a>
@@ -24,6 +25,7 @@
 		</mat-nav-list>
 	</mat-sidenav>
 	<div class="sidenav-content">
+    <app-wait-time *ngIf="showHoleWait"></app-wait-time>
     <app-hole01 *ngIf="showHole01"></app-hole01>
     <app-hole02 *ngIf="showHole02"></app-hole02>
     <app-hole03 *ngIf="showHole03"></app-hole03>

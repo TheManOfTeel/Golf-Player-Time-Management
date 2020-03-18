@@ -68,6 +68,7 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ActivePlayerTableComponent } from './player-overview/tables/active-player-table/active-player-table.component';
 import { RequestsTableComponent } from './player-overview/tables/requests-table/requests-table.component';
+import { WaitTimeComponent } from './course-overview/hole-info/wait-time/wait-time.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { RequestsTableComponent } from './player-overview/tables/requests-table/
     Hole18Component,
     ActivePlayerTableComponent,
     RequestsTableComponent,
+    WaitTimeComponent,
   ],
   imports: [
     BrowserModule,
