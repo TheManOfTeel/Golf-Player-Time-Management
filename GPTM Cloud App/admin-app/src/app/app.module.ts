@@ -47,6 +47,7 @@ import { ItemFormComponent } from './items/item-form/item-form.component';
 import { CourseMapComponent } from './course-map/course-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDrawingModule } from '@agm/drawing';
+import { ChartsModule } from 'ng2-charts';
 import { Hole01Component } from './course-overview/hole-info/hole01/hole01.component';
 import { Hole02Component } from './course-overview/hole-info/hole02/hole02.component';
 import { Hole03Component } from './course-overview/hole-info/hole03/hole03.component';
@@ -115,6 +116,7 @@ import { WaitTimeComponent } from './course-overview/hole-info/wait-time/wait-ti
       libraries: ['places', 'drawing', 'geometry']
     }),
     AgmDrawingModule,
+    ChartsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment),
     AngularFirestoreModule,

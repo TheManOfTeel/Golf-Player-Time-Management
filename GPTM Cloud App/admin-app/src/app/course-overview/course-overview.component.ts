@@ -42,8 +42,8 @@ export class CourseOverviewComponent implements OnInit {
 
   displayContent = false;
 
-  showHoleWait = false;
-  showHole01 = true;
+  showHoleWait = true;
+  showHole01 = false;
   showHole02 = false;
   showHole03 = false;
   showHole04 = false;

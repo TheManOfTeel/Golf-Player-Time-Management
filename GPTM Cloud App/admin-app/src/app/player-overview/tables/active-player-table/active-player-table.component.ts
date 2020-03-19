@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -36,14 +36,14 @@ export class ActivePlayerTableComponent implements OnInit {
     let i = 0;
     firebase.database().ref('GolfCourse/' + courseName + '/Holes/Hole' + holeNum + '/Blue_Square').once('value').then(function(snapshot) {
       holePar = snapshot.val().Par;
-      let holeref = firebase.database().ref('Games/' + courseName);
+      const holeref = firebase.database().ref('Games/' + courseName);
       holeref.orderByChild('Location').equalTo(holeNum).on('child_added', function() {
         holeQueue = i;
         i++;
         const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
         queueRef.update({
           Queue: holeQueue,
-          WaitTime: holePar * 3.2 * holeQueue
+          WaitTime: (holePar * 3.2 * holeQueue).toFixed(0)
         });
       });
     });
@@ -65,6 +65,7 @@ export class ActivePlayerTableComponent implements OnInit {
       this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
         this.playerData = res;
         this.playerDataSource.data = this.playerData;
+        // Estimate wait times and set the waiting queue
         for (let i = 1; i <= 18; i++) {
           this.countHoleQueue(this.courseName, i);
         }

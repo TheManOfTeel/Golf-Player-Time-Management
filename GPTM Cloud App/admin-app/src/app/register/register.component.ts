@@ -231,7 +231,7 @@ export class RegisterComponent implements OnInit {
       });
       firebase.database().ref('GolfCourse/' + this.course + '/WaitTimes/Hole' + this.i).set({
         Queue: 0,
-        WaitTime:0
+        WaitTime: 0
       });
     }
  }

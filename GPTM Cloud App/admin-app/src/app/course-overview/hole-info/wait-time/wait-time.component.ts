@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-wait-time',
@@ -12,8 +15,52 @@ export class WaitTimeComponent implements OnInit {
 
   courseName: any;
   info: any;
-  hole9 = false;
   hole18 = false;
+  waitTimes: any;
+
+  // Init the graph
+  public lineChartData: ChartDataSets[] = [
+    { data: [], label: 'Minutes' },
+  ];
+  public queueData: ChartDataSets[] = [
+    {data: [], label: 'Groups'}
+  ];
+  public lineChartLabels: Label[] = [];
+  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+    responsive: true,
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      xAxes: [{}],
+      yAxes: [
+        {
+          id: 'y-axis-0',
+          position: 'left',
+        },
+      ]
+    },
+    annotation: {
+      annotations: [
+        { },
+      ],
+    },
+  };
+  public lineChartColors: Color[] = [
+    { // red
+      backgroundColor: 'rgba(255,0,0,0.3)',
+      borderColor: 'red',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+  public lineChartPlugins = [pluginAnnotations];
+
+  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
+
+  constructor(public db: AngularFireDatabase) { }
 
   getCourseName() {
     const userId = firebase.auth().currentUser.uid;
@@ -24,21 +71,73 @@ export class WaitTimeComponent implements OnInit {
   }
 
   // Read the number of holes
-  getCourseDetails() {
+  getCourseDetails(courseName) {
     // use the golfCourse value to match it to the GolfCourse table and get the hole info
-    return firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes').once('value').then(function(snapshot) {
+    return firebase.database().ref('/GolfCourse/' + courseName + '/Holes').once('value').then(function(snapshot) {
       // All the data is being pulled here. Assign it a value then it can be shown in the front end.
       const data = snapshot.val();
       return data;
     });
   }
 
-  constructor(public db: AngularFireDatabase) { }
-
   ngOnInit(): void {
     this.getCourseName()
     .then(val => {
       this.courseName = val;
+      this.getCourseDetails(this.courseName)
+      .then(data => {
+        this.info = data;
+        if (this.info.Hole18 != null) {
+          this.hole18 = true;
+          this.db.list('GolfCourse/' + this.courseName + '/WaitTimes').valueChanges().subscribe(res => {
+            this.waitTimes = res;
+            // Plot points
+            this.lineChartData.forEach((x) => {
+                const data: number[] = x.data as number[];
+                data.push(this.waitTimes[0].WaitTime, this.waitTimes[10].WaitTime, this.waitTimes[11].WaitTime,
+                this.waitTimes[12].WaitTime, this.waitTimes[13].WaitTime, this.waitTimes[14].WaitTime, this.waitTimes[15].WaitTime,
+                this.waitTimes[16].WaitTime, this.waitTimes[17].WaitTime, this.waitTimes[1].WaitTime, this.waitTimes[2].WaitTime,
+                this.waitTimes[3].WaitTime, this.waitTimes[4].WaitTime, this.waitTimes[5].WaitTime, this.waitTimes[6].WaitTime,
+                this.waitTimes[7].WaitTime, this.waitTimes[8].WaitTime, this.waitTimes[9].WaitTime);
+            });
+            // Add the x axis labels
+            this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
+            'Hole 9', 'Hole 10', 'Hole 11', 'Hole 12', 'Hole 13', 'Hole 14', 'Hole 15', 'Hole 16', 'Hole 17', 'Hole 18');
+            // For queue table
+            this.queueData.forEach((x) => {
+              const data: number[] = x.data as number[];
+              data.push(this.waitTimes[0].Queue, this.waitTimes[10].Queue, this.waitTimes[11].Queue,
+              this.waitTimes[12].Queue, this.waitTimes[13].Queue, this.waitTimes[14].Queue, this.waitTimes[15].Queue,
+              this.waitTimes[16].Queue, this.waitTimes[17].Queue, this.waitTimes[1].Queue, this.waitTimes[2].Queue,
+              this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
+              this.waitTimes[7].Queue, this.waitTimes[8].Queue, this.waitTimes[9].Queue);
+            });
+          });
+        }
+        if (!this.info.Hole18) {
+          this.db.list('GolfCourse/' + this.courseName + '/WaitTimes').valueChanges().subscribe(res => {
+            this.waitTimes = res;
+            // Plot points
+            this.lineChartData.forEach((x, i) => {
+                const data: number[] = x.data as number[];
+                data.push(this.waitTimes[0].WaitTime, this.waitTimes[1].WaitTime,
+                this.waitTimes[2].WaitTime, this.waitTimes[3].WaitTime, this.waitTimes[4].WaitTime,
+                this.waitTimes[5].WaitTime, this.waitTimes[6].WaitTime, this.waitTimes[7].WaitTime,
+                this.waitTimes[8].WaitTime);
+            });
+            // Add the x axis labels
+            this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
+            'Hole 9');
+            // For queue table
+            this.queueData.forEach((x) => {
+              const data: number[] = x.data as number[];
+              data.push(this.waitTimes[0].Queue, this.waitTimes[1].Queue, this.waitTimes[2].Queue,
+              this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
+              this.waitTimes[7].Queue, this.waitTimes[8].Queue);
+            });
+          });
+        }
+      });
     });
   }
 }

@@ -1,0 +1,20 @@
+table {
+    width: 100%;
+}
+  
+th {
+    height: 50px;
+}
+
+.main-div {
+    text-align: center;
+}
+
+.chart {
+    display: block;
+}
+
+.card {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
