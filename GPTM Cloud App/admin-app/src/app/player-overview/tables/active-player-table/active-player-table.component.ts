@@ -42,7 +42,7 @@ export class ActivePlayerTableComponent implements OnInit {
         i++;
         const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
         queueRef.update({
-          Queue: holeQueue,
+          Queue: holeQueue - 1,
           WaitTime: (holePar * 3.2 * holeQueue).toFixed(0)
         });
       });
