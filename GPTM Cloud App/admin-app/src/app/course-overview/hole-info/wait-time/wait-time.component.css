@@ -29,6 +29,14 @@ th {
     text-align: center;
     width: 91%;
     margin-bottom: 2%;
-    margin-top: 1%;
     display: inline-block;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
 }

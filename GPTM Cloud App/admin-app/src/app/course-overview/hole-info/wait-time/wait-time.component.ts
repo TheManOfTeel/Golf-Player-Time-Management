@@ -17,6 +17,7 @@ export class WaitTimeComponent implements OnInit {
   info: any;
   hole18 = false;
   waitTimes: any;
+  isLoading = false;
 
   // Init the graph
   public lineChartData: ChartDataSets[] = [
@@ -81,6 +82,7 @@ export class WaitTimeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.getCourseName()
     .then(val => {
       this.courseName = val;
@@ -112,6 +114,7 @@ export class WaitTimeComponent implements OnInit {
               this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
               this.waitTimes[7].Queue, this.waitTimes[8].Queue, this.waitTimes[9].Queue);
             });
+            this.isLoading = false;
           });
         }
         if (!this.info.Hole18) {
@@ -135,6 +138,7 @@ export class WaitTimeComponent implements OnInit {
               this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
               this.waitTimes[7].Queue, this.waitTimes[8].Queue);
             });
+            this.isLoading = false;
           });
         }
       });
