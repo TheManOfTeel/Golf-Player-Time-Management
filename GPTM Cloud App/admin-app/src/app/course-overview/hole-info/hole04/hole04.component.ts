@@ -21,28 +21,28 @@ export class Hole04Component implements OnInit {
 
   mapComplete = false;
 
-  generalDescription: string;
-  generalTips: string;
+  generalDescription = '';
+  generalTips = '';
 
-  blueDescription: string;
-  bluePar: string;
-  blueTips: string;
-  blueYards: string;
+  blueDescription = '';
+  bluePar = '';
+  blueTips = '';
+  blueYards = '';
 
-  redDescription: string;
-  redPar: string;
-  redTips: string;
-  redYards: string;
+  redDescription = '';
+  redPar = '';
+  redTips = '';
+  redYards = '';
 
-  pinkDescription: string;
-  pinkPar: string;
-  pinkTips: string;
-  pinkYards: string;
+  pinkDescription = '';
+  pinkPar = '';
+  pinkTips = '';
+  pinkYards = '';
 
-  yellowDescription: string;
-  yellowPar: string;
-  yellowTips: string;
-  yellowYards: string;
+  yellowDescription = '';
+  yellowPar = '';
+  yellowTips = '';
+  yellowYards = '';
 
   coordinates = [];
 
