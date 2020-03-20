@@ -19,6 +19,8 @@ export class Hole17Component implements OnInit {
   isEdit4 = false;
   isEdit5 = false;
 
+  mapComplete = false;
+
   generalDescription: string;
   generalTips: string;
 
@@ -120,6 +122,10 @@ export class Hole17Component implements OnInit {
         this.yellowPar = data.Yellow_Triangle.Par;
         this.yellowTips = data.Yellow_Triangle.Tips;
         this.yellowYards = data.Yellow_Triangle.Yards;
+
+        if (data.Geofence) {
+          this.mapComplete = true;
+        }
       });
     });
   }

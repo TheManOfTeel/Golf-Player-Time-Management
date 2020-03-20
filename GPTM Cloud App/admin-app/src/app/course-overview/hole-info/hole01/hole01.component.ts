@@ -19,28 +19,30 @@ export class Hole01Component implements OnInit {
   isEdit4 = false;
   isEdit5 = false;
 
-  generalDescription: string;
-  generalTips: string;
+  mapComplete = false;
 
-  blueDescription: string;
-  bluePar: string;
-  blueTips: string;
-  blueYards: string;
+  generalDescription = '';
+  generalTips = '';
 
-  redDescription: string;
-  redPar: string;
-  redTips: string;
-  redYards: string;
+  blueDescription = '';
+  bluePar = '';
+  blueTips = '';
+  blueYards = '';
 
-  pinkDescription: string;
-  pinkPar: string;
-  pinkTips: string;
-  pinkYards: string;
+  redDescription = '';
+  redPar = '';
+  redTips = '';
+  redYards = '';
 
-  yellowDescription: string;
-  yellowPar: string;
-  yellowTips: string;
-  yellowYards: string;
+  pinkDescription = '';
+  pinkPar = '';
+  pinkTips = '';
+  pinkYards = '';
+
+  yellowDescription = '';
+  yellowPar = '';
+  yellowTips = '';
+  yellowYards = '';
 
   coordinates = [];
 
@@ -120,6 +122,10 @@ export class Hole01Component implements OnInit {
         this.yellowPar = data.Yellow_Triangle.Par;
         this.yellowTips = data.Yellow_Triangle.Tips;
         this.yellowYards = data.Yellow_Triangle.Yards;
+
+        if (data.Geofence) {
+          this.mapComplete = true;
+        }
       });
     });
   }
