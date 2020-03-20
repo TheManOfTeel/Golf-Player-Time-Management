@@ -12,14 +12,17 @@ th {
 
 .chart {
     display: block;
+    width: 91%;
 }
 
 .card {
     margin-top: 2%;
     margin-bottom: 1%;
+    width: 91%;
 }
 
 .card2 {
     margin-top: 1%;
     margin-bottom: 3%;
+    width: 91%;
 }
