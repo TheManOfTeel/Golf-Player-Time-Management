@@ -40,6 +40,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
@@ -141,6 +142,7 @@ import { RequestsTableComponent } from './player-overview/tables/requests-table/
     MatSidenavModule,
     MatListModule,
     MatRadioModule,
+    MatProgressBarModule,
   ],
   entryComponents: [CourseMapComponent],
   providers: [AuthService, UserService, UserResolver, AuthGuard],
