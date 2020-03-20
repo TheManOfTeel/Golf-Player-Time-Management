@@ -41,9 +41,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
-import { ItemsListComponent } from './items/items-list/items-list.component';
-import { ItemDetailComponent } from './items/item-detail/item-detail.component';
-import { ItemFormComponent } from './items/item-form/item-form.component';
 import { CourseMapComponent } from './course-map/course-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDrawingModule } from '@agm/drawing';
@@ -82,9 +79,6 @@ import { WaitTimeComponent } from './course-overview/hole-info/wait-time/wait-ti
     CourseOverviewComponent,
     SupportComponent,
     PlayerOverviewComponent,
-    ItemsListComponent,
-    ItemDetailComponent,
-    ItemFormComponent,
     CourseMapComponent,
     Hole01Component,
     Hole02Component,
