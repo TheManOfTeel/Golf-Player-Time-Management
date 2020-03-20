@@ -33,7 +33,7 @@ export class ActivePlayerTableComponent implements OnInit {
   }
 
   countHoleQueue(courseName, holeNum) {
-    let i = 0;
+    let i = 1;
     firebase.database().ref('GolfCourse/' + courseName + '/Holes/Hole' + holeNum + '/Blue_Square').once('value').then(function(snapshot) {
       holePar = snapshot.val().Par;
       const holeref = firebase.database().ref('Games/' + courseName);
