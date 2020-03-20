@@ -28,6 +28,7 @@ export class LoginComponent {
     postal_code: 'short_name'
   };
   isLoading = false;
+  hide = true;
 
   constructor(
     public authService: AuthService,

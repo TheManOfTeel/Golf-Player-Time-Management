@@ -62,3 +62,7 @@
 .header {
     font-size: x-large;
 }
+
+.input {
+    width: 80%;
+}

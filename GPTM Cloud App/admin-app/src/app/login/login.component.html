@@ -11,7 +11,7 @@
                 <h1 class="header">Login</h1>
                 <form [formGroup]="loginForm">
                     <div class="row">
-                        <mat-form-field>
+                        <mat-form-field class="input">
                             <input matInput placeholder="Email" type="email" formControlName="email" required>
                             <mat-hint>Enter your email address</mat-hint>
                             <mat-error>
@@ -20,8 +20,9 @@
                         </mat-form-field>
                     </div>
                     <div class="row">
-                        <mat-form-field>
-                            <input matInput placeholder="Password" type="password" formControlName="password" required>
+                        <mat-form-field class="input">
+                            <input matInput placeholder="Password" type="password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                             <mat-hint>Enter your password</mat-hint>
                             <mat-error>
                                 Password is required
