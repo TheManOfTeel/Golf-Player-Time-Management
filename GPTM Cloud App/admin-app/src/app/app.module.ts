@@ -42,12 +42,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
-import { ItemsListComponent } from './items/items-list/items-list.component';
-import { ItemDetailComponent } from './items/item-detail/item-detail.component';
-import { ItemFormComponent } from './items/item-form/item-form.component';
 import { CourseMapComponent } from './course-map/course-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDrawingModule } from '@agm/drawing';
+import { ChartsModule } from 'ng2-charts';
 import { Hole01Component } from './course-overview/hole-info/hole01/hole01.component';
 import { Hole02Component } from './course-overview/hole-info/hole02/hole02.component';
 import { Hole03Component } from './course-overview/hole-info/hole03/hole03.component';
@@ -69,6 +67,7 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ActivePlayerTableComponent } from './player-overview/tables/active-player-table/active-player-table.component';
 import { RequestsTableComponent } from './player-overview/tables/requests-table/requests-table.component';
+import { WaitTimeComponent } from './course-overview/hole-info/wait-time/wait-time.component';
 
 @NgModule({
   declarations: [
@@ -81,9 +80,6 @@ import { RequestsTableComponent } from './player-overview/tables/requests-table/
     CourseOverviewComponent,
     SupportComponent,
     PlayerOverviewComponent,
-    ItemsListComponent,
-    ItemDetailComponent,
-    ItemFormComponent,
     CourseMapComponent,
     Hole01Component,
     Hole02Component,
@@ -105,6 +101,7 @@ import { RequestsTableComponent } from './player-overview/tables/requests-table/
     Hole18Component,
     ActivePlayerTableComponent,
     RequestsTableComponent,
+    WaitTimeComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +111,7 @@ import { RequestsTableComponent } from './player-overview/tables/requests-table/
       libraries: ['places', 'drawing', 'geometry']
     }),
     AgmDrawingModule,
+    ChartsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment),
     AngularFirestoreModule,

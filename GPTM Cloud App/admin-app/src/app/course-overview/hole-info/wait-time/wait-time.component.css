@@ -1,0 +1,34 @@
+table {
+    width: 100%;
+}
+  
+th {
+    height: 50px;
+}
+
+.main-div {
+    text-align: center;
+    font-size: medium;
+    height: 100vh;
+}
+
+.chart {
+    display: block;
+    width: 91%;
+}
+
+.card {
+    text-align: center;
+    width: 91%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    display: inline-block;
+}
+
+.card2 {
+    text-align: center;
+    width: 91%;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    display: inline-block;
+}

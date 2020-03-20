@@ -33,5 +33,6 @@
 
 .sidenav {
    user-select: none;
-   width: 110px;
+   width: 120px;
+   justify-content: center;
 }

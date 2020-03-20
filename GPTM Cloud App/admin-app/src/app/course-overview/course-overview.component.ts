@@ -20,6 +20,7 @@ export class CourseOverviewComponent implements OnInit {
   courseName: any;
   info: any;
 
+  holeWait = false;
   hole1 = false;
   hole2 = false;
   hole3 = false;
@@ -41,7 +42,8 @@ export class CourseOverviewComponent implements OnInit {
 
   displayContent = false;
 
-  showHole01 = true;
+  showHoleWait = true;
+  showHole01 = false;
   showHole02 = false;
   showHole03 = false;
   showHole04 = false;
@@ -87,6 +89,7 @@ export class CourseOverviewComponent implements OnInit {
       this.getCourseDetails()
       .then(data => {
         this.info = data;
+        this.holeWait = true;
         if (this.info.Hole1 != null) {
           this.hole1 = true;
         }
@@ -165,7 +168,30 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   // Switch to appropriate page on click
+  focusShowWait(show: boolean) {
+    this.showHoleWait = show;
+    this.showHole01 = false;
+    this.showHole02 = false;
+    this.showHole03 = false;
+    this.showHole04 = false;
+    this.showHole05 = false;
+    this.showHole06 = false;
+    this.showHole07 = false;
+    this.showHole08 = false;
+    this.showHole09 = false;
+    this.showHole10 = false;
+    this.showHole11 = false;
+    this.showHole12 = false;
+    this.showHole13 = false;
+    this.showHole14 = false;
+    this.showHole15 = false;
+    this.showHole16 = false;
+    this.showHole17 = false;
+    this.showHole18 = false;
+  }
+
   focusHole01(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = show;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -187,6 +213,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole02(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = show;
     this.showHole03 = false;
@@ -208,6 +235,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole03(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = show;
@@ -229,6 +257,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole04(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -250,6 +279,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole05(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -271,6 +301,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole06(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -292,6 +323,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole07(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -313,6 +345,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole08(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -334,6 +367,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole09(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -355,6 +389,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole10(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -376,6 +411,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole11(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -397,6 +433,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole12(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -418,6 +455,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole13(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -439,6 +477,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole14(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -460,6 +499,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole15(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -481,6 +521,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole16(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -502,6 +543,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole17(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
@@ -523,6 +565,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   focusHole18(show: boolean) {
+    this.showHoleWait = false;
     this.showHole01 = false;
     this.showHole02 = false;
     this.showHole03 = false;
