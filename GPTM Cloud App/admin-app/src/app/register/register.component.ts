@@ -229,6 +229,10 @@ export class RegisterComponent implements OnInit {
         Yards: 'No distance set',
         Par: 'No par set',
       });
+      firebase.database().ref('GolfCourse/' + this.course + '/WaitTimes/Hole' + this.i).set({
+        Queue: 0,
+        WaitTime: 0
+      });
     }
  }
  /* tslint:enable:quotemark */
