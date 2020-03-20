@@ -8,6 +8,8 @@ th {
 
 .main-div {
     text-align: center;
+    font-size: medium;
+    height: 100vh;
 }
 
 .chart {
@@ -16,13 +18,17 @@ th {
 }
 
 .card {
-    margin-top: 2%;
-    margin-bottom: 1%;
+    text-align: center;
     width: 91%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    display: inline-block;
 }
 
 .card2 {
-    margin-top: 1%;
-    margin-bottom: 3%;
+    text-align: center;
     width: 91%;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    display: inline-block;
 }

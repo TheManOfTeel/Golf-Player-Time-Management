@@ -2,9 +2,10 @@
     <mat-card class="card">
         <h2>Estimated Wait Times in Minutes</h2>
         <div class="flex">
-            <div class="flex-item">
+            <div>
               <div class="chart">
                 <canvas baseChart
+                  height="85"
                   [datasets]="lineChartData"
                   [labels]="lineChartLabels"
                   [options]="lineChartOptions"
@@ -15,7 +16,7 @@
                 </canvas>
               </div>
             </div>
-            <div class="flex-item">
+            <div style="width: 100%;">
                 <table class="table table-responsive table-condensed">
                     <tr>
                     <th *ngFor="let label of lineChartLabels">{{label}}</th>
