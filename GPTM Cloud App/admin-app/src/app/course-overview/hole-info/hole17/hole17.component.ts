@@ -316,6 +316,7 @@ export class Hole17Component implements OnInit {
       courseRef.update({
         Geofence: this.coordinates,
       });
+      this.initData();
     });
   }
 }
