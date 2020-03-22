@@ -24,6 +24,8 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,6 +60,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     private TextView score;
     int playerPar = 0;
     private GoogleMap mMap;
+    private Fragment myFragment;
+    private GPS myGPS;
 
     @Nullable
     @Override
@@ -69,13 +73,15 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
         setRetainInstance(true);
 
-        Bundle bundle = getArguments();
 
+        Bundle bundle = getArguments();
         if(bundle != null) {
             CourseName = bundle.getString("courseName");
             GameID = bundle.getString("gameID");
             Difficulty = bundle.getString("Difficulty");
 
+        }else{
+            Log.e("Bundle", "Bundle is null");
         }
 
 
@@ -84,10 +90,16 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         mAuth = FirebaseAuth.getInstance();
         String Uid = mAuth.getUid();
 
+
         NextHole = (Button) rootView.findViewById(R.id.fragnexthole);
         BackHole = (Button) rootView.findViewById(R.id.fragbackhole);
         score = (TextView)rootView.findViewById(R.id.fragplayerPar);
         shot = (Button)rootView.findViewById(R.id.fragShotName);
+        holenum = (TextView) rootView.findViewById(R.id.fraghole);
+        Par = (TextView) rootView.findViewById(R.id.fragpar);
+        Yards = (TextView) rootView.findViewById(R.id.fragyards);
+        getHoleDetails2();
+
 
         if(playerPar== 0){
             shot.setText("Take Tee Shot");
@@ -112,6 +124,58 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
 
 
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e("paused hole Num", String.valueOf(holeNum));
+    }
+
+
+
+
+
+    private void getHoleDetails2(){
+        myRef.child("Games").child(CourseName).child(GameID).child("Location").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String holeNum = dataSnapshot.getValue().toString();
+                Log.e("getHoleDetails","Hole"+ holeNum );
+                myRef.child("GolfCourse").child(CourseName).child("Holes").child("Hole"+holeNum).child(Difficulty).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            String yards = dataSnapshot.child("Par").getValue().toString();
+                            String Par = dataSnapshot.child("Yards").getValue().toString();
+                            Log.e("getHoleDetails", holeNum + Par + yards);
+                            UIHoleNum(holeNum, Par, yards);
+                            if(mMap!=null) {
+                                MapCurrentHole(mMap, Integer.parseInt(holeNum));
+                                MapHole2(Integer.parseInt(holeNum), mMap);
+                            }
+
+                        }else{
+                            Log.e("getHoleDetails", "Snapshot doesnt exist");
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     //Get the hole number
     private void getHoleDetails(int Holenum){
         myRef.child("GolfCourse").child(CourseName).child("Holes").child("Hole"+Holenum).addValueEventListener(new ValueEventListener() {
@@ -121,6 +185,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                     String hole = dataSnapshot.getKey().toString();
                     String par = dataSnapshot.child(Difficulty).child("Par").getValue().toString();
                     String yards= dataSnapshot.child(Difficulty).child("Yards").getValue().toString();
+
                     UIHoleNum(hole, par, yards);
                     UpdateCurrentHole(Holenum);
 
@@ -137,36 +202,15 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null) {
-           CourseName = savedInstanceState.getString("courseName");
-           holeNum = savedInstanceState.getInt("holeNum");
 
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("holeNum", holeNum);
-        outState.putString("courseName", CourseName);
-
-        getFragmentManager().saveFragmentInstanceState(GameFragment.this);
-
-        //Save the fragment's state her
-
-    }
 
 
 
     //UpdateHoleUI
     private void UIHoleNum(String hole, String par, String yards){
-        holenum = (TextView) getView().findViewById(R.id.fraghole);
-        Par = (TextView) getView().findViewById(R.id.fragpar);
-        Yards = (TextView) getView().findViewById(R.id.fragyards);
-        holenum.setText(hole);
+
+
+        holenum.setText("Hole"+hole);
         if(!par.equals("No par set")) {
             Par.setText("Par: " + par);
         }
@@ -176,8 +220,9 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     }
     //UpdateCurrent Hole in Firebase
     private void UpdateCurrentHole(int hole){
-        myRef.child("Games").child(CourseName).child(GameID).child("Location").setValue(hole);
+        myRef.child("Games").child(CourseName).child(GameID).child("Location").setValue(String.valueOf(hole));
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -186,52 +231,82 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.resetMinMaxZoomPreference();
+      
 
-        Log.e("Hole Num", String.valueOf(holeNum));
-        MapHole2(holeNum, mMap);
-        MapCurrentHole(mMap, holeNum);
 
-        NextHole.setOnClickListener(new View.OnClickListener() {
+        myRef.child("Games").child(CourseName).child(GameID).child("Location").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                holeNum +=1;
-                //Hole Number cant be greater than 18
-                if (holeNum>18){
-                    holeNum = 18;
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    holeNum = Integer.parseInt(dataSnapshot.getValue().toString());
+                    Log.e("Hole Num", String.valueOf(holeNum));
+                    getHoleDetails2();
+
+
+                    NextHole.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            holeNum +=1;
+                            //Hole Number cant be greater than 18
+                            if (holeNum>18){
+                                holeNum = 18;
+                            }
+                            myRef.child("Games").child(CourseName).child(GameID).child("Location").setValue(holeNum).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        getHoleDetails2();
+                                        playerPar =0;
+
+                                        score.setText("Score:" +playerPar);
+                                        shot.setText("Take Tee Shot");
+                                        mMap.clear();
+
+                                        Log.e("Hole Num", String.valueOf(holeNum));
+
+                                    }
+                                }
+                            });
+
+
+
+                        }
+                    });
+
+
+                    BackHole.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            holeNum -=1;
+                            //Hole number cant be less than 1
+                            if(holeNum == 0 || holeNum < 0){
+                                holeNum =1;
+                            }
+                            //Hole Number cant be greater than 18
+                            if (holeNum>18){
+                                holeNum = 18;
+                            }
+                            getHoleDetails2();
+                            mMap.clear();
+                            MapHole2(holeNum, mMap);
+                            MapCurrentHole(mMap, holeNum);
+                        }
+                    });
+
                 }
-                getHoleDetails(holeNum);
-                playerPar =0;
 
-                score.setText("Score:" +playerPar);
-                shot.setText("Take Tee Shot");
-                mMap.clear();
 
-                Log.e("Hole Num", String.valueOf(holeNum));
-                MapHole2(holeNum, mMap);
-                MapCurrentHole(mMap, holeNum);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
-        BackHole.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holeNum -=1;
-                //Hole number cant be less than 1
-                if(holeNum == 0 || holeNum < 0){
-                    holeNum =1;
-                }
-                //Hole Number cant be greater than 18
-                if (holeNum>18){
-                    holeNum = 18;
-                }
-                getHoleDetails(holeNum);
-                mMap.clear();
-                MapHole2(holeNum, mMap);
-                MapCurrentHole(mMap, holeNum);
-            }
-        });
+
+
+
 
     }
 
@@ -335,7 +410,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
-    private BitmapDescriptor bitmapDescriptorFromVector(Context context, @DrawableRes int vectorDrawableResourceId) {
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context,@DrawableRes int vectorDrawableResourceId) {
         Drawable background = ContextCompat.getDrawable(context, vectorDrawableResourceId);
         background.setBounds(0, 0, background.getIntrinsicWidth(), background.getIntrinsicHeight());
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResourceId);
@@ -365,7 +440,9 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
                     Start = new LatLng(startLat, startLng);
                     Log.e("StartDetails", "Start = " + Start.toString());
-                    mMap.addMarker(new MarkerOptions().position(Start).title(holeNum + " Tee").icon(bitmapDescriptorFromVector(getContext(), R.drawable.ic_golf_course_black_24dp)));
+                    if(getContext() != null) {
+                        mMap.addMarker(new MarkerOptions().position(Start).title("Hole" + holeNum).icon(bitmapDescriptorFromVector(getContext(), R.drawable.ic_golf_course_black_24dp)));
+                    }
 
 
 //
