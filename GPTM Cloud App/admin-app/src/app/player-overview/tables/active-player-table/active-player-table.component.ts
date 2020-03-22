@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, SimpleChanges, OnChanges } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,7 +13,7 @@ let holePar;
   templateUrl: './active-player-table.component.html',
   styleUrls: ['./active-player-table.component.css']
 })
-export class ActivePlayerTableComponent implements OnInit {
+export class ActivePlayerTableComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -33,7 +33,7 @@ export class ActivePlayerTableComponent implements OnInit {
   }
 
   countHoleQueue(courseName, holeNum) {
-    let i = 0;
+    let i = 1;
     firebase.database().ref('GolfCourse/' + courseName + '/Holes/Hole' + holeNum + '/Blue_Square').once('value').then(function(snapshot) {
       holePar = snapshot.val().Par;
       const holeref = firebase.database().ref('Games/' + courseName);
@@ -43,7 +43,7 @@ export class ActivePlayerTableComponent implements OnInit {
         const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
         queueRef.update({
           Queue: holeQueue,
-          WaitTime: (holePar * 3.2 * (holeQueue)).toFixed(0)
+          WaitTime: (holePar * 3.2 * holeQueue).toFixed(0)
         });
       });
     });
@@ -71,6 +71,12 @@ export class ActivePlayerTableComponent implements OnInit {
         }
       });
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    for (let i = 1; i <= 18; i++) {
+      this.countHoleQueue(this.courseName, i);
+    }
   }
 
 }
