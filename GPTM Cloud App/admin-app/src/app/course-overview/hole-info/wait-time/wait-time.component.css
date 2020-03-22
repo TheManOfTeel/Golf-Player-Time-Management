@@ -20,6 +20,8 @@ th {
 .card {
     text-align: center;
     width: 91%;
+    flex: auto;
+    height: fit-content;
     margin-bottom: 1%;
     margin-top: 2%;
     display: inline-block;
@@ -28,6 +30,8 @@ th {
 .card2 {
     text-align: center;
     width: 91%;
+    flex: auto;
+    height: fit-content;
     margin-bottom: 2%;
     display: inline-block;
 }
