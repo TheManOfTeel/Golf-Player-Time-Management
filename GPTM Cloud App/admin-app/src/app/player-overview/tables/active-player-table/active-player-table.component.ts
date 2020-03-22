@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,7 +13,7 @@ let holePar;
   templateUrl: './active-player-table.component.html',
   styleUrls: ['./active-player-table.component.css']
 })
-export class ActivePlayerTableComponent implements OnInit, OnChanges {
+export class ActivePlayerTableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -72,13 +72,6 @@ export class ActivePlayerTableComponent implements OnInit, OnChanges {
       });
     });
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    for (let i = 1; i <= 18; i++) {
-      this.countHoleQueue(this.courseName, i);
-    }
-  }
-
 }
 
 export interface PlayerData {
