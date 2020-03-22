@@ -37,7 +37,18 @@ export class ActivePlayerTableComponent implements OnInit {
     firebase.database().ref('GolfCourse/' + courseName + '/Holes/Hole' + holeNum + '/Blue_Square').once('value').then(function(snapshot) {
       holePar = snapshot.val().Par;
       const holeref = firebase.database().ref('Games/' + courseName);
+      // Update on new games
       holeref.orderByChild('Location').equalTo(holeNum).on('child_added', function() {
+        holeQueue = i;
+        i++;
+        const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
+        queueRef.update({
+          Queue: holeQueue,
+          WaitTime: (holePar * 3.2 * holeQueue).toFixed(0)
+        });
+      });
+      // Update with changes to location
+      holeref.orderByChild('Location').equalTo(holeNum).on('child_changed', function() {
         holeQueue = i;
         i++;
         const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
