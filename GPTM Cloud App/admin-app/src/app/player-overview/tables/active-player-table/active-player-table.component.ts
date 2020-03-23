@@ -32,6 +32,18 @@ export class ActivePlayerTableComponent implements OnInit {
     });
   }
 
+  clearQueue(courseName, holeNum) {
+    const holeref = firebase.database().ref('Games/' + courseName);
+    // Reset
+    holeref.orderByChild('Location').equalTo(holeNum).on('value', function() {
+      const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
+      queueRef.update({
+        Queue: 0,
+        WaitTime: 0
+      });
+    });
+  }
+
   countHoleQueue(courseName, holeNum) {
     let i = 1;
     firebase.database().ref('GolfCourse/' + courseName + '/Holes/Hole' + holeNum + '/Blue_Square').once('value').then(function(snapshot) {
@@ -44,17 +56,27 @@ export class ActivePlayerTableComponent implements OnInit {
         const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
         queueRef.update({
           Queue: holeQueue,
-          WaitTime: (holePar * 3.2 * holeQueue).toFixed(0)
+          WaitTime: (holePar * 3.2 * holeQueue).toFixed(1)
         });
       });
-      // Update with changes to location
+      // Update on changes to in progress games
       holeref.orderByChild('Location').equalTo(holeNum).on('child_changed', function() {
         holeQueue = i;
         i++;
         const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
         queueRef.update({
           Queue: holeQueue,
-          WaitTime: (holePar * 3.2 * holeQueue).toFixed(0)
+          WaitTime: (holePar * 3.2 * holeQueue).toFixed(1)
+        });
+      });
+      // Update on deletion
+      holeref.orderByChild('Location').equalTo(holeNum).on('child_removed', function() {
+        holeQueue = i;
+        i++;
+        const queueRef = firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + holeNum);
+        queueRef.update({
+          Queue: holeQueue,
+          WaitTime: (holePar * 3.2 * holeQueue).toFixed(1)
         });
       });
     });
@@ -76,8 +98,14 @@ export class ActivePlayerTableComponent implements OnInit {
       this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
         this.playerData = res;
         this.playerDataSource.data = this.playerData;
+        // Clear previous calculations
+        this.clearQueue(this.courseName, '1');
+        for (let i = 2; i <= 18; i++) {
+          this.clearQueue(this.courseName, i);
+        }
         // Estimate wait times and set the waiting queue
-        for (let i = 1; i <= 18; i++) {
+        this.countHoleQueue(this.courseName, '1');
+        for (let i = 2; i <= 18; i++) {
           this.countHoleQueue(this.courseName, i);
         }
       });
