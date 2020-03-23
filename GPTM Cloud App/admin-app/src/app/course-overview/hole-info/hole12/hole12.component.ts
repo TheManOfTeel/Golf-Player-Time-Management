@@ -21,28 +21,28 @@ export class Hole12Component implements OnInit {
 
   mapComplete = false;
 
-  generalDescription = '';
-  generalTips = '';
+  generalDescription = 'loading...';
+  generalTips = 'loading...';
 
-  blueDescription = '';
-  bluePar = '';
-  blueTips = '';
-  blueYards = '';
+  blueDescription = 'loading...';
+  bluePar = 'loading...';
+  blueTips = 'loading...';
+  blueYards = 'loading...';
 
-  redDescription = '';
-  redPar = '';
-  redTips = '';
-  redYards = '';
+  redDescription = 'loading...';
+  redPar = 'loading...';
+  redTips = 'loading...';
+  redYards = 'loading...';
 
-  pinkDescription = '';
-  pinkPar = '';
-  pinkTips = '';
-  pinkYards = '';
+  pinkDescription = 'loading...';
+  pinkPar = 'loading...';
+  pinkTips = 'loading...';
+  pinkYards = 'loading...';
 
-  yellowDescription = '';
-  yellowPar = '';
-  yellowTips = '';
-  yellowYards = '';
+  yellowDescription = 'loading...';
+  yellowPar = 'loading...';
+  yellowTips = 'loading...';
+  yellowYards = 'loading...';
 
   coordinates = [];
 
