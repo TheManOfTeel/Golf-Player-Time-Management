@@ -9,7 +9,7 @@ th {
 .main-div {
     text-align: center;
     font-size: medium;
-    height: 100vh;
+    height: 87vh;
 }
 
 .chart {
@@ -20,6 +20,8 @@ th {
 .card {
     text-align: center;
     width: 91%;
+    flex: auto;
+    height: fit-content;
     margin-bottom: 1%;
     margin-top: 2%;
     display: inline-block;
@@ -28,7 +30,17 @@ th {
 .card2 {
     text-align: center;
     width: 91%;
+    flex: auto;
+    height: fit-content;
     margin-bottom: 2%;
-    margin-top: 1%;
     display: inline-block;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
 }

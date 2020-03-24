@@ -72,6 +72,9 @@ export class RegisterComponent implements OnInit {
   invalid = '';
   noMatch = '';
   notACourse = '';
+  isLoading = false;
+  hide1 = true;
+  hide2 = true;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -186,6 +189,7 @@ export class RegisterComponent implements OnInit {
   }
 
   tryRegister(value) {
+    this.isLoading = true;
     this.checkIfExists(this.course)
     .then(data => {
       this.courseData = data;
@@ -260,12 +264,14 @@ export class RegisterComponent implements OnInit {
           isAdmin: true,
           golfCourse: this.course
         });
+        this.isLoading = false;
       }, err => {
           console.log(err);
           this.alreadyExists = null;
           this.noMatch = null;
           this.errorMessage = err.message;
           this.successMessage = null;
+          this.isLoading = false;
         });
     }
     /* tslint:disable:quotemark */
@@ -274,42 +280,49 @@ export class RegisterComponent implements OnInit {
       this.errorMessage = null;
       this.alreadyExists = null;
       this.invalid = null;
+      this.isLoading = false;
     }
     if (this.courseData != null) {
       this.alreadyExists = 'Course is already registered';
       this.errorMessage = null;
       this.noMatch = null;
       this.invalid = null;
+      this.isLoading = false;
     }
     if (!this.course.includes('Golf')) {
       this.notACourse = 'Not a golf course';
       this.alreadyExists = null;
       this.errorMessage = null;
       this.noMatch = null;
+      this.isLoading = false;
     }
     if (this.courseData != null && !this.course.includes('Golf')) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = null;
       this.notACourse = 'Not a golf course';
       this.errorMessage = null;
+      this.isLoading = false;
     }
     if (this.courseData != null && this.password !== this.password2) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = "Passwords don't match";
       this.invalid = null;
       this.errorMessage = null;
+      this.isLoading = false;
     }
     if (!this.course.includes('Golf') && this.password !== this.password2) {
       this.alreadyExists = null;
       this.noMatch = "Passwords don't match";
       this.notACourse = 'Not a golf course';
       this.errorMessage = null;
+      this.isLoading = false;
     }
     if (this.courseData != null && !this.course.includes('Golf') && this.password !== this.password2) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = "Passwords don't match";
       this.notACourse = 'Not a golf course';
       this.errorMessage = null;
+      this.isLoading = false;
     }
     /* tslint:enable:quotemark */
   }

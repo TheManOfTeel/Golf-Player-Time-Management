@@ -19,28 +19,30 @@ export class Hole16Component implements OnInit {
   isEdit4 = false;
   isEdit5 = false;
 
-  generalDescription: string;
-  generalTips: string;
+  mapComplete = false;
 
-  blueDescription: string;
-  bluePar: string;
-  blueTips: string;
-  blueYards: string;
+  generalDescription = 'loading...';
+  generalTips = 'loading...';
 
-  redDescription: string;
-  redPar: string;
-  redTips: string;
-  redYards: string;
+  blueDescription = 'loading...';
+  bluePar = 'loading...';
+  blueTips = 'loading...';
+  blueYards = 'loading...';
 
-  pinkDescription: string;
-  pinkPar: string;
-  pinkTips: string;
-  pinkYards: string;
+  redDescription = 'loading...';
+  redPar = 'loading...';
+  redTips = 'loading...';
+  redYards = 'loading...';
 
-  yellowDescription: string;
-  yellowPar: string;
-  yellowTips: string;
-  yellowYards: string;
+  pinkDescription = 'loading...';
+  pinkPar = 'loading...';
+  pinkTips = 'loading...';
+  pinkYards = 'loading...';
+
+  yellowDescription = 'loading...';
+  yellowPar = 'loading...';
+  yellowTips = 'loading...';
+  yellowYards = 'loading...';
 
   coordinates = [];
 
@@ -120,6 +122,10 @@ export class Hole16Component implements OnInit {
         this.yellowPar = data.Yellow_Triangle.Par;
         this.yellowTips = data.Yellow_Triangle.Tips;
         this.yellowYards = data.Yellow_Triangle.Yards;
+
+        if (data.Geofence) {
+          this.mapComplete = true;
+        }
       });
     });
   }
@@ -310,6 +316,7 @@ export class Hole16Component implements OnInit {
       courseRef.update({
         Geofence: this.coordinates,
       });
+      this.initData();
     });
   }
 }

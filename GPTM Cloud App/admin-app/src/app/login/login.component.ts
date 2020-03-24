@@ -27,6 +27,8 @@ export class LoginComponent {
     country: 'long_name',
     postal_code: 'short_name'
   };
+  isLoading = false;
+  hide = true;
 
   constructor(
     public authService: AuthService,
@@ -52,6 +54,7 @@ export class LoginComponent {
   }
 
   tryLogin(value) {
+    this.isLoading = true;
     this.authService.doLogin(value)
     .then(() => {
       this.evalAdmin()
@@ -64,6 +67,7 @@ export class LoginComponent {
       this.noAdmin = false;
       this.errorMessage = 'Invalid username/password';
       this.errorMessage = err.message;
+      this.isLoading = false;
     });
   }
 
@@ -79,6 +83,7 @@ export class LoginComponent {
     if (this.isAdmin === true) {
       this.noAdmin = false;
       this.router.navigate(['/dashboard']);
+      this.isLoading = false;
     }
     if (this.isAdmin === false) {
       this.noAdmin = true;

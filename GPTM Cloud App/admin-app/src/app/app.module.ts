@@ -40,6 +40,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { CourseMapComponent } from './course-map/course-map.component';
 import { AgmCoreModule } from '@agm/core';
@@ -139,6 +141,8 @@ import { WaitTimeComponent } from './course-overview/hole-info/wait-time/wait-ti
     MatSidenavModule,
     MatListModule,
     MatRadioModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
   ],
   entryComponents: [CourseMapComponent],
   providers: [AuthService, UserService, UserResolver, AuthGuard],

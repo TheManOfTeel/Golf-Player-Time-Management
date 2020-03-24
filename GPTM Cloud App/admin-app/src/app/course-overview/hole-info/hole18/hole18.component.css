@@ -67,3 +67,13 @@
 .editForm {
     width: 80%;
 }
+
+.error{
+    color: red;
+    font-size: medium;
+}
+
+.complete {
+    color: green;
+    font-size: medium;
+}
