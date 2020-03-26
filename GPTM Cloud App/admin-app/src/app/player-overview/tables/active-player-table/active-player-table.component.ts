@@ -24,6 +24,7 @@ export class ActivePlayerTableComponent implements OnInit {
   courseName: any;
   hole1Wait: number;
 
+  // Read course
   getCourseName() {
     const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
@@ -32,6 +33,7 @@ export class ActivePlayerTableComponent implements OnInit {
     });
   }
 
+  // Reset fields to 0
   clearQueue(courseName, holeNum) {
     const holeref = firebase.database().ref('Games/' + courseName);
     // Reset
@@ -44,6 +46,7 @@ export class ActivePlayerTableComponent implements OnInit {
     });
   }
 
+  // Calculate wait times by reading the number of groups at each hole
   countHoleQueue(courseName, holeNum) {
     let i = 1;
     firebase.database().ref('GolfCourse/' + courseName + '/Holes/Hole' + holeNum + '/Blue_Square').once('value').then(function(snapshot) {
@@ -95,6 +98,7 @@ export class ActivePlayerTableComponent implements OnInit {
       // Sort by date descending on init
       this.sort.sort({ id: 'Location', start: 'asc', disableClear: false });
 
+      // This is what is fed into the table
       this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
         this.playerData = res;
         this.playerDataSource.data = this.playerData;
@@ -113,6 +117,7 @@ export class ActivePlayerTableComponent implements OnInit {
   }
 }
 
+// What we want to read
 export interface PlayerData {
   CurrentHole: string;
   GroupLeader: string;

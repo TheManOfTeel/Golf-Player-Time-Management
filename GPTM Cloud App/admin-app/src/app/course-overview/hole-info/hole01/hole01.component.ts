@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseMapComponent } from 'src/app/course-map/course-map.component';
 
+// NOTE: all of the hole components work the same way
 @Component({
   selector: 'app-hole01',
   templateUrl: './hole01.component.html',
@@ -123,6 +124,7 @@ export class Hole01Component implements OnInit {
         this.yellowTips = data.Yellow_Triangle.Tips;
         this.yellowYards = data.Yellow_Triangle.Yards;
 
+        // Check if the hole has already been geofenced
         if (data.Geofence) {
           this.mapComplete = true;
         }
@@ -130,6 +132,7 @@ export class Hole01Component implements OnInit {
     });
   }
 
+  // Read course
   getCourseName() {
     const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
@@ -147,6 +150,7 @@ export class Hole01Component implements OnInit {
     });
   }
 
+  // The following functions are for the editable states on the tiles
   doEdit1() {
     this.isEdit1 = true;
     this.isEdit2 = false;
@@ -220,6 +224,7 @@ export class Hole01Component implements OnInit {
     this.isEdit5 = false;
   }
 
+  // The following functions are for saving new data to Firebase
   saveGeneral() {
     const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole1');
     courseRef.update({
@@ -298,6 +303,7 @@ export class Hole01Component implements OnInit {
     this.isEdit5 = false;
   }
 
+  // Pop-up using the geofencing component
   mapPopUp() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

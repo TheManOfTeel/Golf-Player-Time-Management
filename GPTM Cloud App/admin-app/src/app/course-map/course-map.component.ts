@@ -1,14 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import * as firebase from 'firebase';
 import { MapsAPILoader } from '@agm/core';
-import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 declare const google: any;
 let myPolygon;
 let coordinateData = [];
 let markerData = [];
-let geoFence = [];
 
 @Component({
   selector: 'app-course-map',
@@ -37,11 +35,9 @@ export class CourseMapComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private fb: FormBuilder,
     private dialogRef: MatDialogRef<CourseMapComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    geoFence = data.geoFence;
   }
 
   ngOnInit() {
@@ -133,14 +129,6 @@ export class CourseMapComponent implements OnInit {
       }
     }
 
-    // Marker drop animation
-    function toggleBounce() {
-      if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
-      } else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-      }
-    }
 
     // Draw Polygon
     drawingManager.setMap(map);
@@ -174,6 +162,7 @@ export class CourseMapComponent implements OnInit {
     });
   }
 
+  // Push coordinates to Firebase
   savePoly() {
     const geoFence = [];
     geoFence.push({
@@ -187,6 +176,7 @@ export class CourseMapComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  // Clear overlay
   resetMap() {
     myPolygon.setMap(null);
   }

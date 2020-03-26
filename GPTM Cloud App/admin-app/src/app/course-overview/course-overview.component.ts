@@ -82,6 +82,7 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   // Figure out what needs to be shown in the navbar
+  // NOTE: Counts number of holes. It remains this way if the number of holes on registration is allowed to be more flexible
   initData() {
     this.getCourseName()
     .then(val => {

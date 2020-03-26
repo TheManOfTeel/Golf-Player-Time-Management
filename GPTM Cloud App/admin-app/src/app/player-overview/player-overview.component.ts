@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AngularFireDatabase } from '@angular/fire/database';
 import 'firebase/database';
 import 'firebase/firestore';
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-player-overview',
@@ -13,7 +10,9 @@ import * as firebase from 'firebase';
 
 export class PlayerOverviewComponent implements OnInit {
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
 }
