@@ -21,6 +21,7 @@ export class RequestsTableComponent implements OnInit {
   courseName: any;
   index: number;
 
+  // Read course
   getCourseName() {
     const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
@@ -29,6 +30,7 @@ export class RequestsTableComponent implements OnInit {
     });
   }
 
+  // Delete the request by figuring out the unknown key
   removeRequest(i: number) {
     const ref = firebase.database().ref('Request/' + this.courseName);
     ref.once('value').then(function(snapshot) {
@@ -57,8 +59,9 @@ export class RequestsTableComponent implements OnInit {
       });
     });
   }
-
 }
+
+// This is what we want to show
 export interface RequestsData {
   key: string;
   Hole: string;

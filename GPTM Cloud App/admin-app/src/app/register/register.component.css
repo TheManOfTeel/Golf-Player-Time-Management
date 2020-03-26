@@ -17,18 +17,6 @@
     border-radius: 10px;
 }
 
-.main-div{
-    height: 87vh;
-    display: flex;
-    flex: inherit;
-    justify-content: center;
-    align-items: center;
-    background-image: url("https://previews.123rf.com/images/tehcheesiong/tehcheesiong1104/tehcheesiong110400024/9415922-golf-ball-on-edge-of-hole.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-size: medium;
-}
-
 .container{
     text-align: center;
 }

@@ -39,19 +39,21 @@ export class LoginComponent {
     this.createForm();
   }
 
+  // Set validation
   createForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.email], // Validators.email?
+      email: ['', Validators.email],
       password: ['', Validators.minLength(6)]
     });
   }
 
-  tryGoogleLogin() {
-    this.authService.doGoogleLogin()
-    .then(() => {
-      this.router.navigate(['/dashboard']);
-    });
-  }
+  // This method is left is in case Google sign in is allowed later
+  // tryGoogleLogin() {
+  //   this.authService.doGoogleLogin()
+  //   .then(() => {
+  //     this.router.navigate(['/dashboard']);
+  //   });
+  // }
 
   tryLogin(value) {
     this.isLoading = true;
@@ -71,6 +73,7 @@ export class LoginComponent {
     });
   }
 
+  // Pull in admin data
   evalAdmin() {
     const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
@@ -79,6 +82,7 @@ export class LoginComponent {
       });
   }
 
+  // Determine if the user is an actual admin
   checkAdmin(isAdmin) {
     if (this.isAdmin === true) {
       this.noAdmin = false;
@@ -90,6 +94,7 @@ export class LoginComponent {
     }
   }
 
+  // Pop-up register form
   tryRegister(): void {
     this.dialog.open(RegisterComponent, {
       disableClose: true,
@@ -98,6 +103,7 @@ export class LoginComponent {
     });
   }
 
+  // For golf course search autocomplete
   geolocate() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {

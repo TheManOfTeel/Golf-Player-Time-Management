@@ -1,14 +1,10 @@
 import { Component, ViewChild, ElementRef, NgZone, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
 import { MapsAPILoader } from '@agm/core';
 
-interface NumberOfHoles {
-  value: number;
-  viewValue: number;
-}
 
 @Component({
   selector: 'app-register',
@@ -89,6 +85,7 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
+  // Set validators
   createForm() {
     this.courseSelectForm = this.fb.group({
       golfCourse: ['', Validators.required],
@@ -180,25 +177,28 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  tryGoogleLogin() {
-    this.authService.doGoogleLogin()
-    .then( res => {
-      this.router.navigate(['/dashboard']);
-    }, err => console.log(err)
-    );
-  }
+  // In case Google sign in is decided to be included
+  // tryGoogleLogin() {
+  //   this.authService.doGoogleLogin()
+  //   .then( () => {
+  //     this.router.navigate(['/dashboard']);
+  //   }, err => console.log(err)
+  //   );
+  // }
 
+  // Use firebase register mixed with custom parameter checks
   tryRegister(value) {
     this.isLoading = true;
-    this.checkIfExists(this.course)
+    this.checkIfExists()
     .then(data => {
       this.courseData = data;
-      this.validateCourse(data, value);
+      this.validateCourse(value);
     });
   }
 
   /* tslint:disable:quotemark */
-  writeHoleData(golfCourse) {
+  // Initialize the GolfCourse Firebase structure
+  writeHoleData() {
     firebase.database().ref('GolfCourse/' + this.course).set({
       golfCourse: this.course,
       latitude: this.latitude,
@@ -241,14 +241,16 @@ export class RegisterComponent implements OnInit {
  }
  /* tslint:enable:quotemark */
 
-  checkIfExists(golfCourse) {
+ // See if the course is in use already
+  checkIfExists() {
   return firebase.database().ref('GolfCourse/' + this.course).once('value').then(function(snapshot) {
     const courseName = snapshot.val();
     return courseName;
     });
   }
 
-  validateCourse(courseData, value) {
+  // Generate error messages
+  validateCourse(value) {
     if (this.course.includes('Golf') && (this.courseData === null) && (this.password === this.password2)) {
       this.authService.doRegister(value)
       .then(res => {
@@ -257,7 +259,7 @@ export class RegisterComponent implements OnInit {
         this.noMatch = null;
         this.successMessage = 'Your account has been created';
         console.log(this.successMessage);
-        this.writeHoleData(this.course);
+        this.writeHoleData();
         firebase.database().ref('/Users/' + res.user.uid).set({
           email: res.user.email,
           password: this.password,
@@ -327,9 +329,10 @@ export class RegisterComponent implements OnInit {
     /* tslint:enable:quotemark */
   }
 
+  // Try to limit to only golf courses since places autocomplete has no easy way of doing this
   verifyGolfCourse() {
     if (this.course != null && this.course.includes('Golf')) {
-      this.checkIfExists(this.course)
+      this.checkIfExists()
       .then(data => {
         this.courseData = data;
         if (this.courseData === null) {
