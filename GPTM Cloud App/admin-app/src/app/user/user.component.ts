@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -52,27 +52,21 @@ export class UserComponent implements OnInit {
     });
   }
 
-  save(value) {
-    this.userService.updateCurrentUser(value)
-    .then(res => {
-      console.log(res);
-    }, err => console.log(err));
-  }
-
   logout() {
     this.authService.doLogout()
-    .then((res) => {
+    .then(() => {
       this.location.back();
     }, (error) => {
       console.log('Logout error', error);
     });
   }
 
+  // Golf Course name on banner
   setBannerName() {
     const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
-    const golfCourse = (snapshot.val() && snapshot.val().golfCourse) || 'No Associated Course';
-    return golfCourse;
+      const golfCourse = (snapshot.val() && snapshot.val().golfCourse) || 'No Associated Course';
+      return golfCourse;
     });
   }
 }

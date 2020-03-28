@@ -1,4 +1,7 @@
 <div class="center">
+    <ng-container *ngIf="isLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-container>
     <button mat-icon-button type="button" matDialogClose tabindex="-1" class="btn-close"><mat-icon>close</mat-icon></button>
     <h1 class="header">Register</h1>
     <mat-horizontal-stepper [linear]="true" #stepper>
@@ -13,14 +16,20 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field>
+                    <!-- For dropdown list (more scalability?) -->
+                    <!-- <mat-form-field>
                         <mat-label>Number of holes</mat-label>
-                            <mat-select [(ngModel)]="selectedNumber" name="numberOfHoles" formControlName="numberOfHoles">
-                                <mat-option *ngFor="let numberOfHoles of numbers" [value]="numberOfHoles.value">
-                                {{numberOfHoles.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                        <mat-select [(ngModel)]="selectedNumber" name="numberOfHoles" formControlName="numberOfHoles">
+                            <mat-option *ngFor="let numberOfHoles of numbers" [value]="numberOfHoles.value">
+                            {{numberOfHoles.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                    <mat-label>Select the number of holes on your course</mat-label>
+                    <mat-radio-group class="radio-group" [(ngModel)]="selectedNumber"
+                    name="selectedNumber" formControlName="numberOfHoles">
+                    <mat-radio-button class="radio-button" *ngFor="let hole of holes" [value]="hole">{{hole}}</mat-radio-button>
+                    </mat-radio-group>
                 </div>
                 <div><label class="success" *ngIf="valid">{{valid}}</label></div>
                 <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
@@ -31,6 +40,12 @@
                 <br>
                 <br>
                 <br>
+                <br *ngIf="!successMessage && valid && !invalid && !notACourse">
+                <br *ngIf="!successMessage && !valid && invalid && !notACourse">
+                <br *ngIf="!successMessage && !valid && !invalid && notACourse">
+                <br *ngIf="!successMessage && !valid && !invalid && !notACourse">
+                <br *ngIf="successMessage && !valid && !invalid && !notACourse">
+                <br *ngIf="successMessage && !valid && !invalid && !notACourse">
                 <div mat-dialog-actions class="buttons">
                     <button *ngIf="!successMessage" mat-raised-button color="primary" type="button" class="btn-default" (click)="verifyGolfCourse()">VERIFY</button>
                     <button *ngIf="successMessage" mat-raised-button color="primary" type="button" class="btn-default" (click)="verifyGolfCourse()" disabled>VERIFY</button>
@@ -44,7 +59,7 @@
             <form [formGroup]="registerForm" class="container">
                 <ng-template matStepLabel>Create an account</ng-template>
                 <div>
-                    <mat-form-field>
+                    <mat-form-field class="input">
                         <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="email" type="email" formControlName="email" required>
                         <mat-hint>Enter an email address</mat-hint>
                         <mat-error>
@@ -53,8 +68,9 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field>
-                        <input matInput placeholder="Password" id="password" name="password" [(ngModel)]="password" type="password" formControlName="password" required>
+                    <mat-form-field class="input">
+                        <input matInput placeholder="Password" id="password" name="password" [type]="hide1 ? 'password' : 'text'" [(ngModel)]="password" type="password" formControlName="password" required>
+                        <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                         <mat-hint>Enter a password</mat-hint>
                         <mat-error>
                             Must be at least 6 characters
@@ -62,8 +78,9 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field>
-                        <input matInput placeholder="Reenter Password" id="password2" name="password2" [(ngModel)]="password2" type="password" formControlName="password2" required>
+                    <mat-form-field class="input">
+                        <input matInput placeholder="Reenter Password" id="password2" name="password2" [type]="hide2 ? 'password' : 'text'" [(ngModel)]="password2" type="password" formControlName="password2" required>
+                        <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                         <mat-hint>Renter your password</mat-hint>
                         <mat-error>
                             Must be at least 6 characters
@@ -76,6 +93,8 @@
                 <div><label class="error" *ngIf="noMatch">{{noMatch}}</label></div>
                 <div><label class="error" *ngIf="invalid">{{invalid}}</label></div>
                 <div><label class="error" *ngIf="notACourse">{{notACourse}}</label></div>
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && notACourse">
+                <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && !invalid  && !notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && !successMessage && invalid  && !notACourse">
                 <br *ngIf="!errorMessage && !alreadyExists && !noMatch && successMessage && !invalid  && !notACourse">
