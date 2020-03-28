@@ -1,6 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
 import { MapsAPILoader } from '@agm/core';
@@ -77,7 +76,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private router: Router,
     private fb: FormBuilder,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone

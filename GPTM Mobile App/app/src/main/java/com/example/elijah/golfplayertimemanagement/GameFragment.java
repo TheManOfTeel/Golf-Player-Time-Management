@@ -246,10 +246,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                     Log.e("Hole Num", String.valueOf(holeNum));
                     getHoleDetails2();
 
-
-
-
-
                     NextHole.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
