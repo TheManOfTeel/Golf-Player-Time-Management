@@ -1,9 +1,12 @@
 package com.example.elijah.golfplayertimemanagement;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,10 +39,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TimerTask;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -60,8 +65,9 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     private TextView score;
     int playerPar = 0;
     private GoogleMap mMap;
-    private Fragment myFragment;
     private GPS myGPS;
+    private TimerTask scanTask;
+
 
     @Nullable
     @Override
@@ -78,11 +84,18 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         if(bundle != null) {
             CourseName = bundle.getString("courseName");
             GameID = bundle.getString("gameID");
-            Difficulty = bundle.getString("Difficulty");
+            if(bundle.containsKey("Difficulty")) {
+                Difficulty = bundle.getString("Difficulty");
+            }else if(bundle.containsKey("difficulty")){
+                Difficulty = bundle.getString("difficulty");
+            }else{
+                Log.e("GameFragment", "No difficulty");
+            }
 
         }else{
             Log.e("Bundle", "Bundle is null");
         }
+
 
 
         database = FirebaseDatabase.getInstance();
@@ -99,6 +112,11 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         Par = (TextView) rootView.findViewById(R.id.fragpar);
         Yards = (TextView) rootView.findViewById(R.id.fragyards);
         getHoleDetails2();
+
+        if((ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                || (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
 
 
         if(playerPar== 0){
@@ -119,22 +137,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
         return rootView;
     }
-
-
-
-
-
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.e("paused hole Num", String.valueOf(holeNum));
-    }
-
-
-
-
 
     private void getHoleDetails2(){
         myRef.child("Games").child(CourseName).child(GameID).child("Location").addValueEventListener(new ValueEventListener() {
@@ -208,8 +210,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
     //UpdateHoleUI
     private void UIHoleNum(String hole, String par, String yards){
-
-
         holenum.setText("Hole"+hole);
         if(!par.equals("No par set")) {
             Par.setText("Par: " + par);
@@ -224,6 +224,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -231,7 +232,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.resetMinMaxZoomPreference();
-      
 
 
         myRef.child("Games").child(CourseName).child(GameID).child("Location").addValueEventListener(new ValueEventListener() {
@@ -241,6 +241,9 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                     holeNum = Integer.parseInt(dataSnapshot.getValue().toString());
                     Log.e("Hole Num", String.valueOf(holeNum));
                     getHoleDetails2();
+
+
+
 
 
                     NextHole.setOnClickListener(new View.OnClickListener() {
@@ -263,16 +266,11 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                         mMap.clear();
 
                                         Log.e("Hole Num", String.valueOf(holeNum));
-
                                     }
                                 }
                             });
-
-
-
                         }
                     });
-
 
                     BackHole.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -292,9 +290,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                             MapCurrentHole(mMap, holeNum);
                         }
                     });
-
                 }
-
 
             }
 
@@ -303,12 +299,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
-
-
-
-
     }
+
 
     private void MapHole2(int Holenum, GoogleMap mMap){
         myRef.child("GolfCourse").child(CourseName).child("Holes").child("Hole"+Holenum).addValueEventListener(new ValueEventListener() {
@@ -339,6 +331,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                             polyline.setTag("Hole" + holeNum);
                             getHolebounds((LinkedList) lstLatLngRoute);
                             mapTap(mMap, (LinkedList) lstLatLngRoute);
+
+                            MapMyLocation(mMap,(LinkedList) lstLatLngRoute);
                         }
 
 
@@ -389,8 +383,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                 double lat = Double.valueOf(dataSnapshot.child("lat").getValue().toString());
                                 double lng = Double.valueOf(dataSnapshot.child("lng").getValue().toString());
                                 LatLng holelatlng = new LatLng(lat,lng);
-                                double yards =  CalculationByDistance(holelatlng, latLng);
-                                Toast.makeText(getContext(),  yards+" yards away from the hole", Toast.LENGTH_LONG).show();
+                                double yards =  CalculationByDistance(MyLocation(), latLng);
+                                Toast.makeText(getContext(),  yards+" yards", Toast.LENGTH_LONG).show();
                             }
                         }
 
@@ -512,6 +506,57 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
         return yards;
     }
+
+
+    private LatLng MyLocation(){
+        myGPS = new GPS(getContext());
+        Location location = myGPS.getMylocation();
+        LatLng mylatlng = new LatLng(location.getLatitude(), location.getLongitude());
+        Log.e("MyLocation", mylatlng.toString());
+        return mylatlng;
+    }
+
+
+    private void MapMyLocation(GoogleMap mMap, LinkedList lstLatLngRoute){
+        LatLngBounds.Builder build = new LatLngBounds.Builder();
+        for(int l = 0; l< lstLatLngRoute.size();l++){
+            build.include((LatLng) lstLatLngRoute.get(l));
+        }
+        LatLngBounds bounds = build.build();
+        if(bounds.contains(MyLocation())){
+            Log.e("MapMyLocation", MyLocation().toString());
+            mMap.setMyLocationEnabled(true);
+            mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
+                @Override
+                public void onMyLocationClick(@NonNull Location location) {
+                    LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
+                    mMap.addMarker(new MarkerOptions().position(mylocation).title("me"));
+                }
+            });
+        }else{
+            mMap.setMyLocationEnabled(false);
+        }
+
+
+    }
+
+//    private void updateLocation(){
+//        final Handler handler = new Handler();
+//        Timer timer = new Timer();
+//        scanTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                      MyLocation();
+//
+//
+//                    }
+//                });
+//            }};
+//        timer.schedule(scanTask, 10000, 10000);
+//    }
 
 
 }

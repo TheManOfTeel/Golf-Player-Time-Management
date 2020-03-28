@@ -66,7 +66,10 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         joingame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showJoinGameDialog();
+                Intent intent = new Intent(GolfCourseHomeActivity.this, CurrentGamesActivity.class);
+                intent.putExtra("courseName", CourseName);
+                startActivity(intent);
+                finish();
             }
         });
 

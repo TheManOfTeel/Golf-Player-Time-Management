@@ -45,15 +45,13 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectgolfcourse);
-        ReadCourse();
-        listView = (ListView)findViewById(R.id.CourseList);
-        courseAdapter = new CourseAdapter(this, courses);
-        listView.setAdapter(courseAdapter);
-        listView.setTextFilterEnabled(true);
+
         getSupportActionBar().setTitle("SelectGolfCOurseActivity");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         search = (EditText)findViewById(R.id.GolfCourseSearch);
+        listView = (ListView)findViewById(R.id.CourseList);
+        ReadCourse();
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -101,10 +99,11 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
                         GolfCourse course = new GolfCourse(ID, name);
                         courses.add(course);
                     }
+                    courseAdapter = new CourseAdapter(getApplicationContext(), courses);
+                    listView.setAdapter(courseAdapter);
+                    listView.setTextFilterEnabled(true);
 
-                    for (int i = 0; i < courses.size(); i++) {
-                        Log.e("GOlfCourseList", courses.get(i).toString());
-                    }
+
                 }
             }
 
@@ -126,9 +125,7 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
             finish();
         }
 
-        if(courseAdapter.isEmpty()){
-            listView.setAdapter(courseAdapter);
-        }
+
 
     }
 

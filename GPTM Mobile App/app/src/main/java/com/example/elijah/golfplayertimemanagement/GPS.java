@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
@@ -28,10 +29,13 @@ public class GPS {
             return;
         }
 
-        locationManager.requestLocationUpdates(provider, 60 * 10, 50, new LocationListener() {
+       locationManager.requestLocationUpdates(provider, 10 * 1000, 0, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+
                 mylocation = location;
+                Log.e("OnLocationChange", location.getLatitude() + " " +location.getLongitude());
+
             }
 
             @Override
@@ -50,20 +54,24 @@ public class GPS {
             }
         });
     }
+
+
     Location getMylocation(){
-        if(mylocation == null){
+        if(mylocation == null)
             if((ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                     || (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED))
-            {
+                Log.e("getMyLocation", locationManager.getLastKnownLocation(provider).toString());
+
                 mylocation = locationManager.getLastKnownLocation(provider);
-            }
-            if(mylocation == null){
-                mylocation = new Location(provider);
-                mylocation.setAltitude(0);
-                mylocation.setLatitude(0);
-                mylocation.setLongitude(0);
-            }
-        }
+
+//            if(mylocation == null){
+//                mylocation = new Location(provider);
+//                mylocation.setAltitude(0);
+//                mylocation.setLatitude(0);
+//                mylocation.setLongitude(0);
+//
+//            }
+
         return mylocation;
     }
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/location"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_centerHorizontal="true"
+        >
+        <TextView
+            android:id="@+id/Location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Hole 18"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/leaderandtime"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:elevation="10dp"
+        android:layout_below="@+id/location"
+        >
+        <TextView
+            android:id="@+id/leader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invited By:test52@gmail.com"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time Started: 12:30pm"
+            android:textStyle="bold"
+            android:layout_weight="1"
+
+            />
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

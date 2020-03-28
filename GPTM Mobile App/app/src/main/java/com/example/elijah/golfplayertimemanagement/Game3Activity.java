@@ -41,6 +41,8 @@ public class Game3Activity extends AppCompatActivity  {
 
         if(bundle != null) {
             defaultFragment.setArguments(bundle);
+            Log.e("Game2Activity", bundle.getString("courseName"));
+
         }else{
             defaultFragment.setArguments(savedInstanceState);
         }
