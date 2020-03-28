@@ -69,6 +69,7 @@ import { Hole18Component } from './course-overview/hole-info/hole18/hole18.compo
 import { ActivePlayerTableComponent } from './player-overview/tables/active-player-table/active-player-table.component';
 import { RequestsTableComponent } from './player-overview/tables/requests-table/requests-table.component';
 import { WaitTimeComponent } from './course-overview/hole-info/wait-time/wait-time.component';
+import { PasswordResetComponent } from './login/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { WaitTimeComponent } from './course-overview/hole-info/wait-time/wait-ti
     ActivePlayerTableComponent,
     RequestsTableComponent,
     WaitTimeComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
