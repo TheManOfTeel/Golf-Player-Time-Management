@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { MatDialog } from '@angular/material/dialog';
 import * as firebase from 'firebase';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @Component({
   selector: 'app-login',
@@ -100,6 +101,14 @@ export class LoginComponent {
       disableClose: true,
       width: '800px',
       height: '550px'
+    });
+  }
+
+  resetPassword(): void {
+    this.dialog.open(PasswordResetComponent, {
+      disableClose: true,
+      width: '400px',
+      height: '300px'
     });
   }
 
