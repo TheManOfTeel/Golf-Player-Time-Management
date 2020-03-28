@@ -233,7 +233,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.resetMinMaxZoomPreference();
 
-
         myRef.child("Games").child(CourseName).child(GameID).child("Location").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -241,10 +240,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                     holeNum = Integer.parseInt(dataSnapshot.getValue().toString());
                     Log.e("Hole Num", String.valueOf(holeNum));
                     getHoleDetails2();
-
-
-
-
 
                     NextHole.setOnClickListener(new View.OnClickListener() {
                         @Override
