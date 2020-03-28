@@ -22,7 +22,7 @@
 }
 
 .main-div{
-    height: 93vh;
+    height: 94vh;
     display: flex;
     flex: inherit;
     justify-content: center;
@@ -61,4 +61,8 @@
 
 .header {
     font-size: x-large;
+}
+
+.input {
+    width: 80%;
 }

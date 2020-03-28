@@ -1,0 +1,52 @@
+<div class="container mat-elevation-z8">
+    <table mat-table [dataSource]="requestsDataSource" matSort>
+
+        <!-- Player Column -->
+        <ng-container matColumnDef="User">
+          <div class="mat-header-cell">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Player </mat-header-cell>
+          </div>
+          <mat-cell *matCellDef="let element"> {{element.User}} </mat-cell>
+        </ng-container>
+
+        <!-- Request Column -->
+        <ng-container matColumnDef="Request">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Request </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Request}} </mat-cell>
+        </ng-container>
+
+        <!-- Hole Column -->
+        <ng-container matColumnDef="Hole">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
+          <mat-cell *matCellDef="let element"> Hole {{element.Hole}} </mat-cell>
+        </ng-container>
+
+        <!-- Time Column -->
+        <ng-container matColumnDef="Time">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Time </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Time}} </mat-cell>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="Actions">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Complete </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i=index;">
+            <button mat-icon-button color="accent" (click)="removeRequest(i)">
+              <mat-icon>check_circle_outline</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Footer that displays if there's no data returned -->
+        <ng-container matColumnDef="noData">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+              No Current Requests
+          </mat-footer-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="requestsDisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: requestsDisplayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(requestsDataSource!=null && requestsDataSource.data.length==0)}"></mat-footer-row>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -15,6 +15,11 @@
 }
 
 .expander {
+    margin-top: 1%;
     text-align: right;
     margin-bottom: 1%;
+}
+
+table {
+    width: 100%;
 }

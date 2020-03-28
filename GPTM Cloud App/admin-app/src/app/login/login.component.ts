@@ -27,6 +27,8 @@ export class LoginComponent {
     country: 'long_name',
     postal_code: 'short_name'
   };
+  isLoading = false;
+  hide = true;
 
   constructor(
     public authService: AuthService,
@@ -37,21 +39,24 @@ export class LoginComponent {
     this.createForm();
   }
 
+  // Set validation
   createForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.email], // Validators.email?
+      email: ['', Validators.email],
       password: ['', Validators.minLength(6)]
     });
   }
 
-  tryGoogleLogin() {
-    this.authService.doGoogleLogin()
-    .then(() => {
-      this.router.navigate(['/dashboard']);
-    });
-  }
+  // This method is left is in case Google sign in is allowed later
+  // tryGoogleLogin() {
+  //   this.authService.doGoogleLogin()
+  //   .then(() => {
+  //     this.router.navigate(['/dashboard']);
+  //   });
+  // }
 
   tryLogin(value) {
+    this.isLoading = true;
     this.authService.doLogin(value)
     .then(() => {
       this.evalAdmin()
@@ -64,9 +69,11 @@ export class LoginComponent {
       this.noAdmin = false;
       this.errorMessage = 'Invalid username/password';
       this.errorMessage = err.message;
+      this.isLoading = false;
     });
   }
 
+  // Pull in admin data
   evalAdmin() {
     const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
@@ -75,16 +82,19 @@ export class LoginComponent {
       });
   }
 
+  // Determine if the user is an actual admin
   checkAdmin(isAdmin) {
     if (this.isAdmin === true) {
       this.noAdmin = false;
       this.router.navigate(['/dashboard']);
+      this.isLoading = false;
     }
     if (this.isAdmin === false) {
       this.noAdmin = true;
     }
   }
 
+  // Pop-up register form
   tryRegister(): void {
     this.dialog.open(RegisterComponent, {
       disableClose: true,
@@ -93,6 +103,7 @@ export class LoginComponent {
     });
   }
 
+  // For golf course search autocomplete
   geolocate() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
