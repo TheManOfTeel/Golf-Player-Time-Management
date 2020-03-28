@@ -76,6 +76,8 @@
             android:elevation="20dp"
             android:background="#67A84C"
             android:layout_marginTop="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
 
             >
 

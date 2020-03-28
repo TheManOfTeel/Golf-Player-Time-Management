@@ -52,7 +52,6 @@ public class SelectDifficultyActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String difficulty = holeDifficulties.get(i).Difficulty;
-                Log.e("Selected Difficulty", difficulty);
                 Intent intent = new Intent(SelectDifficultyActivity.this, GameSetUpActivity.class);
                 extras.putString("Difficulty", difficulty);
                 intent.putExtras(extras);
@@ -75,7 +74,7 @@ public class SelectDifficultyActivity extends AppCompatActivity {
                                 String yards = dataSnapshot.child("Holes").child("Hole1").child(difficulties).child("Yards").getValue().toString();
                                 HoleDifficulty holeDifficulty = new HoleDifficulty(difficulties, description,par,tips,yards);
                                 holeDifficulties.add(holeDifficulty);
-                                Log.e("DifficultyList", holeDifficulties.toString());
+
                             }
                     }
                     DifficultyAdapter  difficultyAdapter = new DifficultyAdapter(getApplicationContext(), holeDifficulties);

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#67A84C"
+    android:orientation="vertical"
+    tools:context=".JoinGameSetUpActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="20dp"
+        android:background="#fff"
+
+        >
+        <TextView
+            android:id="@+id/joinday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wednesday Morning"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"
+
+            />
+        <TextView
+
+
+            android:id="@+id/joindate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="3/4/2020"
+            android:layout_margin="20dp"
+            android:textColor="#67A84C"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="20dp"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/joinCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oakland University R and S Sharf Golf Course"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"
+            android:inputType="textMultiLine"
+            android:singleLine="false"
+            android:scrollHorizontally="false"
+            android:maxLines="3"
+            />
+        <TextView
+            android:id="@+id/Joinholenumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="18 Holes"
+            android:layout_margin="20dp"
+            android:textColor="#67A84C"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="20dp"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/joinDifficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Default"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"/>
+
+
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/joinSelectDifficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Difficulty"
+                android:textColor="#67A84C"
+                />
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_navigate_next_black_24dp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="20dp"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        >
+
+
+        <TextView
+            android:id="@+id/joingroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Group"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="20dp"
+        android:background="#fff"
+        android:layout_weight=".5"
+
+        >
+
+        <ListView
+            android:id="@+id/joinGroupList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:divider="#EFF0F1"
+            android:dividerHeight="2px"
+            >
+        </ListView>
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/joinRoundbtn"
+        android:textSize="24dp"
+        android:text="Start Round"
+        android:background="#67A84C"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:elevation="10dp"
+        />
+
+
+
+
+
+</LinearLayout>

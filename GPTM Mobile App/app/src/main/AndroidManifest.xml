@@ -7,6 +7,7 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".JoinGameSetUpActivity"></activity>
+        <activity android:name=".CurrentGamesActivity" />
+        <activity android:name=".JoinSelectDifficultyActivity" android:parentActivityName=".JoinGameSetUpActivity"/>
         <activity android:name=".ReqsAssistActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -35,7 +39,9 @@
         <activity android:name=".Game3Activity" />
         <activity android:name=".SelectDifficultyActivity" />
         <activity android:name=".ManageGroupActivity" />
-        <activity android:name=".GameSetUpActivity" />
+        <activity
+            android:name=".GameSetUpActivity"
+            android:parentActivityName=".GolfCourseHomeActivity" />
         <activity android:name=".ProfileActivity" />
         <activity
             android:name=".Maps2Activity"

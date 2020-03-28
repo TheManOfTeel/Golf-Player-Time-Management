@@ -35,14 +35,22 @@ public class Game3Activity extends AppCompatActivity  {
         bundle = getIntent().getBundleExtra("bundle");
         GameFragment defaultFragment = new GameFragment();
 
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
+        mAuth = FirebaseAuth.getInstance();
+
         if(bundle != null) {
             defaultFragment.setArguments(bundle);
+            Log.e("Game2Activity", bundle.getString("courseName"));
+
         }else{
             defaultFragment.setArguments(savedInstanceState);
         }
 
 
         Log.e("Game2Activity", bundle.toString());
+
+
 
 
 
@@ -55,6 +63,7 @@ public class Game3Activity extends AppCompatActivity  {
             getSupportFragmentManager().getFragments().get(i).setArguments(bundle);
 
         }
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, defaultFragment).commit();
 
 
@@ -70,8 +79,6 @@ public class Game3Activity extends AppCompatActivity  {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             Fragment selectedFragment = null;
-
-
             switch (menuItem.getItemId()){
                 case R.id.NavHome:
                     selectedFragment = new GameFragment();
@@ -90,12 +97,17 @@ public class Game3Activity extends AppCompatActivity  {
                     Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
                     break;
             }
-            selectedFragment.setArguments(bundle);
 
+            selectedFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     selectedFragment).commit();
 
+
+
             return true;
+
+
+
 
         }
     };

@@ -21,7 +21,7 @@
     android:id="@+id/StartGame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Start Game"
+    android:text="Game Set Up"
         android:layout_below="@id/WelcomeLabel"
     />
     <Button
@@ -35,7 +35,7 @@
         android:id="@+id/JoinGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Join Game"
+        android:text="Join Current Game"
         android:layout_below="@id/ViewCourse"
         />
 
