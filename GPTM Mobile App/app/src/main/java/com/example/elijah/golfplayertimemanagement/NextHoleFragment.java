@@ -93,7 +93,7 @@ public class NextHoleFragment extends Fragment {
                         numberOfGamesOnHole++;
                     }
                 }
-                Log.e("Next Hole Info", "Number Of Game:" + numberOfGamesOnHole + "number Of Players " + numberOfPlayersonHole);
+                Log.e("Next Hole Info", "Number Of Game:" + numberOfGamesOnHole + "nmber Of Players " + numberOfPlayersonHole);
                 holenum.setText("Hole " + nexthole);
                 gamestext.setText(numberOfGamesOnHole +  " Games On This Hole");
                 players.setText(numberOfPlayersonHole + " Players On This Hole");
