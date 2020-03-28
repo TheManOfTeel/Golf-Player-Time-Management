@@ -1,14 +1,10 @@
 import { Component, ViewChild, ElementRef, NgZone, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
 import { MapsAPILoader } from '@agm/core';
 
-interface NumberOfHoles {
-  value: number;
-  viewValue: number;
-}
 
 @Component({
   selector: 'app-register',
@@ -39,26 +35,31 @@ export class RegisterComponent implements OnInit {
   };
   i: number;
   selectedNumber: number;
-  numbers: NumberOfHoles[] = [
-    {value: 1, viewValue: 1},
-    {value: 2, viewValue: 2},
-    {value: 3, viewValue: 3},
-    {value: 4, viewValue: 4},
-    {value: 5, viewValue: 5},
-    {value: 6, viewValue: 6},
-    {value: 7, viewValue: 7},
-    {value: 8, viewValue: 8},
-    {value: 9, viewValue: 9},
-    {value: 10, viewValue: 10},
-    {value: 11, viewValue: 11},
-    {value: 12, viewValue: 12},
-    {value: 13, viewValue: 13},
-    {value: 14, viewValue: 14},
-    {value: 15, viewValue: 15},
-    {value: 16, viewValue: 16},
-    {value: 17, viewValue: 17},
-    {value: 18, viewValue: 18},
-  ];
+
+  // For the radio buttons
+  holes: number[] = [9, 18];
+
+  // For the dropdown list
+  // numbers: NumberOfHoles[] = [
+    // {value: 1, viewValue: 1},
+    // {value: 2, viewValue: 2},
+    // {value: 3, viewValue: 3},
+    // {value: 4, viewValue: 4},
+    // {value: 5, viewValue: 5},
+    // {value: 6, viewValue: 6},
+    // {value: 7, viewValue: 7},
+    // {value: 8, viewValue: 8},
+    // {value: 9, viewValue: 9},
+    // {value: 10, viewValue: 10},
+    // {value: 11, viewValue: 11},
+    // {value: 12, viewValue: 12},
+    // {value: 13, viewValue: 13},
+    // {value: 14, viewValue: 14},
+    // {value: 15, viewValue: 15},
+    // {value: 16, viewValue: 16},
+    // {value: 17, viewValue: 17},
+  //   {value: 18, viewValue: 18},
+  // ];
   placeSearch: any;
   autocomplete: any;
   verified: boolean;
@@ -67,6 +68,9 @@ export class RegisterComponent implements OnInit {
   invalid = '';
   noMatch = '';
   notACourse = '';
+  isLoading = false;
+  hide1 = true;
+  hide2 = true;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -81,6 +85,7 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
+  // Set validators
   createForm() {
     this.courseSelectForm = this.fb.group({
       golfCourse: ['', Validators.required],
@@ -172,24 +177,28 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  tryGoogleLogin() {
-    this.authService.doGoogleLogin()
-    .then( res => {
-      this.router.navigate(['/dashboard']);
-    }, err => console.log(err)
-    );
-  }
+  // In case Google sign in is decided to be included
+  // tryGoogleLogin() {
+  //   this.authService.doGoogleLogin()
+  //   .then( () => {
+  //     this.router.navigate(['/dashboard']);
+  //   }, err => console.log(err)
+  //   );
+  // }
 
+  // Use firebase register mixed with custom parameter checks
   tryRegister(value) {
-    this.checkIfExists(this.course)
+    this.isLoading = true;
+    this.checkIfExists()
     .then(data => {
       this.courseData = data;
-      this.validateCourse(data, value);
+      this.validateCourse(value);
     });
   }
 
   /* tslint:disable:quotemark */
-  writeHoleData(golfCourse) {
+  // Initialize the GolfCourse Firebase structure
+  writeHoleData() {
     firebase.database().ref('GolfCourse/' + this.course).set({
       golfCourse: this.course,
       latitude: this.latitude,
@@ -202,40 +211,46 @@ export class RegisterComponent implements OnInit {
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Red_Circle').set({
         Description: "Men's professional tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Blue_Square').set({
         Description: "Men's average tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Yellow_Triangle').set({
         Description: "Women's professional tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
       });
       firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Pink_Diamond').set({
         Description: "Women's average tee",
-        Tips: 'No description set',
+        Tips: 'No tips set',
         Yards: 'No distance set',
         Par: 'No par set',
+      });
+      firebase.database().ref('GolfCourse/' + this.course + '/WaitTimes/Hole' + this.i).set({
+        Queue: 0,
+        WaitTime: 0
       });
     }
  }
  /* tslint:enable:quotemark */
 
-  checkIfExists(golfCourse) {
+ // See if the course is in use already
+  checkIfExists() {
   return firebase.database().ref('GolfCourse/' + this.course).once('value').then(function(snapshot) {
     const courseName = snapshot.val();
     return courseName;
     });
   }
 
-  validateCourse(courseData, value) {
+  // Generate error messages
+  validateCourse(value) {
     if (this.course.includes('Golf') && (this.courseData === null) && (this.password === this.password2)) {
       this.authService.doRegister(value)
       .then(res => {
@@ -244,19 +259,21 @@ export class RegisterComponent implements OnInit {
         this.noMatch = null;
         this.successMessage = 'Your account has been created';
         console.log(this.successMessage);
-        this.writeHoleData(this.course);
+        this.writeHoleData();
         firebase.database().ref('/Users/' + res.user.uid).set({
           email: res.user.email,
           password: this.password,
           isAdmin: true,
           golfCourse: this.course
         });
+        this.isLoading = false;
       }, err => {
           console.log(err);
           this.alreadyExists = null;
           this.noMatch = null;
           this.errorMessage = err.message;
           this.successMessage = null;
+          this.isLoading = false;
         });
     }
     /* tslint:disable:quotemark */
@@ -265,49 +282,57 @@ export class RegisterComponent implements OnInit {
       this.errorMessage = null;
       this.alreadyExists = null;
       this.invalid = null;
+      this.isLoading = false;
     }
     if (this.courseData != null) {
       this.alreadyExists = 'Course is already registered';
       this.errorMessage = null;
       this.noMatch = null;
       this.invalid = null;
+      this.isLoading = false;
     }
     if (!this.course.includes('Golf')) {
       this.notACourse = 'Not a golf course';
       this.alreadyExists = null;
       this.errorMessage = null;
       this.noMatch = null;
+      this.isLoading = false;
     }
     if (this.courseData != null && !this.course.includes('Golf')) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = null;
       this.notACourse = 'Not a golf course';
       this.errorMessage = null;
+      this.isLoading = false;
     }
     if (this.courseData != null && this.password !== this.password2) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = "Passwords don't match";
       this.invalid = null;
       this.errorMessage = null;
+      this.isLoading = false;
     }
     if (!this.course.includes('Golf') && this.password !== this.password2) {
       this.alreadyExists = null;
       this.noMatch = "Passwords don't match";
       this.notACourse = 'Not a golf course';
       this.errorMessage = null;
+      this.isLoading = false;
     }
     if (this.courseData != null && !this.course.includes('Golf') && this.password !== this.password2) {
       this.alreadyExists = 'Course is already registered';
       this.noMatch = "Passwords don't match";
       this.notACourse = 'Not a golf course';
       this.errorMessage = null;
+      this.isLoading = false;
     }
     /* tslint:enable:quotemark */
   }
 
+  // Try to limit to only golf courses since places autocomplete has no easy way of doing this
   verifyGolfCourse() {
     if (this.course != null && this.course.includes('Golf')) {
-      this.checkIfExists(this.course)
+      this.checkIfExists()
       .then(data => {
         this.courseData = data;
         if (this.courseData === null) {

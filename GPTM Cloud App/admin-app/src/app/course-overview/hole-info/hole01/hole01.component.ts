@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseMapComponent } from 'src/app/course-map/course-map.component';
 
+// NOTE: all of the hole components work the same way
 @Component({
   selector: 'app-hole01',
   templateUrl: './hole01.component.html',
@@ -19,28 +20,30 @@ export class Hole01Component implements OnInit {
   isEdit4 = false;
   isEdit5 = false;
 
-  generalDescription: string;
-  generalTips: string;
+  mapComplete = false;
 
-  blueDescription: string;
-  bluePar: string;
-  blueTips: string;
-  blueYards: string;
+  generalDescription = 'loading...';
+  generalTips = 'loading...';
 
-  redDescription: string;
-  redPar: string;
-  redTips: string;
-  redYards: string;
+  blueDescription = 'loading...';
+  bluePar = 'loading...';
+  blueTips = 'loading...';
+  blueYards = 'loading...';
 
-  pinkDescription: string;
-  pinkPar: string;
-  pinkTips: string;
-  pinkYards: string;
+  redDescription = 'loading...';
+  redPar = 'loading...';
+  redTips = 'loading...';
+  redYards = 'loading...';
 
-  yellowDescription: string;
-  yellowPar: string;
-  yellowTips: string;
-  yellowYards: string;
+  pinkDescription = 'loading...';
+  pinkPar = 'loading...';
+  pinkTips = 'loading...';
+  pinkYards = 'loading...';
+
+  yellowDescription = 'loading...';
+  yellowPar = 'loading...';
+  yellowTips = 'loading...';
+  yellowYards = 'loading...';
 
   coordinates = [];
 
@@ -120,10 +123,16 @@ export class Hole01Component implements OnInit {
         this.yellowPar = data.Yellow_Triangle.Par;
         this.yellowTips = data.Yellow_Triangle.Tips;
         this.yellowYards = data.Yellow_Triangle.Yards;
+
+        // Check if the hole has already been geofenced
+        if (data.Geofence) {
+          this.mapComplete = true;
+        }
       });
     });
   }
 
+  // Read course
   getCourseName() {
     const userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
@@ -141,9 +150,13 @@ export class Hole01Component implements OnInit {
     });
   }
 
+  // The following functions are for the editable states on the tiles
   doEdit1() {
     this.isEdit1 = true;
-    return this.isEdit1;
+    this.isEdit2 = false;
+    this.isEdit3 = false;
+    this.isEdit4 = false;
+    this.isEdit5 = false;
   }
 
   cancelEdit1() {
@@ -152,8 +165,11 @@ export class Hole01Component implements OnInit {
   }
 
   doEdit2() {
+    this.isEdit1 = false;
     this.isEdit2 = true;
-    return this.isEdit2;
+    this.isEdit3 = false;
+    this.isEdit4 = false;
+    this.isEdit5 = false;
   }
 
   cancelEdit2() {
@@ -162,8 +178,11 @@ export class Hole01Component implements OnInit {
   }
 
   doEdit3() {
+    this.isEdit1 = false;
+    this.isEdit2 = false;
     this.isEdit3 = true;
-    return this.isEdit3;
+    this.isEdit4 = false;
+    this.isEdit5 = false;
   }
 
   cancelEdit3() {
@@ -172,8 +191,11 @@ export class Hole01Component implements OnInit {
   }
 
   doEdit4() {
+    this.isEdit1 = false;
+    this.isEdit2 = false;
+    this.isEdit3 = false;
     this.isEdit4 = true;
-    return this.isEdit4;
+    this.isEdit5 = false;
   }
 
   cancelEdit4() {
@@ -182,8 +204,11 @@ export class Hole01Component implements OnInit {
   }
 
   doEdit5() {
+    this.isEdit1 = false;
+    this.isEdit2 = false;
+    this.isEdit3 = false;
+    this.isEdit4 = false;
     this.isEdit5 = true;
-    return this.isEdit5;
   }
 
   cancelEdit5() {
@@ -199,6 +224,7 @@ export class Hole01Component implements OnInit {
     this.isEdit5 = false;
   }
 
+  // The following functions are for saving new data to Firebase
   saveGeneral() {
     const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole1');
     courseRef.update({
@@ -277,6 +303,7 @@ export class Hole01Component implements OnInit {
     this.isEdit5 = false;
   }
 
+  // Pop-up using the geofencing component
   mapPopUp() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -288,13 +315,14 @@ export class Hole01Component implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.coordinates = result;
+      this.coordinates = result[0];
 
       const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole1');
       // push new data to database
       courseRef.update({
         Geofence: this.coordinates,
       });
+      this.initData();
     });
   }
 }

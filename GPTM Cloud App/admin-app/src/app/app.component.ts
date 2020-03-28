@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import 'firebase/firestore';
 
 
@@ -12,7 +11,5 @@ import 'firebase/firestore';
 })
 export class AppComponent {
   title = 'admin-app';
-  constructor(firestore: AngularFirestore) {
-
-  }
+  constructor() { }
 }
