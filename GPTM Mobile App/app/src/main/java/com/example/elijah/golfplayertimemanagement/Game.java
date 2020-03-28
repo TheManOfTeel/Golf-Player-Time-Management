@@ -7,14 +7,17 @@ public class Game {
     String GroupLeader;
     int Location;
     String TimeStarted;
+    long numOfPlayers;
 
-    public Game(String gameID, String courseID, String playerID, String groupLeader, int location, String timeStarted) {
+    public Game(String gameID, String courseID, String playerID, String groupLeader, int location, String timeStarted, long NumOfPlayers) {
         GameID = gameID;
         CourseID = courseID;
         PlayerID = playerID;
         GroupLeader = groupLeader;
         Location = location;
         TimeStarted = timeStarted;
+        numOfPlayers = NumOfPlayers;
+
     }
 
 
@@ -67,6 +70,14 @@ public class Game {
         TimeStarted = timeStarted;
     }
 
+    public long getNumOfPlayers() {
+        return numOfPlayers;
+    }
+
+    public void setNumOfPlayers(long numOfPlayers) {
+        this.numOfPlayers = numOfPlayers;
+    }
+
     @Override
     public String toString() {
         return "Game{" +
@@ -76,6 +87,7 @@ public class Game {
                 ", GroupLeader='" + GroupLeader + '\'' +
                 ", Location=" + Location +
                 ", TimeStarted='" + TimeStarted + '\'' +
+                ", NumberOfPlayers='" + numOfPlayers + '\'' +
                 '}';
     }
 }

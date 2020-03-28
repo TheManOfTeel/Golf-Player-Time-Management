@@ -50,7 +50,7 @@ public class CurrentGamesActivity extends AppCompatActivity {
                         String GroupLeader = ds.child("GroupLeader").getValue().toString();
                         int Location = Integer.parseInt(ds.child("Location").getValue().toString());
                         String TimeStarted = ds.child("TimeStarted").getValue().toString();
-                        Game game = new Game(gameID, GolfCourse, playerID,GroupLeader, Location, TimeStarted);
+                        Game game = new Game(gameID, GolfCourse, playerID,GroupLeader, Location, TimeStarted, 0);
                         games.add(game);
                         Log.e("CurrentGamesActivity", game.toString());
                     }else{

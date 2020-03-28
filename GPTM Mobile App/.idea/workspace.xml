@@ -12,17 +12,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ec6a116-db4e-44ed-a965-5c65b0195613" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_r0adkll_slidableactivity_2_0_6_aar3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinGameSetUpActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinSelectDifficultyActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_directions_walk_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_current_games.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_join_game_set_up.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_join_select_difficulty.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/gameslist.xml" afterDir="false" />
+    <list default="true" id="0ec6a116-db4e-44ed-a965-5c65b0195613" name="Default Changelist" comment="got user location, Measure distance from the user and a desired target on the course. Allow users to join current games they were invited to.">
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -30,19 +20,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GPS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game3Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game3Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GolfCourseHomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GolfCourseHomeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectDifficultyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectDifficultyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectGolfCourseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectGolfCourseActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_golf_course_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_golf_course_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/NextHoleFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/NextHoleFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_nexthole.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_nexthole.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -56,7 +38,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="emulator-5554" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="988939395955595231" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -104,11 +86,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1003">
-              <caret line="69" selection-start-line="69" selection-end-line="70" />
+            <state relative-caret-position="595">
+              <caret line="103" column="36" lean-forward="true" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,94 +99,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="74" column="50" selection-start-line="74" selection-start-column="50" selection-end-line="74" selection-end-column="50" />
+            <state relative-caret-position="153">
+              <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1583#1584#0" expanded="true" />
+                <element signature="e#1637#1638#0" expanded="true" />
+                <element signature="e#1685#1686#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_join_game_set_up.xml">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/NextHoleFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinGameSetUpActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="118" column="50" selection-start-line="118" selection-start-column="50" selection-end-line="118" selection-end-column="50" />
+            <state relative-caret-position="419">
+              <caret line="98" column="81" selection-start-line="98" selection-start-column="81" selection-end-line="98" selection-end-column="81" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinSelectDifficultyActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_nexthole.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game3Activity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-697">
-              <caret line="43" column="63" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
-              <folding>
-                <element signature="e#2259#2260#0" expanded="true" />
-                <element signature="e#2310#2311#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_join_select_difficulty.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Players.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameSetUpActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="172" column="31" selection-start-line="170" selection-end-line="176" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_set_up.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="5" selection-end-line="184" selection-end-column="15" />
+            <state relative-caret-position="374">
+              <caret line="58" column="33" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
@@ -283,9 +204,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/ManageGroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/manu_nav.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_overview.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_nexthole.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/game_menu.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/NextHoleFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/OverviewFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/AdminFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/anim/map_slide_down.xml" />
@@ -307,18 +226,20 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectGolfCourseActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_golf_course_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GolfCourseHomeActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/gameslist.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_current_games.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_join_game_set_up.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_join_select_difficulty.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinSelectDifficultyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinGameSetUpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game3Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_nexthole.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/NextHoleFragment.java" />
       </list>
     </option>
   </component>
@@ -601,8 +522,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Galaxy_Nexus_API_26" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-03-25T17:46:46.424Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="988939395955595231" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-03-28T17:04:14.236Z" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
@@ -826,7 +747,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584893538869</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="got user location, Measure distance from the user and a desired target on the course. Allow users to join current games they were invited to.">
+      <created>1585407950899</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1585407950900</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -860,7 +788,7 @@
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5042644" side_tool="true" weight="0.32777777" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.4986577" weight="0.3286119" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.55383795" weight="0.4888889" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="8" sideWeight="0.49573562" visible="true" weight="0.34787473" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="8" sideWeight="0.49573562" visible="true" weight="0.34555554" />
       <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49932885" weight="0.32777777" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.14888889" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -960,24 +888,10 @@
     <MESSAGE value="New UI for game activity. Uses fragments to switch between the game, game over view, Admin requests and next hole info. Users can now tap within a geofence and it will tell the user how far they are from the hole. Added game info that Danny requested. There is a bug within the fragments right now. When you switch out of the game tab and back to it the app crashes. Its a situation with saving the activity state when you switch out of it. Looking into this." />
     <MESSAGE value="Fixed issue with it crashing. Still not saving the state when switching between fragments though" />
     <MESSAGE value="Saving activity state by pulling from firebase instead of handling it on the android end" />
-    <option name="LAST_COMMIT_MESSAGE" value="Saving activity state by pulling from firebase instead of handling it on the android end" />
+    <MESSAGE value="got user location, Measure distance from the user and a desired target on the course. Allow users to join current games they were invited to." />
+    <option name="LAST_COMMIT_MESSAGE" value="got user location, Measure distance from the user and a desired target on the course. Allow users to join current games they were invited to." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/AdminFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/map_slide_down.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="72" selection-start-line="21" selection-start-column="72" selection-end-line="21" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Map2Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1054,7 +968,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/LocationService.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GoogleLocationService.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_maps3.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1068,13 +981,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/icon.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/LocationUpdateListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_golf_course_black_50dp.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_golf_course_black_24dp.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1090,16 +996,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="492">
           <caret line="76" selection-start-line="76" selection-end-line="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GPS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1146,39 +1042,6 @@
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="77" column="22" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
-          <folding>
-            <element signature="e#233#234#0" expanded="true" />
-            <element signature="e#262#263#0" expanded="true" />
-            <element signature="e#306#307#0" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-            <element signature="e#372#373#0" expanded="true" />
-            <element signature="e#403#404#0" expanded="true" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#521#522#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
-            <element signature="e#802#803#0" expanded="true" />
-            <element signature="e#834#835#0" expanded="true" />
-            <element signature="e#865#866#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#945#946#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1017#1018#0" expanded="true" />
-            <element signature="e#1071#1072#0" expanded="true" />
-            <element signature="e#1112#1113#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_golf_course_home.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1274,16 +1137,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="74" column="50" selection-start-line="74" selection-start-column="50" selection-end-line="74" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameSetUpActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
@@ -1291,13 +1144,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinSelectDifficultyActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
@@ -1319,13 +1165,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinSelectDifficultyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1003">
-          <caret line="69" selection-start-line="69" selection-end-line="70" />
+        <state relative-caret-position="181">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/LocationUpdateListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GPS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/LocationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-544">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="52" column="111" selection-start-line="52" selection-start-column="111" selection-end-line="52" selection-end-column="111" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+          <folding>
+            <element signature="e#1583#1584#0" expanded="true" />
+            <element signature="e#1637#1638#0" expanded="true" />
+            <element signature="e#1685#1686#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="103" column="36" lean-forward="true" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_nexthole.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="58" column="33" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/NextHoleFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="98" column="81" selection-start-line="98" selection-start-column="81" selection-end-line="98" selection-end-column="81" />
         </state>
       </provider>
     </entry>
