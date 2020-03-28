@@ -29,8 +29,9 @@ export class PasswordResetComponent implements OnInit {
   }
 
   resetPassword() {
-    this.isLoading = true;
-    firebase.auth().sendPasswordResetEmail(this.email)
+    if (this.email != null) {
+      this.isLoading = true;
+      firebase.auth().sendPasswordResetEmail(this.email)
     .then(() => {
       this.emailSent = true;
       this.errorMessage = null;
@@ -41,6 +42,7 @@ export class PasswordResetComponent implements OnInit {
       this.errorMessage = err.message;
       this.isLoading = false;
     });
+    }
   }
 
 }
