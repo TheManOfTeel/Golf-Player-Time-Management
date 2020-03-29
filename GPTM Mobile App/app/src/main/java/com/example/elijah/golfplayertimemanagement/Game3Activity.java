@@ -1,21 +1,35 @@
 package com.example.elijah.golfplayertimemanagement;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Chronometer;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game3Activity extends AppCompatActivity  {
     private SlidingUpPanelLayout slidingUpPanelLayout;
@@ -25,6 +39,16 @@ public class Game3Activity extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private Bundle bundle;
     private LocationCallback locationCallback;
+    private Chronometer mChrono;
+    public String email;
+    public Map<String, Object> taskMap;
+    public Date currentTime;
+    private DateFormat df;
+    public String currentTime1;
+    public String holenum;
+    public int holeNum;
+    public String CourseName;
+    public String gameID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +62,39 @@ public class Game3Activity extends AppCompatActivity  {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
+        email = mAuth.getCurrentUser().getEmail();
+        taskMap = new HashMap<>();
+        df = new SimpleDateFormat("h:mm a");
+
+        mChrono = (Chronometer) findViewById(R.id.chrono);
+        mChrono.setVisibility(View.INVISIBLE);
+
+
+        start();
+
+        (new Handler()).postDelayed(this::showElapsed, 10000);
 
         if(bundle != null) {
             defaultFragment.setArguments(bundle);
             Log.e("Game2Activity", bundle.getString("courseName"));
+            CourseName = bundle.getString("courseName");
+            gameID = bundle.getString("gameID");
 
         }else{
             defaultFragment.setArguments(savedInstanceState);
         }
+
+        myRef.child("Games").child(CourseName).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                holenum = dataSnapshot.child(gameID).child("Location").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         Log.e("Game2Activity", bundle.toString());
@@ -117,5 +166,52 @@ public class Game3Activity extends AppCompatActivity  {
         super.onStart();
 
     }
+
+
+    private void start(){
+        mChrono.start();
+        //Toast.makeText(ReqsAssistActivity.this, mChrono.toString(), Toast.LENGTH_SHORT).show();
+    }
+    private void showElapsed() {
+        long elapsed= SystemClock.elapsedRealtime() - mChrono.getBase();
+        if( elapsed >= 10000){
+            Toast.makeText(Game3Activity.this, "Your time is up!: ",
+                    Toast.LENGTH_SHORT).show();
+            mChrono.stop();
+            //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
+
+            myRef.child("Requests").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+
+
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String emailTrun = email.split("@")[0];
+                currentTime1 = df.format(Calendar.getInstance().getTime());
+                holeNum = Integer.decode(holenum);
+                taskMap.put("User", emailTrun);
+                taskMap.put("Request", "Assistance, time is up!");
+                taskMap.put("Location", holeNum );
+                taskMap.put("Time", currentTime1);
+
+                myRef.child("Requests").child(CourseName).push().setValue(taskMap);
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    Toast.makeText(Game3Activity.this, "Request Failed!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
+        }
+        Toast.makeText(Game3Activity.this, "Elapsed milliseconds: " + elapsed,
+                Toast.LENGTH_SHORT).show();
+    }
+
 
 }

@@ -12,6 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Chronometer
+            android:id="@+id/chrono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/assist"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="-506dp"
+            android:layout_marginBottom="454dp"
+            android:textColor="#67A84C"
+            android:textSize="32dp"
+            />
+
         <LinearLayout
             android:id="@+id/holeStuff"
             android:layout_width="fill_parent"

@@ -8,11 +8,14 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +70,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private GPS myGPS;
     private TimerTask scanTask;
+    private Chronometer mChrono;
 
 
     @Nullable
@@ -81,6 +85,13 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         getActivity().setTitle("Fore!");
 
         myGPS = new GPS(getContext());
+        mChrono = (Chronometer) rootView.findViewById(R.id.chrono);
+        mChrono.setVisibility(View.INVISIBLE);
+
+
+        //start();
+
+        //(new Handler()).postDelayed(this::showElapsed, 10000);
 
 
         Bundle bundle = getArguments();
@@ -583,6 +594,47 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 //            }};
 //        timer.schedule(scanTask, 10000, 10000);
 //    }
+private void start(){
+    mChrono.start();
+    //Toast.makeText(ReqsAssistActivity.this, mChrono.toString(), Toast.LENGTH_SHORT).show();
+}
+    private void showElapsed() {
+        long elapsed= SystemClock.elapsedRealtime() - mChrono.getBase();
+        if( elapsed >= 10000){
+            Toast.makeText(getActivity(), "Your time is up!: ",
+                    Toast.LENGTH_SHORT).show();
+            mChrono.stop();
+            //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
+/*
+            myRef.child("Requests").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
 
+
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String emailTrun = email.split("@")[0];
+                taskMap.put("User", emailTrun);
+                taskMap.put("Request", "Assistance, time is up!");
+                taskMap.put("Location", holeNum );
+                taskMap.put("Time", currentTime1);
+
+                myRef.child("Requests").child(GolfCourse).push().setValue(taskMap);
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    Toast.makeText(ReqsAssistActivity.this, "Request Failed!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+ */
+
+        }
+        Toast.makeText(getActivity(), "Elapsed milliseconds: " + elapsed,
+                Toast.LENGTH_SHORT).show();
+    }
 
 }

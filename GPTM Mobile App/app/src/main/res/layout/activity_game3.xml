@@ -6,29 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".Game3Activity">
 
-
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/bottom_nav"
-            />
+            >
+
+
+                <Chronometer
+                    android:id="@+id/chrono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginBottom="100dp"
+                    android:textColor="#67A84C"
+                    android:textSize="32dp"
+                    android:layout_gravity="bottom"/>
+
+
+        </FrameLayout>
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
+
+
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/game_menu"
             android:layout_alignParentBottom="true"
-            app:labelVisibilityMode="labeled"
             app:elevation="10dp"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/game_menu"
 
             />
-
-
-
-
-
-
 
 
 </RelativeLayout>
