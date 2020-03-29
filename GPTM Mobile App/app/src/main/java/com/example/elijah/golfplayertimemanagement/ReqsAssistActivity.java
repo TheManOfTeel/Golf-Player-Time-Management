@@ -100,7 +100,7 @@ public class ReqsAssistActivity extends AppCompatActivity {
         String myEmail = mAuth.getCurrentUser().getEmail();
         Log.e("MyEmail", myEmail);
         mChrono = (Chronometer) findViewById(R.id.chrono);
-        mChrono.setVisibility(View.INVISIBLE);
+        //mChrono.setVisibility(View.INVISIBLE);
 
 
         //client = LocationServices.getFusedLocationProviderClient(this);
@@ -426,7 +426,7 @@ public class ReqsAssistActivity extends AppCompatActivity {
             mChrono.stop();
             //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
 /*
-            myRef.child("Overdue").addListenerForSingleValueEvent(new ValueEventListener() {
+            myRef.child("Requests").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
 
 
@@ -434,12 +434,11 @@ public class ReqsAssistActivity extends AppCompatActivity {
 
                 String emailTrun = email.split("@")[0];
                 taskMap.put("User", emailTrun);
-
-                taskMap.put("Hole", holeNum );
+                taskMap.put("Request", "Assistance, time is up!");
+                taskMap.put("Location", holeNum );
                 taskMap.put("Time", currentTime1);
-                taskMap.put("Location", tLocation);
 
-                    myRef.child("Overdue").child(GolfCourse).push().setValue(taskMap);
+                myRef.child("Requests").child(GolfCourse).push().setValue(taskMap);
 
 
                 }
