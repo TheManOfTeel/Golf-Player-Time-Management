@@ -11,33 +11,65 @@
         android:id="@+id/WelcomeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:text="Welcome To This Golf Course"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="25dp"
-        />
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="157dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="Welcome To This Golf Course"
+        android:textColor="#67A84C"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
     <Button
-    android:id="@+id/StartGame"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Game Set Up"
-        android:layout_below="@id/WelcomeLabel"
-    />
+        android:id="@+id/StartGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="290dp"
+        android:background="#67A84C"
+        android:textColor="#FFFFFF"
+        android:text="Start Game"
+/>
+
     <Button
         android:id="@+id/ViewCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Course"
         android:layout_below="@id/StartGame"
-        />
+        android:layout_marginTop="25dp"
+        android:background="#67A84C"
+        android:text="View Course"
+        android:textColor="#FFFFFF" />
+
     <Button
         android:id="@+id/JoinGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Join Current Game"
         android:layout_below="@id/ViewCourse"
-        />
+        android:layout_marginTop="32dp"
+        android:background="#67A84C"
+        android:text="Join Game"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/WelcomeLabel"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="217dp"
+        android:layout_marginRight="217dp"
+        android:layout_marginBottom="86dp"
+        android:text="Welcome to:"
+
+        android:textColor="#67A84C"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

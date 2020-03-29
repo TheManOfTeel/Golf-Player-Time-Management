@@ -57,9 +57,11 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
+        getSupportActionBar().setTitle("Host or join a game");
+
         if(getIntent().getExtras() != null){
             CourseName = getIntent().getStringExtra("GolfCourseID");
-            header.setText("Welcome to " + CourseName);
+            header.setText(CourseName);
         }
 
         Button joingame = (Button) findViewById(R.id.JoinGame);

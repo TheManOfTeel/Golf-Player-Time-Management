@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,6 +50,7 @@ public class GameSetUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_set_up);
 
+        getSupportActionBar().setTitle("Choose your settings");
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
 
         //database references
@@ -165,15 +167,25 @@ public class GameSetUpActivity extends AppCompatActivity {
                 myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
                 myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
 
+                if(groupIDs!=null) {
                     for (int i = 0; i < groupIDs.size(); i++) {
-                        myRef.child("Games").child(GolfCourse).child(gameID).child(groupIDs.get(i)).child("score").child("holes").child("hole1").setValue(0);
+                        myRef.child("Games").child(GolfCourse).child(gameID).child(groupIDs.get(i)).child("score").child("holes").
+                                child("hole1").setValue(0);
                     }
+                }
 
-                Intent intent = new Intent(GameSetUpActivity.this, Game3Activity.class);
-                extras.putString("gameID", gameID);
-                intent.putExtra("bundle", extras);
-                startActivity(intent);
-                finish();
+
+
+                if(!Difficulty.isEmpty()) {
+                    Intent intent = new Intent(GameSetUpActivity.this, Game3Activity.class);
+                    extras.putString("gameID", gameID);
+                    intent.putExtra("bundle", extras);
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    Toast.makeText(GameSetUpActivity.this, "Please set your difficulty", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

@@ -78,6 +78,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                 .findFragmentById(R.id.map3);
         mapFragment.getMapAsync(this);
         setRetainInstance(true);
+        getActivity().setTitle("Fore!");
 
         myGPS = new GPS(getContext());
 

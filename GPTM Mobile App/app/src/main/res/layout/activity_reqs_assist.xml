@@ -79,10 +79,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="55dp"
-        android:background="#67A84C"
+
         android:elevation="10dp"
         android:text="Wood"
         android:textColor="#FFFFFF"
+        android:background="#67A84C"
         android:textSize="24dp"
         android:visibility="invisible" />
 

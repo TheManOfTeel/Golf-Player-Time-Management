@@ -100,10 +100,11 @@ public class ReqsAssistActivity extends AppCompatActivity {
         String myEmail = mAuth.getCurrentUser().getEmail();
         Log.e("MyEmail", myEmail);
         mChrono = (Chronometer) findViewById(R.id.chrono);
+        mChrono.setVisibility(View.INVISIBLE);
 
 
-        client = LocationServices.getFusedLocationProviderClient(this);
-        requestPermission();
+        //client = LocationServices.getFusedLocationProviderClient(this);
+        //requestPermission();
 
         email = mAuth.getCurrentUser().getEmail();
 
@@ -154,7 +155,7 @@ public class ReqsAssistActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                setDB(tLocation, "requires assistance!");
+                setDB(holenum, "requires assistance!");
 
             }
         });
@@ -341,9 +342,11 @@ public class ReqsAssistActivity extends AppCompatActivity {
             }
         });
 
+        /*
         if(ActivityCompat.checkSelfPermission(ReqsAssistActivity.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             return;
         }
+
         client.getLastLocation().addOnSuccessListener(ReqsAssistActivity.this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
@@ -355,15 +358,19 @@ public class ReqsAssistActivity extends AppCompatActivity {
             }
         });
 
-        start();
+         */
 
-        (new Handler()).postDelayed(this::showElapsed, 10000);
+        //start();
+
+       // (new Handler()).postDelayed(this::showElapsed, 10000);
 
     }
-
+/*
     private void requestPermission(){
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
     }
+
+ */
 
     private void setDB(String type1, String type2) {
         myRef.child("Request").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -380,9 +387,9 @@ public class ReqsAssistActivity extends AppCompatActivity {
                 String emailTrun = email.split("@")[0];
                 taskMap.put("User", emailTrun);
                 taskMap.put("Request", type2);
-                taskMap.put("Hole", holeNum );
+                taskMap.put("Location", holeNum );
                 taskMap.put("Time", currentTime1);
-                taskMap.put("Location", tLocation);
+                //taskMap.put("Location", tLocation);
 
 
                 myRef.child("Request").child(GolfCourse).push().setValue(taskMap);

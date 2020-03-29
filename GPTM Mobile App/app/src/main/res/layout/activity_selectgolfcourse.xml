@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SelectGolfCourseActivity"
-    android:background="@drawable/background"
+    android:background="#FFFFFF"
+    android:textColor = "#FFFFFF"
     >
 
 
@@ -36,6 +37,8 @@
             android:layout_below="@id/GolfCourseSearch"
             android:divider="#608038"
             android:dividerHeight="2dp"
+            android:textColor="#FFFFFF"
+            android:background="#67A84C"
             />
 
 
