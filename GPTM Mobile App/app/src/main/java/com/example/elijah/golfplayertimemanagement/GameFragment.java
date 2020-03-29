@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -132,22 +131,42 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
 
-
-        if(playerPar== 0){
-            shot.setText("Take Tee Shot");
-        }else{
-            shot.setText("Take A Stroke");
-        }
-        score.setText("Score: " + playerPar);
-        shot.setOnClickListener(new View.OnClickListener() {
+        myRef.child("Games").child(CourseName).child(GameID).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                playerPar +=1;
-                score.setText("Score: " + playerPar);
-                shot.setText("Take A Stroke");
-                myRef.child("Games").child(CourseName).child(GameID).child(Uid).child("score").child("holes").child("hole"+holeNum).setValue(playerPar);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    int location = Integer.parseInt(dataSnapshot.child("Location").getValue().toString());
+                    if(dataSnapshot.child(Uid).child("score").child("holes").child("hole"+location).exists()) {
+                        playerPar = Integer.parseInt(dataSnapshot.child(Uid).child("score").child("holes").child("hole" + location).getValue().toString());
+                    }else{
+                        playerPar = 0;
+                    }
+                    score.setText("Score: "+playerPar);
+                    if(playerPar== 0){
+                        shot.setText("Take Tee Shot");
+                    }else{
+                        shot.setText("Take A Stroke");
+                    }
+                    shot.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            playerPar +=1;
+                            myRef.child("Games").child(CourseName).child(GameID).child(Uid).child("score").child("holes").child("hole"+holeNum).setValue(playerPar)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        score.setText("Score: " + playerPar);
+                                        shot.setText("Take A Stroke");
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
             }
-        });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }});
 
         return rootView;
     }
@@ -246,6 +265,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.resetMinMaxZoomPreference();
+        mMap.setMyLocationEnabled(true);
 
 
 
@@ -271,13 +291,30 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         getHoleDetails2();
-                                        playerPar =0;
+                                        myRef.child("Games").child(CourseName).child(GameID).child(mAuth.getUid()).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if(dataSnapshot.exists()) {
+                                                    playerPar = Integer.parseInt(dataSnapshot.getValue().toString());
+                                                }else{
+                                                    playerPar = 0;
+                                                }
+                                                if(playerPar== 0){
+                                                    shot.setText("Take Tee Shot");
+                                                }else{
+                                                    shot.setText("Take A Stroke");
+                                                }
+                                                score.setText("Score:" + playerPar);
+                                                mMap.clear();
+                                                Log.e("Hole Num", String.valueOf(holeNum));
 
-                                        score.setText("Score:" +playerPar);
-                                        shot.setText("Take Tee Shot");
-                                        mMap.clear();
+                                            }
 
-                                        Log.e("Hole Num", String.valueOf(holeNum));
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                                     }
                                 }
                             });
@@ -302,13 +339,30 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         getHoleDetails2();
-                                        playerPar =0;
+                                        myRef.child("Games").child(CourseName).child(GameID).child(mAuth.getUid()).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if(dataSnapshot.exists()) {
+                                                    playerPar = Integer.parseInt(dataSnapshot.getValue().toString());
+                                                }else{
+                                                    playerPar = 0;
+                                                }
+                                                if(playerPar== 0){
+                                                    shot.setText("Take Tee Shot");
+                                                }else{
+                                                    shot.setText("Take A Stroke");
+                                                }
+                                                score.setText("Score:" + playerPar);
+                                                mMap.clear();
+                                                Log.e("Hole Num", String.valueOf(holeNum));
 
-                                        score.setText("Score:" +playerPar);
-                                        shot.setText("Take Tee Shot");
-                                        mMap.clear();
+                                            }
 
-                                        Log.e("Hole Num", String.valueOf(holeNum));
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                                     }
                                 }
                             });
@@ -416,7 +470,32 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                 double lng = Double.valueOf(dataSnapshot.child("lng").getValue().toString());
                                 LatLng holelatlng = new LatLng(lat,lng);
                                 double yards =  CalculationByDistance(MyLocation(), latLng);
-                                Toast.makeText(getContext(),  yards+" yards", Toast.LENGTH_LONG).show();
+                                if(yards <=65) {
+                                    Toast.makeText(getContext(), yards + " yards. Try a Lob wedge", Toast.LENGTH_LONG).show();
+                                }else if(yards >= 90 && yards < 110){
+                                    Toast.makeText(getContext(), yards + " yards. Try a Sand Wedge", Toast.LENGTH_LONG).show();
+                                }
+                                else if(yards >= 110 && yards < 120){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 9-iron", Toast.LENGTH_LONG).show();
+                                } else if(yards > 120 && yards <= 130){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 8-iron", Toast.LENGTH_LONG).show();
+                                }else if(yards > 130 && yards <= 140){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 7-iron ", Toast.LENGTH_LONG).show();
+                                }else if(yards > 140 && yards <= 150){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 6-iron", Toast.LENGTH_LONG).show();
+                                } else if(yards > 150 && yards <= 160){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 5-iron", Toast.LENGTH_LONG).show();
+                                } else if(yards > 160 && yards <= 170){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 4-iron", Toast.LENGTH_LONG).show();
+                                }else if(yards > 170 && yards <= 180){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 3-iron", Toast.LENGTH_LONG).show();
+                                } else if(yards > 180 && yards <= 190){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 2-iron", Toast.LENGTH_LONG).show();
+                                }else if(yards > 190 && yards <= 210){
+                                    Toast.makeText(getContext(), yards + " yards. Try a 3-wood", Toast.LENGTH_LONG).show();
+                                }else if(yards >=230){
+                                    Toast.makeText(getContext(), yards + " yards. Try a Driver", Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
 
@@ -561,7 +640,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         if(getContext() != null) {
             if (bounds.contains(MyLocation())) {
                 Log.e("MapMyLocation", MyLocation().toString());
-                mMap.setMyLocationEnabled(true);
                 mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
                     @Override
                     public void onMyLocationClick(@NonNull Location location) {
@@ -569,8 +647,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                         mMap.addMarker(new MarkerOptions().position(mylocation).title("me"));
                     }
                 });
-            } else {
-                mMap.setMyLocationEnabled(false);
             }
         }
 

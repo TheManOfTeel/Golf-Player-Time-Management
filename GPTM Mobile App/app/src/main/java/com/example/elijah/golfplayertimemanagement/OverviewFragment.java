@@ -42,14 +42,15 @@ public class OverviewFragment extends Fragment {
 
         Golfcourse = bundle.getString("courseName");
         gameID = bundle.getString("gameID");
+        ArrayList<PlayerOverview> playerOverview = new ArrayList<>();
 
         list = (ListView)rootView.findViewById(R.id.playeroverviewlist);
+        PlayerOverviewAdapter adapter = new PlayerOverviewAdapter(getContext(), playerOverview);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> playerIDs = new ArrayList<>();
-                ArrayList<PlayerOverview> playerOverview = new ArrayList<>();
                 int holeNum = Integer.parseInt(dataSnapshot.child("Games").child(Golfcourse).child(gameID).child("Location").getValue().toString());
                 Log.e("OverviewCurrent hole", String.valueOf(holeNum));
                 String numberOfHoles = "";
@@ -88,7 +89,6 @@ public class OverviewFragment extends Fragment {
 
 
                 Log.e("Player Overview", playerOverview.toString());
-                PlayerOverviewAdapter adapter = new PlayerOverviewAdapter(getContext(), playerOverview);
                 list.setAdapter(adapter);
 
 

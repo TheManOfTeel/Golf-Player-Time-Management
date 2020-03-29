@@ -10,9 +10,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +40,8 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     private ArrayList<GolfCourse> courses = new ArrayList<>();
     private CourseAdapter courseAdapter;
     private EditText search;
+    private ProgressBar progressBar;
+
 
 
     @Override
@@ -51,8 +53,11 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         search = (EditText)findViewById(R.id.GolfCourseSearch);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
         listView = (ListView)findViewById(R.id.CourseList);
+        progressBar.setVisibility(View.VISIBLE);
         ReadCourse();
+        progressBar.setVisibility(View.GONE);
 
        // courseAdapter = new ArrayAdapter<String>(this, android.R.layout.course_spinner, courses);
 
@@ -95,6 +100,7 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if(dataSnapshot.exists()) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         String ID = ds.getKey();
