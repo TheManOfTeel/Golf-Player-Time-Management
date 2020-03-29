@@ -5,6 +5,7 @@ public class Players {
     String gameID;
     String courseID;
 
+
     public Players(String playerID, String gameID, String courseID) {
         PlayerID = playerID;
         this.gameID = gameID;

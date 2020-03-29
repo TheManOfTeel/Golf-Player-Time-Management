@@ -21,12 +21,14 @@ public class GPS {
     public GPS(Context context) {
         this.context = context;
 
-        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        if(context!=null) {
+            locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
-        if((ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        || (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED))
-        {
-            return;
+
+            if ((ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                    || (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+                return;
+            }
         }
 
        locationManager.requestLocationUpdates(provider, 10 * 1000, 0, new LocationListener() {
