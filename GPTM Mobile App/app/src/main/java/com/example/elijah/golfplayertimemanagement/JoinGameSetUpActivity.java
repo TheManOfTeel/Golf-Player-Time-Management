@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +29,7 @@ public class JoinGameSetUpActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private FirebaseDatabase database;
     private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class JoinGameSetUpActivity extends AppCompatActivity {
         ListView list = (ListView)findViewById(R.id.joinGroupList);
         TextView difficultybtn = (TextView)findViewById(R.id.joinSelectDifficulty);
         Button startRound = (Button)findViewById(R.id.joinRoundbtn);
+        progressBar = (ProgressBar)findViewById(R.id.progressBarsetup);
 
         Bundle bundle = getIntent().getBundleExtra("bundle");
 
@@ -66,6 +69,7 @@ public class JoinGameSetUpActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                progressBar.setVisibility(View.VISIBLE);
                 ArrayList<String> playerIDs = new ArrayList<>();
                 ArrayList<Users> users = new ArrayList<>();
                 Log.e("JoinGameActivity", "Inside datasnapshot");
@@ -90,6 +94,7 @@ public class JoinGameSetUpActivity extends AppCompatActivity {
                     }
                     UserAdapter userAdapter = new UserAdapter(getApplicationContext(), users);
                     list.setAdapter(userAdapter);
+                    progressBar.setVisibility(View.GONE);
 
             }else{
                     Log.e("JoinGameActivity", "Doesnt exist3");

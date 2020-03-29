@@ -20,16 +20,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class Game3Activity extends AppCompatActivity  {
     private SlidingUpPanelLayout slidingUpPanelLayout;
@@ -84,10 +84,10 @@ public class Game3Activity extends AppCompatActivity  {
             defaultFragment.setArguments(savedInstanceState);
         }
 
-        myRef.child("Games").child(CourseName).addValueEventListener(new ValueEventListener() {
+        myRef.child("Games").child(CourseName).child(gameID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                holenum = dataSnapshot.child(gameID).child("Location").getValue(String.class);
+                holenum = dataSnapshot.child("Location").getValue().toString();
             }
 
             @Override
@@ -188,7 +188,7 @@ public class Game3Activity extends AppCompatActivity  {
 
                 String emailTrun = email.split("@")[0];
                 currentTime1 = df.format(Calendar.getInstance().getTime());
-                holeNum = Integer.decode(holenum);
+                holeNum = Integer.parseInt(holenum);
                 taskMap.put("User", emailTrun);
                 taskMap.put("Request", "Assistance, time is up!");
                 taskMap.put("Location", holeNum );

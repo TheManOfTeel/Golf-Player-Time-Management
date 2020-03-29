@@ -20,6 +20,7 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:textStyle="bold"
+        android:textColor="#67A84C"
 
         />
 
@@ -40,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textStyle="bold"
+            android:textColor="#67A84C"
             />
 
         <TextView
@@ -49,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textStyle="bold"
+            android:textColor="#67A84C"
             />
 
 
