@@ -80,6 +80,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         setRetainInstance(true);
         getActivity().setTitle("Fore!");
 
+        myGPS = new GPS(getContext());
+
 
         Bundle bundle = getArguments();
         if(bundle != null) {
@@ -234,6 +236,9 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.resetMinMaxZoomPreference();
 
+
+
+
         myRef.child("Games").child(CourseName).child(GameID).child("Location").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -280,10 +285,30 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                             if (holeNum>18){
                                 holeNum = 18;
                             }
-                            getHoleDetails2();
-                            mMap.clear();
-                            MapHole2(holeNum, mMap);
-                            MapCurrentHole(mMap, holeNum);
+
+                            myRef.child("Games").child(CourseName).child(GameID).child("Location").setValue(holeNum).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        getHoleDetails2();
+                                        playerPar =0;
+
+                                        score.setText("Score:" +playerPar);
+                                        shot.setText("Take Tee Shot");
+                                        mMap.clear();
+
+                                        Log.e("Hole Num", String.valueOf(holeNum));
+                                    }
+                                }
+                            });
+
+
+
+
+
+
+
+
                         }
                     });
                 }
@@ -505,10 +530,13 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
 
     private LatLng MyLocation(){
-        myGPS = new GPS(getContext());
-        Location location = myGPS.getMylocation();
-        LatLng mylatlng = new LatLng(location.getLatitude(), location.getLongitude());
-        Log.e("MyLocation", mylatlng.toString());
+        LatLng mylatlng = null;
+        if(getContext() !=null) {
+            myGPS = new GPS(getContext());
+            Location location = myGPS.getMylocation();
+            mylatlng = new LatLng(location.getLatitude(), location.getLongitude());
+            Log.e("MyLocation", mylatlng.toString());
+        }
         return mylatlng;
     }
 
@@ -519,18 +547,20 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
             build.include((LatLng) lstLatLngRoute.get(l));
         }
         LatLngBounds bounds = build.build();
-        if(bounds.contains(MyLocation())){
-            Log.e("MapMyLocation", MyLocation().toString());
-            mMap.setMyLocationEnabled(true);
-            mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
-                @Override
-                public void onMyLocationClick(@NonNull Location location) {
-                    LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(mylocation).title("me"));
-                }
-            });
-        }else{
-            mMap.setMyLocationEnabled(false);
+        if(getContext() != null) {
+            if (bounds.contains(MyLocation())) {
+                Log.e("MapMyLocation", MyLocation().toString());
+                mMap.setMyLocationEnabled(true);
+                mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
+                    @Override
+                    public void onMyLocationClick(@NonNull Location location) {
+                        LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(mylocation).title("me"));
+                    }
+                });
+            } else {
+                mMap.setMyLocationEnabled(false);
+            }
         }
 
 

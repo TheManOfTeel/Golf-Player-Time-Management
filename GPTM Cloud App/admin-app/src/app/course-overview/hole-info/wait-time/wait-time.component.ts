@@ -59,7 +59,7 @@ export class WaitTimeComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
 
-  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
   constructor(public db: AngularFireDatabase) { }
 
@@ -80,6 +80,17 @@ export class WaitTimeComponent implements OnInit {
       return data;
     });
   }
+
+  // Reload the chart since it doesn't do this on changes
+  refreshChart() {
+    setTimeout(() => {
+        if (this.chart && this.chart.chart && this.chart.chart.config) {
+            this.chart.chart.config.data.labels = this.lineChartLabels;
+            this.chart.chart.config.data.datasets = this.lineChartData;
+            this.chart.chart.update();
+        }
+    });
+}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -114,6 +125,7 @@ export class WaitTimeComponent implements OnInit {
               this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
               this.waitTimes[7].Queue, this.waitTimes[8].Queue, this.waitTimes[9].Queue);
             });
+            this.refreshChart();
             this.isLoading = false;
           });
         }
@@ -138,6 +150,7 @@ export class WaitTimeComponent implements OnInit {
               this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
               this.waitTimes[7].Queue, this.waitTimes[8].Queue);
             });
+            this.refreshChart();
             this.isLoading = false;
           });
         }
