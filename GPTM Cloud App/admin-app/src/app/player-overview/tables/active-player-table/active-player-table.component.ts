@@ -108,15 +108,16 @@ export class ActivePlayerTableComponent implements OnInit {
       this.getCourseDetails(this.courseName)
       .then(data => {
         this.info = data;
+        this.playerDataSource.paginator = this.paginator;
+        this.playerDataSource.sort = this.sort;
+        // Sort by date descending on init
+        this.sort.sort({ id: 'Location', start: 'asc', disableClear: false });
+
         if (this.info.Hole18 != null) {
                 // This is what is fed into the table
           this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
             this.playerData = res;
             this.playerDataSource.data = this.playerData;
-            this.playerDataSource.paginator = this.paginator;
-            this.playerDataSource.sort = this.sort;
-            // Sort by date descending on init
-            this.sort.sort({ id: 'Location', start: 'asc', disableClear: false });
 
             // Clear previous calculations
             this.clearQueue(this.courseName, '1');
@@ -135,10 +136,6 @@ export class ActivePlayerTableComponent implements OnInit {
           this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
             this.playerData = res;
             this.playerDataSource.data = this.playerData;
-            this.playerDataSource.paginator = this.paginator;
-            this.playerDataSource.sort = this.sort;
-            // Sort by date descending on init
-            this.sort.sort({ id: 'Location', start: 'asc', disableClear: false });
 
             // Clear previous calculations
             this.clearQueue(this.courseName, '1');
