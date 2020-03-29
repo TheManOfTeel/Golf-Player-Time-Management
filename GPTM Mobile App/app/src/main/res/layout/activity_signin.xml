@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#FFFFFF"
     tools:context=".SigninActivity">
 
     <RelativeLayout
@@ -46,7 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/signinPassword"
             android:text="sign in"
-            android:background="#996666B3"
+
+            android:textColor="#FFFFFF"
+            android:background="#67A84C"
             />
 
         <TextView

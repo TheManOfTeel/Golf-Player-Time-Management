@@ -171,10 +171,10 @@
             android:id="@+id/StartRoundbtn"
             android:textSize="24dp"
             android:text="Start Round"
-            android:background="#67A84C"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
+            android:background="#67A84C"
             android:elevation="10dp"
             />
 

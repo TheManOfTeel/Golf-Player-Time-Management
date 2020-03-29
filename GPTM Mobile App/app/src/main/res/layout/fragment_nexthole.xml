@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <RelativeLayout
@@ -17,6 +18,7 @@
             android:paddingTop="20sp"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:textColor="#67A84C"
             />
 
         <LinearLayout
@@ -38,6 +40,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_weight="1"
+                android:textColor="#67A84C"
                 />
 
         </LinearLayout>
@@ -51,6 +54,7 @@
             android:orientation="vertical"
             android:weightSum="1"
             android:paddingTop="20sp"
+
             >
             <TextView
                 android:id="@+id/nextholenumofgames"
@@ -59,7 +63,8 @@
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:textColor="#67A84C"/>
         </LinearLayout>
 
 
@@ -79,18 +84,37 @@
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:textColor="#67A84C"
+                />
         </LinearLayout>
 
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="94dp"
+        android:layout_height="78dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="13dp"
+        app:srcCompat="@drawable/courseicon" />
 
-
-
-
-
-
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="94dp"
+        android:layout_height="78dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="286dp"
+        android:layout_marginRight="286dp"
+        android:layout_marginBottom="14dp"
+        app:srcCompat="@drawable/courseicon" />
 
 
 </RelativeLayout>

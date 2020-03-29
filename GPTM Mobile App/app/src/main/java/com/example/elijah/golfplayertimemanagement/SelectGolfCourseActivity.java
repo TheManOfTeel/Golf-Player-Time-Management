@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,12 +47,14 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectgolfcourse);
 
-        getSupportActionBar().setTitle("SelectGolfCOurseActivity");
+        getSupportActionBar().setTitle("Choose your course");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         search = (EditText)findViewById(R.id.GolfCourseSearch);
         listView = (ListView)findViewById(R.id.CourseList);
         ReadCourse();
+
+       // courseAdapter = new ArrayAdapter<String>(this, android.R.layout.course_spinner, courses);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override

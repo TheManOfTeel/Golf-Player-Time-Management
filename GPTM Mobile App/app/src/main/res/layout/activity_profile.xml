@@ -9,15 +9,36 @@
 
     <TextView
         android:id="@+id/ProfileGreeting"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/ProfileSelectCourse"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="77dp"
+        android:gravity="center_horizontal"
         android:text="Hello Player"
-        android:textSize="30dp"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center_horizontal"
-        />
+        android:textAlignment="center"
+        android:textColor="#67A84C"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/ProfileSelectCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="395dp"
+        android:background="#67A84C"
+        android:textColor="#FFFFFF"
+        android:text="Select A Golf Course To Play At"/>
+
+    <Button
+        android:id="@+id/ProfileStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ProfileSelectCourse"
+        android:layout_marginTop="-336dp"
+        android:background="#67A84C"
+        android:text="View Your Stats"
+        android:textColor="#FFFFFF" />
 
     <LinearLayout
         android:id="@+id/ProfileButtons"
@@ -26,22 +47,21 @@
         android:layout_centerVertical="true"
         android:orientation="vertical"
         >
-        <Button
-            android:id="@+id/ProfileSelectCourse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select A Golf Course To Play At"
-            />
-        <Button
-            android:id="@+id/ProfileStats"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Your Stats"
-            />
+
 
     </LinearLayout>
 
-
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="387dp"
+        android:layout_height="201dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="11dp"
+        app:srcCompat="@drawable/golfcourselogo" />
 
 
 </RelativeLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#FFFFFF"
     tools:context=".SignupActivity">
 
 
@@ -48,6 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/signupPassword2"
             android:text="sign up"
+            android:textColor="#FFFFFF"
+            android:background="#67A84C"
             />
 
 
