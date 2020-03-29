@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import 'firebase/database';
-import 'firebase/firestore';
 
 @Component({
   selector: 'app-player-overview',

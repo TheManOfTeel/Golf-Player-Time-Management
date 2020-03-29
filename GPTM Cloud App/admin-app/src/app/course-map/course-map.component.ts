@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { MapsAPILoader } from '@agm/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 

@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 let holeQueue;
@@ -23,6 +25,7 @@ export class ActivePlayerTableComponent implements OnInit {
 
   courseName: any;
   hole1Wait: number;
+  info: any;
 
   // Read course
   getCourseName() {
@@ -30,6 +33,16 @@ export class ActivePlayerTableComponent implements OnInit {
     return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
       const golfCourse = (snapshot.val() && snapshot.val().golfCourse || 'No Associated Course');
       return golfCourse;
+    });
+  }
+
+  // Read the number of holes
+  getCourseDetails(courseName) {
+    // use the golfCourse value to match it to the GolfCourse table and get the hole info
+    return firebase.database().ref('/GolfCourse/' + courseName + '/Holes').once('value').then(function(snapshot) {
+      // All the data is being pulled here. Assign it a value then it can be shown in the front end.
+      const data = snapshot.val();
+      return data;
     });
   }
 
@@ -92,25 +105,52 @@ export class ActivePlayerTableComponent implements OnInit {
     .then(val => {
       this.courseName = val;
 
-      this.playerDataSource.paginator = this.paginator;
-      this.playerDataSource.sort = this.sort;
+      this.getCourseDetails(this.courseName)
+      .then(data => {
+        this.info = data;
+        if (this.info.Hole18 != null) {
+                // This is what is fed into the table
+          this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
+            this.playerData = res;
+            this.playerDataSource.data = this.playerData;
+            this.playerDataSource.paginator = this.paginator;
+            this.playerDataSource.sort = this.sort;
+            // Sort by date descending on init
+            this.sort.sort({ id: 'Location', start: 'asc', disableClear: false });
 
-      // Sort by date descending on init
-      this.sort.sort({ id: 'Location', start: 'asc', disableClear: false });
-
-      // This is what is fed into the table
-      this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
-        this.playerData = res;
-        this.playerDataSource.data = this.playerData;
-        // Clear previous calculations
-        this.clearQueue(this.courseName, '1');
-        for (let i = 2; i <= 18; i++) {
-          this.clearQueue(this.courseName, i);
+            // Clear previous calculations
+            this.clearQueue(this.courseName, '1');
+            for (let i = 2; i <= 18; i++) {
+              this.clearQueue(this.courseName, i);
+            }
+            // Estimate wait times and set the waiting queue
+            this.countHoleQueue(this.courseName, '1');
+            for (let i = 2; i <= 18; i++) {
+              this.countHoleQueue(this.courseName, i);
+            }
+          });
         }
-        // Estimate wait times and set the waiting queue
-        this.countHoleQueue(this.courseName, '1');
-        for (let i = 2; i <= 18; i++) {
-          this.countHoleQueue(this.courseName, i);
+        if (!this.info.Hole18) {
+                // This is what is fed into the table
+          this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
+            this.playerData = res;
+            this.playerDataSource.data = this.playerData;
+            this.playerDataSource.paginator = this.paginator;
+            this.playerDataSource.sort = this.sort;
+            // Sort by date descending on init
+            this.sort.sort({ id: 'Location', start: 'asc', disableClear: false });
+
+            // Clear previous calculations
+            this.clearQueue(this.courseName, '1');
+            for (let i = 2; i <= 18; i++) {
+              this.clearQueue(this.courseName, i);
+            }
+            // Estimate wait times and set the waiting queue
+            this.countHoleQueue(this.courseName, '1');
+            for (let i = 2; i <= 9; i++) {
+              this.countHoleQueue(this.courseName, i);
+            }
+          });
         }
       });
     });

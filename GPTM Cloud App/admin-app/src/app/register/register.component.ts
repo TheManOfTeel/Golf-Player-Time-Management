@@ -1,7 +1,9 @@
 import { Component, ViewChild, ElementRef, NgZone, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { MapsAPILoader } from '@agm/core';
 
 
