@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as firebase from 'firebase';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 
 @Component({
   selector: 'app-wait-time',
@@ -29,6 +31,7 @@ export class WaitTimeComponent implements OnInit {
     {data: [], label: 'Groups'}
   ];
   public lineChartLabels: Label[] = [];
+  public queueLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -92,8 +95,10 @@ export class WaitTimeComponent implements OnInit {
         if (this.info.Hole18 != null) {
           this.hole18 = true;
 
-          // Add the x axis labels
+          // Add the x axis labels so that the data can be updated on changes
           this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
+          'Hole 9', 'Hole 10', 'Hole 11', 'Hole 12', 'Hole 13', 'Hole 14', 'Hole 15', 'Hole 16', 'Hole 17', 'Hole 18');
+          this.queueLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
           'Hole 9', 'Hole 10', 'Hole 11', 'Hole 12', 'Hole 13', 'Hole 14', 'Hole 15', 'Hole 16', 'Hole 17', 'Hole 18');
 
           // Read from firebase
@@ -123,8 +128,10 @@ export class WaitTimeComponent implements OnInit {
           });
         }
         if (!this.info.Hole18) {
-           // Add the x axis labels
+           // Add the x axis labels so that the data can be updated on changes
           this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
+          'Hole 9');
+          this.queueLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
           'Hole 9');
 
           // Read from firebase
