@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseMapComponent } from 'src/app/course-map/course-map.component';
 
