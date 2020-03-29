@@ -19,6 +19,8 @@ export class WaitTimeComponent implements OnInit {
   waitTimes: any;
   isLoading = false;
 
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+
   // Init the graph
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Minutes' },
@@ -59,8 +61,6 @@ export class WaitTimeComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
 
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
-
   constructor(public db: AngularFireDatabase) { }
 
   getCourseName() {
@@ -81,17 +81,6 @@ export class WaitTimeComponent implements OnInit {
     });
   }
 
-  // Reload the chart since it doesn't do this on changes
-  refreshChart() {
-    setTimeout(() => {
-        if (this.chart && this.chart.chart && this.chart.chart.config) {
-            this.chart.chart.config.data.labels = this.lineChartLabels;
-            this.chart.chart.config.data.datasets = this.lineChartData;
-            this.chart.chart.update();
-        }
-    });
-}
-
   ngOnInit(): void {
     this.isLoading = true;
     this.getCourseName()
@@ -102,55 +91,62 @@ export class WaitTimeComponent implements OnInit {
         this.info = data;
         if (this.info.Hole18 != null) {
           this.hole18 = true;
+
+          // Add the x axis labels
+          this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
+          'Hole 9', 'Hole 10', 'Hole 11', 'Hole 12', 'Hole 13', 'Hole 14', 'Hole 15', 'Hole 16', 'Hole 17', 'Hole 18');
+
+          // Read from firebase
           this.db.list('GolfCourse/' + this.courseName + '/WaitTimes').valueChanges().subscribe(res => {
             this.waitTimes = res;
+
             // Plot points
-            this.lineChartData.forEach((x) => {
-                const data: number[] = x.data as number[];
-                data.push(this.waitTimes[0].WaitTime, this.waitTimes[10].WaitTime, this.waitTimes[11].WaitTime,
+            this.lineChartData = [
+              { data: [this.waitTimes[0].WaitTime, this.waitTimes[10].WaitTime, this.waitTimes[11].WaitTime,
                 this.waitTimes[12].WaitTime, this.waitTimes[13].WaitTime, this.waitTimes[14].WaitTime, this.waitTimes[15].WaitTime,
                 this.waitTimes[16].WaitTime, this.waitTimes[17].WaitTime, this.waitTimes[1].WaitTime, this.waitTimes[2].WaitTime,
                 this.waitTimes[3].WaitTime, this.waitTimes[4].WaitTime, this.waitTimes[5].WaitTime, this.waitTimes[6].WaitTime,
-                this.waitTimes[7].WaitTime, this.waitTimes[8].WaitTime, this.waitTimes[9].WaitTime);
-            });
-            // Add the x axis labels
-            this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
-            'Hole 9', 'Hole 10', 'Hole 11', 'Hole 12', 'Hole 13', 'Hole 14', 'Hole 15', 'Hole 16', 'Hole 17', 'Hole 18');
+                this.waitTimes[7].WaitTime, this.waitTimes[8].WaitTime, this.waitTimes[9].WaitTime],
+                label: 'Minutes' }
+            ];
+
             // For queue table
-            this.queueData.forEach((x) => {
-              const data: number[] = x.data as number[];
-              data.push(this.waitTimes[0].Queue, this.waitTimes[10].Queue, this.waitTimes[11].Queue,
-              this.waitTimes[12].Queue, this.waitTimes[13].Queue, this.waitTimes[14].Queue, this.waitTimes[15].Queue,
-              this.waitTimes[16].Queue, this.waitTimes[17].Queue, this.waitTimes[1].Queue, this.waitTimes[2].Queue,
-              this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
-              this.waitTimes[7].Queue, this.waitTimes[8].Queue, this.waitTimes[9].Queue);
-            });
-            this.refreshChart();
+            this.queueData = [
+              { data: [this.waitTimes[0].Queue, this.waitTimes[10].Queue, this.waitTimes[11].Queue,
+                this.waitTimes[12].Queue, this.waitTimes[13].Queue, this.waitTimes[14].Queue, this.waitTimes[15].Queue,
+                this.waitTimes[16].Queue, this.waitTimes[17].Queue, this.waitTimes[1].Queue, this.waitTimes[2].Queue,
+                this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
+                this.waitTimes[7].Queue, this.waitTimes[8].Queue, this.waitTimes[9].Queue] }
+            ];
+
             this.isLoading = false;
           });
         }
         if (!this.info.Hole18) {
+           // Add the x axis labels
+          this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
+          'Hole 9');
+
+          // Read from firebase
           this.db.list('GolfCourse/' + this.courseName + '/WaitTimes').valueChanges().subscribe(res => {
             this.waitTimes = res;
+
             // Plot points
-            this.lineChartData.forEach((x, i) => {
-                const data: number[] = x.data as number[];
-                data.push(this.waitTimes[0].WaitTime, this.waitTimes[1].WaitTime,
+            this.lineChartData = [
+              { data: [this.waitTimes[0].WaitTime, this.waitTimes[1].WaitTime,
                 this.waitTimes[2].WaitTime, this.waitTimes[3].WaitTime, this.waitTimes[4].WaitTime,
                 this.waitTimes[5].WaitTime, this.waitTimes[6].WaitTime, this.waitTimes[7].WaitTime,
-                this.waitTimes[8].WaitTime);
-            });
-            // Add the x axis labels
-            this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
-            'Hole 9');
+                this.waitTimes[8].WaitTime],
+                label: 'Minutes' }
+            ];
+
             // For queue table
-            this.queueData.forEach((x) => {
-              const data: number[] = x.data as number[];
-              data.push(this.waitTimes[0].Queue, this.waitTimes[1].Queue, this.waitTimes[2].Queue,
-              this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
-              this.waitTimes[7].Queue, this.waitTimes[8].Queue);
-            });
-            this.refreshChart();
+            this.queueData = [
+              { data: [this.waitTimes[0].Queue, this.waitTimes[1].Queue, this.waitTimes[2].Queue,
+                this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
+                this.waitTimes[7].Queue, this.waitTimes[8].Queue] }
+            ];
+
             this.isLoading = false;
           });
         }
