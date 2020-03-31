@@ -63,6 +63,7 @@ export class AuthService {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
       .then(res => {
         resolve(res);
+        res.user.sendEmailVerification();
       }, err => reject(err));
     });
   }
