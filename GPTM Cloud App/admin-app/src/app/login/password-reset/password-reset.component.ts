@@ -38,7 +38,6 @@ export class PasswordResetComponent implements OnInit {
       this.errorMessage = null;
       this.isLoading = false;
     }, err => {
-      console.log(err);
       this.emailSent = false;
       this.errorMessage = err.message;
       this.isLoading = false;
