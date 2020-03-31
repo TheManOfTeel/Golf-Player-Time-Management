@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -71,27 +71,27 @@ export class Hole08Component implements OnInit {
     });
     this.tile2Form = this.fb.group({
       blueDescription: [''],
-      bluePar: [''],
+      bluePar: ['', Validators.min(0)],
       blueTips: [''],
-      blueYards: [''],
+      blueYards: ['', Validators.min(0)],
     });
     this.tile3Form = this.fb.group({
       redDescription: [''],
-      redPar: [''],
+      redPar: ['', Validators.min(0)],
       redTips: [''],
-      redYards: [''],
+      redYards: ['', Validators.min(0)],
     });
     this.tile4Form = this.fb.group({
       pinkDescription: [''],
-      pinkPar: [''],
+      pinkPar: ['', Validators.min(0)],
       pinkTips: [''],
-      pinkYards: [''],
+      pinkYards: ['', Validators.min(0)],
     });
     this.tile5Form = this.fb.group({
       yellowDescription: [''],
-      yellowPar: [''],
+      yellowPar: ['', Validators.min(0)],
       yellowTips: [''],
-      yellowYards: [''],
+      yellowYards: ['', Validators.min(0)],
     });
   }
 
