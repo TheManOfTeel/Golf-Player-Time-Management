@@ -1,5 +1,4 @@
 <div class="main-div">
-    <!-- <h1>Player Overview</h1> -->
     <div class="expander">
         <button mat-raised-button color="secondary" type="button" (click)="accordion.openAll()" class="btn-default">Expand All </button>
         <div class="divider"></div>
@@ -10,10 +9,6 @@
             <mat-expansion-panel-header>Player Requests</mat-expansion-panel-header>
             <app-requests-table></app-requests-table>
         </mat-expansion-panel>
-        <!-- <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>Player Location</mat-expansion-panel-header> -->
-            <!-- <app-course-map></app-course-map> -->
-        <!-- </mat-expansion-panel> -->
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>Active Games</mat-expansion-panel-header>
             <app-active-player-table></app-active-player-table>
