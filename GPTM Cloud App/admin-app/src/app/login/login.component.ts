@@ -82,7 +82,6 @@ export class LoginComponent {
             if (this.courseExists !== null) {
               this.getPendingInfo()
               .then(data => {
-                console.log(!data.numberOfHoles);
                 if (!data.numberOfHoles) {
                   this.evalAdmin()
                   .then(val => {
@@ -146,6 +145,12 @@ export class LoginComponent {
   checkAdmin(isAdmin) {
     if (this.isAdmin === true) {
       this.noAdmin = false;
+      // Set to verified if this is a case of an email change
+      const userId = firebase.auth().currentUser.uid;
+      const userRef = firebase.database().ref('/Users/' + userId);
+      userRef.update({
+        verified: true
+      });
       this.router.navigate(['/dashboard']);
       this.isLoading = false;
     }

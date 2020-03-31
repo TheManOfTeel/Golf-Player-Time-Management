@@ -33,15 +33,15 @@ export class PasswordResetComponent implements OnInit {
     if (this.email != null) {
       this.isLoading = true;
       firebase.auth().sendPasswordResetEmail(this.email)
-    .then(() => {
-      this.emailSent = true;
-      this.errorMessage = null;
-      this.isLoading = false;
-    }, err => {
-      this.emailSent = false;
-      this.errorMessage = err.message;
-      this.isLoading = false;
-    });
+      .then(() => {
+        this.emailSent = true;
+        this.errorMessage = null;
+        this.isLoading = false;
+      }, err => {
+        this.emailSent = false;
+        this.errorMessage = err.message;
+        this.isLoading = false;
+      });
     }
   }
 
