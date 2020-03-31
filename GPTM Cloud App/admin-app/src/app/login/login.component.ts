@@ -39,6 +39,7 @@ export class LoginComponent {
   numberOfHoles: any;
   latitude: any;
   longitude: any;
+  tryAgain = false;
 
   constructor(
     public authService: AuthService,
@@ -79,10 +80,21 @@ export class LoginComponent {
             this.courseExists = val;
             // If not a first time sign in
             if (this.courseExists !== null) {
-              this.evalAdmin()
-              .then(val => {
-                this.isAdmin = val;
-                this.checkAdmin(this.isAdmin);
+              this.getPendingInfo()
+              .then(data => {
+                console.log(!data.numberOfHoles);
+                if (!data.numberOfHoles) {
+                  this.evalAdmin()
+                  .then(val => {
+                    this.isAdmin = val;
+                    this.checkAdmin(this.isAdmin);
+                  });
+                }
+                if (data.numberOfHoles) {
+                  this.removeUser();
+                  this.isLoading = false;
+                  this.tryAgain = true;
+                }
               });
             }
             // If first time sign in init a default golf course in Firebase
@@ -108,9 +120,12 @@ export class LoginComponent {
       // If email is not verified
       if (!firebase.auth().currentUser.emailVerified) {
         this.unverified = true;
+        this.errorMessage = null;
         this.isLoading = false;
       }
     }, err => {
+      this.tryAgain = false;
+      this.unverified = false;
       this.noAdmin = false;
       this.errorMessage = 'Invalid username/password';
       this.errorMessage = err.message;
@@ -216,9 +231,20 @@ export class LoginComponent {
   // Get rid of the unnecessary nodes
   removePending() {
     const userId = firebase.auth().currentUser.uid;
-    firebase.database().ref('/Users/' + userId).child('numberOfHoles').remove();
-    firebase.database().ref('/Users/' + userId).child('lat').remove();
-    firebase.database().ref('/Users/' + userId).child('long').remove();
+    const userRef = firebase.database().ref('/Users/' + userId);
+    userRef.child('numberOfHoles').remove();
+    userRef.child('lat').remove();
+    userRef.child('long').remove();
+    userRef.update({
+      verified: true
+    });
+  }
+
+  removeUser() {
+    const user = firebase.auth().currentUser;
+    const userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('/Users/' + userId).remove();
+    user.delete();
   }
 
   // Pop-up register form
