@@ -159,6 +159,7 @@ export class Hole15Component implements OnInit {
 
   cancelEdit1() {
     this.isEdit1 = false;
+    this.initData();
     return this.isEdit1;
   }
 
@@ -172,6 +173,7 @@ export class Hole15Component implements OnInit {
 
   cancelEdit2() {
     this.isEdit2 = false;
+    this.initData();
     return this.isEdit2;
   }
 
@@ -185,6 +187,7 @@ export class Hole15Component implements OnInit {
 
   cancelEdit3() {
     this.isEdit3 = false;
+    this.initData();
     return this.isEdit3;
   }
 
@@ -198,6 +201,7 @@ export class Hole15Component implements OnInit {
 
   cancelEdit4() {
     this.isEdit4 = false;
+    this.initData();
     return this.isEdit4;
   }
 
@@ -211,6 +215,7 @@ export class Hole15Component implements OnInit {
 
   cancelEdit5() {
     this.isEdit5 = false;
+    this.initData();
     return this.isEdit5;
   }
 
@@ -300,6 +305,7 @@ export class Hole15Component implements OnInit {
     this.isEdit5 = false;
   }
 
+  // Pop-up using the geofencing component
   mapPopUp() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -311,14 +317,20 @@ export class Hole15Component implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.coordinates = result[0];
+      if (result) {
+        this.coordinates = result[0];
 
-      const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole15');
-      // push new data to database
-      courseRef.update({
-        Geofence: this.coordinates,
-      });
-      this.initData();
+        const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole15');
+        // push new data to database
+        courseRef.update({
+          Geofence: this.coordinates,
+        });
+        this.initData();
+      }
+
+      if (!result) {
+        this.initData();
+      }
     });
   }
 }

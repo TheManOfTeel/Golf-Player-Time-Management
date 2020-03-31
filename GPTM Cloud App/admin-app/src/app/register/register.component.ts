@@ -61,6 +61,7 @@ export class RegisterComponent implements OnInit {
     // {value: 17, viewValue: 17},
   //   {value: 18, viewValue: 18},
   // ];
+
   placeSearch: any;
   autocomplete: any;
   verified: boolean;
@@ -213,9 +214,9 @@ export class RegisterComponent implements OnInit {
         this.successMessage = 'Verification email has been sent';
         firebase.database().ref('/Users/' + res.user.uid).set({
           email: res.user.email,
-          password: this.password,
           isAdmin: true,
           golfCourse: this.course,
+          verified: false,
           numberOfHoles: this.selectedNumber,
           lat: this.latitude,
           long: this.longitude

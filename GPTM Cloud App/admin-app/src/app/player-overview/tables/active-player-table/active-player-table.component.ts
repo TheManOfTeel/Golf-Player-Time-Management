@@ -114,7 +114,7 @@ export class ActivePlayerTableComponent implements OnInit {
         this.sort.sort({ id: 'Location', start: 'asc', disableClear: false });
 
         if (this.info.Hole18 != null) {
-                // This is what is fed into the table
+          // This is what is fed into the table, listen for new games
           this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
             this.playerData = res;
             this.playerDataSource.data = this.playerData;
@@ -130,16 +130,42 @@ export class ActivePlayerTableComponent implements OnInit {
               this.countHoleQueue(this.courseName, i);
             }
           });
+          // Recalculate wait times if there are updates to the hole info (par value may change)
+          this.db.list('GolfCourse/' + this.courseName + '/Holes').valueChanges().subscribe(() => {
+            // Clear previous calculations
+            this.clearQueue(this.courseName, '1');
+            for (let i = 2; i <= 18; i++) {
+              this.clearQueue(this.courseName, i);
+            }
+            // Estimate wait times and set the waiting queue
+            this.countHoleQueue(this.courseName, '1');
+            for (let i = 2; i <= 18; i++) {
+              this.countHoleQueue(this.courseName, i);
+            }
+          });
         }
         if (!this.info.Hole18) {
-                // This is what is fed into the table
+          // This is what is fed into the table, listen for new games
           this.db.list('Games/' + this.courseName).valueChanges().subscribe(res => {
             this.playerData = res;
             this.playerDataSource.data = this.playerData;
 
             // Clear previous calculations
             this.clearQueue(this.courseName, '1');
-            for (let i = 2; i <= 18; i++) {
+            for (let i = 2; i <= 9; i++) {
+              this.clearQueue(this.courseName, i);
+            }
+            // Estimate wait times and set the waiting queue
+            this.countHoleQueue(this.courseName, '1');
+            for (let i = 2; i <= 9; i++) {
+              this.countHoleQueue(this.courseName, i);
+            }
+          });
+          // Recalculate wait times if there are updates to the hole info (par value may change)
+          this.db.list('GolfCourse/' + this.courseName + '/Holes').valueChanges().subscribe(() => {
+            // Clear previous calculations
+            this.clearQueue(this.courseName, '1');
+            for (let i = 2; i <= 9; i++) {
               this.clearQueue(this.courseName, i);
             }
             // Estimate wait times and set the waiting queue
