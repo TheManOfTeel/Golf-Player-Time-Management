@@ -24,3 +24,36 @@
     font-weight: 500;
     font-size: medium;
 }
+
+.center{
+    margin: auto;
+    /* border: 3px solid green; */
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.buttons{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    bottom: 0;
+}
+  
+.row{
+    margin-top: 10px;
+}
+  
+.error{
+    color: red;
+    font-size: medium;
+}
+
+.success {
+    color: green;
+    font-size: medium;
+}
+
+.input {
+    width: 20%;
+}

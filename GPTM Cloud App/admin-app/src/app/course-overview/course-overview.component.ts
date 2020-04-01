@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { MatSidenav } from '@angular/material/sidenav';
 
 // For this component we only need to input a description, par number, and yards to hole. The scorecard is now irrelevant, admins are not

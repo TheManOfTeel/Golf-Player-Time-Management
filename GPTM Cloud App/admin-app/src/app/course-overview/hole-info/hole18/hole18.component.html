@@ -45,7 +45,10 @@
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Par</mat-label>
-                    <input matInput placeholder={{bluePar}} id="bluePar" name="bluePar" [(ngModel)]="bluePar" formControlName="bluePar" type="number">
+                    <input matInput placeholder={{bluePar}} id="bluePar" name="bluePar" [(ngModel)]="bluePar" formControlName="bluePar" type="number" min="0">
+                    <mat-error>
+                        Number must be positive
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Tips</mat-label>
@@ -53,7 +56,10 @@
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Yards</mat-label>
-                    <input matInput placeholder={{blueYards}} id="blueYards" name="blueYards" [(ngModel)]="blueYards" formControlName="blueYards" type="number">
+                    <input matInput placeholder={{blueYards}} id="blueYards" name="blueYards" [(ngModel)]="blueYards" formControlName="blueYards" type="number" min="0">
+                    <mat-error>
+                        Number must be positive
+                    </mat-error>
                 </mat-form-field>
             </form>
         </mat-card>
@@ -79,7 +85,10 @@
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Par</mat-label>
-                    <input matInput placeholder={{redPar}} id="redPar" name="redPar" [(ngModel)]="redPar" formControlName="redPar" type="number">
+                    <input matInput placeholder={{redPar}} id="redPar" name="redPar" [(ngModel)]="redPar" formControlName="redPar" type="number" min="0">
+                    <mat-error>
+                        Number must be positive
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Tips</mat-label>
@@ -87,7 +96,10 @@
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Yards</mat-label>
-                    <input matInput placeholder={{redYards}} id="redYards" name="redYards" [(ngModel)]="redYards" formControlName="redYards" type="number">
+                    <input matInput placeholder={{redYards}} id="redYards" name="redYards" [(ngModel)]="redYards" formControlName="redYards" type="number" min="0">
+                    <mat-error>
+                        Number must be positive
+                    </mat-error>
                 </mat-form-field>
             </form>
         </mat-card>
@@ -112,7 +124,10 @@
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Par</mat-label>
-                    <input matInput placeholder={{pinkPar}} id="pinkPar" name="pinkPar" [(ngModel)]="pinkPar" formControlName="pinkPar" type="number">
+                    <input matInput placeholder={{pinkPar}} id="pinkPar" name="pinkPar" [(ngModel)]="pinkPar" formControlName="pinkPar" type="number" min="0">
+                    <mat-error>
+                        Number must be positive
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Tips</mat-label>
@@ -120,7 +135,10 @@
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Yards</mat-label>
-                    <input matInput placeholder={{pinkYards}} id="pinkYards" name="pinkYards" [(ngModel)]="pinkYards" formControlName="pinkYards" type="number">
+                    <input matInput placeholder={{pinkYards}} id="pinkYards" name="pinkYards" [(ngModel)]="pinkYards" formControlName="pinkYards" type="number" min="0">
+                    <mat-error>
+                        Number must be positive
+                    </mat-error>
                 </mat-form-field>
             </form>
         </mat-card>
@@ -146,7 +164,10 @@
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Par</mat-label>
-                    <input matInput placeholder={{yellowPar}} id="yellowPar" name="yellowPar" [(ngModel)]="yellowPar" formControlName="yellowPar" type="number">
+                    <input matInput placeholder={{yellowPar}} id="yellowPar" name="yellowPar" [(ngModel)]="yellowPar" formControlName="yellowPar" type="number" min="0">
+                    <mat-error>
+                        Number must be positive
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Tips</mat-label>
@@ -154,7 +175,10 @@
                 </mat-form-field>
                 <mat-form-field class="editForm">
                     <mat-label>Yards</mat-label>
-                    <input matInput placeholder={{yellowYards}} id="yellowYards" name="yellowYards" [(ngModel)]="yellowYards" formControlName="yellowYards" type="number">
+                    <input matInput placeholder={{yellowYards}} id="yellowYards" name="yellowYards" [(ngModel)]="yellowYards" formControlName="yellowYards" type="number" min="0">
+                    <mat-error>
+                        Number must be positive
+                    </mat-error>
                 </mat-form-field>
             </form>
         </mat-card>

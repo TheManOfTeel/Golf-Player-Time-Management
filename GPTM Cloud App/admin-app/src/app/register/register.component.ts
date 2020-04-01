@@ -1,7 +1,9 @@
 import { Component, ViewChild, ElementRef, NgZone, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { MapsAPILoader } from '@agm/core';
 
 
@@ -59,6 +61,7 @@ export class RegisterComponent implements OnInit {
     // {value: 17, viewValue: 17},
   //   {value: 18, viewValue: 18},
   // ];
+
   placeSearch: any;
   autocomplete: any;
   verified: boolean;
@@ -160,8 +163,6 @@ export class RegisterComponent implements OnInit {
 
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
-      // console.log(results);
-      // console.log(status);
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 12;
@@ -194,51 +195,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  /* tslint:disable:quotemark */
-  // Initialize the GolfCourse Firebase structure
-  writeHoleData() {
-    firebase.database().ref('GolfCourse/' + this.course).set({
-      golfCourse: this.course,
-      latitude: this.latitude,
-      longitude: this.longitude
-    });
-    for (this.i = 1; this.i <= this.selectedNumber; this.i++) {
-      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i).set({
-        Description: 'No description set',
-        Tips: 'No tips set',
-      });
-      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Red_Circle').set({
-        Description: "Men's professional tee",
-        Tips: 'No tips set',
-        Yards: 0,
-        Par: 0,
-      });
-      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Blue_Square').set({
-        Description: "Men's average tee",
-        Tips: 'No tips set',
-        Yards: 0,
-        Par: 0,
-      });
-      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Yellow_Triangle').set({
-        Description: "Women's professional tee",
-        Tips: 'No tips set',
-        Yards: 0,
-        Par: 0,
-      });
-      firebase.database().ref('GolfCourse/' + this.course + '/Holes' + '/Hole' + this.i + '/Pink_Diamond').set({
-        Description: "Women's average tee",
-        Tips: 'No tips set',
-        Yards: 0,
-        Par: 0,
-      });
-      firebase.database().ref('GolfCourse/' + this.course + '/WaitTimes/Hole' + this.i).set({
-        Queue: 0,
-        WaitTime: 0
-      });
-    }
- }
- /* tslint:enable:quotemark */
-
  // See if the course is in use already
   checkIfExists() {
   return firebase.database().ref('GolfCourse/' + this.course).once('value').then(function(snapshot) {
@@ -255,18 +211,18 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = null;
         this.alreadyExists = null;
         this.noMatch = null;
-        this.successMessage = 'Your account has been created';
-        console.log(this.successMessage);
-        this.writeHoleData();
+        this.successMessage = 'Verification email has been sent';
         firebase.database().ref('/Users/' + res.user.uid).set({
           email: res.user.email,
-          password: this.password,
           isAdmin: true,
-          golfCourse: this.course
+          golfCourse: this.course,
+          verified: false,
+          numberOfHoles: this.selectedNumber,
+          lat: this.latitude,
+          long: this.longitude
         });
         this.isLoading = false;
       }, err => {
-          console.log(err);
           this.alreadyExists = null;
           this.noMatch = null;
           this.errorMessage = err.message;
@@ -337,13 +293,11 @@ export class RegisterComponent implements OnInit {
           this.valid = 'Course not taken';
           this.invalid = null;
           this.notACourse = null;
-          console.log(this.valid);
         }
         if (this.courseData != null) {
           this.valid = null;
           this.invalid = 'Course taken';
           this.notACourse = null;
-          console.log(this.invalid);
         }
       });
     }

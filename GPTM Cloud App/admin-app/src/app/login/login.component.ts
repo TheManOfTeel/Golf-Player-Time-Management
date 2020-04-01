@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { MatDialog } from '@angular/material/dialog';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @Component({
@@ -16,6 +18,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   errorMessage = '';
+  unverified = false;
   isAdmin: any;
   noAdmin = false;
   placeSearch: any;
@@ -30,6 +33,13 @@ export class LoginComponent {
   };
   isLoading = false;
   hide = true;
+  i: number;
+  golfCourse: any;
+  courseExists: any;
+  numberOfHoles: any;
+  latitude: any;
+  longitude: any;
+  tryAgain = false;
 
   constructor(
     public authService: AuthService,
@@ -60,13 +70,61 @@ export class LoginComponent {
     this.isLoading = true;
     this.authService.doLogin(value)
     .then(() => {
-      this.evalAdmin()
-      .then(val => {
-        this.isAdmin = val;
-        this.checkAdmin(this.isAdmin);
-      });
+      // If email verified
+      if (firebase.auth().currentUser.emailVerified) {
+        this.getCourseStatus()
+        .then(val => {
+          this.golfCourse = val;
+          this.checkIfExists(this.golfCourse)
+          .then(val => {
+            this.courseExists = val;
+            // If not a first time sign in
+            if (this.courseExists !== null) {
+              this.getPendingInfo()
+              .then(data => {
+                if (!data.numberOfHoles) {
+                  this.evalAdmin()
+                  .then(val => {
+                    this.isAdmin = val;
+                    this.checkAdmin(this.isAdmin);
+                  });
+                }
+                if (data.numberOfHoles) {
+                  this.removeUser();
+                  this.isLoading = false;
+                  this.tryAgain = true;
+                }
+              });
+            }
+            // If first time sign in init a default golf course in Firebase
+            if (this.courseExists === null) {
+              this.getPendingInfo()
+              .then(data => {
+                this.golfCourse = data.golfCourse;
+                this.numberOfHoles = data.numberOfHoles;
+                this.latitude = data.lat;
+                this.longitude = data.long;
+                this.writeHoleData(this.golfCourse, this.latitude, this.longitude, this.numberOfHoles);
+                this.removePending();
+                this.evalAdmin()
+                .then(val => {
+                  this.isAdmin = val;
+                  this.checkAdmin(this.isAdmin);
+                });
+              });
+            }
+          });
+        });
+      }
+      // If email is not verified
+      if (!firebase.auth().currentUser.emailVerified) {
+        this.unverified = true;
+        this.errorMessage = null;
+        this.isLoading = false;
+      }
     }, err => {
-      console.log(err);
+      this.tryAgain = false;
+      this.unverified = false;
       this.noAdmin = false;
       this.errorMessage = 'Invalid username/password';
       this.errorMessage = err.message;
@@ -87,12 +145,111 @@ export class LoginComponent {
   checkAdmin(isAdmin) {
     if (this.isAdmin === true) {
       this.noAdmin = false;
+      // Set to verified if this is a case of an email change
+      const userId = firebase.auth().currentUser.uid;
+      const userRef = firebase.database().ref('/Users/' + userId);
+      userRef.update({
+        verified: true
+      });
       this.router.navigate(['/dashboard']);
       this.isLoading = false;
     }
     if (this.isAdmin === false) {
       this.noAdmin = true;
+      this.isLoading = false;
     }
+  }
+
+  // Grab course for user
+  getCourseStatus() {
+    const userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+      const golfCourse = snapshot.val().golfCourse;
+      return golfCourse;
+    });
+  }
+
+  // See if the course is in use already
+  checkIfExists(courseName) {
+    return firebase.database().ref('GolfCourse/' + courseName).once('value').then(function(snapshot) {
+      const courseName = snapshot.val();
+      return courseName;
+    });
+  }
+
+  // Get the necessary data to make a new course
+  getPendingInfo() {
+    const userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+      const data = snapshot.val();
+      return data;
+    });
+  }
+
+    /* tslint:disable:quotemark */
+    /* tslint:disable:object-literal-shorthand */
+  // Initialize the GolfCourse Firebase structure
+  writeHoleData(courseName, latitude, longitude, selectedNumber) {
+    firebase.database().ref('GolfCourse/' + courseName).set({
+      golfCourse: courseName,
+      latitude: latitude,
+      longitude: longitude
+    });
+    for (this.i = 1; this.i <= selectedNumber; this.i++) {
+      firebase.database().ref('GolfCourse/' + courseName + '/Holes' + '/Hole' + this.i).set({
+        Description: 'No description set',
+        Tips: 'No tips set',
+      });
+      firebase.database().ref('GolfCourse/' + courseName + '/Holes' + '/Hole' + this.i + '/Red_Circle').set({
+        Description: "Men's professional tee",
+        Tips: 'No tips set',
+        Yards: 0,
+        Par: 0,
+      });
+      firebase.database().ref('GolfCourse/' + courseName + '/Holes' + '/Hole' + this.i + '/Blue_Square').set({
+        Description: "Men's average tee",
+        Tips: 'No tips set',
+        Yards: 0,
+        Par: 0,
+      });
+      firebase.database().ref('GolfCourse/' + courseName + '/Holes' + '/Hole' + this.i + '/Yellow_Triangle').set({
+        Description: "Women's professional tee",
+        Tips: 'No tips set',
+        Yards: 0,
+        Par: 0,
+      });
+      firebase.database().ref('GolfCourse/' + courseName + '/Holes' + '/Hole' + this.i + '/Pink_Diamond').set({
+        Description: "Women's average tee",
+        Tips: 'No tips set',
+        Yards: 0,
+        Par: 0,
+      });
+      firebase.database().ref('GolfCourse/' + courseName + '/WaitTimes/Hole' + this.i).set({
+        Queue: 0,
+        WaitTime: 0
+      });
+    }
+  }
+  /* tslint:enable:quotemark */
+  /* tslint:enable:object-literal-shorthand */
+
+  // Get rid of the unnecessary nodes
+  removePending() {
+    const userId = firebase.auth().currentUser.uid;
+    const userRef = firebase.database().ref('/Users/' + userId);
+    userRef.child('numberOfHoles').remove();
+    userRef.child('lat').remove();
+    userRef.child('long').remove();
+    userRef.update({
+      verified: true
+    });
+  }
+
+  removeUser() {
+    const user = firebase.auth().currentUser;
+    const userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('/Users/' + userId).remove();
+    user.delete();
   }
 
   // Pop-up register form
@@ -104,6 +261,7 @@ export class LoginComponent {
     });
   }
 
+  // Open email submission
   resetPassword(): void {
     this.dialog.open(PasswordResetComponent, {
       disableClose: true,
@@ -128,5 +286,4 @@ export class LoginComponent {
       });
     }
   }
-
 }

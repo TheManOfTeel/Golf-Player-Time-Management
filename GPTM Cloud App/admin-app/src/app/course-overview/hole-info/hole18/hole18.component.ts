@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import * as firebase from 'firebase';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseMapComponent } from 'src/app/course-map/course-map.component';
 
@@ -69,27 +71,27 @@ export class Hole18Component implements OnInit {
     });
     this.tile2Form = this.fb.group({
       blueDescription: [''],
-      bluePar: [''],
+      bluePar: ['', Validators.min(0)],
       blueTips: [''],
-      blueYards: [''],
+      blueYards: ['', Validators.min(0)],
     });
     this.tile3Form = this.fb.group({
       redDescription: [''],
-      redPar: [''],
+      redPar: ['', Validators.min(0)],
       redTips: [''],
-      redYards: [''],
+      redYards: ['', Validators.min(0)],
     });
     this.tile4Form = this.fb.group({
       pinkDescription: [''],
-      pinkPar: [''],
+      pinkPar: ['', Validators.min(0)],
       pinkTips: [''],
-      pinkYards: [''],
+      pinkYards: ['', Validators.min(0)],
     });
     this.tile5Form = this.fb.group({
       yellowDescription: [''],
-      yellowPar: [''],
+      yellowPar: ['', Validators.min(0)],
       yellowTips: [''],
-      yellowYards: [''],
+      yellowYards: ['', Validators.min(0)],
     });
   }
 
@@ -157,6 +159,7 @@ export class Hole18Component implements OnInit {
 
   cancelEdit1() {
     this.isEdit1 = false;
+    this.initData();
     return this.isEdit1;
   }
 
@@ -170,6 +173,7 @@ export class Hole18Component implements OnInit {
 
   cancelEdit2() {
     this.isEdit2 = false;
+    this.initData();
     return this.isEdit2;
   }
 
@@ -183,6 +187,7 @@ export class Hole18Component implements OnInit {
 
   cancelEdit3() {
     this.isEdit3 = false;
+    this.initData();
     return this.isEdit3;
   }
 
@@ -196,6 +201,7 @@ export class Hole18Component implements OnInit {
 
   cancelEdit4() {
     this.isEdit4 = false;
+    this.initData();
     return this.isEdit4;
   }
 
@@ -209,6 +215,7 @@ export class Hole18Component implements OnInit {
 
   cancelEdit5() {
     this.isEdit5 = false;
+    this.initData();
     return this.isEdit5;
   }
 
@@ -298,6 +305,7 @@ export class Hole18Component implements OnInit {
     this.isEdit5 = false;
   }
 
+  // Pop-up using the geofencing component
   mapPopUp() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -309,14 +317,20 @@ export class Hole18Component implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.coordinates = result[0];
+      if (result) {
+        this.coordinates = result[0];
 
-      const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole18');
-      // push new data to database
-      courseRef.update({
-        Geofence: this.coordinates,
-      });
-      this.initData();
+        const courseRef = firebase.database().ref('/GolfCourse/' + this.courseName + '/Holes/Hole18');
+        // push new data to database
+        courseRef.update({
+          Geofence: this.coordinates,
+        });
+        this.initData();
+      }
+
+      if (!result) {
+        this.initData();
+      }
     });
   }
 }

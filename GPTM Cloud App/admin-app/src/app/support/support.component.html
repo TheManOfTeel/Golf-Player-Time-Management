@@ -1,6 +1,5 @@
 <div class="main-div">
     <mat-card>
-    <!-- <h1>Golf Player Time Management Support</h1> -->
         <div class="expander">
             <button mat-raised-button color="secondary" type="button" (click)="accordion.openAll()" class="btn-default">Expand All </button>
             <div class="divider"></div>
@@ -72,6 +71,40 @@
                 <p>Pressing the close button will close the map window without saving</p>
                 <p>When finished hit the save button to save the information</p>
                 <p>Each time the map is launched it will be cleared of all previous overlays</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    Change your account's email address
+                </mat-expansion-panel-header>
+                <ng-container *ngIf="isLoading">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </ng-container>
+                <p class="accordionContent">Fill out the form below to change your email address</p>
+                <div class="center">
+                    <form [formGroup]="emailForm">
+                        <mat-form-field class="input">
+                            <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="email" type="email" formControlName="email" required>
+                            <mat-hint>Enter the new email address</mat-hint>
+                            <mat-error>
+                                Enter a valid email address
+                            </mat-error>
+                        </mat-form-field>
+                        <p *ngIf="emailChanged" class="success">Email has been changed. Verfiy your new credentials by clicking on the link in the email</p>
+                        <p *ngIf="emailChanged" class="success">You will not be able to login until doing so</p>
+                        <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
+                        <br *ngIf="!emailChanged && !errorMessage">
+                        <br *ngIf="!emailChanged && !errorMessage">
+                        <div class="buttons">
+                            <button *ngIf="!confirm && !isLoading" mat-raised-button color="primary" type="submit" (click)="confirmChange(true)" class="btn btn-default">Change email</button>
+                            <button *ngIf="!isLoading && confirm" mat-raised-button color="warn" type="submit" (click)="changeEmail()" class="btn btn-default">Confirm</button>
+                            <div class="divider"></div>
+                            <button *ngIf="!isLoading && confirm" mat-raised-button color="secondary" type="submit" (click)="confirmChange(false)" class="btn btn-default">Cancel</button>
+                            <button *ngIf="isLoading && confirm" mat-raised-button color="warn" type="submit" class="btn btn-default" disabled>Confirm</button>
+                            <div class="divider"></div>
+                            <button *ngIf="isLoading && confirm" mat-raised-button color="secondary" type="submit" class="btn btn-default" disabled>Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>

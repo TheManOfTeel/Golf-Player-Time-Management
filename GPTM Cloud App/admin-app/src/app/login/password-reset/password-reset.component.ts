@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -32,16 +33,15 @@ export class PasswordResetComponent implements OnInit {
     if (this.email != null) {
       this.isLoading = true;
       firebase.auth().sendPasswordResetEmail(this.email)
-    .then(() => {
-      this.emailSent = true;
-      this.errorMessage = null;
-      this.isLoading = false;
-    }, err => {
-      console.log(err);
-      this.emailSent = false;
-      this.errorMessage = err.message;
-      this.isLoading = false;
-    });
+      .then(() => {
+        this.emailSent = true;
+        this.errorMessage = null;
+        this.isLoading = false;
+      }, err => {
+        this.emailSent = false;
+        this.errorMessage = err.message;
+        this.isLoading = false;
+      });
     }
   }
 
