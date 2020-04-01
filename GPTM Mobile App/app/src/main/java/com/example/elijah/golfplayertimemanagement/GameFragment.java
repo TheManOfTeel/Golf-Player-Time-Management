@@ -366,14 +366,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                     }
                                 }
                             });
-
-
-
-
-
-
-
-
                         }
                     });
                 }
@@ -439,13 +431,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
             build.include((LatLng) lstLatLngRoute.get(l));
         }
         LatLngBounds bounds = build.build();
-
-        if(bounds.contains(bounds.getCenter())){
-            Log.e("Yes", "This is within the bounds");
-        }else{
-            Log.e("Fuck", "Fuck it is not");
-        }
-
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,50));
     }
 

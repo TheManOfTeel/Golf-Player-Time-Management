@@ -2,8 +2,6 @@ package com.example.elijah.golfplayertimemanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -52,6 +50,8 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Choose your course");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+
         search = (EditText)findViewById(R.id.GolfCourseSearch);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         listView = (ListView)findViewById(R.id.CourseList);
@@ -61,26 +61,6 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
 
        // courseAdapter = new ArrayAdapter<String>(this, android.R.layout.course_spinner, courses);
 
-        search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                courseAdapter.getFilter().filter(charSequence);
-                courseAdapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-
-            }
-        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -175,17 +155,23 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
-        switch (item.getItemId()){
-            case R.id.signout:
-                Toast.makeText(this, "Sign out selected", Toast.LENGTH_SHORT).show();
-                mAuth.signOut();
-                PresentationActivityIntent();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SelectGolfCourseActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }else if(item.getItemId() == R.id.signout){
+            Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            PresentationActivityIntent();
+            return true;
         }
-
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
+
+
+
 
     public void PresentationActivityIntent(){
         Intent intent = new Intent(SelectGolfCourseActivity.this, PresentationActivity.class);

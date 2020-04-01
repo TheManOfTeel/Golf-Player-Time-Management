@@ -3,9 +3,11 @@ package com.example.elijah.golfplayertimemanagement;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,9 @@ public class CurrentGamesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_games);
+        getSupportActionBar().setTitle("Current Games");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         listView = (ListView)findViewById(R.id.gamelist);
         GolfCourse = getIntent().getStringExtra("courseName");
 
@@ -80,5 +85,33 @@ public class CurrentGamesActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(CurrentGamesActivity.this, GolfCourseHomeActivity.class);
+            intent.putExtra("GolfCourseID", GolfCourse);
+            startActivity(intent);
+            finish();
+            return true;
+        }else if(item.getItemId() == R.id.signout){
+            Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            Intent intent = new Intent(CurrentGamesActivity.this, PresentationActivity.class );
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return false;
+    }
+
+    public void PresentationActivityIntent(){
+        Intent intent = new Intent(CurrentGamesActivity.this, PresentationActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

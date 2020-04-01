@@ -3,11 +3,15 @@ package com.example.elijah.golfplayertimemanagement;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,11 +34,14 @@ public class JoinGameSetUpActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    private String GolfCourse = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_game_set_up);
+        getSupportActionBar().setTitle("Join Game");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
@@ -55,7 +62,7 @@ public class JoinGameSetUpActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getBundleExtra("bundle");
 
         String gameID =bundle.getString("gameID");
-        String GolfCourse = bundle.getString("courseName");
+        GolfCourse = bundle.getString("courseName");
         int location = bundle.getInt("location");
 
         if(bundle.containsKey("difficulty")){
@@ -198,15 +205,15 @@ public class JoinGameSetUpActivity extends AppCompatActivity {
         int min = dt.getMinutes();
         String TimeOFDay = "";
 
-        if(hours>=1 || hours<=12){
+        if(hours>=1 && hours<=12){
             TimeOFDay = "Morning";
-        }else if(hours>=12 || hours<=16){
+        }else if(hours>=12 && hours<=17){
             TimeOFDay = "Afternoon";
 
-        }else if(hours>=16 || hours<=21){
+        }else if(hours>=16 && hours<=21){
             TimeOFDay = "Evening";
 
-        }else if(hours>=21 || hours<=24){
+        }else if(hours>=21 && hours<=24){
             TimeOFDay = "Night";
 
         }
@@ -221,5 +228,33 @@ public class JoinGameSetUpActivity extends AppCompatActivity {
         int min = dt.getMinutes();
 
         return time;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //loadInfo();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(JoinGameSetUpActivity.this, CurrentGamesActivity.class);
+            intent.putExtra("courseName", GolfCourse);
+            startActivity(intent);
+            finish();
+            return true;
+        }else if(item.getItemId() == R.id.signout){
+            Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            Intent intent = new Intent(JoinGameSetUpActivity.this, PresentationActivity.class );
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return false;
     }
 }

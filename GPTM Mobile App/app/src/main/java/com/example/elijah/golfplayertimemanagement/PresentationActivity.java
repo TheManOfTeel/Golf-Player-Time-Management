@@ -21,14 +21,7 @@ public class PresentationActivity extends AppCompatActivity {
         signupbtn = (Button) findViewById(R.id.signup);
         toMap = (Button) findViewById(R.id.button2);
 
-        toMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PresentationActivity.this,MapsActivity.class);
-                startActivity(intent);
 
-            }
-        });
 
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override

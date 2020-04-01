@@ -79,7 +79,11 @@ public class OverviewFragment extends Fragment {
                       totalscore += score;
                   }
 
-                  email = dataSnapshot.child("Users").child(playerIDs.get(i)).child("email").getValue().toString();
+                  if( dataSnapshot.child("Users").child(playerIDs.get(i)).child("email").exists()){
+                      email = dataSnapshot.child("Users").child(playerIDs.get(i)).child("email").getValue().toString();
+                  }else{
+                      email = "Unknown email";
+                  }
                   Log.e("Total score", String.valueOf(totalscore));
                   PlayerOverview playerOverview1 = new PlayerOverview(email, currentholescore, totalscore);
                   playerOverview.add(playerOverview1);

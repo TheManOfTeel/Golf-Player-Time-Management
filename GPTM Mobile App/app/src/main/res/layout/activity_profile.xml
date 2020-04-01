@@ -24,32 +24,15 @@
         android:id="@+id/ProfileSelectCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="395dp"
+        android:layout_centerVertical="true"
+
         android:background="#67A84C"
         android:textColor="#FFFFFF"
         android:text="Select A Golf Course To Play At"/>
 
-    <Button
-        android:id="@+id/ProfileStats"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ProfileSelectCourse"
-        android:layout_marginTop="-336dp"
-        android:background="#67A84C"
-        android:text="View Your Stats"
-        android:textColor="#FFFFFF" />
-
-    <LinearLayout
-        android:id="@+id/ProfileButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        >
 
 
-    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/logo"
