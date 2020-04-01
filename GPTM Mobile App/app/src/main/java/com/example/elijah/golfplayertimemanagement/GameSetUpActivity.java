@@ -3,6 +3,9 @@ package com.example.elijah.golfplayertimemanagement;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -39,7 +42,6 @@ public class GameSetUpActivity extends AppCompatActivity {
     private TextView day;
     private TextView difficultybtn;
     private TextView selectedDifficulty;
-
     private String Difficulty = "";
     private String GolfCourse = "";
 
@@ -50,7 +52,8 @@ public class GameSetUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_set_up);
 
-        getSupportActionBar().setTitle("Choose your settings");
+        getSupportActionBar().setTitle("Game Setup");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
 
         //database references
@@ -252,15 +255,15 @@ public class GameSetUpActivity extends AppCompatActivity {
         int min = dt.getMinutes();
         String TimeOFDay = "";
 
-        if(hours>=1 || hours<=12){
+        if(hours>=1 && hours<=12){
             TimeOFDay = "Morning";
-        }else if(hours>=12 || hours<=16){
+        }else if(hours>=12 && hours<=16){
             TimeOFDay = "Afternoon";
 
-        }else if(hours>=16 || hours<=21){
+        }else if(hours>=16 && hours<=21){
             TimeOFDay = "Evening";
 
-        }else if(hours>=21 || hours<=24){
+        }else if(hours>=21 && hours<=24){
             TimeOFDay = "Night";
 
         }
@@ -275,5 +278,34 @@ public class GameSetUpActivity extends AppCompatActivity {
         int min = dt.getMinutes();
 
         return time;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //loadInfo();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(GameSetUpActivity.this, GolfCourseHomeActivity.class);
+            intent.putExtra("GolfCourseID", GolfCourse);
+            startActivity(intent);
+            finish();
+            return true;
+        }else if(item.getItemId() == R.id.signout){
+            Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            Intent intent = new Intent(GameSetUpActivity.this, PresentationActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return false;
     }
 }

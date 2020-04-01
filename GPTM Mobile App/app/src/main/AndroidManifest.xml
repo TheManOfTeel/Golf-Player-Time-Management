@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.elijah.golfplayertimemanagement">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -16,10 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".JoinGameSetUpActivity"></activity>
-        <activity android:name=".CurrentGamesActivity" />
-        <activity android:name=".JoinSelectDifficultyActivity" android:parentActivityName=".JoinGameSetUpActivity"/>
-        <activity android:name=".ReqsAssistActivity"></activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,9 +31,21 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity3"
-            android:label="@string/title_activity_maps3"
-            android:theme="@style/AppTheme.SlidrActivityTheme" />
+            android:name=".ViewCourseActivity"
+            android:label="@string/title_activity_view_course"></activity>
+        <activity android:name=".JoinGameSetUpActivity" />
+        <activity
+            android:name=".CurrentGamesActivity"
+            android:parentActivityName=".GolfCourseHomeActivity" />
+        <activity
+            android:name=".JoinSelectDifficultyActivity"
+            android:parentActivityName=".JoinGameSetUpActivity" />
+        <activity android:name=".ReqsAssistActivity" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".CurrentGamesActivity" />
+
         <activity android:name=".Game3Activity" />
         <activity android:name=".SelectDifficultyActivity" />
         <activity android:name=".ManageGroupActivity" />
@@ -43,20 +53,17 @@
             android:name=".GameSetUpActivity"
             android:parentActivityName=".GolfCourseHomeActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity
-            android:name=".Maps2Activity"
-            android:label="@string/title_activity_maps2"
-            android:parentActivityName=".GameActivity" />
         <activity android:name=".Game2Activity" />
-        <activity android:name=".GolfCourseHomeActivity" />
-        <activity android:name=".GameActivity" />
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:name=".GolfCourseHomeActivity"
+            android:parentActivityName=".SelectGolfCourseActivity" />
+        <activity android:name=".GameActivity" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:parentActivityName=".SigninActivity" />
-        <activity android:name=".SelectGolfCourseActivity" />
+        <activity
+            android:name=".SelectGolfCourseActivity"
+            android:parentActivityName=".ProfileActivity" />
         <activity
             android:name=".SigninActivity"
             android:parentActivityName=".PresentationActivity" />

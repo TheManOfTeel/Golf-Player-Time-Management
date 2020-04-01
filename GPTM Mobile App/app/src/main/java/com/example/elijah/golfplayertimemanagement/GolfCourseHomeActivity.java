@@ -9,23 +9,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,12 +51,14 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
-        getSupportActionBar().setTitle("Host or join a game");
+
 
         if(getIntent().getExtras() != null){
             CourseName = getIntent().getStringExtra("GolfCourseID");
             header.setText(CourseName);
         }
+        getSupportActionBar().setTitle(CourseName);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button joingame = (Button) findViewById(R.id.JoinGame);
         joingame.setOnClickListener(new View.OnClickListener() {
@@ -95,13 +91,14 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         ViewCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GolfCourseHomeActivity.this, Maps2Activity.class);
+                Intent intent = new Intent(GolfCourseHomeActivity.this, ViewCourseActivity.class);
+                intent.putExtra("courseName", CourseName);
                 startActivity(intent);
+                finish();
 
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,16 +111,19 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
-        switch (item.getItemId()){
-            case R.id.signout:
-                Toast.makeText(this, "Sign out selected", Toast.LENGTH_SHORT).show();
-                mAuth.signOut();
-                PresentationActivityIntent();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(GolfCourseHomeActivity.this, SelectGolfCourseActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }else if(item.getItemId() == R.id.signout){
+            Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            PresentationActivityIntent();
+            return true;
         }
-
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     public void PresentationActivityIntent(){
@@ -198,78 +198,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
     }
 
-    private void showJoinGameDialog(){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
-        LayoutInflater inflate = getLayoutInflater();
-
-        final View dialogView = inflate.inflate(R.layout.join_game, null);
-        dialogBuilder.setView(dialogView);
-
-        EditText Inputemail = (EditText)dialogView.findViewById(R.id.JoinGameEmail);
-        Button joingamebtn = (Button)dialogView.findViewById(R.id.JoinGamebtn);
-        ArrayList<Users> users = new ArrayList<>();
-        ArrayList<Game> games = new ArrayList<>();
-
-
-        Log.e("dialog", CourseName );
-        Log.e("dialog", Uid );
-
-        dialogBuilder.setTitle("Join Game");
-        dialogBuilder.setCancelable(true);
-
-        AlertDialog alertDialog = dialogBuilder.create();
-
-        alertDialog.show();
-
-        joingamebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-                            String PlayerID = "";
-
-                            for (DataSnapshot ds : dataSnapshot.child("Users").getChildren()) {
-                                String ID = ds.getKey();
-                                String email = ds.child("email").getValue().toString();
-
-                                Users user = new Users(ID, email);
-                                users.add(user);
-
-                            }
-
-                            Log.e("Message2", users.toString());
-                            for(int i = 0; i< users.size(); i++){
-                                if(Inputemail.getText().toString().trim().equals(users.get(i).email)){
-                                    PlayerID = users.get(i).Uid;
-                                }
-                            }
-                            Log.e("PlayerID", PlayerID);
-
-                            String PlayersCourse = dataSnapshot.child("Players").child(PlayerID).child("CourseID").getValue().toString();
-                            String PlayersGameID = dataSnapshot.child("Players").child(PlayerID).child("GameID").getValue().toString();
-
-                            if(PlayersCourse.equals(CourseName)){
-                                myRef.child("Players").child(mAuth.getUid()).child("CourseID").setValue(CourseName);
-                                myRef.child("Players").child(mAuth.getUid()).child("GameID").setValue(PlayersGameID);
-                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
-            }
-        });
-
-    }
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
@@ -310,8 +239,10 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         intent.putExtra("Activity", "GolfCourseHomeActivity");
         intent.putExtra("courseName", courseName);
         startActivity(intent);
-        finish();
+
         //showGameSetUpUpdateDialog();
     }
+
+
 
 }

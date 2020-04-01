@@ -2,9 +2,13 @@ package com.example.elijah.golfplayertimemanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +31,10 @@ public class ProfileActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
+        getSupportActionBar().setTitle("Welcome");
+
+
+
 
         greeting = (TextView)findViewById(R.id.ProfileGreeting);
 
@@ -42,9 +50,32 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //loadInfo();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
+        switch (item.getItemId()){
+            case R.id.signout:
+                Toast.makeText(this, "Sign out selected", Toast.LENGTH_SHORT).show();
+                mAuth.signOut();
+                Intent intent = new Intent(ProfileActivity.this, PresentationActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
