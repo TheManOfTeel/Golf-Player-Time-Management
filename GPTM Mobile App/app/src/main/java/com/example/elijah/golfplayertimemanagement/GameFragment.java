@@ -181,8 +181,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
-                            String yards = dataSnapshot.child("Par").getValue().toString();
-                            String Par = dataSnapshot.child("Yards").getValue().toString();
+                            String yards = dataSnapshot.child("Yards").getValue().toString();
+                            String Par = dataSnapshot.child("Par").getValue().toString();
                             Log.e("getHoleDetails", holeNum + Par + yards);
                             UIHoleNum(holeNum, Par, yards);
                             if(mMap!=null) {
@@ -191,7 +191,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                             }
 
                         }else{
-                            Log.e("getHoleDetails", "Snapshot doesnt exist");
+                            Log.e("getHoleDetails", "Snapshot doesn't exist");
                         }
 
                     }
