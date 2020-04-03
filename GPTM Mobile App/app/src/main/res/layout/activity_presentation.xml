@@ -6,9 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PresentationActivity"
-    android:background="@drawable/background"
-
     >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:src="@drawable/background"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:layout_centerHorizontal="true"
@@ -18,7 +23,8 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:text="Welcome To Golf Player Time Management"
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 
@@ -37,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign In"
-            android:background="#996666B3"
+            android:background="#f5f5f5"
             android:layout_margin="20dp"
             android:textStyle="bold"
 
@@ -49,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/signin"
             android:text="sign up"
-            android:background="#996666B3"
+            android:background="#f5f5f5"
             android:layout_margin="20dp"
             android:textStyle="bold"
             />
@@ -61,7 +67,7 @@
             android:layout_marginBottom="3dp"
             android:text="Anonymous Sign in"
             android:layout_below="@id/signup"
-            android:background="#996666B3"
+            android:background="#f5f5f5"
             android:layout_margin="20dp"
             android:textStyle="bold"
             />
