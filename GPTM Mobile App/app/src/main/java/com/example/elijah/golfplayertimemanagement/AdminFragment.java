@@ -362,10 +362,11 @@ public class AdminFragment extends Fragment {
 
                 holeNum = Integer.decode(holenum);
 
-                taskMap.put("User", emailTrun);
+                taskMap.put("User", email);
                 taskMap.put("Request", type2);
                 taskMap.put("Location", "Hole " + holeNum );
                 taskMap.put("Time", currentTime1);
+                taskMap.put("Status", "Pending");
                 //taskMap.put("Location", tLocation);
 
 
