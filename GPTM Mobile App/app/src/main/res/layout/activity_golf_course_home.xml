@@ -20,6 +20,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="25dp"
         android:text="Welcome To This Golf Course"
+        android:gravity="center"
         android:textColor="#67A84C"
         android:textSize="30sp"
         android:textStyle="bold"/>
@@ -57,8 +58,6 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/WelcomeLabel"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -66,10 +65,15 @@
         android:layout_marginRight="217dp"
         android:layout_marginBottom="86dp"
         android:text="Welcome to:"
-
         android:textColor="#67A84C"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </RelativeLayout>
