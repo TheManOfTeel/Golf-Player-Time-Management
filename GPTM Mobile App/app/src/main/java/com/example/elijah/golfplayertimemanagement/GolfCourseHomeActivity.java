@@ -42,8 +42,16 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_golf_course_home);
+
         mAuth = FirebaseAuth.getInstance();
-        Uid = mAuth.getUid();
+        if(mAuth.getCurrentUser() == null){
+            Uid = "Anonymous";
+        }
+        else{
+            Uid = mAuth.getUid();
+        }
+
+
         header = (TextView)findViewById(R.id.WelcomeLabel);
         startGamebtn = (Button)findViewById(R.id.StartGame);
         ViewCourse = (Button)findViewById(R.id.ViewCourse);

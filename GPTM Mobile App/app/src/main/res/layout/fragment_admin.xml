@@ -163,6 +163,19 @@
         android:visibility="invisible" />
 
     <Button
+        android:id="@+id/resetB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/club"
+        android:layout_marginTop="-455dp"
+        android:background="#67A84C"
+        android:elevation="10dp"
+        android:text="Reset Selection"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp"
+        android:visibility="invisible" />
+
+    <Button
         android:id="@+id/balls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

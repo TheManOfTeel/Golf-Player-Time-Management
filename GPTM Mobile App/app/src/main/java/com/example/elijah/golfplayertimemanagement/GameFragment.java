@@ -70,6 +70,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     private GPS myGPS;
     private TimerTask scanTask;
     private Chronometer mChrono;
+    public String anonNum;
+    public String Uid;
 
 
     @Nullable
@@ -97,6 +99,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         if(bundle != null) {
             CourseName = bundle.getString("courseName");
             GameID = bundle.getString("gameID");
+            anonNum = bundle.getString("anonNum");
             if(bundle.containsKey("Difficulty")) {
                 Difficulty = bundle.getString("Difficulty");
             }else if(bundle.containsKey("difficulty")){
@@ -114,8 +117,12 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
-        String Uid = mAuth.getUid();
-
+        if(mAuth.getUid()!=null) {
+            Uid = mAuth.getUid();
+        }
+        else{
+            Uid = anonNum;
+        }
 
         NextHole = (Button) rootView.findViewById(R.id.fragnexthole);
         BackHole = (Button) rootView.findViewById(R.id.fragbackhole);
@@ -291,7 +298,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         getHoleDetails2();
-                                        myRef.child("Games").child(CourseName).child(GameID).child(mAuth.getUid()).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
+                                        myRef.child("Games").child(CourseName).child(GameID).child(Uid).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if(dataSnapshot.exists()) {
@@ -339,7 +346,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         getHoleDetails2();
-                                        myRef.child("Games").child(CourseName).child(GameID).child(mAuth.getUid()).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
+                                        myRef.child("Games").child(CourseName).child(GameID).child(Uid).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if(dataSnapshot.exists()) {

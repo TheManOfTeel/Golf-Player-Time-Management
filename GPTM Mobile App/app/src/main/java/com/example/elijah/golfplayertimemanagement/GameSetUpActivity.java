@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +45,9 @@ public class GameSetUpActivity extends AppCompatActivity {
     private TextView selectedDifficulty;
     private String Difficulty = "";
     private String GolfCourse = "";
+    public FirebaseUser currentFirebaseUser;
+    private int random;
+    public String anonNum;
 
 
 
@@ -54,7 +58,14 @@ public class GameSetUpActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Game Setup");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            currentFirebaseUser = null;
+        }
+        else{
+            currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        }
 
         //database references
         database = FirebaseDatabase.getInstance();
@@ -78,6 +89,8 @@ public class GameSetUpActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         //Get the extras if there are any
+        random = new Random().nextInt((100) + 1) ;
+        anonNum = "Anon" + random;
         if(extras != null){
             Log.e("Extras", extras.toString());
             if(extras.containsKey("Difficulty")){
@@ -163,13 +176,22 @@ public class GameSetUpActivity extends AppCompatActivity {
         startRound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String gameID = myRef.child("Games").push().getKey();
-                myRef.child("Games").child(GolfCourse).child(gameID).child("GroupLeader").setValue(currentFirebaseUser.getEmail());
-                myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("Difficulty").setValue(Difficulty);
-                myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("score").child("holes").child("hole1").setValue(0);
-                myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
-                myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
 
+                String gameID = myRef.child("Games").push().getKey();
+                if(currentFirebaseUser != null) {
+                    myRef.child("Games").child(GolfCourse).child(gameID).child("GroupLeader").setValue(currentFirebaseUser.getEmail());
+                    myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("Difficulty").setValue(Difficulty);
+                    myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("score").child("holes").child("hole1").setValue(0);
+                    myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
+                    myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
+                }
+                else{
+                    myRef.child("Games").child(GolfCourse).child(gameID).child("GroupLeader").setValue("Anon");
+                    myRef.child("Games").child(GolfCourse).child(gameID).child(anonNum).child("Difficulty").setValue(Difficulty);
+                    myRef.child("Games").child(GolfCourse).child(gameID).child(anonNum).child("score").child("holes").child("hole1").setValue(0);
+                    myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
+                    myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
+                }
                 if(groupIDs!=null) {
                     for (int i = 0; i < groupIDs.size(); i++) {
                         myRef.child("Games").child(GolfCourse).child(gameID).child(groupIDs.get(i)).child("score").child("holes").
@@ -182,6 +204,7 @@ public class GameSetUpActivity extends AppCompatActivity {
                 if(!Difficulty.isEmpty()) {
                     Intent intent = new Intent(GameSetUpActivity.this, Game3Activity.class);
                     extras.putString("gameID", gameID);
+                    extras.putString("anonNum", anonNum);
                     intent.putExtra("bundle", extras);
                     startActivity(intent);
                     finish();

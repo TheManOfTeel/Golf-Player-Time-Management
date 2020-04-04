@@ -66,6 +66,8 @@ public class AdminFragment extends Fragment {
     private Button putt1;
     private Button wedge1;
 
+    private Button reset;
+
     //private Chronometer mChrono;
 
 
@@ -78,6 +80,8 @@ public class AdminFragment extends Fragment {
     private String currentTime1;
     private long elaspsed;
     public String gameID;
+    public String anonNum;
+    public String emailTrun;
 
 
 
@@ -94,18 +98,22 @@ public class AdminFragment extends Fragment {
         database2 = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         Ref2 = database2.getReference();
-        String Uid = mAuth.getUid();
-        String myEmail = mAuth.getCurrentUser().getEmail();
-        Log.e("MyEmail", myEmail);
 
         CourseName = bundle.getString("courseName");
         gameID = bundle.getString("gameID");
+        anonNum = bundle.getString("anonNum");
 
 
         //client = LocationServices.getFusedLocationProviderClient(this);
         //requestPermission();
 
-        email = mAuth.getCurrentUser().getEmail();
+        //email = mAuth.getCurrentUser().getEmail();
+        if(mAuth.getCurrentUser()==null){
+            email = anonNum;
+        }
+        else{
+            email = mAuth.getCurrentUser().getEmail();
+        }
 
         taskMap = new HashMap<>();
         df = new SimpleDateFormat("h:mm a");
@@ -147,6 +155,8 @@ public class AdminFragment extends Fragment {
         wood1 = (Button)rootView.findViewById(R.id.wood);
         wedge1 = (Button) rootView.findViewById(R.id.wedge);
 
+        reset = (Button) rootView.findViewById(R.id.resetB);
+
 
 
         assist1.setOnClickListener(new View.OnClickListener() {
@@ -175,6 +185,7 @@ public class AdminFragment extends Fragment {
                 assist1.setVisibility(View.INVISIBLE);
                 balls1.setVisibility(View.INVISIBLE);
 
+                reset.setVisibility(View.VISIBLE);
                 rDor1.setVisibility(View.VISIBLE);
                 twiz1.setVisibility(View.VISIBLE);
                 frit1.setVisibility(View.VISIBLE);
@@ -226,6 +237,7 @@ public class AdminFragment extends Fragment {
                 coke1.setVisibility(View.VISIBLE);
                 dew1.setVisibility(View.VISIBLE);
                 pep1.setVisibility(View.VISIBLE);
+                reset.setVisibility(View.VISIBLE);
 
             }
         });
@@ -290,6 +302,7 @@ public class AdminFragment extends Fragment {
                 hyb1.setVisibility(View.VISIBLE);
                 wood1.setVisibility(View.VISIBLE);
                 wedge1.setVisibility(View.VISIBLE);
+                reset.setVisibility(View.VISIBLE);
 
 
             }
@@ -340,6 +353,14 @@ public class AdminFragment extends Fragment {
             }
         });
 
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                resetButtons();
+
+            }
+        });
 
 
         return rootView;
@@ -358,7 +379,13 @@ public class AdminFragment extends Fragment {
                 currentTime1 = df.format(Calendar.getInstance().getTime());
 
 
-                String emailTrun = email.split("@")[0];
+               // String emailTrun = email.split("@")[0];
+                if(email!=anonNum){
+                    emailTrun = email.split("@")[0];
+                }
+                else{
+                    emailTrun = email;
+                }
 
                 holeNum = Integer.decode(holenum);
 
@@ -374,14 +401,7 @@ public class AdminFragment extends Fragment {
 
                 Toast.makeText(getActivity(), "Request Sent!", Toast.LENGTH_SHORT).show();
 
-                //Intent intent = new Intent(getActivity(), Game3Activity.class);
-
-                //intent.putExtra("courseName", GolfCourse);
-                //intent.putExtra("holeNum", holeNum);
-                //startActivity(intent);
-                //finish();
-
-                //request.setVisibility(View.INVISIBLE);
+                resetButtons();
             }
 
             @Override
@@ -437,6 +457,31 @@ public class AdminFragment extends Fragment {
                 Toast.LENGTH_SHORT).show();
     }
 
+    private void resetButtons(){
+        food1.setVisibility(View.VISIBLE);
+        drink1.setVisibility(View.VISIBLE);
+        club1.setVisibility(View.VISIBLE);
+        assist1.setVisibility(View.VISIBLE);
+        balls1.setVisibility(View.VISIBLE);
+
+        stella1.setVisibility(View.INVISIBLE);
+        busch1.setVisibility(View.INVISIBLE);
+        coke1.setVisibility(View.INVISIBLE);
+        dew1.setVisibility(View.INVISIBLE);
+        pep1.setVisibility(View.INVISIBLE);
+
+        iron1.setVisibility(View.INVISIBLE);
+        putt1.setVisibility(View.INVISIBLE);
+        hyb1.setVisibility(View.INVISIBLE);
+        wood1.setVisibility(View.INVISIBLE);
+        wedge1.setVisibility(View.INVISIBLE);
+
+        rDor1.setVisibility(View.INVISIBLE);
+        twiz1.setVisibility(View.INVISIBLE);
+        frit1.setVisibility(View.INVISIBLE);
+        reset.setVisibility(View.INVISIBLE);
+
+    }
 
 
 

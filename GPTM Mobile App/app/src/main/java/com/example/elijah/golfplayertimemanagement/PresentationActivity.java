@@ -39,6 +39,14 @@ public class PresentationActivity extends AppCompatActivity {
             }
         });
 
+        toMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PresentationActivity.this, SelectGolfCourseActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -52,5 +60,6 @@ public class PresentationActivity extends AppCompatActivity {
         Intent intent = new Intent(PresentationActivity.this, SignupActivity.class);
         startActivity(intent);
     }
+
 
 }

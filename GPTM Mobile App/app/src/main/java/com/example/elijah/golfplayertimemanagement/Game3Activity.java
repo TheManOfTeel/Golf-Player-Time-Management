@@ -49,6 +49,9 @@ public class Game3Activity extends AppCompatActivity  {
     public int holeNum;
     public String CourseName;
     public String gameID;
+    public String Uid;
+    public String anonNum;
+    public String emailTrun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,6 @@ public class Game3Activity extends AppCompatActivity  {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
-        email = mAuth.getCurrentUser().getEmail();
         taskMap = new HashMap<>();
         df = new SimpleDateFormat("h:mm a");
 
@@ -79,9 +81,18 @@ public class Game3Activity extends AppCompatActivity  {
             Log.e("Game2Activity", bundle.getString("courseName"));
             CourseName = bundle.getString("courseName");
             gameID = bundle.getString("gameID");
+            anonNum = bundle.getString("anonNum");
+
 
         }else{
             defaultFragment.setArguments(savedInstanceState);
+        }
+
+        if(mAuth.getCurrentUser() == null){
+            email = anonNum;
+        }
+        else{
+            email = mAuth.getCurrentUser().getEmail();
         }
 
         myRef.child("Games").child(CourseName).child(gameID).addValueEventListener(new ValueEventListener() {
@@ -106,7 +117,13 @@ public class Game3Activity extends AppCompatActivity  {
 
 
         mAuth = FirebaseAuth.getInstance();
-        String Uid = mAuth.getUid();
+        if(mAuth.getCurrentUser() == null){
+            Uid = "Anonymous";
+        }
+        else{
+            Uid = mAuth.getUid();
+        }
+
 
         for(int i = 0; i<getSupportFragmentManager().getFragments().size();i++){
             getSupportFragmentManager().getFragments().get(i).setArguments(bundle);
@@ -186,7 +203,12 @@ public class Game3Activity extends AppCompatActivity  {
 
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String emailTrun = email.split("@")[0];
+                if(email != anonNum) {
+                    emailTrun = email.split("@")[0];
+                }
+                else{
+                    emailTrun = anonNum;
+                }
                 currentTime1 = df.format(Calendar.getInstance().getTime());
                 holeNum = Integer.parseInt(holenum);
                 taskMap.put("User", emailTrun);

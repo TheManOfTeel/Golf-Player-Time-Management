@@ -107,12 +107,15 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        /*
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() == null){
-            Intent intent = new Intent(SelectGolfCourseActivity.this, PresentationActivity.class);
-            startActivity(intent);
-            finish();
+           // Intent intent = new Intent(SelectGolfCourseActivity.this, PresentationActivity.class);
+            //startActivity(intent);
+            //finish();
         }
+
+         */
 
 
 
