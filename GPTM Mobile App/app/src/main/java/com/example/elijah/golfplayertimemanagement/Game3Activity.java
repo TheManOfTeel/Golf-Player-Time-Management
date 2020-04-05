@@ -216,7 +216,7 @@ public class Game3Activity extends AppCompatActivity  {
                 taskMap.put("Location", holeNum );
                 taskMap.put("Time", currentTime1);
 
-                myRef.child("Requests").child(CourseName).push().setValue(taskMap);
+                myRef.child("Request").child(CourseName).push().setValue(taskMap);
 
 
                 }

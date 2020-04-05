@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,8 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
     private String Uid;
     private String difficulty;
     private Button ViewCourse;
+    private int random;
+    public String anonNum;
 
 
 
@@ -43,13 +46,16 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_golf_course_home);
 
+        random = new Random().nextInt((100) + 1) ;
+        anonNum = "Anon" + random;
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() == null){
-            Uid = "Anonymous";
+            Uid = anonNum;
         }
         else{
             Uid = mAuth.getUid();
         }
+
 
 
         header = (TextView)findViewById(R.id.WelcomeLabel);
@@ -74,6 +80,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(GolfCourseHomeActivity.this, CurrentGamesActivity.class);
                 intent.putExtra("courseName", CourseName);
+                intent.putExtra("anonNum", anonNum);
                 startActivity(intent);
                 finish();
             }
@@ -246,6 +253,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         Intent intent = new Intent(GolfCourseHomeActivity.this, GameSetUpActivity.class);
         intent.putExtra("Activity", "GolfCourseHomeActivity");
         intent.putExtra("courseName", courseName);
+        intent.putExtra("anonNum", anonNum);
         startActivity(intent);
 
         //showGameSetUpUpdateDialog();

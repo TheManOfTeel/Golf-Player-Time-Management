@@ -40,6 +40,7 @@ public class OverviewFragment extends Fragment {
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
 
+
         Golfcourse = bundle.getString("courseName");
         gameID = bundle.getString("gameID");
         ArrayList<PlayerOverview> playerOverview = new ArrayList<>();

@@ -28,6 +28,9 @@ public class CurrentGamesActivity extends AppCompatActivity {
     private String GolfCourse;
     private ArrayList<Game> games;
     private ListView listView;
+    public String Uid;
+    public String anonNum;
+    private ArrayList<Users> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,17 @@ public class CurrentGamesActivity extends AppCompatActivity {
 
         listView = (ListView)findViewById(R.id.gamelist);
         GolfCourse = getIntent().getStringExtra("courseName");
+        anonNum = getIntent().getStringExtra("courseName");
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
-        String Uid = mAuth.getUid();
+        if(mAuth.getCurrentUser() == null){
+            Uid = anonNum;
+        }
+        else{
+            Uid = mAuth.getUid();
+        }
 
         games = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
@@ -59,9 +68,15 @@ public class CurrentGamesActivity extends AppCompatActivity {
                         games.add(game);
                         Log.e("CurrentGamesActivity", game.toString());
                     }else{
-                        Log.e("currentGamesActivity", "Does Not exist");
+                        String GroupLeader = ds.child("GroupLeader").getValue().toString();
+                        int Location = Integer.parseInt(ds.child("Location").getValue().toString());
+                        String TimeStarted = ds.child("TimeStarted").getValue().toString();
+                        Game game = new Game(gameID, GolfCourse, anonNum,GroupLeader, Location, TimeStarted, 0);
+                        games.add(game);
+
                     }
                 }
+
                 GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), games);
                 listView.setAdapter(gameAdapter);
             }
@@ -72,12 +87,14 @@ public class CurrentGamesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.e("ItemClicked", games.get(i).toString());
+
                 Intent intent = new Intent(CurrentGamesActivity.this, JoinGameSetUpActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("gameID", games.get(i).getGameID());
                 bundle.putString("courseName", games.get(i).getCourseID());
                 bundle.putInt("location", games.get(i).getLocation());
                 intent.putExtra("bundle", bundle);
+                bundle.putString("anonNum",anonNum);
                 startActivity(intent);
                 finish();
 
