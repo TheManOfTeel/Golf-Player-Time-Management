@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -66,7 +67,7 @@ public class AdminFragment extends Fragment {
     private Button putt1;
     private Button wedge1;
 
-    //private Chronometer mChrono;
+    private Chronometer mChrono;
 
 
 
@@ -88,6 +89,9 @@ public class AdminFragment extends Fragment {
         Bundle bundle = getArguments();
 
         //reqs = (Button) rootView.rootView.findViewById(R.id.req);
+
+        mChrono = (Chronometer) rootView.findViewById(R.id.chrono);
+        mChrono.setVisibility(View.INVISIBLE);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -394,7 +398,7 @@ public class AdminFragment extends Fragment {
     }
 
     private void start(){
-       // mChrono.start();
+       mChrono.start();
         //Toast.makeText(ReqsAssistActivity.this, mChrono.toString(), Toast.LENGTH_SHORT).show();
     }
     private void showElapsed() {
