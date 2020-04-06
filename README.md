@@ -5,6 +5,7 @@ Senior Capstone Project for CS/IT majors at Oakland University. Project 1.
 * https://golf-player-time-management.web.app
 ## Project Description
 This software will have two components: a cloud based player management application and mobile phone application.
+## Requirements
 ### The cloud app will do the following
 * Track players position on a virtual golf course utilizing an application on the players phones that
 transmits GPS location information
