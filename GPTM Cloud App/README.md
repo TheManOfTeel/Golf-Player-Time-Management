@@ -1,4 +1,5 @@
 # Cloud Component
+## Requirements
 * Track players position on a virtual golf course utilizing an application on the players phones that
 transmits GPS location information
 * It will utilize AI queuing algorithm to optimize playing time by calculating wait times, playing
