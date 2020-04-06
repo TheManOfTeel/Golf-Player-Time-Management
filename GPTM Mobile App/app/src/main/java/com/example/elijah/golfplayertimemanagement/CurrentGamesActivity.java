@@ -48,14 +48,17 @@ public class CurrentGamesActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int Location = 1;
                 for(DataSnapshot ds: dataSnapshot.child("Games").child(GolfCourse).getChildren()){
                     String gameID = ds.getKey();
                     if(ds.child(Uid).exists()) {
                         String playerID = ds.child(Uid).getKey().toString();
                         String GroupLeader = ds.child("GroupLeader").getValue().toString();
-                        int Location = Integer.parseInt(ds.child("Location").getValue().toString());
+                        if(ds.child("Location").exists()) {
+                            Location = Integer.parseInt(ds.child("Location").getValue().toString());
+                        }
                         String TimeStarted = ds.child("TimeStarted").getValue().toString();
-                        Game game = new Game(gameID, GolfCourse, playerID,GroupLeader, Location, TimeStarted, 0);
+                        Game game = new Game(gameID, GolfCourse, playerID,GroupLeader, Location, TimeStarted, 0, "");
                         games.add(game);
                         Log.e("CurrentGamesActivity", game.toString());
                     }else{

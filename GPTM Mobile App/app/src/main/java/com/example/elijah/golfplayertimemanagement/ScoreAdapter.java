@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class UserAdapter extends ArrayAdapter<Users> {
+public class ScoreAdapter extends ArrayAdapter<Score> {
 
-    public UserAdapter(@NonNull Context context, ArrayList<Users> user) {
-        super(context, 0, user);
+    public ScoreAdapter(@NonNull Context context, ArrayList<Score> scores) {
+        super(context, 0, scores);
     }
 
     @NonNull
@@ -34,22 +34,18 @@ public class UserAdapter extends ArrayAdapter<Users> {
     private View initView(int position, View converView, ViewGroup parent){
         if(converView == null) {
             converView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.userlist, parent, false
+                    R.layout.scores, parent, false
             );
         }
+        TextView textView = converView.findViewById(R.id.historyScores);
 
-        TextView textView = converView.findViewById(R.id.userEmail);
+        Score currentScores = getItem(position);
 
-
-        Users currentUsers = getItem(position);
-
-        if(currentUsers != null) {
-            textView.setText(currentUsers.getEmail());
+        if(currentScores != null) {
+            textView.setText(currentScores.hole + ": " +currentScores.score);
         }
 
         return converView;
 
     }
-
-
 }

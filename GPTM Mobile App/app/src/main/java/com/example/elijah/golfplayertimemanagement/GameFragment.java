@@ -84,8 +84,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         getActivity().setTitle("Fore!");
 
         myGPS = new GPS(getContext());
-        mChrono = (Chronometer) rootView.findViewById(R.id.chrono);
-        mChrono.setVisibility(View.INVISIBLE);
 
 
         //start();
@@ -102,6 +100,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
             }else if(bundle.containsKey("difficulty")){
                 Difficulty = bundle.getString("difficulty");
             }else{
+                Difficulty = "";
                 Log.e("GameFragment", "No difficulty");
             }
 
@@ -175,22 +174,23 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         myRef.child("Games").child(CourseName).child(GameID).child("Location").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
                 String holeNum = dataSnapshot.getValue().toString();
-                Log.e("getHoleDetails","Hole"+ holeNum );
-                myRef.child("GolfCourse").child(CourseName).child("Holes").child("Hole"+holeNum).child(Difficulty).addValueEventListener(new ValueEventListener() {
+                Log.e("getHoleDetails", "Hole" + holeNum);
+                myRef.child("GolfCourse").child(CourseName).child("Holes").child("Hole" + holeNum).child(Difficulty).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
+                        if (dataSnapshot.exists()) {
                             String yards = dataSnapshot.child("Yards").getValue().toString();
                             String Par = dataSnapshot.child("Par").getValue().toString();
                             Log.e("getHoleDetails", holeNum + Par + yards);
                             UIHoleNum(holeNum, Par, yards);
-                            if(mMap!=null) {
+                            if (mMap != null) {
                                 MapCurrentHole(mMap, Integer.parseInt(holeNum));
                                 MapHole2(Integer.parseInt(holeNum), mMap);
                             }
 
-                        }else{
+                        } else {
                             Log.e("getHoleDetails", "Snapshot doesn't exist");
                         }
 
@@ -201,6 +201,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
                     }
                 });
+            }
 
             }
 
@@ -611,6 +612,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
             Location location = myGPS.getMylocation();
             mylatlng = new LatLng(location.getLatitude(), location.getLongitude());
             Log.e("MyLocation", mylatlng.toString());
+
         }
         return mylatlng;
     }
@@ -656,9 +658,22 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 //        timer.schedule(scanTask, 10000, 10000);
 //    }
 private void start(){
-    mChrono.start();
+    myGPS.getMylocation();
     //Toast.makeText(ReqsAssistActivity.this, mChrono.toString(), Toast.LENGTH_SHORT).show();
 }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        myGPS.stopLocation();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        myGPS.getMylocation();
+    }
+
     private void showElapsed() {
         long elapsed= SystemClock.elapsedRealtime() - mChrono.getBase();
         if( elapsed >= 10000){
