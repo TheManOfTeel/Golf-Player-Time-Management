@@ -29,7 +29,7 @@ services and assistance.
 Adam Horle, Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
 ## Directory Structure
 ### GPTM Cloud
-Contains the app's cloud component (for administartors).
+Contains the app's cloud component (for administrators).
 ### GPTM Mobile
 Contains the Android App (for players).
 ### Documentation
