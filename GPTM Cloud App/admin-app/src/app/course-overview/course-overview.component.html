@@ -26,8 +26,8 @@
 	</mat-sidenav>
 	<div class="sidenav-content">
     <button mat-fab color="primary" type="button" (click) ="toggleNav()" class ="md-fab md-fab-bottom-right">
-      <mat-icon *ngIf="showIconMenu">menu</mat-icon>
-      <mat-icon *ngIf="!showIconMenu">close</mat-icon>
+      <mat-icon *ngIf="!openSidenav">menu</mat-icon>
+      <mat-icon *ngIf="openSidenav">close</mat-icon>
     </button>
     <app-wait-time *ngIf="showHoleWait"></app-wait-time>
     <app-hole01 *ngIf="showHole01"></app-hole01>
