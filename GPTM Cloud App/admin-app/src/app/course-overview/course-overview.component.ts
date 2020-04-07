@@ -75,12 +75,12 @@ export class CourseOverviewComponent implements OnInit {
         this.showToggle = 'show';
         this.openSidenav = false;
         this.showIconMenu = true;
-     }
-     else if (width > 850) {
+      }
+      if (width > 850) {
         this.showToggle = 'hide';
         this.openSidenav = true;
         this.showIconMenu = false;
-     }
+      }
     });
 
     // See how many holes it needs to display in the navlist
