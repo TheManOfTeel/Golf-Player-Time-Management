@@ -1,9 +1,12 @@
 package com.example.elijah.golfplayertimemanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Chronometer;
@@ -11,6 +14,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -58,6 +63,7 @@ public class Game3Activity extends AppCompatActivity  {
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         bundle = getIntent().getBundleExtra("bundle");
         GameFragment defaultFragment = new GameFragment();
+        getSupportActionBar().setTitle("Game");
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
@@ -156,8 +162,6 @@ public class Game3Activity extends AppCompatActivity  {
             return true;
 
 
-
-
         }
     };
 
@@ -165,6 +169,52 @@ public class Game3Activity extends AppCompatActivity  {
     protected void onStart() {
         super.onStart();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //loadInfo();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_game_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
+
+       if(item.getItemId() == R.id.signout1){
+            Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            Intent intent = new Intent(Game3Activity.this, PresentationActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }else if(item.getItemId() == R.id.endGame){
+
+           myRef.child("Games").child(CourseName).child(gameID).addValueEventListener(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   myRef.child("GameHistory").child(CourseName).child(gameID).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                       @Override
+                       public void onComplete(@NonNull Task<Void> task) {
+                           if(task.isSuccessful()){
+                               dataSnapshot.getRef().removeValue();
+                               Intent intent = new Intent(Game3Activity.this, GolfCourseHomeActivity.class);
+                               startActivity(intent);
+                               finish();
+                           }
+                       }
+                   });
+               }
+
+               @Override
+               public void onCancelled(@NonNull DatabaseError databaseError) {
+
+               }
+           });
+       }
+        return false;
     }
 
 
