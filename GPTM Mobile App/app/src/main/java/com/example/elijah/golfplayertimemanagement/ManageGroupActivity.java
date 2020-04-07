@@ -3,11 +3,15 @@ package com.example.elijah.golfplayertimemanagement;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,12 +35,18 @@ public class ManageGroupActivity extends AppCompatActivity {
     private String GolfCourse;
     private String Difficulty;
     private FirebaseAuth mAuth;
+    private Bundle extras;
+    public ArrayList<String> Group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_group);
-        ArrayList<String> Group = new ArrayList<String>();
+        getSupportActionBar().setTitle("Select Group");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        Group = new ArrayList<String>();
         listView = (ListView)findViewById(R.id.groupList);
         createGroup = (Button)findViewById(R.id.createGroup);
         mAuth = FirebaseAuth.getInstance();
@@ -47,7 +57,7 @@ public class ManageGroupActivity extends AppCompatActivity {
         Log.e("MyEmail", myEmail);
 
         Intent intent = getIntent();
-        Bundle extras = intent.getBundleExtra("bundle");
+        extras = intent.getBundleExtra("bundle");
         if(extras != null) {
             if (extras.containsKey("courseName")) {
                 GolfCourse = extras.getString("courseName");
@@ -91,12 +101,25 @@ public class ManageGroupActivity extends AppCompatActivity {
                             users.add(user);
                         }
                     }
-                    UserAdapter  userAdapter = new UserAdapter(getApplicationContext(), users);
-                    listView.setAdapter(userAdapter);
-                    listView.setTextFilterEnabled(true);
+
                     Log.e("Users", users.toString());
+                    icon = findViewById(R.id.addIcon);
+                   if(extras.containsKey("group")){
+                       Group = extras.getStringArrayList("group");
+                       UserAdapter  userAdapter = new UserAdapter(getApplicationContext(), users);
+                       listView.setAdapter(userAdapter);
+                       listView.setTextFilterEnabled(true);
+                       Log.e("Group", Group.toString());
+                       for(int i = 0; i < userAdapter.getCount();i++){
+                           if(Group.contains(userAdapter.getItem(i).Uid)){
 
-
+                           }
+                       }
+                   }else{
+                       UserAdapter  userAdapter = new UserAdapter(getApplicationContext(), users);
+                       listView.setAdapter(userAdapter);
+                       listView.setTextFilterEnabled(true);
+                   }
                 }else{
                     Log.e("ManageGroupActivity", "Datasnapshot doesnt exist");
                 }
@@ -126,5 +149,41 @@ public class ManageGroupActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //loadInfo();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ManageGroupActivity.this, GameSetUpActivity.class);
+            if(extras !=null){
+                intent.putExtras(extras);
+            }
+            intent.putExtra("courseName", GolfCourse);
+            startActivity(intent);
+            finish();
+            return true;
+        }else if(item.getItemId() == R.id.signout){
+            Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            PresentationActivityIntent();
+            return true;
+        }
+        return false;
+    }
+
+    public void PresentationActivityIntent(){
+        Intent intent = new Intent(ManageGroupActivity.this, PresentationActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
