@@ -1,7 +1,11 @@
 package com.example.elijah.golfplayertimemanagement;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +43,7 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     private CourseAdapter courseAdapter;
     private EditText search;
     private ProgressBar progressBar;
+    private SearchManager searchManager;
 
 
 
@@ -49,15 +54,15 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Choose your course");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
-
-
-        search = (EditText)findViewById(R.id.GolfCourseSearch);
+        search = (EditText) findViewById(R.id.GolfCourseSearch);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         listView = (ListView)findViewById(R.id.CourseList);
         progressBar.setVisibility(View.VISIBLE);
         ReadCourse();
         progressBar.setVisibility(View.GONE);
+        mAuth = FirebaseAuth.getInstance();
 
        // courseAdapter = new ArrayAdapter<String>(this, android.R.layout.course_spinner, courses);
 
@@ -88,12 +93,40 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
                         GolfCourse course = new GolfCourse(ID, name);
                         courses.add(course);
                     }
+
                     courseAdapter = new CourseAdapter(getApplicationContext(), courses);
                     listView.setAdapter(courseAdapter);
                     listView.setTextFilterEnabled(true);
+                    search.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                           courseAdapter.getFilter().filter(charSequence);
+
+
+
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
+
 
 
                 }
+
+
+
+
+
             }
 
             @Override
@@ -184,4 +217,9 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
+
 }
+
+
