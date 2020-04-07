@@ -17,7 +17,6 @@ export class CourseOverviewComponent implements OnInit {
   mode: string;
   openSidenav: boolean;
   private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
-  showIconMenu: boolean;
 
   courseName: any;
   info: any;
@@ -65,7 +64,7 @@ export class CourseOverviewComponent implements OnInit {
   // Toggle sidenav and change the button icon
   toggleNav() {
     this.matSidenav.toggle();
-    this.showIconMenu = !this.showIconMenu;
+    this.openSidenav = this.matSidenav.opened;
   }
 
   ngOnInit() {
@@ -74,12 +73,10 @@ export class CourseOverviewComponent implements OnInit {
       if (width <= 850) {
         this.showToggle = 'show';
         this.openSidenav = false;
-        this.showIconMenu = true;
       }
       if (width > 850) {
         this.showToggle = 'hide';
         this.openSidenav = true;
-        this.showIconMenu = false;
       }
     });
 

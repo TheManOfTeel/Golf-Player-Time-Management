@@ -26,7 +26,7 @@
 
 .md-fab-bottom-right{
   position: fixed !important;
-  right: 30px;
-  bottom: 30px;
+  right: 20px;
+  bottom: 20px;
   z-index: 10;
 }
