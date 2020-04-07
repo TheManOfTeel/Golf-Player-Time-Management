@@ -1,11 +1,11 @@
 .main-container {
   height: 100%;
-  /* border: 1px solid rgba(0, 0, 0, 0.5); */
 }
 
 .sidenav-content {
   display: flex;
   height: 100%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   background-color: whitesmoke;
@@ -15,4 +15,15 @@
    user-select: none;
    width: 130px;
    justify-content: center;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.md-fab-bottom-right{
+  position: fixed !important;
+  right: 30px;
+  bottom: 30px;
+  z-index: 10;
 }
