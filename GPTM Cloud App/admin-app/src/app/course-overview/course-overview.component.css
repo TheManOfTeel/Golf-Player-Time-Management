@@ -8,6 +8,9 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
   background-color: whitesmoke;
 }
 
