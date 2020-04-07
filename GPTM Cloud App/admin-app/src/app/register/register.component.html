@@ -16,15 +16,6 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <!-- For dropdown list (more scalability?) -->
-                    <!-- <mat-form-field>
-                        <mat-label>Number of holes</mat-label>
-                        <mat-select [(ngModel)]="selectedNumber" name="numberOfHoles" formControlName="numberOfHoles">
-                            <mat-option *ngFor="let numberOfHoles of numbers" [value]="numberOfHoles.value">
-                            {{numberOfHoles.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field> -->
                     <mat-label>Select the number of holes on your course</mat-label>
                     <mat-radio-group class="radio-group" [(ngModel)]="selectedNumber"
                     name="selectedNumber" formControlName="numberOfHoles">
