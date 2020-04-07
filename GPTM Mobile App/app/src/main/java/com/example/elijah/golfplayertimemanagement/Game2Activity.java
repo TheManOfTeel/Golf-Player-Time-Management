@@ -104,14 +104,14 @@ public class Game2Activity extends AppCompatActivity implements OnMapReadyCallba
         }else{
             shot.setText("Take A Stroke");
         }
-        score.setText("Score: " + playerPar);
+        score.setText("com.example.elijah.golfplayertimemanagement.UserAdapter.Score: " + playerPar);
         shot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 playerPar +=1;
-                score.setText("Score: " + playerPar);
+                score.setText("com.example.elijah.golfplayertimemanagement.UserAdapter.Score: " + playerPar);
                 shot.setText("Take A Stroke");
-                myRef.child("Games").child(GameID).child("Players").child(Uid).child("Score").child("Hole").child("Hole"+holeNum).setValue(playerPar);
+                myRef.child("Games").child(GameID).child("Players").child(Uid).child("com.example.elijah.golfplayertimemanagement.UserAdapter.Score").child("Hole").child("Hole"+holeNum).setValue(playerPar);
             }
         });
 
@@ -264,7 +264,7 @@ public class Game2Activity extends AppCompatActivity implements OnMapReadyCallba
                 getHoleDetails(holeNum);
                 playerPar =0;
 
-                score.setText("Score:" +playerPar);
+                score.setText("com.example.elijah.golfplayertimemanagement.UserAdapter.Score:" +playerPar);
                 shot.setText("Take Tee Shot");
                 mMap.clear();
 

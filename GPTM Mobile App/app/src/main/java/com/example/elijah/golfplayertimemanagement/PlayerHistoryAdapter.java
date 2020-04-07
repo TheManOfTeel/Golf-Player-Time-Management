@@ -11,11 +11,10 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+public class PlayerHistoryAdapter extends  ArrayAdapter<PlayerHistory> {
 
-public class UserAdapter extends ArrayAdapter<Users> {
-
-    public UserAdapter(@NonNull Context context, ArrayList<Users> user) {
-        super(context, 0, user);
+    public PlayerHistoryAdapter(@NonNull Context context, ArrayList<PlayerHistory>  playerHistories) {
+        super(context, 0, playerHistories);
     }
 
     @NonNull
@@ -34,22 +33,24 @@ public class UserAdapter extends ArrayAdapter<Users> {
     private View initView(int position, View converView, ViewGroup parent){
         if(converView == null) {
             converView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.userlist, parent, false
+                    R.layout.playerhistory, parent, false
             );
         }
+        TextView textView1 = converView.findViewById(R.id.historyemail);
+        TextView textView2 = converView.findViewById(R.id.historytotalScore);
+        TextView textView3 = converView.findViewById(R.id.averagescore);
 
-        TextView textView = converView.findViewById(R.id.userEmail);
+        PlayerHistory currentPlayer = getItem(position);
 
+        if(currentPlayer != null) {
 
-        Users currentUsers = getItem(position);
+            textView1.setText(currentPlayer.id);
+            textView2.setText("Total com.example.elijah.golfplayertimemanagement.UserAdapter.Score: " +currentPlayer.totalscore);
+            textView3.setText("Average com.example.elijah.golfplayertimemanagement.UserAdapter.Score: " + currentPlayer.average);
 
-        if(currentUsers != null) {
-            textView.setText(currentUsers.getEmail());
         }
 
         return converView;
 
     }
-
-
 }

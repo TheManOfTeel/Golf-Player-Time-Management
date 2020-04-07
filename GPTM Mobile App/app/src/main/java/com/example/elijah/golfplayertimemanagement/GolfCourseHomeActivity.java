@@ -35,7 +35,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
     private String Uid;
     private String difficulty;
     private Button ViewCourse;
-
+    private Button Historybtn;
 
 
     @Override
@@ -47,6 +47,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         header = (TextView)findViewById(R.id.WelcomeLabel);
         startGamebtn = (Button)findViewById(R.id.StartGame);
         ViewCourse = (Button)findViewById(R.id.ViewCourse);
+        Historybtn = (Button)findViewById(R.id.ViewHistory);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
@@ -71,13 +72,6 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
         startGamebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +90,17 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
 
+            }
+        });
+
+
+        Historybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GolfCourseHomeActivity.this, HistoryListActivity.class);
+                intent.putExtra("courseName", CourseName);
+                startActivity(intent);
+                finish();
             }
         });
     }

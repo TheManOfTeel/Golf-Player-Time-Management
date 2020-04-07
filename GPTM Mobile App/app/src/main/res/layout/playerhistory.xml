@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+
+    <TextView
+        android:id="@+id/historyemail"
+        android:text="test52@gmail.com"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#67A84C"
+        android:paddingTop="10dp"
+        />
+    <TextView
+        android:id="@+id/historytotalScore"
+        android:text="Total Score: 100"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#67A84C"
+        />
+    <TextView
+        android:id="@+id/averagescore"
+        android:text="Average Score: 20"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#67A84C"
+        android:paddingBottom="10dp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"/>
+
+<TextView
+    android:text="Par on holes"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:textColor="#67A84C"
+    />
+    <ListView
+        android:id="@+id/scorelist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        />
+
+</LinearLayout>

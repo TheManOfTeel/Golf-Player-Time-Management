@@ -169,6 +169,12 @@ public class GameSetUpActivity extends AppCompatActivity {
                 myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("score").child("holes").child("hole1").setValue(0);
                 myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
                 myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
+                try {
+                    myRef.child("Games").child(GolfCourse).child(gameID).child("Date").setValue(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
 
                 if(groupIDs!=null) {
                     for (int i = 0; i < groupIDs.size(); i++) {
