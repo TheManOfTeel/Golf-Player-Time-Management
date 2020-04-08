@@ -42,7 +42,6 @@
         <activity
             android:name=".JoinSelectDifficultyActivity"
             android:parentActivityName=".JoinGameSetUpActivity" />
-        <activity android:name=".ReqsAssistActivity" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -55,11 +54,9 @@
             android:name=".GameSetUpActivity"
             android:parentActivityName=".GolfCourseHomeActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".Game2Activity" />
         <activity
             android:name=".GolfCourseHomeActivity"
             android:parentActivityName=".SelectGolfCourseActivity" />
-        <activity android:name=".GameActivity" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:parentActivityName=".SigninActivity" />

@@ -135,17 +135,6 @@
         android:text="Assistance"
         android:textColor="#FFFFFF"
         android:textSize="24dp" />
-    <Chronometer
-        android:id="@+id/chrono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/assist"
-        android:layout_marginBottom="454dp"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
-        android:textColor="#67A84C"
-        android:textSize="32dp"
-        />
 
     <Button
         android:id="@+id/dew"
@@ -169,6 +158,19 @@
         android:background="#67A84C"
         android:elevation="10dp"
         android:text="Hybrid"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/resetB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/club"
+        android:layout_marginTop="-455dp"
+        android:background="#67A84C"
+        android:elevation="10dp"
+        android:text="Reset Selection"
         android:textColor="#FFFFFF"
         android:textSize="24dp"
         android:visibility="invisible" />

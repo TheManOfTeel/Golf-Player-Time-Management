@@ -25,7 +25,8 @@
         android:text="Welcome To Golf Player Time Management"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
 
 
@@ -43,10 +44,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign In"
-            android:background="#f5f5f5"
             android:layout_margin="20dp"
             android:textStyle="bold"
-
+            android:textColor="#FFFFFF"
+            android:background="#67A84C"
             />
 
         <Button
@@ -55,9 +56,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/signin"
             android:text="sign up"
-            android:background="#f5f5f5"
+
             android:layout_margin="20dp"
             android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#67A84C"
             />
 
         <Button
@@ -67,7 +70,8 @@
             android:layout_marginBottom="3dp"
             android:text="Anonymous Sign in"
             android:layout_below="@id/signup"
-            android:background="#f5f5f5"
+            android:textColor="#FFFFFF"
+            android:background="#67A84C"
             android:layout_margin="20dp"
             android:textStyle="bold"
             />

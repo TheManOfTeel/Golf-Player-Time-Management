@@ -69,7 +69,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private GPS myGPS;
     private TimerTask scanTask;
-    private Chronometer mChrono;
+    public String anonNum;
+    public String Uid;
 
 
     @Nullable
@@ -86,7 +87,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         myGPS = new GPS(getContext());
 
 
-        //start();
+
+        start();
 
         //(new Handler()).postDelayed(this::showElapsed, 10000);
 
@@ -95,6 +97,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         if(bundle != null) {
             CourseName = bundle.getString("courseName");
             GameID = bundle.getString("gameID");
+            anonNum = bundle.getString("anonNum");
             if(bundle.containsKey("Difficulty")) {
                 Difficulty = bundle.getString("Difficulty");
             }else if(bundle.containsKey("difficulty")){
@@ -113,8 +116,12 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
-        String Uid = mAuth.getUid();
-
+        if(mAuth.getUid()!=null) {
+            Uid = mAuth.getUid();
+        }
+        else{
+            Uid = anonNum;
+        }
 
         NextHole = (Button) rootView.findViewById(R.id.fragnexthole);
         BackHole = (Button) rootView.findViewById(R.id.fragbackhole);
@@ -296,7 +303,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         getHoleDetails2();
-                                        myRef.child("Games").child(CourseName).child(GameID).child(mAuth.getUid()).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
+                                        myRef.child("Games").child(CourseName).child(GameID).child(Uid).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if(dataSnapshot.exists()) {
@@ -344,7 +351,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         getHoleDetails2();
-                                        myRef.child("Games").child(CourseName).child(GameID).child(mAuth.getUid()).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
+                                        myRef.child("Games").child(CourseName).child(GameID).child(Uid).child("score").child("holes").child("hole"+holeNum).addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if(dataSnapshot.exists()) {
@@ -678,43 +685,5 @@ private void start(){
         myGPS.getMylocation();
     }
 
-    private void showElapsed() {
-        long elapsed= SystemClock.elapsedRealtime() - mChrono.getBase();
-        if( elapsed >= 10000){
-            Toast.makeText(getActivity(), "Your time is up!: ",
-                    Toast.LENGTH_SHORT).show();
-            mChrono.stop();
-            //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
-/*
-            myRef.child("Requests").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-
-
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                String emailTrun = email.split("@")[0];
-                taskMap.put("User", emailTrun);
-                taskMap.put("Request", "Assistance, time is up!");
-                taskMap.put("Location", holeNum );
-                taskMap.put("Time", currentTime1);
-
-                myRef.child("Requests").child(GolfCourse).push().setValue(taskMap);
-
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    Toast.makeText(ReqsAssistActivity.this, "Request Failed!", Toast.LENGTH_SHORT).show();
-                }
-            });
-
- */
-
-        }
-        Toast.makeText(getActivity(), "Elapsed milliseconds: " + elapsed,
-                Toast.LENGTH_SHORT).show();
-    }
 
 }
