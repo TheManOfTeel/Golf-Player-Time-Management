@@ -430,7 +430,6 @@ public class AdminFragment extends Fragment {
                     Toast.LENGTH_SHORT).show();
             //mChrono.stop();
             //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
-<<<<<<< Updated upstream
 /*
             myRef.child("Overdue").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -466,39 +465,6 @@ public class AdminFragment extends Fragment {
         frit1.setVisibility(View.INVISIBLE);
         reset.setVisibility(View.INVISIBLE);
 
-=======
-//
-//            myRef.child("Overdue").addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//
-//
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                String emailTrun = email.split("@")[0];
-//                taskMap.put("User", emailTrun);
-//
-//                taskMap.put("Hole", holeNum );
-//                taskMap.put("Time", currentTime1);
-//                taskMap.put("Location", tLocation);
-//
-//                    myRef.child("Overdue").child(GolfCourse).push().setValue(taskMap);
-//
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    Toast.makeText(ReqsAssistActivity.this, "Request Failed!", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//
-
-        }
-        Toast.makeText(getActivity(), "Elapsed milliseconds: " + elapsed,
-                Toast.LENGTH_SHORT).show();
->>>>>>> Stashed changes
     }
 
 
