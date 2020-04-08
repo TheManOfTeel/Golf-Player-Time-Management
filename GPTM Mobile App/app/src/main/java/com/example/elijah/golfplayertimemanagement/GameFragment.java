@@ -69,7 +69,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private GPS myGPS;
     private TimerTask scanTask;
-    private Chronometer mChrono;
     public String anonNum;
     public String Uid;
 
@@ -86,8 +85,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         getActivity().setTitle("Fore!");
 
         myGPS = new GPS(getContext());
-        mChrono = (Chronometer) rootView.findViewById(R.id.chrono);
-        mChrono.setVisibility(View.INVISIBLE);
+
 
 
         //start();
@@ -662,47 +660,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 //            }};
 //        timer.schedule(scanTask, 10000, 10000);
 //    }
-private void start(){
-    mChrono.start();
-    //Toast.makeText(ReqsAssistActivity.this, mChrono.toString(), Toast.LENGTH_SHORT).show();
-}
-    private void showElapsed() {
-        long elapsed= SystemClock.elapsedRealtime() - mChrono.getBase();
-        if( elapsed >= 10000){
-            Toast.makeText(getActivity(), "Your time is up!: ",
-                    Toast.LENGTH_SHORT).show();
-            mChrono.stop();
-            //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
-/*
-            myRef.child("Requests").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
 
 
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                String emailTrun = email.split("@")[0];
-                taskMap.put("User", emailTrun);
-                taskMap.put("Request", "Assistance, time is up!");
-                taskMap.put("Location", holeNum );
-                taskMap.put("Time", currentTime1);
-
-                myRef.child("Requests").child(GolfCourse).push().setValue(taskMap);
-
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    Toast.makeText(ReqsAssistActivity.this, "Request Failed!", Toast.LENGTH_SHORT).show();
-                }
-            });
-
- */
-
-        }
-        Toast.makeText(getActivity(), "Elapsed milliseconds: " + elapsed,
-                Toast.LENGTH_SHORT).show();
-    }
 
 }
