@@ -15,14 +15,17 @@
 .sidenav-content {
   display: flex;
   height: 100%;
-  width: 100%;
+  width: auto;
   min-height: 100%;
   min-width: 100%;
+  flex: auto;
+  position: relative;
+  overflow: auto;
 }
 
 .sidenav {
    user-select: none;
-   width: 130px;
+   width: fit-content;
    justify-content: center;
 }
 
