@@ -176,7 +176,7 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         AlertDialog alertDialog = dialogBuilder.create();
 
         alertDialog.show();
-
+        /*
         startgameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -210,6 +210,8 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
             }
         });
+
+         */
 
     }
 
