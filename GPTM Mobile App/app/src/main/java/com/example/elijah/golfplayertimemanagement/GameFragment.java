@@ -88,7 +88,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
 
 
-        //start();
+        start();
 
         //(new Handler()).postDelayed(this::showElapsed, 10000);
 
@@ -684,29 +684,6 @@ private void start(){
         super.onResume();
         myGPS.getMylocation();
     }
-
-    private void showElapsed() {
-        long elapsed= SystemClock.elapsedRealtime() - mChrono.getBase();
-        if( elapsed >= 10000){
-            Toast.makeText(getActivity(), "Your time is up!: ",
-                    Toast.LENGTH_SHORT).show();
-            mChrono.stop();
-            //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
-/*
-            myRef.child("Requests").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-
-
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                String emailTrun = email.split("@")[0];
-                taskMap.put("User", emailTrun);
-                taskMap.put("Request", "Assistance, time is up!");
-                taskMap.put("Location", holeNum );
-                taskMap.put("Time", currentTime1);
-
-                myRef.child("Requests").child(GolfCourse).push().setValue(taskMap);
-
 
 
 }

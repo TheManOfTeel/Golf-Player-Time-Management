@@ -135,17 +135,6 @@
         android:text="Assistance"
         android:textColor="#FFFFFF"
         android:textSize="24dp" />
-    <Chronometer
-        android:id="@+id/chrono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/assist"
-        android:layout_marginBottom="454dp"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
-        android:textColor="#67A84C"
-        android:textSize="32dp"
-        />
 
     <Button
         android:id="@+id/dew"
