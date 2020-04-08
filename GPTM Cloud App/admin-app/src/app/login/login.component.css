@@ -11,7 +11,7 @@
 
 .card {
     align-self: auto;
-    padding: 10px;
+    padding: 15px;
     flex: inherit;
     width: fit-content;
     height: fit-content;
@@ -65,5 +65,5 @@
 }
 
 .input {
-    width: 80%;
+    width: 90%;
 }
