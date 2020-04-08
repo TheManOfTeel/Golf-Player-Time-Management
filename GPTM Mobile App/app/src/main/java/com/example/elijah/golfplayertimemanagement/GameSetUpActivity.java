@@ -183,6 +183,18 @@ public class GameSetUpActivity extends AppCompatActivity {
         startRound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String gameID = myRef.child("Games").push().getKey();
+                myRef.child("Games").child(GolfCourse).child(gameID).child("GroupLeader").setValue(currentFirebaseUser.getEmail());
+                myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("Difficulty").setValue(Difficulty);
+                myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("score").child("holes").child("hole1").setValue(0);
+                myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
+                myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
+                try {
+                    myRef.child("Games").child(GolfCourse).child(gameID).child("Date").setValue(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
 
                 String gameID = myRef.child("Games").push().getKey();
                 if(currentFirebaseUser != null && !Difficulty.isEmpty()  ) {

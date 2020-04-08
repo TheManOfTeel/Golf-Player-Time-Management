@@ -2,10 +2,15 @@ package com.example.elijah.golfplayertimemanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +29,8 @@ public class JoinSelectDifficultyActivity extends AppCompatActivity {
     private String groupID = "";
     private ListView list;
     private ArrayList<HoleDifficulty> holeDifficulties = new ArrayList<HoleDifficulty>();
+    private FirebaseAuth mAuth;
+    private Bundle bundle;
 
 
     @Override
@@ -33,8 +40,10 @@ public class JoinSelectDifficultyActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
-        Bundle bundle = getIntent().getBundleExtra("bundle");
+        bundle = getIntent().getBundleExtra("bundle");
         GolfCourse = bundle.getString("courseName");
+        getSupportActionBar().setTitle("Select Difficulty");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -82,5 +91,45 @@ public class JoinSelectDifficultyActivity extends AppCompatActivity {
         });
 
 
+
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //loadInfo();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(JoinSelectDifficultyActivity.this, JoinGameSetUpActivity.class);
+            if(bundle !=null){
+                intent.putExtra("bundle",bundle);
+            }
+            intent.putExtra("courseName", GolfCourse);
+            startActivity(intent);
+            finish();
+            return true;
+        }else if(item.getItemId() == R.id.signout){
+            Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            PresentationActivityIntent();
+            return true;
+        }
+        return false;
+    }
+
+    public void PresentationActivityIntent(){
+        Intent intent = new Intent(JoinSelectDifficultyActivity.this, PresentationActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
 }

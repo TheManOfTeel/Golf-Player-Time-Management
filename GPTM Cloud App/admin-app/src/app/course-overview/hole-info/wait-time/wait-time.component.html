@@ -1,66 +1,72 @@
 <div class="main-div">
-    <mat-card class="card">
-        <h2>Estimated Wait Time in Minutes</h2>
-        <div class="flex" *ngIf="!isLoading">
-            <div>
-              <div class="chart">
+  <div class="card">
+    <mat-card>
+      <h2>Estimated Wait Time in Minutes</h2>
+      <div *ngIf="!isLoading">
+          <div>
+            <div class="flex-item">
+              <div style="display: block;">
                 <canvas baseChart
-                  height="85"
-                  [datasets]="lineChartData"
-                  [labels]="lineChartLabels"
-                  [options]="lineChartOptions"
-                  [colors]="lineChartColors"
-                  [legend]="lineChartLegend"
-                  [chartType]="lineChartType"
-                  [plugins]="lineChartPlugins">
-                </canvas>
+                height="200"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                [plugins]="lineChartPlugins">
+              </canvas>
               </div>
             </div>
-            <div>
-                <table class="table table-responsive table-condensed">
-                    <tr>
-                    <th *ngFor="let label of lineChartLabels">{{label}}</th>
-                    </tr>
-                    <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
-                    <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <ng-container *ngIf="isLoading">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <div class="spinner">
-            <mat-spinner></mat-spinner>
           </div>
-        </ng-container>
-    </mat-card>  
-    <mat-card class="card2">
-        <h2>Groups at Hole</h2>
-        <div class="flex-item" *ngIf="!isLoading">
-            <table class="table table-responsive table-condensed">
-              <tr>
-                <th *ngFor="let label of lineChartLabels">{{label}}</th>
-              </tr>
-              <tr *ngFor="let d of queueData; let i=index" [class]="'line-'+i">
-                <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-              </tr>
-            </table>
-        </div>
-        <ng-container *ngIf="isLoading">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <div class="spinner">
-            <mat-spinner></mat-spinner>
+          <div class="chart">
+              <table class="table table-responsive table-condensed">
+                  <tr>
+                  <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                  </tr>
+                  <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+                  <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+                  </tr>
+              </table>
           </div>
-        </ng-container>
+      </div>
+      <ng-container *ngIf="isLoading">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="spinner">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-container>
     </mat-card>
+  </div>
+  <div class="card2">
+    <mat-card>
+      <h2>Groups at Hole</h2>
+      <div style="overflow-x:auto;" *ngIf="!isLoading">
+          <table class="table table-responsive table-condensed">
+            <tr>
+              <th *ngFor="let label of lineChartLabels">{{label}}</th>
+            </tr>
+            <tr *ngFor="let d of queueData; let i=index" [class]="'line-'+i">
+              <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+            </tr>
+          </table>
+      </div>
+      <ng-container *ngIf="isLoading">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="spinner">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-container>
+    </mat-card>
+  </div>
 </div>
