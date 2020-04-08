@@ -1,6 +1,9 @@
+html, body {
+    height: 100%;
+}
+
 .center{
     margin: auto;
-    /* border: 3px solid green; */
     padding: 20px;
     border-radius: 20px;
 }
@@ -10,6 +13,8 @@
 }
 
 .card {
+    margin-top: 7%;
+    margin-bottom: 18%;
     align-self: auto;
     padding: 15px;
     flex: inherit;
@@ -27,7 +32,7 @@
     flex: inherit;
     justify-content: center;
     align-items: center;
-    background-image: url("https://wallpapercave.com/wp/eOZbIG4.jpg");
+    background-image: url("/assets/Login-BG.jpg");
     background-attachment: auto;
     background-position: center;
     background-repeat: no-repeat;

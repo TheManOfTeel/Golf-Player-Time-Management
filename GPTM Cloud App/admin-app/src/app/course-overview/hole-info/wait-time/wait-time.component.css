@@ -33,6 +33,7 @@ th, td {
 .card {
     text-align: center;
     width: 91%;
+    min-width: 80vw;
     margin-bottom: 1%;
     margin-top: 1%;
     display: inline-block;
