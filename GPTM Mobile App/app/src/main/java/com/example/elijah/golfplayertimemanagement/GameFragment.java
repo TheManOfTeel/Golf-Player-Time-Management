@@ -692,6 +692,7 @@ private void start(){
                     Toast.LENGTH_SHORT).show();
             mChrono.stop();
             //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
+<<<<<<< Updated upstream
 /*
             myRef.child("Requests").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -708,5 +709,38 @@ private void start(){
                 myRef.child("Requests").child(GolfCourse).push().setValue(taskMap);
 
 
+=======
+//
+//            myRef.child("Requests").addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//
+//
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                String emailTrun = email.split("@")[0];
+//                taskMap.put("User", emailTrun);
+//                taskMap.put("Request", "Assistance, time is up!");
+//                taskMap.put("Location", holeNum );
+//                taskMap.put("Time", currentTime1);
+//
+//                myRef.child("Requests").child(GolfCourse).push().setValue(taskMap);
+//
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    Toast.makeText(ReqsAssistActivity.this, "Request Failed!", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//
+
+        }
+        Toast.makeText(getActivity(), "Elapsed milliseconds: " + elapsed,
+                Toast.LENGTH_SHORT).show();
+    }
+>>>>>>> Stashed changes
 
 }
