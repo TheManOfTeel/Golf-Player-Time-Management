@@ -201,6 +201,7 @@ public class Game3Activity extends AppCompatActivity  {
                            if(task.isSuccessful()){
                                dataSnapshot.getRef().removeValue();
                                Intent intent = new Intent(Game3Activity.this, GolfCourseHomeActivity.class);
+                               intent.putExtra("GolfCourseID", CourseName);
                                startActivity(intent);
                                finish();
                            }

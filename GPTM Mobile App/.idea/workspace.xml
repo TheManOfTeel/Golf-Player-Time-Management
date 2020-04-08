@@ -8,47 +8,31 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="I" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ec6a116-db4e-44ed-a965-5c65b0195613" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameHistoryAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/HistoryListActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/MyAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/PlayerHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/PlayerHistoryAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Score.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/ScoreAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/StatsActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_history_list.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_stats.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/gamehistoryadapter.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/playerhistory.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/scores.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/toolbar_game_menu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/AdminFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/AdminFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CurrentGamesActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GPS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game2Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game2Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CourseAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/CourseAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/DifficultyAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/DifficultyAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game3Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/Game3Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameSetUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GameSetUpActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GolfCourseHomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/GolfCourseHomeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/NextHoleFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/NextHoleFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/OverviewFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/OverviewFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SignupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SignupActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinSelectDifficultyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/JoinSelectDifficultyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/ManageGroupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/ManageGroupActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectDifficultyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectDifficultyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectGolfCourseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/SelectGolfCourseActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/UserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/elijah/golfplayertimemanagement/UserAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_golf_course_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_golf_course_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_join_game_set_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_join_game_set_up.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_admin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_current_games.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_current_games.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_join_select_difficulty.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_join_select_difficulty.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_difficulty.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_difficulty.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_game.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_game.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/gameslist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/gameslist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/holedifficultylist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/holedifficultylist.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +83,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="master" />
+        <entry key="$PROJECT_DIR$/.." value="revision2_branch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -108,7 +92,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="988939395955595231" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-04-06T18:21:28.439Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-04-06T19:19:50.219Z" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
@@ -352,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585509148081</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Game Ends, Players can view game history, Players can view the course overview, SOme UI tweaks">
+      <created>1586197946667</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1586197946667</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -410,6 +401,7 @@
     <MESSAGE value="got user location, Measure distance from the user and a desired target on the course. Allow users to join current games they were invited to." />
     <MESSAGE value="UI completely unified, fixed admin tab" />
     <MESSAGE value="debugged and tested. Made tips pop up for users when they tap a target on the map. retreived wait time for next hole time off firebase. Turned off the location listener when the user is atleast over a mile away from the golfcourse." />
-    <option name="LAST_COMMIT_MESSAGE" value="debugged and tested. Made tips pop up for users when they tap a target on the map. retreived wait time for next hole time off firebase. Turned off the location listener when the user is atleast over a mile away from the golfcourse." />
+    <MESSAGE value="Game Ends, Players can view game history, Players can view the course overview, SOme UI tweaks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game Ends, Players can view game history, Players can view the course overview, SOme UI tweaks" />
   </component>
 </project>

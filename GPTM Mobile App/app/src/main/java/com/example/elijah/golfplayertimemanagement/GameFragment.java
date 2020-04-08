@@ -167,6 +167,10 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }});
 
+
+
+
+
         return rootView;
     }
 

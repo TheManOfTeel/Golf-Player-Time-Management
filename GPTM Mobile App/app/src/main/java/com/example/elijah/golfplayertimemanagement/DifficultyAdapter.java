@@ -50,13 +50,13 @@ public class DifficultyAdapter extends ArrayAdapter<HoleDifficulty> {
             Heading.setText(currentdifficulty.getDifficulty());
 
             if(!currentdifficulty.getPar().equals("No par set")) {
-                par.setText(currentdifficulty.getPar());
+                par.setText("Par: "+currentdifficulty.getPar());
             }else{
                 par.setText("Par: 0");
             }
 
             if (!currentdifficulty.getYards().equals("No distance set")){
-                yards.setText(currentdifficulty.getYards());
+                yards.setText("Yards: "+currentdifficulty.getYards());
             }else {
                 yards.setText("Yards: 0");
             }
