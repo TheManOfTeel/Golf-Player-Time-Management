@@ -67,14 +67,19 @@ public class CurrentGamesActivity extends AppCompatActivity {
                             Location = Integer.parseInt(ds.child("Location").getValue().toString());
                         }
                         String TimeStarted = ds.child("TimeStarted").getValue().toString();
-                        Game game = new Game(gameID, GolfCourse, playerID,GroupLeader, Location, TimeStarted, 0, "");
+                        Game game = new Game(gameID, GolfCourse, playerID, GroupLeader, Location, TimeStarted, 0, "");
                         games.add(game);
                         Log.e("CurrentGamesActivity", game.toString());
                     }else{
                         String GroupLeader = ds.child("GroupLeader").getValue().toString();
-                        int Location = Integer.parseInt(ds.child("Location").getValue().toString());
+                        if(ds.child("Location").exists()) {
+                            Location = Integer.parseInt(ds.child("Location").getValue().toString());
+                        }
+                        else{
+                            Location = 0;
+                        }
                         String TimeStarted = ds.child("TimeStarted").getValue().toString();
-                        Game game = new Game(gameID, GolfCourse, anonNum,GroupLeader, Location, TimeStarted, 0);
+                        Game game = new Game(gameID, GolfCourse, anonNum, GroupLeader, Location, TimeStarted, 0, "");
                         games.add(game);
 
                     }
