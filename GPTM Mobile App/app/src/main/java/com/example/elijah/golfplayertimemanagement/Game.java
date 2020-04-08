@@ -8,9 +8,8 @@ public class Game {
     int Location;
     String TimeStarted;
     long numOfPlayers;
-    String date;
 
-    public Game(String gameID, String courseID, String playerID, String groupLeader, int location, String timeStarted, long NumOfPlayers, String Date) {
+    public Game(String gameID, String courseID, String playerID, String groupLeader, int location, String timeStarted, long NumOfPlayers) {
         GameID = gameID;
         CourseID = courseID;
         PlayerID = playerID;
@@ -18,17 +17,10 @@ public class Game {
         Location = location;
         TimeStarted = timeStarted;
         numOfPlayers = NumOfPlayers;
-        date = Date;
 
     }
 
-    public String getDate() {
-        return date;
-    }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public String getGameID() {
         return GameID;
@@ -95,8 +87,7 @@ public class Game {
                 ", GroupLeader='" + GroupLeader + '\'' +
                 ", Location=" + Location +
                 ", TimeStarted='" + TimeStarted + '\'' +
-                ", numOfPlayers=" + numOfPlayers +
-                ", date='" + date + '\'' +
+                ", NumberOfPlayers='" + numOfPlayers + '\'' +
                 '}';
     }
 }

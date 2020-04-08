@@ -29,7 +29,6 @@
     "chart.js": "^2.9.3",
     "chartjs-plugin-annotation": "^0.5.7",
     "firebase": "^7.9.3",
-    "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.3.0",
     "minimist": "^1.2.5",
     "ng2-charts": "^2.3.0",

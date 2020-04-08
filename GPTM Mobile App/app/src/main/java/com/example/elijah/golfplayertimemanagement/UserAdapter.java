@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,11 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class UserAdapter extends ArrayAdapter<Users> {
-    ArrayList<String> Group;
 
     public UserAdapter(@NonNull Context context, ArrayList<Users> user) {
         super(context, 0, user);
-
     }
 
     @NonNull
@@ -42,26 +39,15 @@ public class UserAdapter extends ArrayAdapter<Users> {
         }
 
         TextView textView = converView.findViewById(R.id.userEmail);
-        ImageView icon1 =  converView.findViewById(R.id.addIcon);
-
 
 
         Users currentUsers = getItem(position);
 
         if(currentUsers != null) {
             textView.setText(currentUsers.getEmail());
-
-
-
-
-
         }
 
         return converView;
 
     }
-
-
-
-
 }

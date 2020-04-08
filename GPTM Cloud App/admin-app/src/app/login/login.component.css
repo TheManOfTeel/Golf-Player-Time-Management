@@ -1,9 +1,6 @@
-html, body {
-    height: 100%;
-}
-
 .center{
     margin: auto;
+    /* border: 3px solid green; */
     padding: 20px;
     border-radius: 20px;
 }
@@ -13,10 +10,8 @@ html, body {
 }
 
 .card {
-    margin-top: 7%;
-    margin-bottom: 18%;
     align-self: auto;
-    padding: 15px;
+    padding: 10px;
     flex: inherit;
     width: fit-content;
     height: fit-content;
@@ -27,16 +22,15 @@ html, body {
 }
 
 .main-div{
-    min-height: -webkit-fill-available;
+    height: 94vh;
     display: flex;
     flex: inherit;
     justify-content: center;
     align-items: center;
-    background-image: url("/assets/Login-BG.jpg");
+    background-image: url("https://wallpapercave.com/wp/eOZbIG4.jpg");
     background-attachment: auto;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
     font-size: medium;
 }
 
@@ -51,7 +45,7 @@ html, body {
 }
   
 .row{
-    margin-top: 5px;
+    margin-top: 10px;
 }
   
 .error{
@@ -70,5 +64,5 @@ html, body {
 }
 
 .input {
-    width: 90%;
+    width: 80%;
 }

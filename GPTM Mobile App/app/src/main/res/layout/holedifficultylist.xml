@@ -10,23 +10,12 @@
         android:layout_height="wrap_content"
         android:textSize="26dp"
         android:layout_centerHorizontal="true"
-        android:textColor="#67A84C"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:id="@+id/DifficultyDescription"
-        android:text="Description"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/difficultyHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#67A84C"
         />
 
     <LinearLayout
         android:id="@+id/ParYardLayout"
         android:orientation="vertical"
-        android:layout_below="@+id/DifficultyDescription"
+        android:layout_below="@+id/difficultyHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="fill"
@@ -37,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="26dp"
-            android:textColor="#67A84C"
              />
 
         <TextView
@@ -46,9 +34,15 @@
             android:layout_height="wrap_content"
             android:text="500 yards"
             android:textSize="26dp"
-            android:textColor="#67A84C"
             />
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/DifficultyDescription"
+        android:paddingTop="10dp"
+        android:text="Description"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ParYardLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

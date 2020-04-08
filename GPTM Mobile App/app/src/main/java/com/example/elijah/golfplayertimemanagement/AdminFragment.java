@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -70,7 +69,6 @@ public class AdminFragment extends Fragment {
     private Button reset;
 
     //private Chronometer mChrono;
-    private Chronometer mChrono;
 
 
 
@@ -94,9 +92,6 @@ public class AdminFragment extends Fragment {
         Bundle bundle = getArguments();
 
         //reqs = (Button) rootView.rootView.findViewById(R.id.req);
-
-        mChrono = (Chronometer) rootView.findViewById(R.id.chrono);
-        mChrono.setVisibility(View.INVISIBLE);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -394,11 +389,10 @@ public class AdminFragment extends Fragment {
 
                 holeNum = Integer.decode(holenum);
 
-                taskMap.put("User", email);
+                taskMap.put("User", emailTrun);
                 taskMap.put("Request", type2);
                 taskMap.put("Location", "Hole " + holeNum );
                 taskMap.put("Time", currentTime1);
-                taskMap.put("Status", "Pending");
                 //taskMap.put("Location", tLocation);
 
 
@@ -418,27 +412,6 @@ public class AdminFragment extends Fragment {
         });
     }
 
-    private void start(){
-       mChrono.start();
-        //Toast.makeText(ReqsAssistActivity.this, mChrono.toString(), Toast.LENGTH_SHORT).show();
-    }
-    private void showElapsed() {
-        long elapsed= SystemClock.elapsedRealtime();
-        //- mChrono.getBase();
-        if( elapsed >= 10000){
-            Toast.makeText(getActivity(), "Your time is up!: ",
-                    Toast.LENGTH_SHORT).show();
-            //mChrono.stop();
-            //UNCOMMENT THIS IF WE WANT OVERDUE PLAYERS TO GET REPORTED
-/*
-            myRef.child("Overdue").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-
-
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                String emailTrun = email.split("@")[0];
-                taskMap.put("User", emailTrun);
 
 
     private void resetButtons(){

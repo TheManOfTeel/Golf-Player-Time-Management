@@ -68,10 +68,6 @@ export class LoginComponent {
 
   tryLogin(value) {
     this.isLoading = true;
-    this.unverified = false;
-    this.errorMessage = null;
-    this.noAdmin = false;
-    this.tryAgain = false;
     this.authService.doLogin(value)
     .then(() => {
       // If email verified

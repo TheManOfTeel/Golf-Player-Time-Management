@@ -1,19 +1,11 @@
 package com.example.elijah.golfplayertimemanagement;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -21,10 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class GameAdapter extends ArrayAdapter<Game> {
-    private DatabaseReference myRef;
-    private FirebaseDatabase database;
-    private FirebaseAuth mAuth;
-    private String Uid;
 
     public GameAdapter(@NonNull Context context, ArrayList<Game> games) {
         super(context, 0, games);
@@ -57,44 +45,9 @@ public class GameAdapter extends ArrayAdapter<Game> {
         Game currentGame = getItem(position);
 
         if(currentGame != null) {
-
-            database = FirebaseDatabase.getInstance();
-            myRef = database.getReference();
-            mAuth = FirebaseAuth.getInstance();
-            Uid = mAuth.getUid();
-
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String email = "";
-                    String groupleader = "";
-                    if(dataSnapshot.child("Users").child(Uid).child("email").exists()){
-                        email = dataSnapshot.child("Users").child(Uid).child("email").getValue().toString();
-                    }
-                    if(dataSnapshot.child("Games").child(currentGame.CourseID).child(currentGame.GameID).child("GroupLeader").exists()){
-                        groupleader = dataSnapshot.child("Games").child(currentGame.CourseID).child(currentGame.GameID).child("GroupLeader").getValue().toString();
-                    }
-                    Log.e("Leader", groupleader);
-                    Log.e("Email", email);
-
-                    if(email.trim().equals(groupleader.trim())){
-                        grouleader.setText("Started By You");
-                        location.setText("Currently On Hole" + currentGame.getLocation());
-                        time.setText("Started at: " + currentGame.getTimeStarted());
-                    }else{
-                        grouleader.setText("Added by: " + currentGame.getGroupLeader());
-                        location.setText("Currently On Hole" + currentGame.getLocation());
-                        time.setText("Started at: " + currentGame.getTimeStarted());
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-
+            grouleader.setText("Added by:" + currentGame.getGroupLeader());
+            location.setText("Hole" + currentGame.getLocation());
+            time.setText("Started at:" + currentGame.getTimeStarted());
         }
         return converView;
 

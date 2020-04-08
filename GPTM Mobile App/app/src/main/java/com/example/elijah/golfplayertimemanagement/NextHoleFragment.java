@@ -80,7 +80,7 @@ public class NextHoleFragment extends Fragment {
                             timeStarted = "unknown";
                         }
                         long playernum = dataSnapshot.child("Games").child(GolfCourse).child(gameIDs.get(i)).getChildrenCount() - 3;
-                        Game game = new Game(gameIDs.get(i), GolfCourse, "", groupleader, location, timeStarted, playernum, "");
+                        Game game = new Game(gameIDs.get(i), GolfCourse, "", groupleader, location, timeStarted, playernum);
                         games.add(game);
                     }else{
                         Log.e("NextHoleFragment", "GameID equals my game ID");

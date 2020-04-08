@@ -16,7 +16,7 @@ export class RequestsTableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  requestsDisplayedColumns: string[] = ['User', 'Request', 'Location', 'Time', 'Status', 'Actions'];
+  requestsDisplayedColumns: string[] = ['User', 'Request', 'Hole', 'Time', 'Actions'];
   requestsDataSource: MatTableDataSource<any> = new MatTableDataSource();
   requestsData: any;
 
@@ -42,30 +42,6 @@ export class RequestsTableComponent implements OnInit {
     });
   }
 
-  // Change status of the request to pending
-  acknowledgeRequest(i: number) {
-    const ref = firebase.database().ref('Request/' + this.courseName);
-    ref.once('value').then(function(snapshot) {
-      // Get the key and then update the data belonging to that key
-      const key = Object.keys(snapshot.val())[i];
-      ref.child(key).update({
-        Status: 'In Progress'
-      });
-    });
-  }
-
-  // Change status of the request to complete
-  completeRequest(i: number) {
-    const ref = firebase.database().ref('Request/' + this.courseName);
-    ref.once('value').then(function(snapshot) {
-      // Get the key and then update the data belonging to that key
-      const key = Object.keys(snapshot.val())[i];
-      ref.child(key).update({
-        Status: 'Complete'
-      });
-    });
-  }
-
   constructor(public db: AngularFireDatabase) { }
 
   ngOnInit(): void {
@@ -73,11 +49,10 @@ export class RequestsTableComponent implements OnInit {
     .then(val => {
       this.courseName = val;
       this.requestsDataSource.paginator = this.paginator;
+      this.requestsDataSource.sort = this.sort;
 
-      // Commented out because of the keys are hard to track when the index is variable
-      // this.requestsDataSource.sort = this.sort;
       // Sort by time desc on init
-      // this.sort.sort({ id: 'Time', start: 'desc', disableClear: false });
+      this.sort.sort({ id: 'Time', start: 'desc', disableClear: false });
 
       // Grab the requests data for the table
       this.db.list('Request/' + this.courseName).valueChanges().subscribe(res => {
@@ -90,10 +65,10 @@ export class RequestsTableComponent implements OnInit {
 
 // This is what we want to show
 export interface RequestsData {
+  key: string;
   Hole: string;
   Location: string;
   Request: string;
-  Status: string;
   Time: string;
   User: string;
 }

@@ -1,11 +1,10 @@
-# Golf Player Time Management
+# Golf-Player-Time-Manager
 Senior Capstone Project for CS/IT majors at Oakland University. Project 1.
 ## The web application can be found at either of the following domains
 * https://golf-player-time-management.firebaseapp.com
 * https://golf-player-time-management.web.app
 ## Project Description
 This software will have two components: a cloud based player management application and mobile phone application.
-## Requirements
 ### The cloud app will do the following
 * Track players position on a virtual golf course utilizing an application on the players phones that
 transmits GPS location information
@@ -29,8 +28,8 @@ services and assistance.
 Adam Horle, Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
 ## Directory Structure
 ### GPTM Cloud
-Contains the app's cloud component (for administrators).
+Contains the app's cloud component.
 ### GPTM Mobile
-Contains the Android App (for players).
+Contains the Android App.
 ### Documentation
 Contains all of the projects's documentation.
