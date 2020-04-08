@@ -27,9 +27,7 @@ export class UserComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(routeData => {

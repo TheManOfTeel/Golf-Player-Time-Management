@@ -1,27 +1,39 @@
 table {
     width: 100%;
+    border-collapse: collapse;
+    overflow: scroll;
 }
-  
+
 th {
+    border-top: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+th, td {
     height: 50px;
+    border-bottom: 1px solid #ddd;
 }
 
 .main-div {
+    position: relative;
     text-align: center;
     font-size: medium;
-    height: 88vh;
+    width: 100%;
+    justify-content: center;
 }
 
 .chart {
     display: block;
-    width: 100%;
+    overflow-x:auto;
 }
 
 .card {
     text-align: center;
     width: 91%;
-    flex: auto;
-    height: fit-content;
+    min-width: 80vw;
     margin-bottom: 1%;
     margin-top: 1%;
     display: inline-block;
@@ -30,10 +42,8 @@ th {
 .card2 {
     text-align: center;
     width: 91%;
-    flex: auto;
-    height: fit-content;
-    display: inline-block;
     margin-bottom: 1%;
+    display: inline-block;
 }
 
 .spinner {

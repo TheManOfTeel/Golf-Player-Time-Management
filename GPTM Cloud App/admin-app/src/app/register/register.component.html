@@ -3,7 +3,7 @@
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </ng-container>
     <button mat-icon-button type="button" matDialogClose tabindex="-1" class="btn-close"><mat-icon>close</mat-icon></button>
-    <h1 class="header">Register</h1>
+    <h2 class="header">Register</h2>
     <mat-horizontal-stepper [linear]="true" #stepper>
         <mat-step [stepControl]="courseSelectForm">
             <form [formGroup]="courseSelectForm" class="container">
@@ -16,15 +16,6 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <!-- For dropdown list (more scalability?) -->
-                    <!-- <mat-form-field>
-                        <mat-label>Number of holes</mat-label>
-                        <mat-select [(ngModel)]="selectedNumber" name="numberOfHoles" formControlName="numberOfHoles">
-                            <mat-option *ngFor="let numberOfHoles of numbers" [value]="numberOfHoles.value">
-                            {{numberOfHoles.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field> -->
                     <mat-label>Select the number of holes on your course</mat-label>
                     <mat-radio-group class="radio-group" [(ngModel)]="selectedNumber"
                     name="selectedNumber" formControlName="numberOfHoles">

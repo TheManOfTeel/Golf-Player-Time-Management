@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 import { MatSidenav } from '@angular/material/sidenav';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
 
-// For this component we only need to input a description, par number, and yards to hole. The scorecard is now irrelevant, admins are not
-// concerned about this.
 @Component({
   selector: 'app-course-overview',
   templateUrl: './course-overview.component.html',
@@ -13,37 +13,17 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class CourseOverviewComponent implements OnInit {
   // Navbar properties
-  @ViewChild('sidenav') sidenav: MatSidenav;
-  isExpanded = true;
-  showSubmenu = false;
-  isShowing = false;
-  showSubSubMenu = false;
+  mode: string;
+  openSidenav: boolean;
+  private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
 
   courseName: any;
   info: any;
 
-  holeWait = false;
-  hole1 = false;
-  hole2 = false;
-  hole3 = false;
-  hole4 = false;
-  hole5 = false;
-  hole6 = false;
-  hole7 = false;
-  hole8 = false;
-  hole9 = false;
-  hole10 = false;
-  hole11 = false;
-  hole12 = false;
-  hole13 = false;
-  hole14 = false;
-  hole15 = false;
-  hole16 = false;
-  hole17 = false;
+  // Check variable to see if there are more than 9 holes
   hole18 = false;
 
-  displayContent = false;
-
+  // Nav content show
   showHoleWait = true;
   showHole01 = false;
   showHole02 = false;
@@ -67,24 +47,41 @@ export class CourseOverviewComponent implements OnInit {
   constructor() {}
 
   // Navbar properties
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
+  @ViewChild('sidenav') matSidenav: MatSidenav;
+
+  // Get window size
+  @HostListener('window:resize', ['$event'])
+
+  onResize(event) {
+    this.screenWidth$.next(event.target.innerWidth);
   }
 
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
+  getScreenWidth(): Observable<number> {
+    return this.screenWidth$.asObservable();
+  }
+
+  // Toggle sidenav and change the button icon
+  toggleNav() {
+    this.matSidenav.toggle();
+    this.openSidenav = this.matSidenav.opened;
   }
 
   ngOnInit() {
+    // Using the screen width determine whether the sidenav should be visible or not
+    this.getScreenWidth().subscribe(width => {
+      if (width <= 850) {
+        this.openSidenav = false;
+      }
+      if (width > 850) {
+        this.openSidenav = true;
+      }
+    });
+
+    // See how many holes it needs to display in the navlist
     this.initData();
   }
 
   // Figure out what needs to be shown in the navbar
-  // NOTE: Counts number of holes. It remains this way if the number of holes on registration is allowed to be more flexible
   initData() {
     this.getCourseName()
     .then(val => {
@@ -92,58 +89,6 @@ export class CourseOverviewComponent implements OnInit {
       this.getCourseDetails()
       .then(data => {
         this.info = data;
-        this.holeWait = true;
-        if (this.info.Hole1 != null) {
-          this.hole1 = true;
-        }
-        if (this.info.Hole2 != null) {
-          this.hole2 = true;
-        }
-        if (this.info.Hole3 != null) {
-          this.hole3 = true;
-        }
-        if (this.info.Hole4 != null) {
-          this.hole4 = true;
-        }
-        if (this.info.Hole5 != null) {
-          this.hole5 = true;
-        }
-        if (this.info.Hole6 != null) {
-          this.hole6 = true;
-        }
-        if (this.info.Hole7 != null) {
-          this.hole7 = true;
-        }
-        if (this.info.Hole8 != null) {
-          this.hole8 = true;
-        }
-        if (this.info.Hole9 != null) {
-          this.hole9 = true;
-        }
-        if (this.info.Hole10 != null) {
-          this.hole10 = true;
-        }
-        if (this.info.Hole11 != null) {
-          this.hole11 = true;
-        }
-        if (this.info.Hole12 != null) {
-          this.hole12 = true;
-        }
-        if (this.info.Hole13 != null) {
-          this.hole13 = true;
-        }
-        if (this.info.Hole14 != null) {
-          this.hole14 = true;
-        }
-        if (this.info.Hole15 != null) {
-          this.hole15 = true;
-        }
-        if (this.info.Hole16 != null) {
-          this.hole16 = true;
-        }
-        if (this.info.Hole17 != null) {
-          this.hole17 = true;
-        }
         if (this.info.Hole18 != null) {
           this.hole18 = true;
         }

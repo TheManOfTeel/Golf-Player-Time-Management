@@ -17,6 +17,8 @@ public class GPS {
     Location mylocation;
     LocationManager locationManager;
     String provider = LocationManager.GPS_PROVIDER;
+    LocationListener locationListener;
+
 
     public GPS(Context context) {
         this.context = context;
@@ -25,19 +27,19 @@ public class GPS {
             locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
 
+
             if ((ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                     || (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
                 return;
             }
+
         }
 
-       locationManager.requestLocationUpdates(provider, 10 * 1000, 0, new LocationListener() {
+         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-
                 mylocation = location;
                 Log.e("OnLocationChange", location.getLatitude() + " " +location.getLongitude());
-
             }
 
             @Override
@@ -54,7 +56,10 @@ public class GPS {
             public void onProviderDisabled(String s) {
 
             }
-        });
+        };
+        locationManager.requestLocationUpdates(provider, 10*1000, 0, locationListener );
+
+
     }
 
 
@@ -75,5 +80,10 @@ public class GPS {
 //            }
 
         return mylocation;
+    }
+
+    void stopLocation(){
+        locationManager.removeUpdates(locationListener);
+
     }
 }

@@ -58,7 +58,7 @@ public class OverviewFragment extends Fragment {
 
                 for(DataSnapshot ds: dataSnapshot.child("Games").child(Golfcourse).child(gameID).getChildren()){
                    String key = ds.getKey();
-                   if(key.equals("Location") ||key.equals("TimeStarted") || key.equals("GroupLeader")){
+                   if(key.equals("Location") ||key.equals("TimeStarted") || key.equals("GroupLeader") || key.equals("Date")){
                        Log.e("key", "Not what we are looking for");
                    }else{
                        Log.e("Key", key);
