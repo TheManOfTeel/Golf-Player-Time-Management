@@ -4,11 +4,10 @@
       <h2>Estimated Wait Time in Minutes</h2>
       <div style="overflow-x:auto;" *ngIf="!isLoading">
           <div>
-            <div class="chart">
-              <div>
+            <div class="flex-item">
+              <div style="display: block;">
                 <canvas baseChart
-                height="22vh"
-                width="91vw"
+                height="200"
                 [datasets]="lineChartData"
                 [labels]="lineChartLabels"
                 [options]="lineChartOptions"

@@ -1,7 +1,3 @@
-body {
-    height: 100vh;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -22,34 +18,52 @@ th, td {
 }
 
 .main-div {
+    position: relative;
+    text-align: center;
+    font-size: medium;
+    height: 94vh;
+    width: 100%;
+}
+
+.main-div-mobile {
     text-align: center;
     font-size: medium;
     height: 88vh;
-    flex: inherit;
+    width: 100vw;
 }
 
 .chart {
     display: block;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
     overflow-x:auto;
 }
 
 .card {
+    /* text-align: center;
+    width: 91% !important;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    height: fit-content;
+    display: inline-block; */
     text-align: center;
     width: 91%;
     margin-bottom: 1%;
     margin-top: 1%;
-    height: fit-content;
     display: inline-block;
 }
 
 .card2 {
-    text-align: center;
-    width: 91%;
+    /* text-align: center;
+    width: 91% !important;
     height: fit-content;
     display: inline-block;
+    margin-bottom: 1%; */
+    text-align: center;
+    width: 91%;
     margin-bottom: 1%;
+    margin-top: 1%;
+    display: inline-block;
 }
 
 .spinner {
