@@ -11,7 +11,7 @@
 
 .card {
     align-self: auto;
-    padding: 10px;
+    padding: 15px;
     flex: inherit;
     width: fit-content;
     height: fit-content;
@@ -22,7 +22,7 @@
 }
 
 .main-div{
-    height: 94vh;
+    min-height: -webkit-fill-available;
     display: flex;
     flex: inherit;
     justify-content: center;
@@ -31,6 +31,7 @@
     background-attachment: auto;
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     font-size: medium;
 }
 
@@ -45,7 +46,7 @@
 }
   
 .row{
-    margin-top: 10px;
+    margin-top: 5px;
 }
   
 .error{
@@ -64,5 +65,5 @@
 }
 
 .input {
-    width: 80%;
+    width: 90%;
 }

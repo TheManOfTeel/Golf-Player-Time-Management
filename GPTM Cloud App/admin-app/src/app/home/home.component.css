@@ -1,12 +1,13 @@
-.main-div{
-    height: 88vh;
+.main-div {
+    min-height: 90vh;
     display: flex;
     flex: inherit;
     justify-content: center;
-    align-items: center;
     background-image: url("https://wallpaperaccess.com/full/18686.jpg");
-    background-size: cover;
+    background-attachment: auto;
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     font-size: medium;
 }
 
@@ -17,7 +18,8 @@
 
 .header{
     text-align: center;
-    margin-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 5px;
 }
 
 .center{
@@ -27,12 +29,14 @@
 }
 
 .card {
+    margin-top: 5%;
+    margin-bottom: 5%;
     opacity: 95%;
     flex: auto;
     width: fit-content;
-    height: fit-content;
+    height: min-content;
 }
 
-.row{
+.row {
     text-align: center;
 }

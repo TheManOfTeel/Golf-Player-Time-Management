@@ -1,9 +1,28 @@
-<mat-toolbar color="primary" class="app-toolbar">
-    <nav>
-        <div class="title">
-            <a>{{golfCourse}}</a>
+<div id="wrapper">
+    <mat-toolbar color="primary" class="app-toolbar">
+        <nav>
+            <div class="title">
+                <a>{{golfCourse}}</a>
+            </div>
+            <button mat-button (click)="logout()" class="logout">Logout <mat-icon>exit_to_app</mat-icon></button>
+        </nav>
+    </mat-toolbar>
+    <app-dashboard></app-dashboard>
+</div>
+<div id="warning-message" class="warning-background">
+    <mat-card class="card">
+        <div class="center">
+            <div class="container">
+                <h1>Hear ye, hear ye</h1>
+                <p>Hello esteemed administrator,</p>
+                <p>Golf Player Time Management's Administrator Dashboard was built primarily for large screen devices. 
+                The website is still viewable on mobile but only when your device is in landscape orientation. 
+                To continue, please tilt your device into landscape mode.</p>
+                <br>
+                <p>Thank you,</p>
+                <p>The GPTM Team</p>
+                <img src="/assets/golfcourselogo.png" alt="GPTM Icon" style="width:80%;height:80%;">
+            </div>
         </div>
-        <button mat-button (click)="logout()" class="logout">Logout <mat-icon>exit_to_app</mat-icon></button>
-    </nav>
-</mat-toolbar>
-<app-dashboard></app-dashboard>
+    </mat-card>
+</div>

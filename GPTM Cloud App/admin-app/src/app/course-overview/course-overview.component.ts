@@ -13,7 +13,6 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class CourseOverviewComponent implements OnInit {
   // Navbar properties
-  showToggle: string;
   mode: string;
   openSidenav: boolean;
   private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
@@ -71,11 +70,9 @@ export class CourseOverviewComponent implements OnInit {
     // Using the screen width determine whether the sidenav should be visible or not
     this.getScreenWidth().subscribe(width => {
       if (width <= 850) {
-        this.showToggle = 'show';
         this.openSidenav = false;
       }
       if (width > 850) {
-        this.showToggle = 'hide';
         this.openSidenav = true;
       }
     });

@@ -139,13 +139,13 @@
 
 
         </LinearLayout>
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
-            app:srcCompat="@drawable/golfcourselogo"
             android:layout_margin="50dp"
+            app:srcCompat="@drawable/golfcourselogo"
 
             />
     </LinearLayout>

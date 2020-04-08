@@ -1,55 +1,57 @@
-<div>
-    <mat-toolbar color="primary" class="header">Golf Player Time Management Admin</mat-toolbar>
-</div>
-<ng-container *ngIf="isLoading">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-container>
-<div class="main-div">
-    <mat-card class="card">
-        <div class="center">
-            <div class="container">
-                <h1 class="header">Login</h1>
-                <form [formGroup]="loginForm">
+<div style="height: 100%; width: 100%;">
+    <div>
+        <mat-toolbar color="primary" class="header">Golf Player Time Management Admin</mat-toolbar>
+    </div>
+    <ng-container *ngIf="isLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-container>
+    <div class="main-div">
+        <mat-card class="card">
+            <div class="center">
+                <div class="container">
+                    <img src="/assets/GPTM-logo.png" alt="GPTM Icon" style="width:150px;height:150px;">
+                    <form [formGroup]="loginForm">
+                        <div class="row">
+                            <mat-form-field class="input">
+                                <input matInput placeholder="Email" type="email" formControlName="email" required>
+                                <mat-hint>Enter your email address</mat-hint>
+                                <mat-error>
+                                    Email is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="input">
+                                <input matInput placeholder="Password" type="password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                <mat-hint>Enter your password</mat-hint>
+                                <mat-error>
+                                    Password is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div><label class="error" *ngIf="errorMessage">Invalid username/password</label></div>
+                        <div><label class="error" *ngIf="noAdmin == true">You must be an administrator</label></div>
+                        <div><label class="error" *ngIf="unverified == true">Email not yet verified</label></div>
+                        <div><label class="error" *ngIf="tryAgain == true">Course is now taken</label></div>
+                        <div><label class="error" *ngIf="tryAgain == true">Reregister with a new course</label></div>
+                        <div *ngIf="!errorMessage && !noAdmin && !unverified && !tryAgain"><p></p></div>
+                        <button mat-raised-button color="primary" type="submit" (click)="tryLogin(loginForm.value)" class="btn-default">Login</button>
+                    </form>
+                    <!-- <div class="row">
+                        <div>
+                            <button mat-raised-button color="secondary" type="button" (click)="tryGoogleLogin()" class="btn-default"><img width="20px" style="margin-right:8px" alt="Google sign-in"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/> Login with Google</button>
+                        </div>
+                    </div> -->
                     <div class="row">
-                        <mat-form-field class="input">
-                            <input matInput placeholder="Email" type="email" formControlName="email" required>
-                            <mat-hint>Enter your email address</mat-hint>
-                            <mat-error>
-                                Email is required
-                            </mat-error>
-                        </mat-form-field>
+                          <button mat-raised-button color="secondary" type="button" (click)="tryRegister()" class="btn-default">Register your Golf Course</button>
                     </div>
                     <div class="row">
-                        <mat-form-field class="input">
-                            <input matInput placeholder="Password" type="password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            <mat-hint>Enter your password</mat-hint>
-                            <mat-error>
-                                Password is required
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div><label class="error" *ngIf="errorMessage">Invalid username/password</label></div>
-                    <div><label class="error" *ngIf="noAdmin == true">You must be an administrator</label></div>
-                    <div><label class="error" *ngIf="unverified == true">Email not yet verified</label></div>
-                    <div><label class="error" *ngIf="tryAgain == true">Course is now taken</label></div>
-                    <div><label class="error" *ngIf="tryAgain == true">Reregister with a new course</label></div>
-                    <div *ngIf="!errorMessage && !noAdmin && !unverified && !tryAgain"><p></p></div>
-                    <button mat-raised-button color="primary" type="submit" (click)="tryLogin(loginForm.value)" class="btn-default">Login</button>
-                </form>
-                <!-- <div class="row">
-                    <div>
-                        <button mat-raised-button color="secondary" type="button" (click)="tryGoogleLogin()" class="btn-default"><img width="20px" style="margin-right:8px" alt="Google sign-in"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/> Login with Google</button>
-                    </div>
-                </div> -->
-                <div class="row">
-                      <button mat-raised-button color="secondary" type="button" (click)="tryRegister()" class="btn-default">Register your Golf Course</button>
+                        <button mat-raised-button color="secondary" type="button" (click)="resetPassword()" class="btn-default">Password Reset</button>
+                  </div>
                 </div>
-                <div class="row">
-                    <button mat-raised-button color="secondary" type="button" (click)="resetPassword()" class="btn-default">Password Reset</button>
-              </div>
             </div>
-        </div>
-    </mat-card>
+        </mat-card>
+    </div>
 </div>
