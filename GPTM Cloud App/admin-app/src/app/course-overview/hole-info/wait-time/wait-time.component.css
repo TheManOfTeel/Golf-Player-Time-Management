@@ -22,6 +22,7 @@ th, td {
     text-align: center;
     font-size: medium;
     width: 100%;
+    justify-content: center;
 }
 
 .chart {
