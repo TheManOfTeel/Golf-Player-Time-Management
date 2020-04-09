@@ -191,13 +191,20 @@ public class SelectGolfCourseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
-        if (item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home && mAuth.getCurrentUser() != null) {
             Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(SelectGolfCourseActivity.this, ProfileActivity.class);
             startActivity(intent);
             finish();
             return true;
-        }else if(item.getItemId() == R.id.signout){
+        }
+        if (item.getItemId() == android.R.id.home && mAuth.getCurrentUser() == null) {
+            Toast.makeText(this, "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SelectGolfCourseActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        } else if(item.getItemId() == R.id.signout){
             Toast.makeText(this, "Signout pressed", Toast.LENGTH_SHORT).show();
             mAuth.signOut();
             PresentationActivityIntent();
