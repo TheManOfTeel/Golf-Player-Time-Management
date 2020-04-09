@@ -102,29 +102,5 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="94dp"
-        android:layout_height="78dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginBottom="13dp"
-        app:srcCompat="@drawable/courseicon" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="94dp"
-        android:layout_height="78dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="286dp"
-        android:layout_marginRight="286dp"
-        android:layout_marginBottom="14dp"
-        app:srcCompat="@drawable/courseicon" />
-
 
 </RelativeLayout>
