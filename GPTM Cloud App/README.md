@@ -1,4 +1,4 @@
-# Cloud Component - Admin Portal
+# Cloud Component (Admin Portal)
 ## Requirements
 * Track players position on a virtual golf course utilizing an application on the players phones that
 transmits GPS location information ✅
