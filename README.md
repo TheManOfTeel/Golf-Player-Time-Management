@@ -23,6 +23,10 @@ request to allow playthrough ✅
 * Players app displays helpful hints based on location, and allows for notification to the cloud for
 services and assistance ✅
 * Players app displays game history and dashboard ✅
+## Summary
+There will be two components that serve two main functions:
+* The Cloud App will be a web application that will serve as an Administrator Dashboard that allows course owners to edit the course's information (Geofence the holes and set specific information for each hole), monitor players' behaviour on the course, and receive requests from players
+* The Mobile App will be an Android application that will allow players to play anonymously (see course information and make requests) or play as a registered member. As a registered member players will be able to see their game history as well as see course information and make requests
 ## Contributors
 Adam Horle, Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
 ## Directory Structure
