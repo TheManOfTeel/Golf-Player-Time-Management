@@ -15,7 +15,7 @@ transmits GPS location information ✅
 * System shall allow players to login and register their device ✅
 * System shall monitor player behavior and provide player dashboard ✅
 ### The mobile phone application (Android) will do the following
-* Downloadable application from standard stores <strong>Not deployed to Google Play</strong>
+* Downloadable application from standard stores - <strong>not deployed to Google Play</strong>
 * Players login and register at golf ranges ✅
 * Players enables GPS and secure connection with cloud based app ✅
 * Players app displays progress on the course, playing time, Warnings about playing speed, and
