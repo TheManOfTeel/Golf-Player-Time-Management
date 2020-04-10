@@ -2,8 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
 
-## DO NOT COMMIT PACKAGE-LOCK.JSON FILES
-They are local and should not be in the repo.
+## Insert your API Keys
+
+Searching `YOUR_KEY` within the app will return two results. Be sure to insert your Firebase Key into the `environment.ts` file and insert your Google Maps API Key into the `app.module.ts` file.
 
 ## Keep up to date
 
