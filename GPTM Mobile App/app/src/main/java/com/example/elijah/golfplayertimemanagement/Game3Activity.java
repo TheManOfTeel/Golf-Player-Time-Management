@@ -258,6 +258,7 @@ public class Game3Activity extends AppCompatActivity  {
                     emailTrun = email.split("@")[0];
                 }
                 else{
+//                    emailTrun = anonNum;
                     email = anonNum;
                 }
                 currentTime1 = df.format(Calendar.getInstance().getTime());
