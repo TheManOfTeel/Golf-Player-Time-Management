@@ -89,9 +89,8 @@ public class GameSetUpActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         //Get the extras if there are any
-
-        anonNum = extras.get("courseName").toString();
-
+        random = new Random().nextInt((100) + 1) ;
+        anonNum = "Anon" + random;
         if(extras != null){
             Log.e("Extras", extras.toString());
             if(extras.containsKey("Difficulty")){
@@ -118,16 +117,18 @@ public class GameSetUpActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        for(int i=0;i<groupIDs.size();i++){
-                            String id = dataSnapshot.child(groupIDs.get(i)).getKey();
-                            String email = dataSnapshot.child(groupIDs.get(i)).child("email").getValue().toString();
-                            Users user = new Users(id, email);
-                            groupList.add(user);
-                        }
-                        Log.e("GameSetUpActivity", groupList.toString());
-                        UserAdapter  userAdapter = new UserAdapter(getApplicationContext(), groupList);
-                        list.setAdapter(userAdapter);
-                        list.setTextFilterEnabled(true);
+
+                            for (int i = 0; i < groupIDs.size(); i++) {
+                                String id = dataSnapshot.child(groupIDs.get(i)).getKey();
+                                String email = dataSnapshot.child(groupIDs.get(i)).child("email").getValue().toString();
+                                Users user = new Users(id, email);
+                                groupList.add(user);
+                            }
+                            Log.e("GameSetUpActivity", groupList.toString());
+                            UserAdapter userAdapter = new UserAdapter(getApplicationContext(), groupList);
+                            list.setAdapter(userAdapter);
+                            list.setTextFilterEnabled(true);
+
 
                     }
 
@@ -157,11 +158,9 @@ public class GameSetUpActivity extends AppCompatActivity {
         mangeGroups.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(currentFirebaseUser == null){
-                    Toast.makeText(GameSetUpActivity.this, "You cannot add group members as an anonymous user!",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (currentFirebaseUser == null) {
+                    Toast.makeText(GameSetUpActivity.this, "Anonymous users cannot add others!", Toast.LENGTH_SHORT).show();
+                } else {
                     Intent intent = new Intent(GameSetUpActivity.this, ManageGroupActivity.class);
                     if (!GolfCourse.equals(null)) {
                         intent.putExtra("bundle", extras);
@@ -183,15 +182,9 @@ public class GameSetUpActivity extends AppCompatActivity {
         startRound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String gameID = myRef.child("Games").push().getKey();
-
-                //myRef.child("Games").child(GolfCourse).child(gameID).child("GroupLeader").setValue(currentFirebaseUser.getEmail());
-                //myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("Difficulty").setValue(Difficulty);
-                //myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("score").child("holes").child("hole1").setValue(0);
-                //myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
-                //myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
-
-                if(currentFirebaseUser != null && !Difficulty.isEmpty()  ) {
+                if(currentFirebaseUser != null) {
                     myRef.child("Games").child(GolfCourse).child(gameID).child("GroupLeader").setValue(currentFirebaseUser.getEmail());
                     myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("Difficulty").setValue(Difficulty);
                     myRef.child("Games").child(GolfCourse).child(gameID).child(currentFirebaseUser.getUid()).child("score").child("holes").child("hole1").setValue(0);
@@ -205,16 +198,6 @@ public class GameSetUpActivity extends AppCompatActivity {
                     myRef.child("Games").child(GolfCourse).child(gameID).child("Location").setValue("1");
                     myRef.child("Games").child(GolfCourse).child(gameID).child("TimeStarted").setValue(currentTime());
                 }
-
-                try {
-                    myRef.child("Games").child(GolfCourse).child(gameID).child("Date").setValue(getDate());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-
-                //String gameID = myRef.child("Games").push().getKey();
-
                 if(groupIDs!=null) {
                     for (int i = 0; i < groupIDs.size(); i++) {
                         myRef.child("Games").child(GolfCourse).child(gameID).child(groupIDs.get(i)).child("score").child("holes").
