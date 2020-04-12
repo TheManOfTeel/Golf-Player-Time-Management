@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class CurrentGamesActivity extends AppCompatActivity {
     private ListView listView;
     public String Uid;
     public String anonNum;
+    private int random;
     private ArrayList<Users> users;
 
     @Override
@@ -39,12 +41,17 @@ public class CurrentGamesActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Current Games");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         listView = (ListView)findViewById(R.id.gamelist);
         GolfCourse = getIntent().getStringExtra("courseName");
-        anonNum = getIntent().getStringExtra("courseName");
+        //anonNum = getIntent().getStringExtra("courseName");
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
+
+        random = new Random().nextInt((100) + 1) ;
+        anonNum = "Anon" + random;
+
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() == null){
             Uid = anonNum;
@@ -79,6 +86,7 @@ public class CurrentGamesActivity extends AppCompatActivity {
                             Location = 0;
                         }
                         String TimeStarted = ds.child("TimeStarted").getValue().toString();
+                        //Toast.makeText(CurrentGamesActivity.this, TimeStarted, Toast.LENGTH_SHORT).show();
                         Game game = new Game(gameID, GolfCourse, anonNum, GroupLeader, Location, TimeStarted, 0, "");
                         games.add(game);
 

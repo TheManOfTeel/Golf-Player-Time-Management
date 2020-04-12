@@ -124,7 +124,7 @@ public class Game3Activity extends AppCompatActivity  {
 
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() == null){
-            Uid = "Anonymous";
+            Uid = anonNum;
         }
         else{
             Uid = mAuth.getUid();
@@ -267,7 +267,7 @@ public class Game3Activity extends AppCompatActivity  {
                 taskMap.put("Location", holeNum );
                 taskMap.put("Time", currentTime1);
 
-                myRef.child("Request").child(CourseName).push().setValue(taskMap);
+                myRef.child("Requests").child(CourseName).push().setValue(taskMap);
 
 
                 }

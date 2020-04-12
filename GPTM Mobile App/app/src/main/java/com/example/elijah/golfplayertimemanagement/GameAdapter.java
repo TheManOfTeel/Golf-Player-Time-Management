@@ -61,7 +61,12 @@ public class GameAdapter extends ArrayAdapter<Game> {
             database = FirebaseDatabase.getInstance();
             myRef = database.getReference();
             mAuth = FirebaseAuth.getInstance();
-            Uid = mAuth.getUid();
+            if(mAuth.getUid()== null){
+                Uid = "Anon";
+            }
+            else {
+                Uid = mAuth.getUid();
+            }
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
