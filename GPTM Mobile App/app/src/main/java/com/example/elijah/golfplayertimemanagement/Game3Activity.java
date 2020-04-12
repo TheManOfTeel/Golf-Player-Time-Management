@@ -242,7 +242,7 @@ public class Game3Activity extends AppCompatActivity  {
     }
     private void showElapsed() {
         long elapsed= SystemClock.elapsedRealtime() - mChrono.getBase();
-        if( elapsed >= 10000){
+        if( elapsed >= 900000){
             Toast.makeText(Game3Activity.this, "Your time is up!: ",
                     Toast.LENGTH_SHORT).show();
             mChrono.stop();
@@ -258,14 +258,16 @@ public class Game3Activity extends AppCompatActivity  {
                     emailTrun = email.split("@")[0];
                 }
                 else{
-                    emailTrun = anonNum;
+//                    emailTrun = anonNum;
+                    email = anonNum;
                 }
                 currentTime1 = df.format(Calendar.getInstance().getTime());
                 holeNum = Integer.parseInt(holenum);
-                taskMap.put("User", emailTrun);
-                taskMap.put("Request", "Assistance, time is up!");
+                taskMap.put("User", email);
+                taskMap.put("Request", "Player has exceeded 15 minutes, time is up!");
                 taskMap.put("Location", holeNum );
                 taskMap.put("Time", currentTime1);
+                taskMap.put("Status", "Pending");
 
                 myRef.child("Requests").child(CourseName).push().setValue(taskMap);
 
