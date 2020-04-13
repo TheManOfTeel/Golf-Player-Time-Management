@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
 
+## Set you root directory
+
+Set `./'GPTM Cloud App'/admin-app` as your root directory to run.
+
 ## Insert your API Keys
 
 Searching `YOUR_KEY` within the app will return two results. Be sure to insert your Firebase Key into the `environment.ts` file and insert your Google Maps API Key into the `app.module.ts` file.
