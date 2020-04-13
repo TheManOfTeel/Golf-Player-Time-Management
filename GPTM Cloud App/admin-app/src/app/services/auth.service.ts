@@ -72,7 +72,8 @@ export class AuthService {
   doLogin(value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-      .then(res => {
+      .then(async res => {
+        await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
         resolve(res);
       }, err => reject(err));
     });
