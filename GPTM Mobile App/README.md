@@ -11,7 +11,7 @@ services and assistance ✅
 ## Adam and Eli authored the user authentication. Restructuring needed to take place so they are not listed for this contribution but credit needs to be given where credit is due.
 ## Running the app
 * Download Android Studio
-* Set the root directory to `./'GPTM Mobile App`
+* Set the root directory to `./'GPTM Mobile App'`
 * Sync with Gradle
 * Add your Firebase key and Google Maps Android API key
 * Install a Virtual Device preferably using Android 10.0
