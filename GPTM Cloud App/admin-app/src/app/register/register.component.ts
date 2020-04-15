@@ -71,10 +71,10 @@ export class RegisterComponent implements OnInit {
       numberOfHoles: ['', Validators.required]
     }),
     this.registerForm = this.fb.group({
-     email: ['', Validators.email],
-     password: ['', Validators.minLength(6)],
-     password2: ['', Validators.minLength(6)]
-     });
+      email: ['', Validators.email],
+      password: ['', Validators.minLength(6)],
+      password2: ['', Validators.minLength(6)]
+    });
   }
 
   ngOnInit() {

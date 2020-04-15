@@ -32,11 +32,11 @@
     font-size: 30px;
     margin-bottom: 40px;
 }
-  
+
 .row{
     margin-top: 10px;
 }
-  
+
 .error{
     color: red;
     font-size: medium;
@@ -74,7 +74,7 @@
     display: list-item;
     list-style-type: none;
 }
-  
+
 .radio-button {
     margin: 5px;
 }

@@ -49,11 +49,11 @@ html, body {
     text-align: center;
     font-size: 30px;
 }
-  
+
 .row{
     margin-top: 5px;
 }
-  
+
 .error{
     color: red;
     font-size: medium;

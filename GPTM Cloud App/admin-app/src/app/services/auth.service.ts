@@ -10,36 +10,6 @@ export class AuthService {
    public afAuth: AngularFireAuth
   ) {}
 
-  // Facebook integration
-  // doFacebookLogin() {
-  //   return new Promise<any>((resolve, reject) => {
-  //     const provider = new firebase.auth.FacebookAuthProvider();
-  //     this.afAuth.auth
-  //     .signInWithPopup(provider)
-  //     .then(res => {
-  //       resolve(res);
-  //     }, err => {
-  //       console.log(err);
-  //       reject(err);
-  //     });
-  //   });
-  // }
-
-  // Twitter integration
-  // doTwitterLogin() {
-  //   return new Promise<any>((resolve, reject) => {
-  //     const provider = new firebase.auth.TwitterAuthProvider();
-  //     this.afAuth.auth
-  //     .signInWithPopup(provider)
-  //     .then(res => {
-  //       resolve(res);
-  //     }, err => {
-  //       console.log(err);
-  //       reject(err);
-  //     });
-  //   });
-  // }
-
   // Google integration
   // doGoogleLogin() {
   //   return new Promise<any>((resolve, reject) => {
@@ -91,5 +61,4 @@ export class AuthService {
       }
     });
   }
-
 }
