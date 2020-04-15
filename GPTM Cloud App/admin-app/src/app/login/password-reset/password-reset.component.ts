@@ -18,12 +18,12 @@ export class PasswordResetComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.createForm();
-   }
+  }
 
   createForm() {
     this.resetForm = this.fb.group({
-     email: ['', Validators.email]
-     });
+      email: ['', Validators.email]
+    });
   }
 
   ngOnInit(): void {
@@ -44,5 +44,4 @@ export class PasswordResetComponent implements OnInit {
       });
     }
   }
-
 }
