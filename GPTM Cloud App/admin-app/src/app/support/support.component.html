@@ -108,7 +108,7 @@
                         <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
                         <p class="error" *ngIf="noMatchEmail">{{noMatchEmail}}</p>
                         <br *ngIf="!emailChanged && !errorMessage && !noMatchEmail">
-                        <br *ngIf="!emailChanged && !errorMessage && !noMatchEmail">
+                        <br *ngIf="!emailChanged && !errorMessage">
                         <div class="buttons">
                             <button *ngIf="!confirm && !isLoading" mat-raised-button color="primary" type="submit" (click)="confirmChange(true)" class="btn btn-default">Change email</button>
                             <button *ngIf="!isLoading && confirm" mat-raised-button color="warn" type="submit" (click)="changeEmail()" class="btn btn-default">Confirm</button>
