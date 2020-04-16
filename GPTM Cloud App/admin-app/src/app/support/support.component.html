@@ -136,7 +136,7 @@
                                 <mat-form-field class="input">
                                     <input matInput placeholder="Password" id="password" name="password" [type]="hide1 ? 'password' : 'text'" [(ngModel)]="password" type="password" formControlName="password" required>
                                     <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                    <mat-hint>Enter a password</mat-hint>
+                                    <mat-hint>Enter the new password</mat-hint>
                                     <mat-error>
                                         Must be at least 6 characters
                                     </mat-error>
@@ -146,7 +146,7 @@
                                 <mat-form-field class="input">
                                     <input matInput placeholder="Reenter Password" id="password2" name="password2" [type]="hide2 ? 'password' : 'text'" [(ngModel)]="password2" type="password" formControlName="password2" required>
                                     <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                    <mat-hint>Renter your password</mat-hint>
+                                    <mat-hint>Renter the new password</mat-hint>
                                     <mat-error>
                                         Must be at least 6 characters
                                     </mat-error>
