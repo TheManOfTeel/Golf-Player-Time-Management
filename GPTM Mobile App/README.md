@@ -15,7 +15,7 @@ services and assistance ✅
 
 ## Insert your API Keys
 
-Searching `YOUR_KEY` within the app will return two results. Be sure to insert your Firebase Key into the `environment.ts` file and insert your Google Maps API Key into the `app.module.ts` file. <strong>Keys will be included in the final submission</strong>.
+Searching `YOUR_KEY` within the app will return two results. Be sure to insert your Firebase Key into the `google-services.json` file and insert your Google Maps API Key into the `google_maps_api.xml` file. <strong>Keys will be included in the final submission</strong>.
 
 ## Running the app
 
