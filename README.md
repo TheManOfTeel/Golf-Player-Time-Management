@@ -36,6 +36,10 @@ request to allow playthrough ✅
 services and assistance ✅
 * Players app displays game history and dashboard ✅
 
+## Running the app
+
+To run either of the `Admin App` or the `Mobile App` components navigate to the appropriate folder. A `README` will walk you through everything.
+
 ## Contributors
 
 Adam Horle, Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
