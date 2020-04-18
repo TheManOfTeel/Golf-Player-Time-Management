@@ -15,7 +15,7 @@ This software will have two components that serve two main functions:
 
 ## Requirements
 
-### The cloud app will do the following
+### The cloud app (Admin App) will do the following
 
 * Track players position on a virtual golf course utilizing an application on the players phones that
 transmits GPS location information ✅
@@ -46,11 +46,11 @@ Adam Horle, Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
 
 ## Directory Structure
 
-### GPTM Cloud
+### GPTM Cloud (Admin App)
 
 Contains the app's cloud component (for administrators).
 
-### GPTM Mobile
+### GPTM Mobile (Mobile App)
 
 Contains the Android App (for players).
 
