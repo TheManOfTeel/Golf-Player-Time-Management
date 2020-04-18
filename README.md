@@ -15,7 +15,7 @@ This software will have two components that serve two main functions:
 
 ## Requirements
 
-### The cloud app (Admin App) will do the following
+### The cloud app (Web App) will do the following
 
 * Track players position on a virtual golf course utilizing an application on the players phones that
 transmits GPS location information ✅
@@ -36,14 +36,6 @@ request to allow playthrough ✅
 services and assistance ✅
 * Players app displays game history and dashboard ✅
 
-## Running the app
-
-To run either of the `Admin App` or the `Mobile App` components navigate to the appropriate folder. A `README` will walk you through everything.
-
-## Contributors
-
-Adam Horle, Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
-
 ## Directory Structure
 
 ### GPTM Cloud (Admin App)
@@ -57,3 +49,11 @@ Contains the Android App (for players).
 ### Documentation
 
 Contains all of the projects's documentation.
+
+## Running the app
+
+To run either of the `Admin App` or the `Mobile App` components navigate to the appropriate folder. A `README` will walk you through everything.
+
+## Contributors
+
+Adam Horle, Alyssa Beeker, Bailey Carlin, Daniel Teel, Elijah Hunt
