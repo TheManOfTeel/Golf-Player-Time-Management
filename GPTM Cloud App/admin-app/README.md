@@ -8,7 +8,7 @@ Set `./'GPTM Cloud App'/admin-app` as your root directory to run.
 
 ## Insert your API Keys
 
-Searching `YOUR_KEY` within the app will return two results. Be sure to insert your Firebase Key into the `environment.ts` file and insert your Google Maps API Key into the `app.module.ts` file.
+Searching `YOUR_KEY` within the app will return two results. Be sure to insert your Firebase Key into the `environment.ts` file and insert your Google Maps API Key into the `app.module.ts` file. <strong>Keys will be included in the final submission</strong>.
 
 ## Keep up to date
 
