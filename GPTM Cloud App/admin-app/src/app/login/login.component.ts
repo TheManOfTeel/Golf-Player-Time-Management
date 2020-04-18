@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { MatDialog } from '@angular/material/dialog';
 import * as firebase from 'firebase/app';
@@ -153,6 +153,7 @@ export class LoginComponent {
       const userId = firebase.auth().currentUser.uid;
       const userRef = firebase.database().ref('/Users/' + userId);
       userRef.update({
+        email: firebase.auth().currentUser.email,
         verified: true
       });
       this.router.navigate(['/dashboard']);
