@@ -99,17 +99,17 @@ export class WaitTimeComponent implements OnInit {
         setTimeout(() => {
           if (this.info.Hole18 != null) {
             this.hole18 = true;
-  
+
             // Add the x axis labels so that the data can be updated on changes
             this.lineChartLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
             'Hole 9', 'Hole 10', 'Hole 11', 'Hole 12', 'Hole 13', 'Hole 14', 'Hole 15', 'Hole 16', 'Hole 17', 'Hole 18');
             this.queueLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
             'Hole 9', 'Hole 10', 'Hole 11', 'Hole 12', 'Hole 13', 'Hole 14', 'Hole 15', 'Hole 16', 'Hole 17', 'Hole 18');
-  
+
             // Read from firebase
             this.db.list('GolfCourse/' + this.courseName + '/WaitTimes').valueChanges().subscribe(res => {
               this.waitTimes = res;
-  
+
               // Plot points
               this.lineChartData = [
                 { data: [this.waitTimes[0].WaitTime, this.waitTimes[10].WaitTime, this.waitTimes[11].WaitTime,
@@ -119,7 +119,7 @@ export class WaitTimeComponent implements OnInit {
                   this.waitTimes[7].WaitTime, this.waitTimes[8].WaitTime, this.waitTimes[9].WaitTime],
                   label: 'Minutes' }
               ];
-  
+
               // For queue table
               this.queueData = [
                 { data: [this.waitTimes[0].Queue, this.waitTimes[10].Queue, this.waitTimes[11].Queue,
@@ -128,7 +128,7 @@ export class WaitTimeComponent implements OnInit {
                   this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
                   this.waitTimes[7].Queue, this.waitTimes[8].Queue, this.waitTimes[9].Queue] }
               ];
-  
+
               this.isLoading = false;
             });
           }
@@ -138,11 +138,11 @@ export class WaitTimeComponent implements OnInit {
             'Hole 9');
             this.queueLabels.push('Hole 1', 'Hole 2', 'Hole 3', 'Hole 4', 'Hole 5', 'Hole 6', 'Hole 7', 'Hole 8',
             'Hole 9');
-  
+
             // Read from firebase
             this.db.list('GolfCourse/' + this.courseName + '/WaitTimes').valueChanges().subscribe(res => {
               this.waitTimes = res;
-  
+
               // Plot points
               this.lineChartData = [
                 { data: [this.waitTimes[0].WaitTime, this.waitTimes[1].WaitTime,
@@ -151,14 +151,14 @@ export class WaitTimeComponent implements OnInit {
                   this.waitTimes[8].WaitTime],
                   label: 'Minutes' }
               ];
-  
+
               // For queue table
               this.queueData = [
                 { data: [this.waitTimes[0].Queue, this.waitTimes[1].Queue, this.waitTimes[2].Queue,
                   this.waitTimes[3].Queue, this.waitTimes[4].Queue, this.waitTimes[5].Queue, this.waitTimes[6].Queue,
                   this.waitTimes[7].Queue, this.waitTimes[8].Queue] }
               ];
-  
+
               this.isLoading = false;
             });
           }
