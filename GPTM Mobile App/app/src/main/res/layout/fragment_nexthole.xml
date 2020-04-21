@@ -9,21 +9,9 @@
         android:layout_height="wrap_content"
         >
 
-        <TextView
-            android:id="@+id/NextHoleHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next Hole Info"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="20sp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#67A84C"
-            />
 
         <LinearLayout
             android:id="@+id/layout1"
-            android:layout_below="@id/NextHoleHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

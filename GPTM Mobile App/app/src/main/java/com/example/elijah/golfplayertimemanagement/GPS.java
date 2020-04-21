@@ -83,7 +83,10 @@ public class GPS {
     }
 
     void stopLocation(){
-        locationManager.removeUpdates(locationListener);
+        if(locationManager != null) {
+            locationManager.removeUpdates(this.locationListener);
+            locationManager = null;
+        }
 
     }
 }

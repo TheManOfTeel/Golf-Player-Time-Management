@@ -1,16 +1,16 @@
 package com.example.elijah.golfplayertimemanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,14 +33,14 @@ public class AdminFragment extends Fragment {
 
 
 
-    public String CourseName;
+    public String CourseName = "";
     private DatabaseReference myRef;
     private DatabaseReference Ref2;
     private FirebaseDatabase database;
     private FirebaseDatabase database2;
     private String holenum;
     private FirebaseAuth mAuth;
-    private String GolfCourse;
+    private String GolfCourse = "";
     public int holeNum;
     public int hole;
     private FusedLocationProviderClient client;
@@ -123,17 +123,22 @@ public class AdminFragment extends Fragment {
 
        holeNum = 1;
 
-        Ref2.child("Games").child(CourseName).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                holenum = dataSnapshot.child(gameID).child("Location").getValue().toString();
-            }
+       if(!CourseName.equals("") || !CourseName.equals(null)) {
+           Ref2.child("Games").child(CourseName).addValueEventListener(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   if(dataSnapshot.child(gameID).child("Location").exists()) {
+                       holenum = dataSnapshot.child(gameID).child("Location").getValue().toString();
+                   }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+               }
 
-            }
-        });
+               @Override
+               public void onCancelled(@NonNull DatabaseError databaseError) {
+
+               }
+           });
+       }
 
 
         assist1 = (Button)rootView.findViewById(R.id.assist);
@@ -401,11 +406,21 @@ public class AdminFragment extends Fragment {
 
 
 
-                myRef.child("Request").child(CourseName).push().setValue(taskMap);
 
-                Toast.makeText(getActivity(), "Request Sent!", Toast.LENGTH_SHORT).show();
+                myRef.child("Request").child(CourseName).push().setValue(taskMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getActivity(), "Request Sent!", Toast.LENGTH_SHORT).show();
+                            resetButtons();
 
-                resetButtons();
+                        }else{
+                            Toast.makeText(getActivity(), "Request Failed!", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+
             }
 
             @Override
@@ -442,8 +457,12 @@ public class AdminFragment extends Fragment {
 
     }
 
-
-
-
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(gameID.equals(null) || CourseName.equals(null)){
+            Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            startActivity(intent);
+        }
+    }
 }

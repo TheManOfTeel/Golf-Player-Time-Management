@@ -31,14 +31,9 @@ public class ProfileActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         mAuth = FirebaseAuth.getInstance();
-        getSupportActionBar().setTitle("Welcome");
+        getSupportActionBar().setTitle("Welcome " + mAuth.getCurrentUser().getEmail());
 
 
-
-
-        greeting = (TextView)findViewById(R.id.ProfileGreeting);
-
-        greeting.setText("Hello" + "\n" + mAuth.getCurrentUser().getEmail());
 
         SelectGolfCourse = (Button)findViewById(R.id.ProfileSelectCourse);
         SelectGolfCourse.setOnClickListener(new View.OnClickListener() {
@@ -77,5 +72,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

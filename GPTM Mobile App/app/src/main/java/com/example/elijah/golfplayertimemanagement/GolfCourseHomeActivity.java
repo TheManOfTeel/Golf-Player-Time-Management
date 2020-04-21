@@ -10,21 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GolfCourseHomeActivity extends AppCompatActivity {
-    private TextView header;
     private FirebaseAuth mAuth;
     private Button startGamebtn;
     private DatabaseReference myRef;
@@ -55,7 +50,6 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         }
 
 
-        header = (TextView)findViewById(R.id.WelcomeLabel);
         startGamebtn = (Button)findViewById(R.id.StartGame);
         ViewCourse = (Button)findViewById(R.id.ViewCourse);
         Historybtn = (Button)findViewById(R.id.ViewHistory);
@@ -67,7 +61,6 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
 
         if(getIntent().getExtras() != null){
             CourseName = getIntent().getStringExtra("GolfCourseID");
-            header.setText(CourseName);
         }
         getSupportActionBar().setTitle(CourseName);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -261,6 +254,15 @@ public class GolfCourseHomeActivity extends AppCompatActivity {
         //showGameSetUpUpdateDialog();
     }
 
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(CourseName == null){
+            Intent intent = new Intent(GolfCourseHomeActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Log.e("GolfCourseHomeActivity", CourseName);
+        }
+    }
 }

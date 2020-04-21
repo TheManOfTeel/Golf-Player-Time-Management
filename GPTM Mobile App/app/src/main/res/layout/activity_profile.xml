@@ -1,50 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="30dp"
+    android:weightSum="2"
     tools:context=".ProfileActivity">
 
 
-    <TextView
-        android:id="@+id/ProfileGreeting"
+    <ImageView
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ProfileSelectCourse"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="77dp"
-        android:gravity="center_horizontal"
-        android:text="Hello Player"
-        android:textAlignment="center"
-        android:textColor="#67A84C"
-        android:textSize="30dp" />
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/golfcourselogo"
+        android:layout_weight="1"
+        />
+
 
     <Button
         android:id="@+id/ProfileSelectCourse"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-
+        android:layout_height="0dp"
         android:background="#67A84C"
         android:textColor="#FFFFFF"
+        android:layout_weight=".50"
+        android:elevation="30dp"
+        android:drawableRight="@drawable/ic_chevron_right_white_24dp"
+        android:textFontWeight="700"
         android:text="Select A Golf Course To Play At"/>
 
 
 
 
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="387dp"
-        android:layout_height="201dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:layout_marginBottom="11dp"
-        app:srcCompat="@drawable/golfcourselogo" />
 
-
-</RelativeLayout>
+</LinearLayout>

@@ -4,34 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:weightSum="2"
+    android:weightSum="4"
     tools:context=".GolfCourseHomeActivity"
+    android:layout_margin="30dp"
     android:orientation="vertical"
     >
 
 
-    <TextView
-        android:id="@+id/WelcomeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:paddingBottom="10dp"
-        android:text="Welcome To This Golf Course"
-        android:gravity="center"
-        android:textColor="#67A84C"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:layout_weight="1"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="50dp"
-        android:weightSum="4"
-        >
+
         <Button
             android:id="@+id/StartGame"
             android:layout_width="match_parent"
@@ -42,20 +22,11 @@
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_weight="1"
+            android:drawableRight="@drawable/ic_chevron_right_white_24dp"
+
             />
 
-        <Button
-            android:id="@+id/ViewCourse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="#67A84C"
-            android:text="View Course"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#FFFFFF"
-            android:layout_weight="1"
-            />
+
 
         <Button
             android:id="@+id/JoinGame"
@@ -68,7 +39,10 @@
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_weight="1"
+            android:drawableRight="@drawable/ic_chevron_right_white_24dp"
+
             />
+
 
         <Button
             android:id="@+id/ViewHistory"
@@ -81,10 +55,28 @@
             android:textSize="16sp"
             android:textColor="#FFFFFF"
             android:layout_weight="1"
+            android:drawableRight="@drawable/ic_chevron_right_white_24dp"
+
             />
 
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/ViewCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="#67A84C"
+        android:text="View Course"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:layout_weight="1"
+        android:drawableRight="@drawable/ic_chevron_right_white_24dp"
+
+        />
+
+
+
 
 
 
