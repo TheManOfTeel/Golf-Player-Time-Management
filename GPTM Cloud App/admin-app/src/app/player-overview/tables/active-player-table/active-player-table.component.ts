@@ -121,12 +121,12 @@ export class ActivePlayerTableComponent implements OnInit {
 
             // Clear previous calculations
             this.clearQueue(this.courseName, '1');
-            for (let i = 2; i <= 18; i++) {
+            for (let i = 1; i <= 18; i++) {
               this.clearQueue(this.courseName, i);
             }
             // Estimate wait times and set the waiting queue
             this.countHoleQueue(this.courseName, '1');
-            for (let i = 2; i <= 18; i++) {
+            for (let i = 1; i <= 18; i++) {
               this.countHoleQueue(this.courseName, i);
             }
           });
@@ -134,12 +134,12 @@ export class ActivePlayerTableComponent implements OnInit {
           this.db.list('GolfCourse/' + this.courseName + '/Holes').valueChanges().subscribe(() => {
             // Clear previous calculations
             this.clearQueue(this.courseName, '1');
-            for (let i = 2; i <= 18; i++) {
+            for (let i = 1; i <= 18; i++) {
               this.clearQueue(this.courseName, i);
             }
             // Estimate wait times and set the waiting queue
             this.countHoleQueue(this.courseName, '1');
-            for (let i = 2; i <= 18; i++) {
+            for (let i = 1; i <= 18; i++) {
               this.countHoleQueue(this.courseName, i);
             }
           });
@@ -152,12 +152,12 @@ export class ActivePlayerTableComponent implements OnInit {
 
             // Clear previous calculations
             this.clearQueue(this.courseName, '1');
-            for (let i = 2; i <= 9; i++) {
+            for (let i = 1; i <= 9; i++) {
               this.clearQueue(this.courseName, i);
             }
             // Estimate wait times and set the waiting queue
             this.countHoleQueue(this.courseName, '1');
-            for (let i = 2; i <= 9; i++) {
+            for (let i = 1; i <= 9; i++) {
               this.countHoleQueue(this.courseName, i);
             }
           });
@@ -165,12 +165,12 @@ export class ActivePlayerTableComponent implements OnInit {
           this.db.list('GolfCourse/' + this.courseName + '/Holes').valueChanges().subscribe(() => {
             // Clear previous calculations
             this.clearQueue(this.courseName, '1');
-            for (let i = 2; i <= 9; i++) {
+            for (let i = 1; i <= 9; i++) {
               this.clearQueue(this.courseName, i);
             }
             // Estimate wait times and set the waiting queue
             this.countHoleQueue(this.courseName, '1');
-            for (let i = 2; i <= 9; i++) {
+            for (let i = 1; i <= 9; i++) {
               this.countHoleQueue(this.courseName, i);
             }
           });
