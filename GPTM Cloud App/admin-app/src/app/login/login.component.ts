@@ -153,6 +153,7 @@ export class LoginComponent {
       const userId = firebase.auth().currentUser.uid;
       const userRef = firebase.database().ref('/Users/' + userId);
       userRef.update({
+        email: firebase.auth().currentUser.email,
         verified: true
       });
       this.router.navigate(['/dashboard']);

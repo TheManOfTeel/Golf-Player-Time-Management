@@ -85,17 +85,29 @@
                 <p class="accordionContent">Fill out the form below to change your email address</p>
                 <div class="center">
                     <form [formGroup]="emailForm">
-                        <mat-form-field class="input">
-                            <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="email" type="email" formControlName="email" required>
-                            <mat-hint>Enter the new email address</mat-hint>
-                            <mat-error>
-                                Enter a valid email address
-                            </mat-error>
-                        </mat-form-field>
+                        <div>
+                            <mat-form-field class="input">
+                                <input matInput placeholder="Email" id="email" name="email" [(ngModel)]="email" type="email" formControlName="email" required>
+                                <mat-hint>Enter the new email address</mat-hint>
+                                <mat-error>
+                                    Enter a valid email address
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="input">
+                                <input matInput placeholder="Reenter Email" id="email2" name="email2" [(ngModel)]="email2" type="email" formControlName="email2" required>
+                                <mat-hint>Reenter the new email address</mat-hint>
+                                <mat-error>
+                                    Enter a valid email address
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                         <p *ngIf="emailChanged" class="success">Email has been changed. Verfiy your new credentials by clicking on the link in the email</p>
                         <p *ngIf="emailChanged" class="success">You will not be able to login until doing so</p>
                         <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
-                        <br *ngIf="!emailChanged && !errorMessage">
+                        <p class="error" *ngIf="noMatchEmail">{{noMatchEmail}}</p>
+                        <br *ngIf="!emailChanged && !errorMessage && !noMatchEmail">
                         <br *ngIf="!emailChanged && !errorMessage">
                         <div class="buttons">
                             <button *ngIf="!confirm && !isLoading" mat-raised-button color="primary" type="submit" (click)="confirmChange(true)" class="btn btn-default">Change email</button>
@@ -107,6 +119,55 @@
                             <button *ngIf="isLoading && confirm" mat-raised-button color="secondary" type="submit" class="btn btn-default" disabled>Cancel</button>
                         </div>
                     </form>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    Change your account's password
+                </mat-expansion-panel-header>
+                <div>
+                    <ng-container *ngIf="isLoadingP">
+                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    </ng-container>
+                    <p class="accordionContent">Fill out the form below to change your password</p>
+                    <div class="center">
+                        <form [formGroup]="resetForm">
+                            <div>
+                                <mat-form-field class="input">
+                                    <input matInput placeholder="Password" id="password" name="password" [type]="hide1 ? 'password' : 'text'" [(ngModel)]="password" type="password" formControlName="password" required>
+                                    <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    <mat-hint>Enter the new password</mat-hint>
+                                    <mat-error>
+                                        Must be at least 6 characters
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="input">
+                                    <input matInput placeholder="Reenter Password" id="password2" name="password2" [type]="hide2 ? 'password' : 'text'" [(ngModel)]="password2" type="password" formControlName="password2" required>
+                                    <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    <mat-hint>Renter the new password</mat-hint>
+                                    <mat-error>
+                                        Must be at least 6 characters
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <p *ngIf="passwordChanged" class="success">Your password has been changed</p>
+                            <p *ngIf="errorMessageP" class="error">{{errorMessageP}}</p>
+                            <p class="error" *ngIf="noMatch">{{noMatch}}</p>
+                            <br *ngIf="!passwordChanged && !errorMessageP && !noMatch">
+                            <br>
+                            <div class="buttons">
+                                <button *ngIf="!confirmP && !isLoading" mat-raised-button color="primary" type="submit" (click)="confirmChangePassword(true)" class="btn btn-default">Change password</button>
+                                <button *ngIf="!isLoading && confirmP" mat-raised-button color="warn" type="submit" (click)="changePassword()" class="btn btn-default">Confirm</button>
+                                <div class="divider"></div>
+                                <button *ngIf="!isLoading && confirmP" mat-raised-button color="secondary" type="submit" (click)="confirmChangePassword(false)" class="btn btn-default">Cancel</button>
+                                <button *ngIf="isLoading && confirmP" mat-raised-button color="warn" type="submit" class="btn btn-default" disabled>Confirm</button>
+                                <div class="divider"></div>
+                                <button *ngIf="isLoading && confirmP" mat-raised-button color="secondary" type="submit" class="btn btn-default" disabled>Cancel</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </mat-expansion-panel>
             <mat-expansion-panel>

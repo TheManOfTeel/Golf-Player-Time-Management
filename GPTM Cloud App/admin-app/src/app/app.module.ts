@@ -110,7 +110,7 @@ import { PasswordResetComponent } from './login/password-reset/password-reset.co
     BrowserModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_KEY',
+      apiKey: 'AIzaSyBGSWOPuiXi-GbwqdCZ4WNxsbq0F4YshGM',
       libraries: ['places', 'drawing', 'geometry']
     }),
     AgmDrawingModule,
