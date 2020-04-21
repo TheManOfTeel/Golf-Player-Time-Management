@@ -162,7 +162,7 @@ export class WaitTimeComponent implements OnInit {
               this.isLoading = false;
             });
           }
-        }, 2000);
+        }, 800);
       });
     });
   }
