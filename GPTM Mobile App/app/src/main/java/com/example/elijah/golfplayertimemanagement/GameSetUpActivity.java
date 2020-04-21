@@ -50,6 +50,15 @@ public class GameSetUpActivity extends AppCompatActivity {
     public String anonNum;
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(GolfCourse == null){
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

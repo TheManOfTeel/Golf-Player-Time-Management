@@ -104,7 +104,15 @@ public class Game3Activity extends AppCompatActivity  {
         myRef.child("Games").child(CourseName).child(gameID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                holenum = dataSnapshot.child("Location").getValue().toString();
+                if(dataSnapshot.exists()) {
+                    holenum = dataSnapshot.child("Location").getValue().toString();
+                }else{
+                    Toast.makeText(getApplicationContext(), "The Game Has Ended", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Game3Activity.this, GolfCourseHomeActivity.class);
+                    intent.putExtra("GolfCourseID", CourseName);
+                    startActivity(intent);
+                    finish();
+                }
             }
 
             @Override
@@ -154,19 +162,22 @@ public class Game3Activity extends AppCompatActivity  {
             switch (menuItem.getItemId()){
                 case R.id.NavHome:
                     selectedFragment = new GameFragment();
-                    Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
+                    getSupportActionBar().setTitle("Your Game");
                     break;
                 case R.id.NavAdmin:
                     selectedFragment = new AdminFragment();
-                    Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
+                    getSupportActionBar().setTitle("Staff Requests");
+
                     break;
                 case R.id.Navgame:
                     selectedFragment = new OverviewFragment();
-                    Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
+                    getSupportActionBar().setTitle("Game Overview");
+
                     break;
                 case R.id.NavNext:
                     selectedFragment = new NextHoleFragment();
-                    Toast.makeText(Game3Activity.this, bundle.toString(), Toast.LENGTH_SHORT).show();
+                    getSupportActionBar().setTitle("Next Hole Info");
+
                     break;
             }
 
@@ -185,6 +196,11 @@ public class Game3Activity extends AppCompatActivity  {
     @Override
     protected void onStart() {
         super.onStart();
+        if(gameID == null || CourseName == null){
+            Intent intent = new Intent(Game3Activity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
 
@@ -209,18 +225,25 @@ public class Game3Activity extends AppCompatActivity  {
             return true;
         }else if(item.getItemId() == R.id.endGame){
 
-           myRef.child("Games").child(CourseName).child(gameID).addValueEventListener(new ValueEventListener() {
+           myRef.child("Games").child(CourseName).child(gameID).addListenerForSingleValueEvent(new ValueEventListener() {
                @Override
                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                    myRef.child("GameHistory").child(CourseName).child(gameID).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
                        @Override
                        public void onComplete(@NonNull Task<Void> task) {
                            if(task.isSuccessful()){
-                               dataSnapshot.getRef().removeValue();
-                               Intent intent = new Intent(Game3Activity.this, GolfCourseHomeActivity.class);
-                               intent.putExtra("GolfCourseID", CourseName);
-                               startActivity(intent);
-                               finish();
+                               myRef.child("Games").child(CourseName).child(gameID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                   @Override
+                                   public void onComplete(@NonNull Task<Void> task) {
+                                       if(task.isSuccessful()){
+                                           Toast.makeText(Game3Activity.this, "Game Ended", Toast.LENGTH_SHORT).show();
+                                           Intent intent = new Intent(Game3Activity.this, GolfCourseHomeActivity.class);
+                                           intent.putExtra("GolfCourseID", CourseName);
+                                           startActivity(intent);
+                                           finish();
+                                       }
+                                   }
+                               });
                            }
                        }
                    });

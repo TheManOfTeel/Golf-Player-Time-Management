@@ -8,13 +8,11 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,12 +81,12 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
         setRetainInstance(true);
         getActivity().setTitle("Fore!");
-
         myGPS = new GPS(getContext());
 
 
 
-        start();
+
+       // start();
 
         //(new Handler()).postDelayed(this::showElapsed, 10000);
 
@@ -249,9 +247,11 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
-
-
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        myGPS.stopLocation();
+    }
 
     //UpdateHoleUI
     private void UIHoleNum(String hole, String par, String yards){
@@ -619,7 +619,6 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     private LatLng MyLocation(){
         LatLng mylatlng = null;
         if(getContext() !=null) {
-            myGPS = new GPS(getContext());
             Location location = myGPS.getMylocation();
             mylatlng = new LatLng(location.getLatitude(), location.getLongitude());
             Log.e("MyLocation", mylatlng.toString());
@@ -678,6 +677,7 @@ private void start(){
         super.onPause();
         myGPS.stopLocation();
     }
+
 
     @Override
     public void onResume() {

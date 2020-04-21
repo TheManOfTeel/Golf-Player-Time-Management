@@ -87,14 +87,7 @@ public class StatsActivity extends AppCompatActivity {
                 MyAdapter myAdapter = new MyAdapter(getApplicationContext(), playerHistories);
                 recyclerView.setAdapter(myAdapter);
 
-                recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                    @Override
-                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                        super.onScrollStateChanged(recyclerView, newState);
-                        Toast.makeText(getApplicationContext(), "Hey", Toast.LENGTH_LONG).show();
 
-                    }
-                });
 
 
             }

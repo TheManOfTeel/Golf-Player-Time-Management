@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="2"
     tools:context=".PresentationActivity"
+    android:background="@drawable/background"
     >
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:src="@drawable/background"
-        android:scaleType="centerCrop" />
 
     <TextView
         android:layout_centerHorizontal="true"
+        android:layout_weight="1"
         android:textSize="36dp"
         android:layout_margin="20dp"
         android:layout_gravity="center_horizontal"
@@ -31,23 +28,16 @@
 
 
 
-
-    <RelativeLayout
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        >
-
         <Button
             android:id="@+id/signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign In"
-            android:layout_margin="20dp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:background="#67A84C"
+            android:layout_weight=".33"
+            android:layout_margin="20dp"
             />
 
         <Button
@@ -56,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/signin"
             android:text="sign up"
+            android:layout_weight=".33"
 
             android:layout_margin="20dp"
             android:textStyle="bold"
@@ -74,11 +65,12 @@
             android:background="#67A84C"
             android:layout_margin="20dp"
             android:textStyle="bold"
+            android:layout_weight=".33"
             />
 
 
-    </RelativeLayout>
 
 
 
-</RelativeLayout>
+
+</LinearLayout>

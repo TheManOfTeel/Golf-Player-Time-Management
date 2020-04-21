@@ -5,178 +5,175 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity = "top"
+
     >
 
     <LinearLayout
         android:id="@+id/GameActivity"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:weightSum="12.5"
+        android:layout_margin="10dp"
         >
-        <LinearLayout
+
+        <RelativeLayout
             android:id="@+id/holeStuff"
             android:layout_width="match_parent"
-            android:weightSum="3"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="20dp"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             >
+
             <Button
                 android:id="@+id/fragbackhole"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Last Hole"
-                android:elevation="10dp"
-                android:textColor="#fff"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
                 android:background="#67A84C"
+                android:elevation="30dp"
+                android:text="Last Hole"
+                android:textColor="#fff"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
                 />
 
             <TextView
                 android:id="@+id/fraghole"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:elevation="30dp"
                 android:text="Hole 1"
                 android:textColor="#67A84C"
                 android:textSize="30sp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_gravity="center_vertical"
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/fragnexthole"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next Hole"
-
-                android:elevation="10dp"
-                android:textColor="#fff"
+                android:layout_centerVertical="true"
                 android:background="#67A84C"
+                android:elevation="30dp"
+                android:text="Next Hole"
+                android:textColor="#fff"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
                 />
 
 
+        </RelativeLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/parNyard"
             android:layout_width="match_parent"
-            android:weightSum="2"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
             android:elevation="20dp"
             android:background="#67A84C"
-            android:layout_marginTop="5dp"
+            android:layout_weight="5"
+            android:layout_marginBottom="10dp"
+
             >
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/detailHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:text="Hole Details"
                 android:textColor="#ffff"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:textAlignment="center"
                 android:textSize="30sp"
+                android:elevation="30dp"
+
+
                 />
             <TextView
                 android:id="@+id/fragpar"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailHeader"
                 android:text="par"
                 android:textColor="#fff"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
-                android:layout_gravity="center_horizontal"
+                android:elevation="30dp"
                 android:textAlignment="center"
+                android:gravity="center_horizontal"
                 />
             <TextView
                 android:id="@+id/fragyards"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fragpar"
                 android:text="yards"
                 android:textColor="#fff"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
-                android:layout_gravity="center_horizontal"
+                android:elevation="30dp"
                 android:textAlignment="center"
+                android:gravity="center_horizontal"
 
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
             android:background="#67A84C"
             android:elevation="20dp"
-            android:weightSum="2"
-            android:layout_marginTop="0dp"
+            android:layout_weight="5.5"
+            android:paddingBottom="20dp"
             >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
+                android:id="@+id/detailHeader2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Game Details"
-                android:textAlignment="center"
                 android:textColor="#ffff"
-                android:textSize="30dp"
-                android:textStyle="bold" />
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:elevation="30dp"
+                android:layout_centerHorizontal="true"
+                />
             <TextView
                 android:id="@+id/fragplayerPar"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:textSize="30dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailHeader2"
+                android:textSize="20sp"
                 android:text="playerPar"
                 android:textColor="#fff"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
                 android:textStyle="normal"
+                android:elevation="30dp"
+                android:layout_centerHorizontal="true"
                 />
 
             <Button
                 android:id="@+id/fragShotName"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fragplayerPar"
                 android:background="#fff"
-                android:elevation="15dp"
+                android:elevation="30dp"
                 android:text="Shot"
                 android:textColor="#67A84C"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
                 />
+        </RelativeLayout>
 
-
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#67A84C"
-            android:elevation="20dp"
-            android:padding="10dp"
-            android:layout_marginBottom="0dp"
-            app:srcCompat="@drawable/gptmlogocircle" />
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:background="#67A84C"-->
+<!--            app:srcCompat="@drawable/gptmlogocircle"-->
+<!--            android:layout_weight="1"-->
+<!--            android:elevation="30dp"-->
+<!--            />-->
     </LinearLayout>
 
     <RelativeLayout
