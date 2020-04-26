@@ -11,14 +11,14 @@ export const environment = {
 };
 
 const config = {
-  apiKey: 'AIzaSyBGSWOPuiXi-GbwqdCZ4WNxsbq0F4YshGM',
-  authDomain: 'golf-player-time-management.firebaseapp.com',
-  databaseURL: 'https://golf-player-time-management.firebaseio.com',
-  projectId: 'golf-player-time-management',
-  storageBucket: 'golf-player-time-management.appspot.com',
-  messagingSenderId: '1004433550779',
-  appId: '1:1004433550779:web:d53775264a0828871ba89e',
-  measurementId: 'G-EKR6YL2PS3'
+  apiKey: 'YOUR_KEY',
+  authDomain: 'golf-player-time-management.firebaseapp.com', // Closed
+  databaseURL: 'https://golf-player-time-management.firebaseio.com', // Closed
+  projectId: 'golf-player-time-management', // Closed
+  storageBucket: 'golf-player-time-management.appspot.com', // Closed
+  messagingSenderId: '1004433550779', // Closed
+  appId: '1:1004433550779:web:d53775264a0828871ba89e', // Closed
+  measurementId: 'G-EKR6YL2PS3' // Closed
 };
 
 firebase.initializeApp(config);
